@@ -1,4 +1,4 @@
 github4python
 =============
 
-python
+python for myself
