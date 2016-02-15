@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
+
+import sys
 import requests
-url = 'http://hq.sinajs.cn/'
+
+url = 'http://1hq.sinajs.cn/'
 #code = 'sh600486,sh601003,sh601001,sz000998'
 code = 'sh000001,sz000998'
-url_req = requests.get(url+'list='+code)
+stock_url = url+'list='+code
+
+try:
+	time_out = 3
+	requests.get(stock_url,timeout=time_out)
+except  requests.exceptions.ConnectionError as msg:
+	print(msg)
+	sys.exit(1) 
+
+url_req = requests.get(stock_url,timeout=1)
 #info4code = url_req.text.split('"')[1].split(',')
 #print(info4code)
 for info in url_req.text.split('\n'):
