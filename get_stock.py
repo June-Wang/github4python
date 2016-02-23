@@ -3,9 +3,9 @@
 import sys
 import requests
 
-url = 'http://1hq.sinajs.cn/'
-#code = 'sh600486,sh601003,sh601001,sz000998'
-code = 'sh000001,sz000998'
+url = 'http://hq.sinajs.cn/'
+code = 'sh600486,sh601003,sh601001,sz000998'
+#code = 'sh000001,sz000998'
 stock_url = url+'list='+code
 
 try:
@@ -59,5 +59,8 @@ for info in url_req.text.split('\n'):
 			stock_code_31 = stock_code_list[31] #时间
 			#print(len(info.split('=')[1].split(',')))
 			print(stock_code_00,stock_code,stock_code_03,stock_code_30,stock_code_31)
+			if float(stock_code_02) > float(stock_code_03):
+				present = (float(stock_code_02) - float(stock_code_03))/float(stock_code_02)*100
+				print ('-%.2f' % present)
 		else:
 			print(stock_code_str,"not found!")
