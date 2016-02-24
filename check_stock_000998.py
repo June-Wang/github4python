@@ -16,7 +16,7 @@ my_date = today
 #my_date = my_stock.date[0]
 
 df = ts.get_tick_data('000998',date=today)
-my_stock_price_avg = (df.price.min() + df.price.max())/2
+my_stock_price_avg = df.price.sum()/len(df.price)
 my_stock_price_min = df.price.min()
 my_stock_price_max = df.price.max()
 
