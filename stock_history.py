@@ -11,7 +11,7 @@ now = datetime.date.today()
 #yestoday = now - datetime.timedelta(days=1)
 #to3week_ago = today + datetime.timedelta(weeks=-3)
 
-for num in range(20):
+for num in range(60):
 	my_date = now - datetime.timedelta(days=num)
 	B1_days = num+1 
 	B20_days = num+30
@@ -23,6 +23,7 @@ for num in range(20):
 	stock_price_avg = df.price.sum()/len(df.price)
 	stock_price_min = df.price.min()
 	stock_price_max = df.price.max()
+	stock_volume = df.volume.sum()
 	
 	df = ts.get_tick_data(stock_code,date=yestoday)
 	stock_price_avg_yestoday = df.price.sum()/len(df.price)
@@ -40,9 +41,10 @@ for num in range(20):
 	if price_avg_20days > stock_price_avg and stock_change_number_yestoday > stock_change_number:
 		if stock_change_number >= stock_code_p_change: #and p_change_20days <= -20:
 			stock_price_sell = stock_code_p_change*stock_price_avg+stock_price_avg
-			trans_msg = ' buy: '+("%.2f" % stock_price_avg)+' sell: '+("%.2f" % stock_price_sell)
+			#trans_msg = ' buy: '+("%.2f" % stock_price_avg)+' sell: '+("%.2f" % stock_price_sell)
 
 	date_now = str(my_date)
+	stock_volume_str = str(stock_volume)
 	p_change_number = stock_change_number*100
 	p_change_number_str = ("%.2f" % p_change_number)
 	p_change_20days_str = ("%.2f" % p_change_20days)
@@ -51,6 +53,6 @@ for num in range(20):
 	stock_price_min_str = ("%.2f" % stock_price_min)
 	stock_price_max_str = ("%.2f" % stock_price_max)
 	
-	stock_price_msg = ' change/change20d: '+p_change_number_str+'|'+p_change_20days_str+' avg/avg20d: '+stock_price_avg_str+'|'+stock_price_avg_20days_str+' min/max: '+stock_price_min_str+'|'+stock_price_max_str
+	stock_price_msg = '\tvolume:\t'+stock_volume_str+'\tchange/change20d:\t'+p_change_number_str+'\t'+p_change_20days_str+'\tavg/avg20d:\t'+stock_price_avg_str+'\t'+stock_price_avg_20days_str+'\tmin/max:\t'+stock_price_min_str+'\t'+stock_price_max_str
 	
 	print(date_now+stock_price_msg+trans_msg)
