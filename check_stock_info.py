@@ -28,11 +28,11 @@ df = ts.get_hist_data(stock_code, ktype='D',start=str(date_20days_ago),end=str(y
 p_change_20days = df.p_change.sum()
 price_avg_20days = df.close.sum()/len(df.close)
 
-stock_change_number = (price_avg_20days - stock_price_now)/price_avg_20days
-stock_change_number_yestoday = (price_avg_20days - stock_price_now_yestoday)/price_avg_20days
+stock_change_number_now = (price_avg_20days - stock_price_now)/price_avg_20days
+stock_change_number_now_yestoday = (price_avg_20days - stock_price_now_yestoday)/price_avg_20days
 
 date_now = str(my_date)
-p_change_number = stock_change_number*100
+p_change_number = stock_change_number_now*100
 p_change_number_str = ("%.2f" % p_change_number)
 p_change_20days_str = ("%.2f" % p_change_20days)
 stock_price_now_str = ("%.2f" % stock_price_now)	
