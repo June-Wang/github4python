@@ -17,7 +17,7 @@ stock_price_now = float(df.price[0])
 my_date = df.date[0]+' '+df.time[0]
 
 df = ts.get_tick_data(stock_code,date=yestoday)
-stock_price_now_yestoday = df.price.sum()/len(df.price)
+stock_price_yestoday = df.price.sum()/len(df.price)
 
 if stock_price_now != stock_price_now:
 	print('no data!')
@@ -29,7 +29,7 @@ p_change_20days = df.p_change.sum()
 price_avg_20days = df.close.sum()/len(df.close)
 
 stock_change_number_now = (price_avg_20days - stock_price_now)/price_avg_20days
-stock_change_number_now_yestoday = (price_avg_20days - stock_price_now_yestoday)/price_avg_20days
+stock_change_number_yestoday = (price_avg_20days - stock_price_yestoday)/price_avg_20days
 
 date_now = str(my_date)
 p_change_number = stock_change_number_now*100
