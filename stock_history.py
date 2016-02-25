@@ -4,7 +4,6 @@ import sys
 import tushare as ts
 import datetime
 
-#stock_code = '000998'
 stock_code = sys.argv[1]
 stock_code_p_change = float(sys.argv[2])
 
@@ -12,7 +11,7 @@ now = datetime.date.today()
 #yestoday = now - datetime.timedelta(days=1)
 #to3week_ago = today + datetime.timedelta(weeks=-3)
 
-for num in range(60):
+for num in range(20):
 	my_date = now - datetime.timedelta(days=num)
 	B1_days = num+1 
 	B20_days = num+30
