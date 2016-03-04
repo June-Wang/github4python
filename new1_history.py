@@ -9,7 +9,7 @@ stock_code_p_change = float(sys.argv[2])
 
 now = datetime.date.today()
 
-for num in range(150):
+for num in range(5):
 	my_date = now - datetime.timedelta(days=num)
 	B1_days = num+1
 	B20_days = num+21
@@ -39,27 +39,33 @@ for num in range(150):
 
 	df = ts.get_sina_dd(stock_code, date=str(my_date))
 	
-	type_buy = df[df.type == '买盘']
-	type_sell = df[df.type == '卖盘']
-	type_zhong = df[df.type == '中性盘']
-	
-	type_buy_sum = type_buy.volume.sum()
-	type_sell_sum = type_sell.volume.sum()
-	type_zhong_sum = type_zhong.volume.sum()
-	
-	type_sum = type_buy.volume.sum() + type_sell.volume.sum() + type_zhong.volume.sum()
+	types = set(df.type)
+	type_sum = df['volume'].sum()
 	type_sum_count = len(df)
-	type_buy_change = type_buy_sum/type_sum *100
-	type_sell_change = type_sell_sum/type_sum *100
-	type_zhong_change = type_zhong_sum/type_sum *100
+	#s_out = ''
+	stock_type_count = dict()
+	stock_type_change = dict()
+	stock_type_volume = dict()
+	for s_type in types:
+		stock_type_count[s_type] = df['type'][df.type == s_type].count()
+		stock_type_volume[s_type] = df['volume'][df.type == s_type].sum()
+		stock_type_change[s_type] = stock_type_volume[s_type]/type_sum*100
+
+	stock_type_count_msg = ''
+	stock_type_change_msg = ''
+	for s_type in types:
+		#stock_type_count_msg = stock_type_count_msg+'\t'+str(s_type)+'\t'+str(stock_type_count[s_type])+'\t'
+		stock_type_change_msg = stock_type_change_msg+' '+str(s_type)+' '+("%.2f" % stock_type_change[s_type])+'% '
+		
+	stock_type_change_msg = stock_type_change_msg + ' 总数: '+ str(type_sum_count)
+	#print(stock_type_change_msg)
 
 	act_msg = ''
 	if p_change_5_avg < 0 and p_change_5_avg > p_change_10_avg and p_change_10_avg > p_change_20_avg:
 		act_msg = 'buy'
 
 	date_now = str(my_date)
-	price_msg = 'price(now/5/10/20/): '+("%.2f" % price)+' '+("%.2f" % price_avg_20)#+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
+	price_msg = 'price(now/5/10/20/): '+("%.2f" % price)+' '+("%.2f" % price_avg_10)+' '+("%.2f" % price_avg_20)
+	#+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	p_change_msg = 'change(now/5/10/20):\t'+("%.2f" % p_change)+'\t'+("%.2f" % p_change_5_avg)+'\t'+("%.2f" % p_change_10_avg)+'\t'+("%.2f" % p_change_20_avg)
-	#volume_msg = 'volume(now/20): '+ str(volume)+'\t'+("%.2f" % volume_avg20_change)
-	volume_msg = 'buy/sell/zhong/sum: '+ ("%.2f" % type_buy_change) +' '+ ("%.2f" % type_sell_change) +' '+("%.2f" % type_zhong_change)+' '+str(type_sum_count)
-	print(date_now+' '+price_msg+' '+p_change_msg+'\t'+volume_msg+' '+act_msg)
+	print(date_now+' '+price_msg+' '+p_change_msg+'\t'+stock_type_change_msg+' '+act_msg)
