@@ -9,7 +9,7 @@ stock_code_p_change = float(sys.argv[2])
 
 now = datetime.date.today()
 
-for num in range(200):
+for num in range(100):
 	my_date = now - datetime.timedelta(days=num)
 	B1_days = num+1
 	B20_days = num+21
@@ -74,7 +74,8 @@ for num in range(200):
 		act_msg = 'buy'
 
 	date_now = str(my_date)
-	price_msg = 'price(1/5/10): '+("%.2f" % price)+' '+("%.2f" % price_avg_5)+' '+("%.2f" % price_avg_10)
+	#price_msg = 'price(1/5/10): '+("%.2f" % price)+' '+("%.2f" % price_avg_5)+' '+("%.2f" % price_avg_10)
+	price_msg = 'price(1/min/max): '+("%.2f" % price)+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	#+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	p_change_msg = 'change(1/5/10):\t'+("%.2f" % p_change)+'\t'+("%.2f" % p_change_5_avg)+'\t'+("%.2f" % p_change_10_avg)#+'\t'+("%.2f" % p_change_20_avg)
 	print(date_now+' '+price_msg+' '+p_change_msg+'\t'+stock_type_change_msg+' '+act_msg)
