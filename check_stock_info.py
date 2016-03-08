@@ -1,11 +1,44 @@
-#!/usr/local/bin/python3.4
+#!/usr/bin/env python3.4
 
 import sys
 import tushare as ts
 import datetime
+import getopt
+
+def usage():
+	print("Usage:%s [-h|-l|-g] [--help|--less <number>|--greater <number>] args...." % sys.argv[0])
 
 stock_code = sys.argv[1]
 #stock_code_p_change = float(sys.argv[2])
+
+try:
+	opts, args = getopt.getopt(sys.argv[1:], "hl:g:", ["help", "less=","greater="])
+except getopt.GetoptError:
+	print("getopt error!")
+	usage()
+	sys.exit(1)
+
+for opt,arg in opts:
+	if opt in ("-h", "--help"):
+		usage()
+		sys.exit(1)
+	elif opt in ("-l", "--less"):
+		lower = arg
+	elif opt in ("-g", "--greater"):
+		higher = arg
+try:
+	lower_num = float(lower)
+	higher_num = float(higher)
+except:
+	usage()
+	sys.exit(1)
+
+#if higher_num < lower_num:
+#	usage()
+#	sys.exit(1)
+
+print(str(lower_num),str(higher_num))
+sys.exit(1)
 
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
