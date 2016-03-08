@@ -16,23 +16,23 @@ date_ago = now - datetime.timedelta(days=num4days)
 before_yestoday = now - datetime.timedelta(days=2)
 before_date_ago = now - datetime.timedelta(days=num4days+1)
 
-for1day = pd.bdate_range(start=str(date_ago),end=str(yestoday))
-for2day = pd.bdate_range(start=str(before_date_ago),end=str(before_yestoday))
+day_today = pd.bdate_range(start=str(date_ago),end=str(yestoday))
+day_yestoday = pd.bdate_range(start=str(before_date_ago),end=str(before_yestoday))
 
 today_list = list()
 yestoday_list = list()
 
-for day in for1day:
+for day in day_today:
 	today_list.append(str(day.date()))
 
-for day in for2day:
+for day in day_yestoday:
 	yestoday_list.append(str(day.date()))
 
 #sys.exit(1)
 
 df = ts.get_hist_data(stock_code,start=str(date_ago),end=str(yestoday))
 
-#for day in reversed(for1day):
+#for day in reversed(day_today):
 for day in today_list:
 	date_today = today_list.pop()
 	date_yestoday = yestoday_list.pop()
@@ -40,7 +40,6 @@ for day in today_list:
 	try:
 		price = df[df.index == date_today].close[0]
 		yestoday_price = df[df.index == date_yestoday].close[0]
-		
 	except:
 		continue
 
