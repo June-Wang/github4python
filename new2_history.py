@@ -17,32 +17,20 @@ now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
 date_ago = now - datetime.timedelta(days=num4days)
 
-before_yestoday = now - datetime.timedelta(days=2)
-before_date_ago = now - datetime.timedelta(days=num4days+1)
-
 day_today = pd.bdate_range(start=str(date_ago),end=str(yestoday))
-day_yestoday = pd.bdate_range(start=str(before_date_ago),end=str(before_yestoday))
 
-today_list = list()
-yestoday_list = list()
-
-for day in day_today:
-	today_list.append(str(day.date()))
-
-for day in day_yestoday:
-	yestoday_list.append(str(day.date()))
-
-#sys.exit(1)
 try:
-	df = ts.get_hist_data(stock_code,start=str(before_date_ago),end=str(yestoday))
+	df = ts.get_hist_data(stock_code,start=str(date_ago),end=str(yestoday))
 except:
 	print('timeout!')
 	sys.exit(1)	
 
-#for day in reversed(day_today):
-for day in today_list:
-	date_today = today_list.pop()
-	date_yestoday = yestoday_list.pop()
+days = len(day_today.date)
+
+for i in range(days-1,0,-1):
+	date_today = str(day_today.date[i])
+	date_yestoday = str(day_today.date[i-1])
+	#print(str(date_today),date_yestoday)
 
 	try:
 		price = df[df.index == date_today].close[0]
@@ -80,14 +68,12 @@ for day in today_list:
 	#print(date_today,date_yestoday)
 	#continue
 
-	act_msg = ''
-	if p_change > p_change_avg_10 and p_change_avg_5 < 0 and p_change > p_change_avg_5 and p_change_avg_5 > p_change_avg_10 and  yestoday_p_change_avg_10 <= (stock_code_p_change*-1) and p_change_avg_10 > yestoday_p_change_avg_10:
-		act_msg = ''
+#	if p_change > p_change_avg_10 and p_change_avg_5 < 0 and p_change > p_change_avg_5 and p_change_avg_5 > p_change_avg_10 and  yestoday_p_change_avg_10 <= (stock_code_p_change*-1) and p_change_avg_10 > yestoday_p_change_avg_10:
 
 	date_now = date_today
 	price_msg = 'price(1/5/10/min/max):\t'+("%.2f" % price)+'\t'+("%.2f" % price_avg_5)+'\t'+("%.2f" % price_avg_10)+'\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)
 	p_change_msg = 'change(1/5/10/open/min/max):\t'+("%.2f" % p_change)+'\t'+("%.2f" % p_change_avg_5)+'\t'+("%.2f" % p_change_avg_10)+'\t'+("%.2f" % p_change_open) +'\t'+("%.2f" % p_change_min) +'\t'+("%.2f" % p_change_max) #+'\t'+("%.2f" % p_change_avg_20)
 	if p_change_min < -6 and p_change_avg_5 < -5:
-		print(Fore.GREEN+date_now+' '+price_msg+' '+p_change_msg+'\t'+ ' '+act_msg+Style.RESET_ALL)
+		print(Fore.GREEN+date_now+' '+price_msg+' '+p_change_msg+Style.RESET_ALL)
 	else:
-		print(date_now+' '+price_msg+' '+p_change_msg+'\t'+ ' '+act_msg)
+		print(date_now+' '+price_msg+' '+p_change_msg)
