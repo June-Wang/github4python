@@ -12,30 +12,30 @@ colorama.init()
 stock_code = sys.argv[1]
 stock_code_p_change = float(sys.argv[2])
 
-num4days = 100
+num4days = 150
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
-date_ago = now - datetime.timedelta(days=num4days)
-
-day_today = pd.bdate_range(start=str(date_ago),end=str(yestoday))
+end_day = now - datetime.timedelta(days=num4days)
+workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
 
 try:
-	df = ts.get_hist_data(stock_code,start=str(date_ago),end=str(yestoday))
+	df = ts.get_hist_data(stock_code,start=str(end_day),end=str(yestoday))
 except:
 	print('timeout!')
 	sys.exit(1)	
 
-days = len(day_today.date)
+days = len(workday.date)
 
 for i in range(days-1,0,-1):
-	date_today = str(day_today.date[i])
-	date_yestoday = str(day_today.date[i-1])
-	#print(str(date_today),date_yestoday)
+	date_today = str(workday.date[i])
+	date_yestoday = str(workday.date[i-1])
+	date_now = date_today
 
 	try:
 		price = df[df.index == date_today].close[0]
 		yestoday_price = df[df.index == date_yestoday].close[0]
 	except:
+		print(date_now,'no data!')	
 		continue
 
 	if price != price:
@@ -65,15 +65,11 @@ for i in range(days-1,0,-1):
 	yestoday_p_change_avg_5 = (yestoday_price - yestoday_price_avg_5)/yestoday_price_avg_5 * 100
 	yestoday_p_change_avg_10 = (yestoday_price - yestoday_price_avg_10)/yestoday_price_avg_10 * 100
 	
-	#print(date_today,date_yestoday)
-	#continue
-
 #	if p_change > p_change_avg_10 and p_change_avg_5 < 0 and p_change > p_change_avg_5 and p_change_avg_5 > p_change_avg_10 and  yestoday_p_change_avg_10 <= (stock_code_p_change*-1) and p_change_avg_10 > yestoday_p_change_avg_10:
 
-	date_now = date_today
 	price_msg = 'price(1/5/10/min/max):\t'+("%.2f" % price)+'\t'+("%.2f" % price_avg_5)+'\t'+("%.2f" % price_avg_10)+'\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)
 	p_change_msg = 'change(1/5/10/open/min/max):\t'+("%.2f" % p_change)+'\t'+("%.2f" % p_change_avg_5)+'\t'+("%.2f" % p_change_avg_10)+'\t'+("%.2f" % p_change_open) +'\t'+("%.2f" % p_change_min) +'\t'+("%.2f" % p_change_max) #+'\t'+("%.2f" % p_change_avg_20)
-	if p_change_min < -6 and p_change_avg_5 < -5:
+	if p_change_min < -6 and p_change_avg_5 < -5 and price_avg_10 > price_open:
 		print(Fore.GREEN+date_now+' '+price_msg+' '+p_change_msg+Style.RESET_ALL)
 	else:
 		print(date_now+' '+price_msg+' '+p_change_msg)
