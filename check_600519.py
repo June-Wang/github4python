@@ -96,8 +96,8 @@ for i in range(days-1,60,-1):
 	p_change_30 = get_p_change_for_days(get_day(30,i))
 	p_change_60 = get_p_change_for_days(get_day(60,i))
 	p_change_90 = get_p_change_for_days(get_day(90,i))
-	p_change_120 = get_p_change_for_days(get_day(120,i))
-	p_change_160 = get_p_change_for_days(get_day(160,i))
+	#p_change_120 = get_p_change_for_days(get_day(120,i))
+	#p_change_160 = get_p_change_for_days(get_day(160,i))
 
 	p_change = df[df.index == date_today].p_change[0]
 	#p_change = df[df.index == date_yestoday].p_change[0]
@@ -119,7 +119,7 @@ for i in range(days-1,60,-1):
 	price_msg = 'prix(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	
 	p_change_title = 'ch(1/3/5/10/15/20/30/60/90/120/160):\t'
-	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))+'\t'+get_color(("%.2f" % p_change_120))+'\t'+get_color(("%.2f" % p_change_160))
+	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))#+'\t'+get_color(("%.2f" % p_change_120))+'\t'+get_color(("%.2f" % p_change_160))
 	
 	if p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0:
 		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
