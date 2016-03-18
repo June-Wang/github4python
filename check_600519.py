@@ -62,7 +62,7 @@ def get_color(text):
 #print(get_color(mt_str))
 #sys.exit(1)	
 			
-for i in range(days-1,60,-1):
+for i in range(days-1,90,-1):
 	my_str = ''
 	date_today = str(workday.date[i])
 	date_yestoday = str(workday.date[i-1])
@@ -116,9 +116,9 @@ for i in range(days-1,60,-1):
 	yestoday_p_change_avg_5 = (yestoday_price_close - yestoday_price_avg_5)/yestoday_price_avg_5 * 100
 	yestoday_p_change_avg_10 = (yestoday_price_close - yestoday_price_avg_10)/yestoday_price_avg_10 * 100
 	
-	price_msg = 'prix(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
+	price_msg = 'price(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	
-	p_change_title = 'ch(1/3/5/10/15/20/30/60/90/120/160):\t'
+	p_change_title = 'change(1/3/5/10/15/20/30/60/90):\t'
 	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))#+'\t'+get_color(("%.2f" % p_change_120))+'\t'+get_color(("%.2f" % p_change_160))
 	
 	if p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0:
