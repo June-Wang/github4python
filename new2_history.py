@@ -13,7 +13,7 @@ colorama.init()
 stock_code = sys.argv[1]
 #stock_code_p_change = float(sys.argv[2])
 
-num4days = 100
+num4days = 300
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
 end_day = now - datetime.timedelta(days=num4days+60)
@@ -122,7 +122,7 @@ for i in range(days-1,60,-1):
 	
 	#if p_change_min < -6 and p_change_avg_5 < -5 and price_avg_10 > price_open:
 	#if p_change > -9 and p_change < -3 and ((p_change_3 < -9 and p_change_10 > -20) or (p_change_10 < -10 and p_change_10 > -20)):
-	if p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0:
+	if p_change > 0 and p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 < 0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0 and p_change_90 < 0:
 		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	#elif p_change_max < 1 and p_change_max > -1 and p_change < -4 and  p_change_min < -4:
 	#elif p_change_3 > 15 or p_change_10 >15:
