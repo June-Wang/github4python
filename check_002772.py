@@ -10,10 +10,9 @@ from termcolor import colored, cprint
 
 colorama.init()
 
-stock_code = '000998'
-#stock_code_p_change = float(sys.argv[2])
+stock_code = '002772'
 
-num4days = 200
+num4days = 300
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
 end_day = now - datetime.timedelta(days=num4days+60)
@@ -114,12 +113,13 @@ for i in range(days-1,60,-1):
 	
 	price_msg = 'price(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	
+	
 	p_change_title = 'change(1/3/5/10/15/20/30/60/90):\t'
 	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))
 	
-	if p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0 and p_change_90<0:
+	if p_change > 0 and p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 < 0 and p_change_20 <0 and p_change_30 <0:
 		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-	elif p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0:
+	elif p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0:
 		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	elif p_change > 0:
 		print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)

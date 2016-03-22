@@ -95,7 +95,7 @@ for i in range(days-1,120,-1):
 	p_change_30 = get_p_change_for_days(get_day(30,i))
 	p_change_60 = get_p_change_for_days(get_day(60,i))
 	p_change_90 = get_p_change_for_days(get_day(90,i))
-	p_change_120 = get_p_change_for_days(get_day(120,i))
+#	p_change_120 = get_p_change_for_days(get_day(120,i))
 
 	p_change = df[df.index == date_today].p_change[0]
 	#p_change = df[df.index == date_yestoday].p_change[0]
@@ -114,13 +114,10 @@ for i in range(days-1,120,-1):
 	yestoday_p_change_avg_5 = (yestoday_price_close - yestoday_price_avg_5)/yestoday_price_avg_5 * 100
 	yestoday_p_change_avg_10 = (yestoday_price_close - yestoday_price_avg_10)/yestoday_price_avg_10 * 100
 	
-	#price_msg = 'price(close/min/max): '+("%.2f" % price_close)+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	price_msg = 'price(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	
-	#p_change_msg = 'change(1/3/7/10/15/20/30/60):\t'+("%.2f" % p_change)+'\t'+("%.2f" % p_change_3)+'\t'+("%.2f" % p_change_7)+'\t'+("%.2f" % p_change_10)+'\t'+("%.2f" % p_change_15)+'\t'+("%.2f" % p_change_20)+'\t'+("%.2f" % p_change_30)+'\t'+("%.2f" % p_change_60)
-	
-	p_change_title = 'change(1/3/5/10/15/20/30/60/90/120):\t'
-	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))+'\t'+get_color(("%.2f" % p_change_120))
+	p_change_title = 'change(1/3/5/10/15/20/30/60/90):\t'
+	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))
 	
 	if p_change > 0 and p_change_3 < 0 and p_change_5 and p_change_10 < 0 and p_change_15 < 0 and p_change_20 < 0 and p_change_30 < 0 and p_change_60 <0:
 		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
