@@ -14,7 +14,7 @@ colorama.init()
 stock_code = '600519'
 #stock_code_p_change = float(sys.argv[2])
 
-num4days = 1860
+num4days = 1800
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
 end_day = now - datetime.timedelta(days=num4days+60)
@@ -61,8 +61,11 @@ def get_color(text):
 #mt_str = 'hello'
 #print(get_color(mt_str))
 #sys.exit(1)	
+
+mark_down = 0
+mark_up = 0
 			
-for i in range(days-1,0,-1):
+for i in range(days-1,90,-1):
 	my_str = ''
 	date_today = str(workday.date[i])
 	date_yestoday = str(workday.date[i-1])
@@ -119,16 +122,18 @@ for i in range(days-1,0,-1):
 	
 	p_change_title = 'change(1/3/5/10/15/20/30/60/90):\t'
 	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))#+'\t'+get_color(("%.2f" % p_change_120))+'\t'+get_color(("%.2f" % p_change_160))
-	
+
 	#if p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0:
 	#if p_change_5 < -4.5 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0 and p_change_90 <0:
 	#if p_change <0 and p_change_3 < 0 and p_change_5 < -4.5 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 > -20 and p_change_60 < 0:
-	if p_change <0 and p_change_3 < 0 and p_change_5 < 0 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 > -20 and p_change_60 < 0:
 	#if p_change <0 and p_change_3 < 0 and p_change_5 < 0 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 < 0 and p_change_90 <0:
+	if p_change <0 and p_change_3 < 0 and p_change_5 < 0 and p_change_15 <0 and p_change_20 <0 and p_change_30 <0 and p_change_60 > -20 and p_change_60 < 0:
+	#if p_change_90 < -20:
 		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	#elif p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0 and p_change_90 > 30:
 	#elif p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0 and p_change_90 > 20:
-	elif p_change < 0 and p_change_3 > 0 and p_change_5 > 9 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0:
+	elif (p_change < 0 and p_change_3 > 0 and p_change_5 > 9 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0) or (p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0 and p_change_90<15 and p_change_90 >10):
+	#elif p_change_90 > 20:
 		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	#elif p_change > 0:
 	#	print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
