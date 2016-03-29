@@ -66,6 +66,7 @@ mark_down = 0
 mark_up = 0
             
 for i in range(days-1,90,-1):
+    #print(i)
     my_str = ''
     date_today = str(workday.date[i])
     date_yestoday = str(workday.date[i-1])
