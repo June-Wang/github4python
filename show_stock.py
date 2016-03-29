@@ -28,7 +28,7 @@ def get_color(text):
 
 #cursor = conn.cursor()
 conn = sa.create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock')
-sql = '''SELECT * FROM tbl_stock_change where stock_id = %s order by date DESC limit 200;'''
+sql = '''SELECT * FROM tbl_stock_change where stock_id = %s order by date DESC limit 100;'''
 #rows = conn.execute(sql,stock_table,stock_code)
 rows = conn.execute(sql,stock_code)
 
@@ -64,8 +64,10 @@ for row in rows:
     if p_change <0 and p_change_3 < 0 and p_change_5 < 0 and p_change_15 <0 and p_change_20 <0 \
     and p_change_30 <0 and p_change_60 > -20 and p_change_60 < 0:
         print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-    elif p_change < 0 and p_change_3 > 0 and p_change_5 > 9 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0: 
-#or (p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_15 >0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0 and p_change_90<15 and p_change_90 >10):
+    elif (p_change < 0 and p_change_3 > 0 and p_change_5 > 9 and p_change_10 > 0 and p_change_15 >0 \
+    and p_change_20 >0 and p_change_30 >0 and p_change_60 >0) or \
+    (p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_15 >0 and \
+    p_change_20 >0 and p_change_30 >0 and p_change_60 >0 and p_change_90<15 and p_change_90 >10):
         print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
     elif p_change > 0:
         print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
