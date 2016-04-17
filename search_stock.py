@@ -4,6 +4,7 @@ import sys
 import tushare as ts
 import datetime
 import pandas as pd
+import time
 
 df_basics = ts.get_stock_basics()
 #code,代码
@@ -23,7 +24,8 @@ df_basics = ts.get_stock_basics()
 #pb,市净率
 #timeToMarket,上市日期
 
-df_basics_list = df_basics[df_basics.totals < 1000000000].code
+#df_basics_list = list(df_basics[df_basics.totals < 500000].index)
+df_basics_list = list(df_basics[df_basics.totals >0].index)
 
 df_profit = ts.get_profit_data(2015,4)
 #code,代码
@@ -36,7 +38,7 @@ df_profit = ts.get_profit_data(2015,4)
 #business_income,营业收入(百万元)
 #bips,每股主营业务收入(元)
 
-df_profit_list = df_profit[df_profit.gross_profit_rate > 40 ].code
+df_profit_list = list(df_profit[df_profit.gross_profit_rate>=30][df_profit.roe >=5].code)
 
 df_growth = ts.get_growth_data(2015,4)
 #code,代码
@@ -49,10 +51,41 @@ df_growth = ts.get_growth_data(2015,4)
 #seg,股东权益增长率
 
 #growth = df_growth[df_growth.mbrg >0][df_growth.nprg >0][df_growth.nav>0][df_growth.targ>0][df_growth.epsg>0][df_growth.seg>0].code
-df_growth_list = df_growth[df_growth.mbrg >0][df_growth.nprg >0].code
+df_growth_list = list(df_growth[df_growth.mbrg >= 90][df_growth.nprg >0].code)
 
-code_list = sorted(list(set(profit).intersection(set(growth))))
+df_today = ts.get_today_all()
+#code：代码
+#name:名称
+#changepercent:涨跌幅
+#trade:现价
+#open:开盘价
+#high:最高价
+#low:最低价
+#settlement:昨日收盘价
+#volume:成交量
+#turnoverratio:换手率
 
-for code in code_list:
-	rows = df_growth[df_growth.code == code][['code','name']]
-	print(rows.code.values,rows.name.values)
+df_price_list = list(df_today[df_today.trade < 15][df_today.trade >0].code)
+
+code_list = list()
+#df_basics_list
+for code in [df_price_list,df_profit_list,df_growth_list]:
+    code_list.extend(code)
+
+print("\n")
+num=0
+for code in set(code_list):
+    count = code_list.count(code)
+    if count == 3:
+        price_close = df_today[df_today.code == code].trade.values[0]
+        stock = df_growth[df_growth.code == code]
+        stock_basics = df_basics[df_basics.index == code]
+        stock_code = str(stock.code.values[0])
+        stock_name = str(stock.name.values[0])
+        stock_close = str("%.2f" % price_close)
+        stock_industry = str(stock_basics.industry.values[0])
+        stock_mbrg = str(stock.mbrg.values[0])
+        print(stock_code+"\t"+stock_name+"\t"+stock_close+"\t"+stock_industry+"\t"+stock_mbrg)
+        num+=1
+        #time.sleep(1)
+print(num)
