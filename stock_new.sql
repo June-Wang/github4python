@@ -31,7 +31,8 @@ CREATE TABLE `cashflow` (
   `cf_nm` double DEFAULT NULL,
   `cf_liabilities` double DEFAULT NULL,
   `cashflowratio` double DEFAULT NULL,
-  `date` text DEFAULT NULL,
+  `year` year DEFAULT NULL,
+  `season` TINYINT DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
