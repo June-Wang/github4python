@@ -52,8 +52,14 @@ for row in rows:
 #df_basics = ts.get_stock_basics()
 #df_basics_list = list(df_basics[df_basics.totals >0].index)
 #time.sleep(5)
-df_today = ts.get_today_all()
-print("\n")
+#df_today = ts.get_today_all()
+
+today_sql = '''select code,trade from today group by code;'''
+rows = conn.execute(today_sql)
+
+stock_price = dict()
+for code,price in rows:
+    stock_price[code] = price
 
 code_list = list()
 for code in [profit_list,growth_list]:
@@ -61,11 +67,5 @@ for code in [profit_list,growth_list]:
 
 for code in sorted(set(code_list)):
     count = code_list.count(code)
-    try:
-        price = df_today[df_today.code == code].trade.values[0]
-    except:
-        continue
-    #if price[0] != price[0]:
-    #    continue
-    if count == 2:
-        print('\t'.join([code,stock_name[code],stock_industry[code],str(price)]))
+    if count == 2 and stock_price[code] >0:
+        print('\t'.join([code,stock_name[code],stock_industry[code],str(stock_price[code])]))
