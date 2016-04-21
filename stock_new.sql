@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `cashflow`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cashflow` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `code` char(6),
-  `name` varchar(20),
+  `code` char(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `cf_sales` double DEFAULT NULL,
   `rateofreturn` double DEFAULT NULL,
   `cf_nm` double DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `cashflow` (
   `season` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_name_year_season` (`code`,`name`,`year`,`season`)
-) ENGINE=InnoDB AUTO_INCREMENT=42606 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85752 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,8 +47,8 @@ DROP TABLE IF EXISTS `debtpaying`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `debtpaying` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `code` char(6),
-  `name` varchar(20),
+  `code` char(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `currentratio` text,
   `quickratio` text,
   `cashratio` text,
@@ -59,7 +59,7 @@ CREATE TABLE `debtpaying` (
   `season` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_name_year_season` (`code`,`name`,`year`,`season`)
-) ENGINE=InnoDB AUTO_INCREMENT=42606 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85211 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,8 +71,8 @@ DROP TABLE IF EXISTS `growth`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `growth` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `code` char(6),
-  `name` varchar(20),
+  `code` char(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `mbrg` double DEFAULT NULL,
   `nprg` double DEFAULT NULL,
   `nav` double DEFAULT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `growth` (
   `season` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_name_year_season` (`code`,`name`,`year`,`season`)
-) ENGINE=InnoDB AUTO_INCREMENT=41008 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=82015 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,10 +94,10 @@ DROP TABLE IF EXISTS `list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list` (
-  `code` char(6),
-  `name` varchar(20),
-  `industry` varchar(20),
-  `area` varchar(10),
+  `code` char(6) NOT NULL DEFAULT '',
+  `name` varchar(20) DEFAULT NULL,
+  `industry` varchar(20) DEFAULT NULL,
+  `area` varchar(10) DEFAULT NULL,
   `pe` double DEFAULT NULL,
   `outstanding` double DEFAULT NULL,
   `totals` double DEFAULT NULL,
@@ -124,8 +124,8 @@ DROP TABLE IF EXISTS `operation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `operation` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `code` char(6),
-  `name` varchar(20),
+  `code` char(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `arturnover` double DEFAULT NULL,
   `arturndays` double DEFAULT NULL,
   `inventory_turnover` double DEFAULT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE `operation` (
   `season` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_name_year_season` (`code`,`name`,`year`,`season`)
-) ENGINE=InnoDB AUTO_INCREMENT=42606 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85211 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,8 +148,8 @@ DROP TABLE IF EXISTS `profit`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `profit` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `code` char(6),
-  `name` varchar(20),
+  `code` char(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `roe` double DEFAULT NULL,
   `net_profit_ratio` double DEFAULT NULL,
   `gross_profit_rate` double DEFAULT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE `profit` (
   `season` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_name_year_season` (`code`,`name`,`year`,`season`)
-) ENGINE=InnoDB AUTO_INCREMENT=43164 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=86327 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,8 +173,8 @@ DROP TABLE IF EXISTS `report`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `report` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `code` char(6),
-  `name` varchar(20),
+  `code` char(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `eps` double DEFAULT NULL,
   `eps_yoy` double DEFAULT NULL,
   `bvps` double DEFAULT NULL,
@@ -188,7 +188,35 @@ CREATE TABLE `report` (
   `season` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_name_year_season` (`code`,`name`,`year`,`season`)
-) ENGINE=InnoDB AUTO_INCREMENT=42461 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84921 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `today`
+--
+
+DROP TABLE IF EXISTS `today`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `today` (
+  `index` bigint(20) NOT NULL DEFAULT '0',
+  `code` char(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `changepercent` double DEFAULT NULL,
+  `trade` double DEFAULT NULL,
+  `open` double DEFAULT NULL,
+  `high` double DEFAULT NULL,
+  `low` double DEFAULT NULL,
+  `settlement` double DEFAULT NULL,
+  `volume` double DEFAULT NULL,
+  `turnoverratio` double DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `per` double DEFAULT NULL,
+  `pb` double DEFAULT NULL,
+  `mktcap` double DEFAULT NULL,
+  `nmc` double DEFAULT NULL,
+  PRIMARY KEY (`index`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -200,4 +228,4 @@ CREATE TABLE `report` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-21 21:49:22
+-- Dump completed on 2016-04-22  0:11:07
