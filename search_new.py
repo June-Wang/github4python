@@ -56,10 +56,13 @@ for row in rows:
 
 today_sql = '''select code,trade from today group by code;'''
 rows = conn.execute(today_sql)
+#price_sql = '''select code,price from profit where year = %s group by code;'''
+#rows = conn.execute(price_sql,year)
 
 stock_price = dict()
 for code,price in rows:
     stock_price[code] = price
+
 
 code_list = list()
 for code in [profit_list,growth_list]:
@@ -67,5 +70,7 @@ for code in [profit_list,growth_list]:
 
 for code in sorted(set(code_list)):
     count = code_list.count(code)
+    if code not in stock_price:
+        continue
     if count == 2 and stock_price[code] >0:
         print('\t'.join([code,stock_name[code],stock_industry[code],str(stock_price[code])]))
