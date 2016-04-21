@@ -30,12 +30,14 @@ for row in rows:
 
 #print(profit_list)
 
-stock_name_sql = '''select code,name from profit where year = %s group by code;'''
-rows = conn.execute(stock_name_sql,year)
+stock_name_sql = '''select code,name,industry from list;'''
+rows = conn.execute(stock_name_sql)
 
-stock_dict = dict()
-for code,name in rows:
-    stock_dict[code] = name
+stock_name = dict()
+stock_industry = dict()
+for code,name,industry in rows:
+    stock_name[code] = name
+    stock_industry[code] = industry
 #    print(code,name)
 #sys.exit(0)
 
@@ -47,22 +49,23 @@ for row in rows:
     growth_list.extend(row.values())
 #print(growth_list)
 
-df_basics = ts.get_stock_basics()
-df_basics_list = list(df_basics[df_basics.totals >0].index)
-time.sleep(5)
+#df_basics = ts.get_stock_basics()
+#df_basics_list = list(df_basics[df_basics.totals >0].index)
+#time.sleep(5)
 df_today = ts.get_today_all()
 print("\n")
 
 code_list = list()
-for code in [profit_list,growth_list,df_basics_list]:
+for code in [profit_list,growth_list]:
     code_list.extend(code)
 
-for code in set(code_list):
+for code in sorted(set(code_list)):
     count = code_list.count(code)
-    price = df_today[df_today.code == code].trade.values
-    #if count == 3 and price >0:
-    if count == 3:
-    #if count == 2:
-        stock_basics = df_basics[df_basics.index == code]
-        stock_industry = str(stock_basics.industry.values[0])
-        print(code,stock_dict[code],price,stock_industry)
+    try:
+        price = df_today[df_today.code == code].trade.values[0]
+    except:
+        continue
+    #if price[0] != price[0]:
+    #    continue
+    if count == 2:
+        print('\t'.join([code,stock_name[code],stock_industry[code],str(price)]))
