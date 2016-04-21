@@ -5,8 +5,8 @@ import time
 import tushare as ts
 
 path = '../csv/'
-for year in range(2014,2015):
-    for season in  range(3,5):
+for year in range(2016,2017):
+    for season in  range(1,2):
         print(year,season)
         df_profit = ts.get_profit_data(year,season)
         time.sleep(15)
