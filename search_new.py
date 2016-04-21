@@ -6,10 +6,21 @@ import tushare as ts
 import sqlalchemy as sa
 import mysql.connector
 
-year = '2014'
+try:
+    year = sys.argv[1]
+except:
+    print('year not null!')
+    sys.exit(1)
+
+if not year:
+    print('year not null!')
+    sys.exit(1)
+
+#year = '2016'
 conn = sa.create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock')
 
-profit_sql = '''select code from profit where net_profit_ratio >=30 and gross_profit_rate >=30 and roe >=5 and year = %s group by code;'''
+#profit_sql = '''select code from profit where net_profit_ratio >=30 and gross_profit_rate >=30 and roe >=5 and year = %s group by code;'''
+profit_sql = '''select code from profit where net_profit_ratio >=30 and gross_profit_rate >=30 and year = %s group by code;'''
 rows = conn.execute(profit_sql,year)
 
 #profit_list = [row.values() for row in rows]

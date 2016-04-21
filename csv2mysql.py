@@ -8,8 +8,8 @@ import mysql.connector
 #csvin = 'cashflow'
 #csvin = 'report'
 files = ['cashflow','debtpaying','growth','operation','profit','report']
-years = range(2016,2017)
-seasons = range(1,2)
+years = range(2012,2016)
+seasons = range(1,5)
 cells = [(year,season) for year in years for season in seasons]
 
 conn = sa.create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock')
@@ -61,5 +61,8 @@ for csvin in files:
             qry = "Insert Into %s (%s) Values (%s);" % (table,db_field_list_new_str,data_value_list_new_str)
             #print(qry)
             #cursor.execute(qry)
-            conn.execute(qry)
+            try:
+                conn.execute(qry)
+            except:
+                continue
     #cursor.close()
