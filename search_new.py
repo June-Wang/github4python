@@ -9,7 +9,6 @@ import mysql.connector
 year = '2014'
 conn = sa.create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock')
 
-#
 profit_sql = '''select code from profit where net_profit_ratio >=30 and gross_profit_rate >=30 and roe >=5 and year = %s group by code;'''
 rows = conn.execute(profit_sql,year)
 
@@ -41,16 +40,17 @@ df_basics = ts.get_stock_basics()
 df_basics_list = list(df_basics[df_basics.totals >0].index)
 time.sleep(5)
 df_today = ts.get_today_all()
+print("\n")
 
 code_list = list()
 for code in [profit_list,growth_list,df_basics_list]:
     code_list.extend(code)
 
-
 for code in set(code_list):
     count = code_list.count(code)
     price = df_today[df_today.code == code].trade.values
-    if count == 3 and price >0:
+    #if count == 3 and price >0:
+    if count == 3:
     #if count == 2:
         stock_basics = df_basics[df_basics.index == code]
         stock_industry = str(stock_basics.industry.values[0])
