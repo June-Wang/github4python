@@ -8,7 +8,7 @@ import mysql.connector
 
 conn = create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock?charset=utf8')
 
-for year in range(2014,2016):
+for year in range(2004,2012):
     for season in  range(1,5):
         print(year,season)
         df_profit = ts.get_profit_data(year,season)

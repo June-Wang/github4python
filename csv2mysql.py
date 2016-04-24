@@ -8,7 +8,7 @@ import mysql.connector
 #csvin = 'cashflow'
 #csvin = 'report'
 files = ['cashflow','debtpaying','growth','operation','profit','report']
-years = range(2012,2016)
+years = range(2005,2012)
 seasons = range(1,5)
 cells = [(year,season) for year in years for season in seasons]
 

@@ -27,19 +27,14 @@ stock_industry = dict()
 for code,name,industry in rows:
     stock_name[code] = name
     stock_industry[code] = industry
-#    print(code,name)
-#sys.exit(0)
 
 today_sql = '''select code,trade from today group by code;'''
 rows = conn.execute(today_sql)
-#price_sql = '''select code,price from profit where year = %s group by code;'''
-#rows = conn.execute(price_sql,year)
 
 stock_price = dict()
 for code,price in rows:
     stock_price[code] = price
 
-#profit_sql = '''select code from profit where net_profit_ratio >=30 and gross_profit_rate >=30 and roe >=5 and year = %s group by code;'''
 profit_sql = '''select code,sum(net_profit_ratio),sum(gross_profit_rate),sum(roe),count(*) from profit where year = %s group by code;'''
 rows = conn.execute(profit_sql,year)
 
@@ -48,17 +43,9 @@ for code,net_profit_ratio,gross_profit_rate,roe,count in rows:
     net_profit_ratio_avg = net_profit_ratio/count
     gross_profit_rate_avg = gross_profit_rate/count
     roe_avg = roe/count
-    if net_profit_ratio_avg >= 30 and gross_profit_rate_avg >= 35 and roe_avg >=5:
+    #if net_profit_ratio_avg >= 40 and gross_profit_rate_avg >= 40:
+    if net_profit_ratio_avg >= 40 and gross_profit_rate_avg >= 45 and roe_avg >=0:
         profit_list.append(code)
-#print(profit_list)
-#sys.exit(0)
-
-#profit_list = list()
-#for row in rows:
-#    profit_list.extend(row.values())
-#print(profit_list)
-#sys.exit(0)
-
 
 growth_sql = '''select code,sum(mbrg),sum(nprg),sum(nav),sum(targ),sum(epsg),sum(seg),count(*) from growth where year = %s group by code'''
 rows = conn.execute(growth_sql,year)
@@ -71,14 +58,9 @@ for code,mbrg,nprg,nav,targ,epsg,seg,count in rows:
     targ_avg = targ/count
     epsg_avg = epsg/count
     seg_avg = seg/count
-    if mbrg_avg >= 90:
+    #if mbrg_avg >= 80:
+    if mbrg_avg > 30 and nprg_avg > 0 and nav_avg >0 and epsg_avg >0:
         growth_list.append(code)
-#print(growth_list)
-#sys.exit(0)
-#growth_list = list()
-#for row in rows:
-#    growth_list.extend(row.values())
-#print(growth_list)
 
 code_list = list()
 for code in [profit_list,growth_list]:
