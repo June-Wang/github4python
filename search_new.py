@@ -73,13 +73,14 @@ for code,trade,totals in rows:
         Market_Cap_dict[code] = Market_Cap
         Market_Cap_list.append(code)
 
-code_list = list()
-for code in [profit_list,growth_list,Market_Cap_list]:
-    code_list.extend(code)
+profit_set = set(profit_list)
+growth_set = set(growth_list)
+Market_Cap_set = set(Market_Cap_list)
+
+code_list = list(profit_set & growth_set & Market_Cap_set)
 
 for code in sorted(set(code_list)):
-    count = code_list.count(code)
     if code not in stock_price:
         continue
-    if count == 3 and stock_price[code] >0:
+    if stock_price[code] >0:
         print('\t'.join([code,stock_name[code],stock_industry[code],("%.2f" % stock_price[code]),("%.2f" % Market_Cap_dict[code])]))
