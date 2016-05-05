@@ -62,13 +62,24 @@ for code,mbrg,nprg,nav,targ,epsg,seg,count in rows:
     if mbrg_avg > 30 and nprg_avg > 0 and nav_avg >0 and epsg_avg >0:
         growth_list.append(code)
 
+Market_Cap_sql = '''select today.code,today.trade,list.totals from today,list where today.code=list.code'''
+rows = conn.execute(Market_Cap_sql)
+
+Market_Cap_list = list()
+Market_Cap_dict = dict()
+for code,trade,totals in rows:
+    Market_Cap = trade*totals/10000 #亿
+    if Market_Cap < 1000:
+        Market_Cap_dict[code] = Market_Cap
+        Market_Cap_list.append(code)
+
 code_list = list()
-for code in [profit_list,growth_list]:
+for code in [profit_list,growth_list,Market_Cap_list]:
     code_list.extend(code)
 
 for code in sorted(set(code_list)):
     count = code_list.count(code)
     if code not in stock_price:
         continue
-    if count == 2 and stock_price[code] >0:
-        print('\t'.join([code,stock_name[code],stock_industry[code],str(stock_price[code])]))
+    if count == 3 and stock_price[code] >0:
+        print('\t'.join([code,stock_name[code],stock_industry[code],("%.2f" % stock_price[code]),("%.2f" % Market_Cap_dict[code])]))
