@@ -6,6 +6,12 @@ import tushare as ts
 from sqlalchemy import create_engine
 import mysql.connector
 
+try:
+    df = ts.get_stock_basics()
+except:
+    print('time out!')
+    sys.exit(1)
+
 conn = create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock?charset=utf8')
 
 sql = '''DROP TABLE IF EXISTS `list`;'''
@@ -34,5 +40,4 @@ sql = '''CREATE TABLE `list` (
 '''
 conn.execute(sql)
 
-df = ts.get_stock_basics()
 df.to_sql('list',conn,if_exists='append')
