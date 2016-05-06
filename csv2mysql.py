@@ -8,8 +8,8 @@ import mysql.connector
 #csvin = 'cashflow'
 #csvin = 'report'
 files = ['cashflow','debtpaying','growth','operation','profit','report']
-years = range(2005,2012)
-seasons = range(1,5)
+years = range(2016,2017)
+seasons = range(1,2)
 cells = [(year,season) for year in years for season in seasons]
 
 conn = sa.create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock')

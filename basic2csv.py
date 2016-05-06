@@ -5,21 +5,21 @@ import time
 import tushare as ts
 
 path = '../csv/'
-for year in range(2005,2012):
-    for season in  range(1,5):
+for year in range(2016,2017):
+    for season in  range(1,2):
         print(year,season)
         df_profit = ts.get_profit_data(year,season)
-        time.sleep(15)
+        time.sleep(5)
         df_growth = ts.get_growth_data(year,season)
-        time.sleep(15)
+        time.sleep(5)
         df_operation = ts.get_operation_data(year,season)
-        time.sleep(15)
+        time.sleep(5)
         df_debtpaying = ts.get_debtpaying_data(year,season)
-        time.sleep(15)
+        time.sleep(5)
         df_cashflow = ts.get_cashflow_data(year,season)
-        time.sleep(15)
+        time.sleep(5)
         df_report = ts.get_report_data(year,season)
-        time.sleep(15)
+        time.sleep(5)
         filename = path+'profit'+str(year)+'_'+str(season)+'.csv'
         df_profit.to_csv(filename)
         filename = path+'growth'+str(year)+'_'+str(season)+'.csv'
