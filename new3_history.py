@@ -38,7 +38,7 @@ def get_day(day,loop_i):
 def get_p_change_for_days(date_list):
 	global df
 	my_change_sum = 0.0
-	count = 1
+	count = 0
 	day_list = [3,5,10,15,10,30,60,90,120]
 	data_list = list()
 	for my_date in date_list:
@@ -47,10 +47,11 @@ def get_p_change_for_days(date_list):
 		except:
 			my_change_tmp = 0.0
 		my_change_sum += my_change_tmp
-		count +=count
+		count = count +1
 		if count in day_list:
+			#print(count)
 			data_list.append(my_change_sum)
-	return(my_change_sum)
+	return(data_list)
 
 def get_color(text):
 	my_number = float(text)
@@ -92,8 +93,8 @@ for i in range(days-1,60,-1):
 	price_avg_20 = df[df.index == date_today].ma20[0]
 
 	p_change_list = get_p_change_for_days(get_day(120,i))
-	print(p_change_list)
-	sys.exit()
+	#print(p_change_list)
+	#sys.exit()
 
 	p_change = df[df.index == date_today].p_change[0]
 	#p_change = df[df.index == date_yestoday].p_change[0]
@@ -115,18 +116,22 @@ for i in range(days-1,60,-1):
 	#price_msg = 'price(close/min/max): '+("%.2f" % price_close)+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	price_msg = 'price(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	
-	#p_change_msg = 'change(1/3/7/10/15/20/30/60):\t'+("%.2f" % p_change)+'\t'+("%.2f" % p_change_3)+'\t'+("%.2f" % p_change_7)+'\t'+("%.2f" % p_change_10)+'\t'+("%.2f" % p_change_15)+'\t'+("%.2f" % p_change_20)+'\t'+("%.2f" % p_change_30)+'\t'+("%.2f" % p_change_60)
-	
 	p_change_title = 'change(1/3/5/10/15/20/30/60/90):\t'
-	p_change_msg = get_color(("%.2f" % p_change))+'\t'+get_color(("%.2f" % p_change_3))+'\t'+get_color(("%.2f" % p_change_5))+'\t'+get_color(("%.2f" % p_change_10))+'\t'+get_color(("%.2f" % p_change_15))+'\t'+get_color(("%.2f" % p_change_20))+'\t'+get_color(("%.2f" % p_change_30))+'\t'+get_color(("%.2f" % p_change_60))+'\t'+get_color(("%.2f" % p_change_90))
+	p_change_msg = get_color(("%.2f" % p_change))
+	for p_change_value in p_change_list:
+		p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
 	
-	#if p_change_min < -6 and p_change_avg_5 < -5 and price_avg_10 > price_open:
-	#if p_change > -9 and p_change < -3 and ((p_change_3 < -9 and p_change_10 > -20) or (p_change_10 < -10 and p_change_10 > -20)):
-	if p_change > 0 and p_change_3 < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 < 0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0 and p_change_90 < 0:
+	day_data = dict()
+	day_list = [3,5,10,15,20,30,60,90,120]
+	#print(list(zip(day_list,p_change_list)))
+	#sys.exit(0)
+	for day,data in zip(day_list,p_change_list):
+		day_data[day] = data
+	#if p_change > 0 and day_data['3'] < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 < 0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0 and p_change_90 < 0:
+	if p_change < 0 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
 		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-	#elif p_change_max < 1 and p_change_max > -1 and p_change < -4 and  p_change_min < -4:
-	#elif p_change_3 > 15 or p_change_10 >15:
-	elif p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0:
+	#elif p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0:
+	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
 		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	elif p_change > 0:
 		print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
