@@ -16,7 +16,7 @@ stock_code = sys.argv[1]
 num4days = 300
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
-end_day = now - datetime.timedelta(days=num4days+60)
+end_day = now - datetime.timedelta(days=num4days+120)
 workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
 
 try:
@@ -29,7 +29,8 @@ days = len(workday.date)
 
 def get_day(day,loop_i):
 	global workday
-	num = day+1
+	#num = day+1
+	num = day
 	my_date_tmp = list()
 	for my_day in range(loop_i-1,loop_i-num,-1):
 		my_date_tmp.append(str(workday.date[my_day]))
@@ -39,7 +40,7 @@ def get_p_change_for_days(date_list):
 	global df
 	my_change_sum = 0.0
 	count = 0
-	day_list = [3,5,10,15,10,30,60,90,120]
+	day_list = [3,5,10,15,20,30,60,90,120]
 	data_list = list()
 	for my_date in date_list:
 		try:
@@ -114,9 +115,9 @@ for i in range(days-1,60,-1):
 	yestoday_p_change_avg_10 = (yestoday_price_close - yestoday_price_avg_10)/yestoday_price_avg_10 * 100
 	
 	#price_msg = 'price(close/min/max): '+("%.2f" % price_close)+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
-	price_msg = 'price(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
+	price_msg = 'P(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	
-	p_change_title = 'change(1/3/5/10/15/20/30/60/90):\t'
+	p_change_title = 'C(1/3/5/10/15/20/30/60/90/120):\t'
 	p_change_msg = get_color(("%.2f" % p_change))
 	for p_change_value in p_change_list:
 		p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
