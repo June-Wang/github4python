@@ -1,2 +1,5 @@
+#获取交易日
 pandas.bdate_range () 是交易日函数
+#按照指定列倒序输出
+hand[hand.turnoverratio > 1][['code','name','turnoverratio']].sort(columns='turnoverratio',axis=0, ascending=False) 
 
