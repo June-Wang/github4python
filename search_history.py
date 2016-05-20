@@ -13,7 +13,7 @@ colorama.init()
 stock_code = sys.argv[1]
 #stock_code_p_change = float(sys.argv[2])
 
-num4days = 300
+num4days = 1
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
 end_day = now - datetime.timedelta(days=num4days+120)
@@ -68,7 +68,7 @@ def get_color(text):
 #print(get_color(mt_str))
 #sys.exit(1)	
 			
-for i in range(days-1,120,-1):
+for i in range(days-1,days-2,-1):
 	my_str = ''
 	date_today = str(workday.date[i])
 	date_yestoday = str(workday.date[i-1])
@@ -128,15 +128,14 @@ for i in range(days-1,120,-1):
 	#sys.exit(0)
 	for day,data in zip(day_list,p_change_list):
 		day_data[day] = data
-	#if p_change > 0 and day_data['3'] < 0 and p_change_5 < 0 and p_change_10 < 0 and p_change_15 < 0 and p_change_20 <0 and p_change_30 <0 and p_change_60 <0 and p_change_90 < 0:
 	if p_change < 0 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
+		print(stock_code+":\n")
 		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-	#elif p_change < 0 and p_change_3 > 0 and p_change_5 > 0 and p_change_10 > 0 and p_change_20 >0 and p_change_30 >0 and p_change_60 >0:
-	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
-		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-	elif p_change > 0:
-		print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-	elif p_change < 0:
-		print(Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-	else:
-		print(date_now+' '+price_msg+' '+p_change_title+p_change_msg)
+#	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
+#		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+#	elif p_change > 0:
+#		print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+#	elif p_change < 0:
+#		print(Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+#	else:
+#		print(date_now+' '+price_msg+' '+p_change_title+p_change_msg)
