@@ -7,18 +7,21 @@ import pandas as pd
 import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
+import time
 
 colorama.init()
 
 basics = ts.get_stock_basics()
-stock_list = basics[basics.pe >250][basics.pe < 500][basics.esp > 0]
-for code in stock_list.index.values:
-	stock_name = str(stock_list[stock_list.index == code].values[0][0])
+stock_list = basics[basics.pe >250][basics.esp > 0].index.values
+#stock_list = basics[basics.pe >250][basics.esp > 0].index.copy()
+for code in stock_list:
+	#stock_name = str(stock_list[stock_list.index == code].values[0][0])
+	stock_name = str(basics[basics.index == code][['name']].values[0][0])
 	stock_code = code
 	num4days = 1
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+120)
+	end_day = now - datetime.timedelta(days=num4days+121)
 	workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
 	
 	try:
@@ -95,7 +98,7 @@ for code in stock_list.index.values:
 		price_avg_10 = df[df.index == date_today].ma10[0]
 		price_avg_20 = df[df.index == date_today].ma20[0]
 	
-		p_change_list = get_p_change_for_days(get_day(120,i))
+		p_change_list = get_p_change_for_days(get_day(121,i))
 		#print(p_change_list)
 		#sys.exit()
 	
@@ -130,8 +133,9 @@ for code in stock_list.index.values:
 		#sys.exit(0)
 		for day,data in zip(day_list,p_change_list):
 			day_data[day] = data
-		if p_change < 0 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
+		if price_open <= 15 and p_change < 0 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
 			print(stock_code +" "+stock_name+" "+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+			time.sleep(2)
 	#	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
 	#		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	#	elif p_change > 0:
