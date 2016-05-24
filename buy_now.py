@@ -11,8 +11,14 @@ import time
 
 colorama.init()
 
-basics = ts.get_stock_basics()
-stock_list = basics[basics.pe >250][basics.esp > 0].index.values
+try:
+	basics = ts.get_stock_basics()
+except:
+	print('timeout!')
+	sys.exit(1)
+
+stock_list = basics[basics.pe >80].index.values
+#stock_list = basics[basics.pe >250][basics.esp > 0].index.values
 #stock_list = basics[basics.pe >250][basics.esp > 0].index.copy()
 for code in stock_list:
 	#stock_name = str(stock_list[stock_list.index == code].values[0][0])
@@ -120,7 +126,7 @@ for code in stock_list:
 		yestoday_p_change_avg_10 = (yestoday_price_close - yestoday_price_avg_10)/yestoday_price_avg_10 * 100
 		
 		#price_msg = 'price(close/min/max): '+("%.2f" % price_close)+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
-		price_msg = 'P(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
+		price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
 		
 		p_change_title = 'C(1/3/5/10/15/20/30/60/90/120):\t'
 		p_change_msg = get_color(("%.2f" % p_change))
@@ -134,8 +140,8 @@ for code in stock_list:
 		for day,data in zip(day_list,p_change_list):
 			day_data[day] = data
 		if price_open <= 15 and p_change < 0 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
-			print(stock_code +" "+stock_name+" "+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-			time.sleep(2)
+			print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+			#time.sleep(2)
 	#	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
 	#		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	#	elif p_change > 0:
