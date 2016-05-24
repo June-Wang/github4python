@@ -20,6 +20,7 @@ except:
 file = sys.argv[1]
 fh = open(file)
 rows = fh.readlines()
+fh.close
 for code in rows:
 	m = re.match("^\d{6}$",code)
 	if not m:
