@@ -137,7 +137,7 @@ for code in stock_list:
 		for day,data in zip(day_list,p_change_list):
 			day_data[day] = data
 		#if day_data[5] == day_data[10] or day_data[10] == day_data[15]:
-		if day_data[15] > -15 or price_open >= 15 or day_data[3] > 0 or day_data[5] > 0:
+		if day_data[5] > -15 or price_open >= 15 or day_data[3] > 0 or day_data[5] > 0:
 			continue
 		#if p_change < 0 and day_data[3] < 0 and day_data[5] < 0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
 		if day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
