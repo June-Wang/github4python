@@ -17,7 +17,7 @@ except:
 	print('timeout!')
 	sys.exit(1)
 
-stock_list = basics[basics.pe >80].index.values
+stock_list = basics[basics.pe >50].index.values
 #stock_list = basics[basics.pe >250][basics.esp > 0].index.values
 #stock_list = basics[basics.pe >250][basics.esp > 0].index.copy()
 for code in stock_list:
