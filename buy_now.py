@@ -138,7 +138,9 @@ for code in stock_list:
 		#sys.exit(0)
 		for day,data in zip(day_list,p_change_list):
 			day_data[day] = data
-		if price_open <= 15 and p_change < 0 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
+		if day_data[5] == day_data[10] or day_data[10] == day_data[15]:
+			continue
+		if price_open <= 15 and p_change < 0 and day_data[3] < 0 and day_data[5] < -15 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
 			print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 			#time.sleep(2)
 	#	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
