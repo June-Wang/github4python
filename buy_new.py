@@ -12,6 +12,7 @@ import time
 colorama.init()
 
 day_list = [3,5,10,15,20,30,60,90,120]
+day_msg = '1/'+'/'.join(str(day) for day in day_list)
 
 try:
 	basics = ts.get_stock_basics()
@@ -20,7 +21,6 @@ except:
 	sys.exit(1)
 
 def get_day(day,loop_i,workday):
-	#global workday
 	num = day
 	my_date_tmp = list()
 	for my_day in range(loop_i-1,loop_i-num,-1):
@@ -28,10 +28,8 @@ def get_day(day,loop_i,workday):
 	return(my_date_tmp)
 
 def get_p_change_for_days(date_list,df,day_list):
-	#global df
 	my_change_sum = 0.0
 	count = 0
-	#day_list = [3,5,10,15,20,30,60,90,120]
 	data_list = list()
 	for my_date in date_list:
 		try:
@@ -47,7 +45,6 @@ def get_p_change_for_days(date_list,df,day_list):
 
 def get_day_data(p_change_list,day_list):
 	day_data = dict()
-	#day_list = [3,5,10,15,20,30,60,90,120]
 	for day,data in zip(day_list,p_change_list):
 		day_data[day] = data
 	return(day_data)
@@ -107,14 +104,14 @@ for code in stock_list:
 		#print(stock_code,day_data[5],day_data[10])
 
 		price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
-		p_change_title = 'C(1/3/5/10/15/20/30/60/90/120):\t'
+		p_change_title = 'C('+day_msg+'):\t'
 		p_change_msg = get_color(("%.2f" % p_change))
 
 		for p_change_value in p_change_list:
 			p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
 
-		if day_data[3] > 20:
-			print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		if day_data[3] > 20 and p_change < 9:
+			print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 		if day_data[5] == day_data[10] or day_data[3] == day_data[5]:
 			continue
 		if day_data[3] <= -20:
