@@ -13,7 +13,7 @@ colorama.init()
 stock_code = sys.argv[1]
 #stock_code_p_change = float(sys.argv[2])
 
-num4days = 300
+num4days = 400
 now = datetime.date.today()
 yestoday = now - datetime.timedelta(days=1)
 end_day = now - datetime.timedelta(days=num4days+120)
@@ -40,7 +40,7 @@ def get_p_change_for_days(date_list):
 	global df
 	my_change_sum = 0.0
 	count = 0
-	day_list = [3,5,10,15,20,30,60,90,120]
+	day_list = [3,5,7,10,15,20,30,60,90,120]
 	data_list = list()
 	for my_date in date_list:
 		try:
@@ -117,13 +117,13 @@ for i in range(days-1,120,-1):
 	#price_msg = 'price(close/min/max): '+("%.2f" % price_close)+' '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	price_msg = 'P(min/max): '+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	
-	p_change_title = 'C(1/3/5/10/15/20/30/60/90/120):\t'
+	p_change_title = 'C(1/3/5/7/10/15/20/30/60/90/120):\t'
 	p_change_msg = get_color(("%.2f" % p_change))
 	for p_change_value in p_change_list:
 		p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
 	
 	day_data = dict()
-	day_list = [3,5,10,15,20,30,60,90,120]
+	day_list = [3,5,7,10,15,20,30,60,90,120]
 	#print(list(zip(day_list,p_change_list)))
 	#sys.exit(0)
 	for day,data in zip(day_list,p_change_list):
