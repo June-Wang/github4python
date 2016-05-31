@@ -112,14 +112,15 @@ for code in stock_list:
 
 		for p_change_value in p_change_list:
 			p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
+
+		if day_data[3] > 20:
+			print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 		if day_data[5] == day_data[10] or day_data[3] == day_data[5]:
 			continue
 		if day_data[3] <= -20:
 			print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 		if day_data[5] > -15 or price_open >= 15 or day_data[3] > 0 or day_data[5] > 0:
 			continue
-		if day_data[3] > 20:
-			print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 		if day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
 			print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	#	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
