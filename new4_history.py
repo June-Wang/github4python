@@ -62,7 +62,7 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 	#print(num,persent)
 
 	#if p_change > -9.9 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
-	if persent < 30:
+	if persent < 25 and day_data[3] < 0 and day_data[5] <0 :
 		output_color = 'cyan'
 	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
 		output_color = 'yellow'
@@ -136,7 +136,7 @@ def do_it(stock_code,num4days):
 if __name__ == "__main__":
 
 	colorama.init()
-	num4days = 200
+	num4days = 300
 	day_list = [3,5,10,15,20,30,60,90,120]
 	stock_code = sys.argv[1]
 	do_it(stock_code,num4days)	
