@@ -110,7 +110,8 @@ for code in stock_list:
 		for p_change_value in p_change_list:
 			p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
 
-		if day_data[3] > 20 and p_change < 9:
+		#if day_data[3] > 20 and p_change < 9:
+		if day_data[3] > 20 :
 			print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 		if day_data[5] == day_data[10] or day_data[3] == day_data[5]:
 			continue
