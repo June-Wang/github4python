@@ -56,8 +56,7 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 		output_color = 'yellow'
 	elif day_data[5] > -15 or price_open >= 15 or day_data[3] > 0 or day_data[5] > 0:
 		output_color = 'no'
-	#if day_data[3] > 20 and p_change < 9:
-	elif day_data[3] <= -20:
+	elif day_data[3] <= -20 and p_change < 9:
 		output_color = 'cyan'
 	elif day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
 		output_color = 'cyan'
@@ -148,7 +147,7 @@ if __name__ == "__main__":
 	
 	stock_list = stock_basics.index.values
 	
-	pool = multiprocessing.Pool(processes=4)
+	pool = multiprocessing.Pool(processes=8)
 	for stock_code in stock_list:
 			#p = multiprocessing.Process(target=do_it,args=(stock_code,stock_basics))
 			#p.start()
