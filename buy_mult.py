@@ -10,7 +10,6 @@ from termcolor import colored, cprint
 import time
 import multiprocessing
 
-
 def get_day(day,loop_i,workday):
 	num = day
 	my_date_tmp = list()
@@ -51,12 +50,16 @@ def get_color(text):
 	return(my_text)
 
 def color4rules(day_data,p_change_list,price_open,p_change):
-	if day_data[3] > 20:
+	if day_data[5] == day_data[10] or day_data[3] == day_data[5] or day_data[10] == day_data[15] or day_data[15] == day_data[20]:
+		output_color = 'no'
+	elif day_data[3] > 20:
 		output_color = 'yellow'
+	elif day_data[5] > -15 or price_open >= 15 or day_data[3] > 0 or day_data[5] > 0:
+		output_color = 'no'
 	#if day_data[3] > 20 and p_change < 9:
-	if day_data[3] <= -20:
+	elif day_data[3] <= -20:
 		output_color = 'cyan'
-	if day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
+	elif day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0 and day_data[120] < 0:
 		output_color = 'cyan'
 #	elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
 #		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
@@ -86,18 +89,7 @@ def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,pri
 	else:
 		print(stock_code +" "+stock_name+"\t"+date_now+' '+price_msg+' '+p_change_title+p_change_msg)
 
-colorama.init()
-
-day_list = [3,5,10,15,20,30,60,90,120]
-
-try:
-	basics = ts.get_stock_basics()
-except:
-	print('timeout!')
-	sys.exit(1)
-
-stock_list = basics.index.values
-for code in stock_list:
+def do_it(code,basics):
 	stock_name = str(basics[basics.index == code][['name']].values[0][0])
 	stock_code = code
 	num4days = 1
@@ -139,11 +131,27 @@ for code in stock_list:
 		day_data = get_day_data(p_change_list,day_list)
 		#print(stock_code,day_data[5],day_data[10])
 
-		if day_data[5] == day_data[10] or day_data[3] == day_data[5]:
-			continue
-		if day_data[5] > -15 or price_open >= 15 or day_data[3] > 0 or day_data[5] > 0:
-			continue
-
 		color = color4rules(day_data,p_change_list,price_open,p_change)	
-#		color4output(color,p_change_list,stock_code,stock_name,price_open,p_change,)
-		color4output(color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max)
+		if color != 'no':
+			color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max)
+
+if __name__ == "__main__":
+
+	colorama.init()
+	day_list = [3,5,10,15,20,30,60,90,120]
+	
+	try:
+		stock_basics = ts.get_stock_basics()
+	except:
+		print('timeout!')
+		sys.exit(1)
+	
+	stock_list = stock_basics.index.values
+	
+	pool = multiprocessing.Pool(processes=4)
+	for stock_code in stock_list:
+			#p = multiprocessing.Process(target=do_it,args=(stock_code,stock_basics))
+			#p.start()
+		pool.apply_async(do_it, (stock_code,stock_basics))
+	pool.close()
+	pool.join()
