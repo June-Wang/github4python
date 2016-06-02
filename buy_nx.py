@@ -60,23 +60,23 @@ def color4rules(day_data,p_change_list,price_open,p_change):
         else:
             count =count -1
     persent = (num + count) / num * 100 - 100
-    print(str(int(persent))+'\t',end="")
+    #print(str(int(persent))+'\t',end="")
 
     if persent <= -80:
         output_color = 'cyan'
     elif persent > -80 and persent <= -50:
         output_color = 'magenta'
-    elif persent >= 80 :
-        output_color = 'yellow'
-    elif p_change > 0:
-        output_color = 'red'
-    elif p_change < 0:
-        output_color = 'green'
+    #elif persent >= 80 :
+    #    output_color = 'yellow'
+    #elif p_change > 0:
+    #    output_color = 'red'
+    #elif p_change < 0:
+    #    output_color = 'green'
     else:
         output_color = 'no'
     return(output_color)
 
-def color4output(date_now,color,day_list,p_change_list,price_open,p_change,price_min,price_max):
+def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max):
     day_msg = '1/'+'/'.join(str(day) for day in day_list)
     price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
     p_change_title = 'C('+day_msg+'):\t'
@@ -86,17 +86,17 @@ def color4output(date_now,color,day_list,p_change_list,price_open,p_change,price
         p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
     p_change_msg = ''
     if color == 'yellow':
-        print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+        print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
     elif color == 'cyan':
-        print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+        print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
     elif color == 'red':
-        print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+        print(stock_code +" "+stock_name+"\t"+Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
     elif color == 'green':
-        print(Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+        print(stock_code +" "+stock_name+"\t"+Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
     elif color == 'magenta':
-        print(Fore.MAGENTA+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+        print(stock_code +" "+stock_name+"\t"+Fore.MAGENTA+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
     else:
-        print(date_now+' '+price_msg+' '+p_change_title+p_change_msg)
+        print(stock_code +" "+stock_name+"\t"+date_now+' '+price_msg+' '+p_change_title+p_change_msg)
 
 def do_it(code,basics):
 	stock_name = str(basics[basics.index == code][['name']].values[0][0])
@@ -158,7 +158,7 @@ if __name__ == "__main__":
 	
 	stock_list = stock_basics.index.values
 	
-	pool = multiprocessing.Pool(processes=5)
+	pool = multiprocessing.Pool(processes=4)
 	for stock_code in stock_list:
 			#p = multiprocessing.Process(target=do_it,args=(stock_code,stock_basics))
 			#p.start()
