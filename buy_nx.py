@@ -50,31 +50,34 @@ def get_color(text):
 	return(my_text)
 
 def color4rules(day_data,p_change_list,price_open,p_change):
-    num = len(day_data) +1
-    count = 0
-    if p_change >=0:
-        count = count +1
-    for k,v in day_data.items():
-        if v >= 0:
-            count =count +1
-        else:
-            count =count -1
-    persent = (num + count) / num * 100 - 100
-    #print(str(int(persent))+'\t',end="")
+	num = len(day_data) +1
+	count = 0
+	if p_change >=0:
+		count = count +1
+	else:
+		count = count -1
 
-    if persent <= -80 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
-        output_color = 'cyan'
-    #elif persent > -80 and persent <= -60:
-    #    output_color = 'magenta'
-    #elif persent >= 80 :
-    #    output_color = 'yellow'
-    #elif p_change > 0:
-    #    output_color = 'red'
-    #elif p_change < 0:
-    #    output_color = 'green'
-    else:
-        output_color = 'no'
-    return(output_color,persent)
+	for k,v in day_data.items():
+		if v >= 0:
+			count =count +1
+		else:
+			count =count -1
+	persent = (num + count) / num * 100 - 100
+
+	#if persent <= -80 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
+	if persent <= -80 and price_open <= 15:
+		output_color = 'cyan'
+	elif persent > -80 and persent <= -60 and price_open <= 15:
+		output_color = 'magenta'
+	#elif persent >= 80 :
+	#	output_color = 'yellow'
+	#elif p_change > 0:
+	#	output_color = 'red'
+	#elif p_change < 0:
+	#	output_color = 'green'
+	else:
+		output_color = 'no'
+	return(output_color,persent)
 
 def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent):
     day_msg = '1/'+'/'.join(str(day) for day in day_list)

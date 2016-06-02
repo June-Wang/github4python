@@ -54,6 +54,8 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 	count = 0
 	if p_change >=0:
 		count = count +1
+	else:
+		count = count -1
 	for k,v in day_data.items():
 		if v >= 0:
 			count =count +1
