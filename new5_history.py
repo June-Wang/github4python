@@ -108,7 +108,7 @@ def do_it(stock_code,num4days):
 	workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
 
 	try:
-	    df = ts.get_hist_data(stock_code,start=str(end_day),end=str(yestoday))
+		df = ts.get_hist_data(stock_code,start=str(end_day),end=str(yestoday))
 	except:
 		print('timeout!')
 		sys.exit(1)
@@ -116,10 +116,12 @@ def do_it(stock_code,num4days):
 	days = len(workday.date)
 
 	for i in range(days-1,120,-1):
+		#print(i)
 		my_str = ''
 		date_today = str(workday.date[i])
 		date_yestoday = str(workday.date[i-1])
 		date_now = date_today
+		#print(date_today,date_yestoday,date_now)
 
 		try:
 			price_open = df[df.index == date_today].open[0]
@@ -134,6 +136,7 @@ def do_it(stock_code,num4days):
 		price_min = df[df.index == date_today].low[0]
 		price_max = df[df.index == date_today].high[0]
 		p_change = df[df.index == date_today].p_change[0]
+		#print(len(workday),len(day_list))
 
 		p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list)
 		day_data = get_day_data(p_change_list,day_list)

@@ -63,6 +63,7 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 		else:
 			count =count -1
 	persent = (num + count) / num * 100 - 100
+	persent_str = str(int(persent))
 
 	#if persent <= -80 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
 	if persent <= -80 and price_open <= 15:
@@ -77,37 +78,37 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 	#	output_color = 'green'
 	else:
 		output_color = 'no'
-	return(output_color,persent)
+	return(output_color,persent_str)
 
 def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent):
-    day_msg = '1/'+'/'.join(str(day) for day in day_list)
-    price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
-    p_change_title = 'C('+day_msg+'):\t'
-    p_change_msg = get_color(("%.2f" % p_change))
-    p_change_title = ''
-    for p_change_value in p_change_list:
-        p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
-    p_change_msg = '\t'+get_color(str(int(persent)))
-    if color == 'yellow':
-        print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-    elif color == 'cyan':
-        print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-    elif color == 'red':
-        print(stock_code +" "+stock_name+"\t"+Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-    elif color == 'green':
-        print(stock_code +" "+stock_name+"\t"+Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-    elif color == 'magenta':
-        print(stock_code +" "+stock_name+"\t"+Fore.MAGENTA+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
-    else:
-        print(stock_code +" "+stock_name+"\t"+date_now+' '+price_msg+' '+p_change_title+p_change_msg)
+	day_msg = '1/'+'/'.join(str(day) for day in day_list)
+	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
+	p_change_title = 'C('+day_msg+'):\t'
+	p_change_msg = get_color(("%.2f" % p_change))
+	p_change_title = ''
+	for p_change_value in p_change_list:
+		p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
+	p_change_msg = '\t'+get_color(str(int(persent)))
+	if color == 'yellow':
+		print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+	elif color == 'cyan':
+		print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+	elif color == 'red':
+		print(stock_code +" "+stock_name+"\t"+Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+	elif color == 'green':
+		print(stock_code +" "+stock_name+"\t"+Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+	elif color == 'magenta':
+		print(stock_code +" "+stock_name+"\t"+Fore.MAGENTA+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+	else:
+		print(stock_code +" "+stock_name+"\t"+date_now+' '+price_msg+' '+p_change_title+p_change_msg)
 
 def do_it(code,basics):
 	stock_name = str(basics[basics.index == code][['name']].values[0][0])
 	stock_code = code
-	num4days = 1
+	num4days = 200
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+121)
+	end_day = now - datetime.timedelta(days=num4days)
 	workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
 	
 	try:
@@ -138,6 +139,7 @@ def do_it(code,basics):
 		price_min = df[df.index == date_today].low[0]
 		price_max = df[df.index == date_today].high[0]
 		p_change = df[df.index == date_today].p_change[0]
+		#print(len(workday),len(day_list))
 	
 		p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list)
 		day_data = get_day_data(p_change_list,day_list)
