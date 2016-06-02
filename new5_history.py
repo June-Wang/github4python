@@ -144,7 +144,7 @@ def do_it(stock_code,num4days):
 if __name__ == "__main__":
 
 	colorama.init()
-	num4days = 300
+	num4days = 400
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
 	stock_code = sys.argv[1]
 	do_it(stock_code,num4days)	

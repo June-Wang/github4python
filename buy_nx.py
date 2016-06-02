@@ -62,10 +62,10 @@ def color4rules(day_data,p_change_list,price_open,p_change):
     persent = (num + count) / num * 100 - 100
     #print(str(int(persent))+'\t',end="")
 
-    if persent <= -80:
+    if persent <= -80 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
         output_color = 'cyan'
-    elif persent > -80 and persent <= -50:
-        output_color = 'magenta'
+    #elif persent > -80 and persent <= -60:
+    #    output_color = 'magenta'
     #elif persent >= 80 :
     #    output_color = 'yellow'
     #elif p_change > 0:
@@ -74,9 +74,9 @@ def color4rules(day_data,p_change_list,price_open,p_change):
     #    output_color = 'green'
     else:
         output_color = 'no'
-    return(output_color)
+    return(output_color,persent)
 
-def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max):
+def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent):
     day_msg = '1/'+'/'.join(str(day) for day in day_list)
     price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
     p_change_title = 'C('+day_msg+'):\t'
@@ -84,7 +84,7 @@ def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,pri
     p_change_title = ''
     for p_change_value in p_change_list:
         p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
-    p_change_msg = ''
+    p_change_msg = '\t'+get_color(str(int(persent)))
     if color == 'yellow':
         print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
     elif color == 'cyan':
@@ -140,9 +140,9 @@ def do_it(code,basics):
 		day_data = get_day_data(p_change_list,day_list)
 		#print(stock_code,day_data[5],day_data[10])
 
-		color = color4rules(day_data,p_change_list,price_open,p_change)	
+		color,persent = color4rules(day_data,p_change_list,price_open,p_change)	
 		if color != 'no':
-			color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max)
+			color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent)
 
 if __name__ == "__main__":
 
@@ -156,7 +156,7 @@ if __name__ == "__main__":
 		print('timeout!')
 		sys.exit(1)
 	
-	stock_list = stock_basics.index.values
+	stock_list = stock_basics[stock_basics.pe > 80].index.values
 	
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in stock_list:
