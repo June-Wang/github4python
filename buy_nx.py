@@ -78,7 +78,7 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 
 def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent):
     day_msg = '1/'+'/'.join(str(day) for day in day_list)
-    price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
+    price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
     p_change_title = 'C('+day_msg+'):\t'
     p_change_msg = get_color(("%.2f" % p_change))
     p_change_title = ''
@@ -160,8 +160,6 @@ if __name__ == "__main__":
 	
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in stock_list:
-			#p = multiprocessing.Process(target=do_it,args=(stock_code,stock_basics))
-			#p.start()
 		pool.apply_async(do_it, (stock_code,stock_basics))
 	pool.close()
 	pool.join()
