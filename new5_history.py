@@ -52,22 +52,21 @@ def get_color(text):
 def color4rules(day_data,p_change_list,price_open,p_change):
 	num = len(day_data) +1
 	count = 0
+	if p_change >=0:
+		count = count +1
 	for k,v in day_data.items():
-		#print(k,v)
-		if v >= 0 or p_change >=0:
+		if v >= 0:
 			count =count +1
 		else:
 			count =count -1
-	persent = (num + count) / num * 100
+	persent = (num + count) / num * 100 - 100
 	print(str(int(persent))+'\t',end="")
 
-	#if p_change > -9.9 and day_data[3] < 0 and day_data[5] <0 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
-	if persent <= 30 and persent >=0:
+	if persent <= -80:
 		output_color = 'cyan'
-	elif persent >30 and persent <=70:
+	elif persent > -80 and persent <= -50:
 		output_color = 'magenta'
-	#elif p_change < 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
-	elif persent >= 190 and p_change > 0 and day_data[3] > 0 and day_data[5] >0 and day_data[10] >0 and day_data[20] >0 and day_data[30] >0 and day_data[60] >0:
+	elif persent >= 80 :
 		output_color = 'yellow'
 	elif p_change > 0:
 		output_color = 'red'
@@ -82,8 +81,10 @@ def color4output(date_now,color,day_list,p_change_list,price_open,p_change,price
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	p_change_title = 'C('+day_msg+'):\t'
 	p_change_msg = get_color(("%.2f" % p_change))
+	p_change_title = ''
 	for p_change_value in p_change_list:
 		p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
+	p_change_msg = ''
 	if color == 'yellow':
 		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	elif color == 'cyan':
@@ -100,7 +101,7 @@ def color4output(date_now,color,day_list,p_change_list,price_open,p_change,price
 def do_it(stock_code,num4days):
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+120)
+	end_day = now - datetime.timedelta(days=num4days+121)
 	workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
 
 	try:
@@ -141,7 +142,7 @@ def do_it(stock_code,num4days):
 if __name__ == "__main__":
 
 	colorama.init()
-	num4days = 400
-	day_list = [3,5,10,15,20,30,60,90,120]
+	num4days = 300
+	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
 	stock_code = sys.argv[1]
 	do_it(stock_code,num4days)	
