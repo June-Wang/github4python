@@ -49,11 +49,8 @@ def get_color(text):
 		my_text = text
 	return(my_text)
 
-#def color4rules(day_data,p_change_list,price_open,p_change):
-def color4rules(df,date_today,p_change_list,day_list):
-	price_open = df[df.index == date_today].open[0]
-	p_change = df[df.index == date_today].p_change[0]
-	day_data = get_day_data(p_change_list,day_list)
+def color4rules(date_today,price_info_list):
+	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	num = len(day_data) +1
 	count = 0
 	#print(price_open,p_change,day_data)
@@ -85,23 +82,14 @@ def color4rules(df,date_today,p_change_list,day_list):
 		output_color = 'no'
 	return(output_color,persent_str)
 
-#def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent):
-def color4output(df,stock_name,stock_code,date_today,color,persent):
+def color4output(date_today,stock_info_list,price_info_list,color,persent):
 
-	#stock_name = str(basics[basics.index == code][['name']].values[0][0])
-	price_open = df[df.index == date_today].open[0]
-	price_min = df[df.index == date_today].low[0]
-	price_max = df[df.index == date_today].high[0]
-	p_change = df[df.index == date_today].p_change[0]
-	print(stock_name,price_open,price_min,price_max,p_change,persent)
+	stock_code,stock_name,stock_industry,stock_area = stock_info_list
+	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
-	persent_msg = '\t'+get_color(str(int(persent)))
+	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+stock_industry
 	p_change_title = ''
-
-	#for p_change_value in p_change_list:
-	#	persent_msg += '\t'+ get_color(("%.2f" % p_change_value))
-	persent_msg = '\t'+get_color(str(int(persent)))
 
 	if color == 'yellow':
 		print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
@@ -117,8 +105,10 @@ def color4output(df,stock_name,stock_code,date_today,color,persent):
 		print(stock_code +" "+stock_name+"\t"+date_today+' '+price_msg+' '+p_change_title+persent_msg)
 
 def do_it(code,basics):
+
 	stock_name = str(basics[basics.index == code][['name']].values[0][0])
 	stock_code = code
+
 	num4days = 200
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
@@ -147,12 +137,22 @@ def do_it(code,basics):
 		if price_open != price_open:
 			continue
 	
+		price_open = df[df.index == date_today].open[0]
+		price_min = df[df.index == date_today].low[0]
+		price_max = df[df.index == date_today].high[0]
+		p_change = df[df.index == date_today].p_change[0]
 		p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list)
+		day_data = get_day_data(p_change_list,day_list)
 
-		color,persent = color4rules(df,date_today,p_change_list,day_list)
+		price_info_list = [price_open,price_min,price_max,p_change,p_change_list,day_data]
+
+		color,persent = color4rules(date_today,price_info_list)
 		if color != 'no':
-			#print(stock_code,date_today,color,persent)
-			color4output(df,stock_name,stock_code,date_today,color,persent)
+			stock_industry = str(basics[basics.index == code][['industry']].values[0][0])
+			stock_area = str(basics[basics.index == code][['area']].values[0][0])
+			stock_info_list = [stock_code,stock_name,stock_industry,stock_area]
+			#print(stock_info_list)
+			color4output(date_today,stock_info_list,price_info_list,color,persent)
 
 if __name__ == "__main__":
 
