@@ -49,9 +49,15 @@ def get_color(text):
 		my_text = text
 	return(my_text)
 
-def color4rules(day_data,p_change_list,price_open,p_change):
+#def color4rules(day_data,p_change_list,price_open,p_change):
+def color4rules(df,date_today,p_change_list,day_list):
+	price_open = df[df.index == date_today].open[0]
+	p_change = df[df.index == date_today].p_change[0]
+	day_data = get_day_data(p_change_list,day_list)
 	num = len(day_data) +1
 	count = 0
+	#print(price_open,p_change,day_data)
+
 	if p_change >=0:
 		count = count +1
 	else:
@@ -65,10 +71,9 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 	persent = (num + count) / num * 100 - 100
 	persent_str = str(int(persent))
 
-	#if persent <= -80 and day_data[10] < 0 and day_data[15] < 0  and day_data[20] < 0 and day_data[30] < 0 and day_data[60] < 0 and day_data[90] < 0:
 	if persent <= -80 and price_open <= 15:
 		output_color = 'cyan'
-	elif persent > -80 and persent <= -70 and price_open <= 15:
+	elif persent > -80 and persent <= -60 and price_open <= 15:
 		output_color = 'magenta'
 	#elif persent >= 80 :
 	#	output_color = 'yellow'
@@ -80,27 +85,36 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 		output_color = 'no'
 	return(output_color,persent_str)
 
-def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent):
-	day_msg = '1/'+'/'.join(str(day) for day in day_list)
+#def color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent):
+def color4output(df,stock_name,stock_code,date_today,color,persent):
+
+	#stock_name = str(basics[basics.index == code][['name']].values[0][0])
+	price_open = df[df.index == date_today].open[0]
+	price_min = df[df.index == date_today].low[0]
+	price_max = df[df.index == date_today].high[0]
+	p_change = df[df.index == date_today].p_change[0]
+	print(stock_name,price_open,price_min,price_max,p_change,persent)
+
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
-	p_change_title = 'C('+day_msg+'):\t'
-	p_change_msg = get_color(("%.2f" % p_change))
+	persent_msg = '\t'+get_color(str(int(persent)))
 	p_change_title = ''
-	for p_change_value in p_change_list:
-		p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
-	p_change_msg = '\t'+get_color(str(int(persent)))
+
+	#for p_change_value in p_change_list:
+	#	persent_msg += '\t'+ get_color(("%.2f" % p_change_value))
+	persent_msg = '\t'+get_color(str(int(persent)))
+
 	if color == 'yellow':
-		print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
 	elif color == 'cyan':
-		print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
 	elif color == 'red':
-		print(stock_code +" "+stock_name+"\t"+Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(stock_code +" "+stock_name+"\t"+Fore.RED+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
 	elif color == 'green':
-		print(stock_code +" "+stock_name+"\t"+Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(stock_code +" "+stock_name+"\t"+Fore.GREEN+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
 	elif color == 'magenta':
-		print(stock_code +" "+stock_name+"\t"+Fore.MAGENTA+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(stock_code +" "+stock_name+"\t"+Fore.MAGENTA+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
 	else:
-		print(stock_code +" "+stock_name+"\t"+date_now+' '+price_msg+' '+p_change_title+p_change_msg)
+		print(stock_code +" "+stock_name+"\t"+date_today+' '+price_msg+' '+p_change_title+persent_msg)
 
 def do_it(code,basics):
 	stock_name = str(basics[basics.index == code][['name']].values[0][0])
@@ -123,34 +137,26 @@ def do_it(code,basics):
 		my_str = ''
 		date_today = str(workday.date[i])
 		date_yestoday = str(workday.date[i-1])
-		date_now = date_today
 	
 		try:
 			price_open = df[df.index == date_today].open[0]
 			yestoday_price_open = df[df.index == date_yestoday].open[0]
 		except:
-			#print(date_now,'no data!')	
 			continue
 	
 		if price_open != price_open:
 			continue
 	
-		price_open = df[df.index == date_today].open[0]
-		price_min = df[df.index == date_today].low[0]
-		price_max = df[df.index == date_today].high[0]
-		p_change = df[df.index == date_today].p_change[0]
-	
 		p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list)
-		day_data = get_day_data(p_change_list,day_list)
 
-		color,persent = color4rules(day_data,p_change_list,price_open,p_change)	
+		color,persent = color4rules(df,date_today,p_change_list,day_list)
 		if color != 'no':
-			color4output(date_now,color,day_list,p_change_list,stock_code,stock_name,price_open,p_change,price_min,price_max,persent)
+			#print(stock_code,date_today,color,persent)
+			color4output(df,stock_name,stock_code,date_today,color,persent)
 
 if __name__ == "__main__":
 
 	colorama.init()
-	#day_list = [3,5,10,15,20,30,60,90,120]
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
 	
 	try:
@@ -160,7 +166,7 @@ if __name__ == "__main__":
 		sys.exit(1)
 	
 	stock_list = stock_basics[stock_basics.pe > 80].index.values
-	
+
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in stock_list:
 		pool.apply_async(do_it, (stock_code,stock_basics))
