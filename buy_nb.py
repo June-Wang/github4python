@@ -70,7 +70,7 @@ def color4rules(date_today,price_info_list):
 
 	if persent <= -80 and price_open <= 15:
 		output_color = 'cyan'
-	elif persent > -80 and persent <= -60 and price_open <= 15:
+	elif persent > -80 and persent <= -70 and price_open <= 15:
 		output_color = 'magenta'
 	#elif persent >= 80 :
 	#	output_color = 'yellow'
