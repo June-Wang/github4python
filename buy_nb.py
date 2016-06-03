@@ -82,13 +82,15 @@ def color4rules(date_today,price_info_list):
 		output_color = 'no'
 	return(output_color,persent_str)
 
-def color4output(date_today,stock_info_list,price_info_list,color,persent):
+def color4output(date_today,stock_basics_list,price_info_list,color,persent):
 
-	stock_code,stock_name,stock_industry,stock_area = stock_info_list
+	#stock_code,stock_name,stock_industry,stock_area = stock_basics_list
+	stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb,stock_eps = stock_basics_list
 	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
+	#print(stock_basics_list)
 
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
-	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+stock_industry
+	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+'市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t每股收益\t'+stock_eps+'\t行业\t'+stock_industry
 	p_change_title = ''
 
 	if color == 'yellow':
@@ -137,27 +139,33 @@ def do_it(code,basics):
 		if price_open != price_open:
 			continue
 	
-		price_open = df[df.index == date_today].open[0]
-		price_min = df[df.index == date_today].low[0]
-		price_max = df[df.index == date_today].high[0]
-		p_change = df[df.index == date_today].p_change[0]
-		p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list)
-		day_data = get_day_data(p_change_list,day_list)
+		price_open = df[df.index == date_today].open[0] #开盘价格
+		price_min = df[df.index == date_today].low[0] #当日最低
+		price_max = df[df.index == date_today].high[0] #当日最高
+		p_change = df[df.index == date_today].p_change[0] #当日涨幅
+		p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list) #120交易日 取样列表
+		day_data = get_day_data(p_change_list,day_list) #时间点取值
 
 		price_info_list = [price_open,price_min,price_max,p_change,p_change_list,day_data]
 
 		color,persent = color4rules(date_today,price_info_list)
 		if color != 'no':
-			stock_industry = str(basics[basics.index == code][['industry']].values[0][0])
-			stock_area = str(basics[basics.index == code][['area']].values[0][0])
-			stock_info_list = [stock_code,stock_name,stock_industry,stock_area]
-			#print(stock_info_list)
-			color4output(date_today,stock_info_list,price_info_list,color,persent)
+			stock_industry = str(basics[basics.index == code][['industry']].values[0][0]) #行业
+			stock_area = str(basics[basics.index == code][['area']].values[0][0]) #区域
+			stock_pe = str(basics[basics.index == code][['pe']].values[0][0]) #市盈率
+			stock_pb = str(basics[basics.index == code][['pb']].values[0][0]) #市净率
+			try:
+				stock_eps = str(basics[basics.index == code][['eps']].values[0][0]) #每股收益
+			except:
+				stock_eps = 'None'
+			stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb,stock_eps]
+			#print(stock_basics_list)
+			color4output(date_today,stock_basics_list,price_info_list,color,persent)
 
 if __name__ == "__main__":
 
 	colorama.init()
-	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
+	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
 	
 	try:
 		stock_basics = ts.get_stock_basics()
@@ -168,7 +176,7 @@ if __name__ == "__main__":
 	stock_list = stock_basics[stock_basics.pe > 80].index.values
 
 	pool = multiprocessing.Pool(processes=4)
-	for stock_code in stock_list:
+	for stock_code in sorted(stock_list):
 		pool.apply_async(do_it, (stock_code,stock_basics))
 	pool.close()
 	pool.join()
