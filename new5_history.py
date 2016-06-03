@@ -49,7 +49,9 @@ def get_color(text):
 		my_text = text
 	return(my_text)
 
-def color4rules(day_data,p_change_list,price_open,p_change):
+#def color4rules(day_data,p_change_list,price_open,p_change):
+def color4rules(date_today,price_info_list):
+	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	num = len(day_data) +1
 	count = 0
 	if p_change >=0:
@@ -69,7 +71,7 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 		output_color = 'cyan'
 	elif persent > -80 and persent <= -50:
 		output_color = 'magenta'
-	elif persent >= 80 :
+	elif persent >= 60 :
 		output_color = 'yellow'
 	elif p_change > 0:
 		output_color = 'red'
@@ -79,27 +81,24 @@ def color4rules(day_data,p_change_list,price_open,p_change):
 		output_color = 'no'
 	return(output_color,persent_str)
 
-def color4output(date_now,color,day_list,p_change_list,price_open,p_change,price_min,price_max,persent):
-	day_msg = '1/'+'/'.join(str(day) for day in day_list)
+#def color4output(date_today,color,day_list,p_change_list,price_open,p_change,price_min,price_max,persent):
+def color4output(date_today,price_info_list,color,persent):
+	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
-	p_change_title = 'C('+day_msg+'):\t'
-	p_change_msg = get_color(("%.2f" % p_change))
 	p_change_title = ''
-	for p_change_value in p_change_list:
-		p_change_msg += '\t'+ get_color(("%.2f" % p_change_value))
 	p_change_msg = '\t'+get_color(persent)
 	if color == 'yellow':
-		print(Fore.YELLOW+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(Fore.YELLOW+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	elif color == 'cyan':
-		print(Fore.CYAN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(Fore.CYAN+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	elif color == 'red':
-		print(Fore.RED+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(Fore.RED+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	elif color == 'green':
-		print(Fore.GREEN+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(Fore.GREEN+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	elif color == 'magenta':
-		print(Fore.MAGENTA+date_now+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
+		print(Fore.MAGENTA+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+p_change_msg)
 	else:
-		print(date_now+' '+price_msg+' '+p_change_title+p_change_msg)
+		print(date_today+' '+price_msg+' '+p_change_title+p_change_msg)
 
 def do_it(stock_code,num4days):
 	now = datetime.date.today()
@@ -116,12 +115,10 @@ def do_it(stock_code,num4days):
 	days = len(workday.date)
 
 	for i in range(days-1,120,-1):
-		#print(i)
 		my_str = ''
 		date_today = str(workday.date[i])
 		date_yestoday = str(workday.date[i-1])
-		date_now = date_today
-		#print(date_today,date_yestoday,date_now)
+		#print(date_today,date_yestoday,date_today)
 
 		try:
 			price_open = df[df.index == date_today].open[0]
@@ -136,15 +133,16 @@ def do_it(stock_code,num4days):
 		price_min = df[df.index == date_today].low[0]
 		price_max = df[df.index == date_today].high[0]
 		p_change = df[df.index == date_today].p_change[0]
-		#print(len(workday),len(day_list))
-
 		p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list)
 		day_data = get_day_data(p_change_list,day_list)
+		price_info_list = [price_open,price_min,price_max,p_change,p_change_list,day_data]
 
-		color,persent = color4rules(day_data,p_change_list,price_open,p_change)	
+		#color,persent = color4rules(day_data,p_change_list,price_open,p_change)	
+		color,persent = color4rules(date_today,price_info_list)
 		#print(color,persent)
 		#if color != 'no':
-		color4output(date_now,color,day_list,p_change_list,price_open,p_change,price_min,price_max,persent)
+		#color4output(date_today,color,day_list,p_change_list,price_open,p_change,price_min,price_max,persent)
+		color4output(date_today,price_info_list,color,persent)
 
 if __name__ == "__main__":
 
