@@ -49,7 +49,6 @@ def get_color(text):
 		my_text = text
 	return(my_text)
 
-#def color4rules(day_data,p_change_list,price_open,p_change):
 def color4rules(date_today,price_info_list):
 	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	num = len(day_data) +1
@@ -81,7 +80,6 @@ def color4rules(date_today,price_info_list):
 		output_color = 'no'
 	return(output_color,persent_str)
 
-#def color4output(date_today,color,day_list,p_change_list,price_open,p_change,price_min,price_max,persent):
 def color4output(date_today,price_info_list,color,persent):
 	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
@@ -137,11 +135,7 @@ def do_it(stock_code,num4days):
 		day_data = get_day_data(p_change_list,day_list)
 		price_info_list = [price_open,price_min,price_max,p_change,p_change_list,day_data]
 
-		#color,persent = color4rules(day_data,p_change_list,price_open,p_change)	
 		color,persent = color4rules(date_today,price_info_list)
-		#print(color,persent)
-		#if color != 'no':
-		#color4output(date_today,color,day_list,p_change_list,price_open,p_change,price_min,price_max,persent)
 		color4output(date_today,price_info_list,color,persent)
 
 if __name__ == "__main__":
