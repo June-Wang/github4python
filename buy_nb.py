@@ -85,12 +85,13 @@ def color4rules(date_today,price_info_list):
 def color4output(date_today,stock_basics_list,price_info_list,color,persent):
 
 	#stock_code,stock_name,stock_industry,stock_area = stock_basics_list
-	stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb,stock_eps = stock_basics_list
+	stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb = stock_basics_list
 	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	#print(stock_basics_list)
 
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
-	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+'市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t每股收益\t'+stock_eps+'\t行业\t'+stock_industry
+	#persent_msg = '\t'+get_color(str(int(persent)))+'\t'+'市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t每股收益\t'+stock_eps+'\t行业\t'+stock_industry
+	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+'市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t行业\t'+stock_industry
 	p_change_title = ''
 
 	if color == 'yellow':
@@ -154,11 +155,12 @@ def do_it(code,basics):
 			stock_area = str(basics[basics.index == code][['area']].values[0][0]) #区域
 			stock_pe = str(basics[basics.index == code][['pe']].values[0][0]) #市盈率
 			stock_pb = str(basics[basics.index == code][['pb']].values[0][0]) #市净率
-			try:
-				stock_eps = str(basics[basics.index == code][['eps']].values[0][0]) #每股收益
-			except:
-				stock_eps = 'None'
-			stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb,stock_eps]
+			#try:
+			#	stock_eps = str(basics[basics.index == code][['eps']].values[0][0]) #每股收益
+			#except:
+			#	stock_eps = 'None'
+			#stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb,stock_eps]
+			stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb]
 			#print(stock_basics_list)
 			color4output(date_today,stock_basics_list,price_info_list,color,persent)
 
