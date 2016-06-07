@@ -94,18 +94,20 @@ def color4output(date_today,stock_basics_list,price_info_list,color,persent):
 	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+'市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t行业\t'+stock_industry
 	p_change_title = ''
 
+	head_msg = stock_code +" "+stock_name+"\t"
+	mid_msg = date_today+' '+price_msg+' '+p_change_title
 	if color == 'yellow':
-		print(stock_code +" "+stock_name+"\t"+Fore.YELLOW+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
+		print(head_msg+Fore.YELLOW+mid_msg+Style.RESET_ALL+persent_msg)
 	elif color == 'cyan':
-		print(stock_code +" "+stock_name+"\t"+Fore.CYAN+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
+		print(head_msg+Fore.CYAN+mid_msg+Style.RESET_ALL+persent_msg)
 	elif color == 'red':
-		print(stock_code +" "+stock_name+"\t"+Fore.RED+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
+		print(head_msg+Fore.RED+mid_msg+Style.RESET_ALL+persent_msg)
 	elif color == 'green':
-		print(stock_code +" "+stock_name+"\t"+Fore.GREEN+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
+		print(head_msg+Fore.GREEN+mid_msg+Style.RESET_ALL+persent_msg)
 	elif color == 'magenta':
-		print(stock_code +" "+stock_name+"\t"+Fore.MAGENTA+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
+		print(head_msg+Fore.MAGENTA+mid_msg+Style.RESET_ALL+persent_msg)
 	else:
-		print(stock_code +" "+stock_name+"\t"+date_today+' '+price_msg+' '+p_change_title+persent_msg)
+		print(head_msg+mid_msg+persent_msg)
 
 def do_it(code,basics):
 
