@@ -102,7 +102,6 @@ def color4output(date_today,price_info_list,sh_info_list,color,persent,persent_s
 	#price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)
 	price_msg = 'P(min/max/open):\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+ ("%.2f" % price_open)
 	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+get_color(persent_sh)+'\t'+str(int(sh_open))+'\t'+get_color("%.2f" % p_change)+'\t'+get_color("%.2f" % sh_p_change)
-	p_change_title = ''
 	#p_change_msg = '\t'+get_color(persent)
 	if color == 'yellow' and int(persent_sh) >0:
 		#print(Fore.YELLOW+date_today+' '+price_msg+' '+p_change_title+Style.RESET_ALL+persent_msg)
@@ -132,6 +131,9 @@ def do_it(stock_code,num4days,day_list):
 		sys.exit(1)
 
 	days = len(workday.date)
+	p_change_sum = 0
+	sh_p_change_sum = 0
+	count = 0
 
 	for i in range(days-1,day_list[-1]+10,-1):
 		my_str = ''
@@ -158,10 +160,25 @@ def do_it(stock_code,num4days,day_list):
 
 		color4output(date_today,price_info_list,sh_info_list,color,persent,persent_sh)
 
+		price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
+		sh_open,sh_min,sh_max,sh_p_change,sh_p_change_list,day_data_sh = sh_info_list
+		if p_change >=0:
+			p_change_sum +=1
+		else:
+			p_change_sum -=1
+		if sh_p_change>=0:
+			sh_p_change_sum +=1
+		else:
+			sh_p_change_sum -=1
+		#p_change_sum += float(p_change)
+		#sh_p_change_sum += float(sh_p_change)
+	#print('code:\t'+get_color("%.2f" % p_change_sum)+'\t'+'sh:\t'+get_color("%.2f" % sh_p_change_sum))
+	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
+
 if __name__ == "__main__":
 
 	colorama.init()
-	num4days = 400
+	num4days = 200
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
 	#day_list = [3,5,7,10,12,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110]
 	stock_code = sys.argv[1]
