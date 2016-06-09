@@ -37,20 +37,35 @@ def get_days(num4days):
 
 def get_p_trend(df,df_sh):
 	p = 0
+	p_up = 0
+	p_down = 0
 	p_sh = 0
+	p_sh_up = 0
+	p_sh_down = 0
+	count = 0
 	for today in df.index.values:
+		count +=1
 		p_change = df[df.index == today].p_change[0]
 		p_change_sh = df_sh[df_sh.index == today].p_change[0]
 		if p_change >=0:
 			p +=1
+			p_up +=1
 		else:
 			p -=1
+			p_down -=1
 
 		if p_change_sh >=0:
 			p_sh +=1
+			p_sh_up +=1
 		else:
 			p_sh -=1
-	return(p,p_sh)
+			p_sh_down -=1
+
+	p_up_p = p_up/count *100
+	p_down_p = p_down/count*100
+	p_sh_up_p = p_sh_up/count*100
+	p_sh_down_p = p_sh_down/count*100
+	return(p,p_up_p,p_down_p,p_sh,p_sh_up_p,p_sh_down_p)
 
 def do_it(code,basics):
 	stock_code = code
@@ -65,10 +80,11 @@ def do_it(code,basics):
 		print('timeout!')
 		sys.exit(1)
 
-	p_trend,p_sh_trend = get_p_trend(df,df_sh)
-	count = p_trend - p_sh_trend
-	persent = p_trend/count *100
-	if p_sh_trend < p_trend and count >=15:
+	#p_trend,p_sh_trend = get_p_trend(df,df_sh)
+	p,p_up_p,p_down_p,p_sh,p_sh_up_p,p_sh_down_p = get_p_trend(df,df_sh)
+	count = p - p_sh
+	persent = p/count *100
+	if p_sh < p and count >=15:
 		msg_list = list()
 		for key in ['name','industry','pe']:
 			msg_list.append(str(stock[key]))
@@ -76,9 +92,8 @@ def do_it(code,basics):
 		#industry = stock['industry']
 		#pe = stock['pe']
 		msg = '\t'.join(msg_list)
-		#print(get_color(("%.2f" % persent))+'\t'+get_color(str(count))+'\tP\t'+get_color(str(p_trend))+'\t'+'SH\t'+get_color(str((p_sh_trend)))+'\t'+stock_code+' '+msg)
-		persent_msg = 
-		print(get_color(("%.2f" % persent))+'\t'+get_color(str(count))+'\tP\t'+get_color(str(p_trend))+'\tSH\t'+get_color(str((p_sh_trend)))+'\t'+stock_code+' '+msg)
+		persent_msg = get_color(str(p))+'\t'+get_color(str((p_sh)))+'\t'+ get_color(("%.2f" % persent))
+		print(persent_msg+'\t'+stock_code+'\t'+msg)
 		
 if __name__ == "__main__":
 	colorama.init()
@@ -89,7 +104,8 @@ if __name__ == "__main__":
 		print('timeout!')
 		sys.exit(1)
 
-	stock_list = stock_basics[stock_basics.pe >= 80].index.values
+	#stock_list = stock_basics[stock_basics.pe >= 80].index.values
+	stock_list = stock_basics.index.values
 	pool = multiprocessing.Pool(processes=4)
 	
 	for stock_code in sorted(stock_list):
