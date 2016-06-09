@@ -55,7 +55,8 @@ def get_info(info_para_list):
 	price_min = df[df.index == date_today].low[0] #当日最低
 	price_max = df[df.index == date_today].high[0] #当日最高
 	p_change = df[df.index == date_today].p_change[0] #当日股票涨幅
-	p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list) #120交易日 取样列表
+	#p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list) #120交易日 取样列表
+	p_change_list = get_p_change_for_days(get_day(day_list[-1]+10,i,workday),df,day_list) #120交易日 取样列表
 	day_data = get_day_data(p_change_list,day_list) #股票时间点取值
 	price_info_list = [price_open,price_min,price_max,p_change,p_change_list,day_data]
 	#print(price_info_list)
@@ -80,7 +81,7 @@ def color4rules(date_today,price_info_list):
 
 	if persent <= -80:
 		output_color = 'cyan'
-	elif persent > -80 and persent <= -70:
+	elif persent > -80 and persent <= -65:
 		output_color = 'magenta'
 	elif persent >= 60 :
 		output_color = 'yellow'
@@ -117,10 +118,10 @@ def color4output(date_today,price_info_list,sh_info_list,color,persent,persent_s
 	else:
 		print(date_today+' '+price_msg+persent_msg)
 
-def do_it(stock_code,num4days):
+def do_it(stock_code,num4days,day_list):
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+121)
+	end_day = now - datetime.timedelta(days=num4days+day_list[-1]+10)
 	workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
 
 	try:
@@ -132,7 +133,7 @@ def do_it(stock_code,num4days):
 
 	days = len(workday.date)
 
-	for i in range(days-1,120,-1):
+	for i in range(days-1,day_list[-1]+10,-1):
 		my_str = ''
 		date_today = str(workday.date[i])
 		date_yestoday = str(workday.date[i-1])
@@ -163,4 +164,4 @@ if __name__ == "__main__":
 	num4days = 400
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
 	stock_code = sys.argv[1]
-	do_it(stock_code,num4days)	
+	do_it(stock_code,num4days,day_list)	

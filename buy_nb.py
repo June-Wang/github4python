@@ -56,7 +56,7 @@ def get_info(info_para_list):
 	price_min = df[df.index == date_today].low[0] #当日最低
 	price_max = df[df.index == date_today].high[0] #当日最高
 	p_change = df[df.index == date_today].p_change[0] #当日股票涨幅
-	p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list) #120交易日 取样列表
+	p_change_list = get_p_change_for_days(get_day(day_list[-1]+10,i,workday),df,day_list) #120交易日 取样列表
 	day_data = get_day_data(p_change_list,day_list) #股票时间点取值
 	price_info_list = [price_open,price_min,price_max,p_change,p_change_list,day_data]
 	#print(price_info_list)
@@ -116,7 +116,7 @@ def color4output(date_today,stock_basics_list,price_info_list,sh_info_list,color
 
 	head_msg = stock_code +" "+stock_name+"\t"
 	mid_msg = date_today+' '+price_msg+' '+p_change_title
-	if color == 'yellow':
+	if color == 'yellow' and persent_sh>0:
 		print(head_msg+Fore.YELLOW+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
 	elif color == 'cyan' and persent_sh<0:
 		print(head_msg+Fore.CYAN+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
@@ -193,7 +193,8 @@ if __name__ == "__main__":
 		print('timeout!')
 		sys.exit(1)
 	
-	stock_list = stock_basics[stock_basics.pe > 80].index.values
+	stock_list = stock_basics[stock_basics.pe >= 80].index.values
+	#stock_list = stock_basics.index.values
 
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
