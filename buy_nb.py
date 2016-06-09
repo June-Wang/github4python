@@ -106,8 +106,9 @@ def color4output(date_today,stock_basics_list,price_info_list,sh_info_list,color
 
 	#print(stock_basics_list,sh_info_list)
 
-	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
-	persent_msg = '\t[股票/大盘](当日/取样)\t'+get_color("%.2f" % p_change)+'\t'+get_color("%.2f" % sh_p_change)+'\t|\t'+get_color(str(int(persent)))+'\t'+get_color(persent_sh)
+	price_msg = 'P(min/max/open):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+ ("%.2f" % price_open)
+	#persent_msg = '\t[股票/大盘](当日/取样)\t'+get_color("%.2f" % p_change)+'\t'+get_color("%.2f" % sh_p_change)+'\t'+get_color(str(int(persent)))+'\t'+get_color(persent_sh)
+	persent_msg = '\t'+get_color(str(int(persent)))+'\t'+get_color(persent_sh)
 	#stock_info_msg = '\t市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t行业 '+stock_industry
 	stock_info_msg = '\t市盈率\t'+stock_pe+'\t'+stock_industry
 	p_change_title = ''
@@ -117,14 +118,14 @@ def color4output(date_today,stock_basics_list,price_info_list,sh_info_list,color
 	mid_msg = date_today+' '+price_msg+' '+p_change_title
 	if color == 'yellow':
 		print(head_msg+Fore.YELLOW+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
-	elif color == 'cyan':
+	elif color == 'cyan' and persent_sh<0:
 		print(head_msg+Fore.CYAN+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
+	elif color == 'magenta' or (color == 'cyan' and persent_sh>0):
+		print(head_msg+Fore.MAGENTA+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
 	elif color == 'red':
 		print(head_msg+Fore.RED+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
 	elif color == 'green':
 		print(head_msg+Fore.GREEN+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
-	elif color == 'magenta':
-		print(head_msg+Fore.MAGENTA+mid_msg+Style.RESET_ALL+persent_msg+stock_info_msg)
 	else:
 		print(head_msg+mid_msg+persent_msg)
 
@@ -164,12 +165,10 @@ def do_it(code,basics):
 	
 		info_para_list = [df,date_today,workday,day_list,i]
 		price_info_list = get_info(info_para_list) #获取股票信息
+		color,persent = color4rules(date_today,price_info_list)
 
 		info_para_list = [df_sh,date_today,workday,day_list,i]
 		sh_info_list = get_info(info_para_list) 
-		#print(sh_info_list)
-		#sys.exit()
-		color,persent = color4rules(date_today,price_info_list)
 		color_sh,persent_sh = color4rules(date_today,sh_info_list)
 		#print(color_sh,persent_sh,sh_info_list)
 		if color != 'no':

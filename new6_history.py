@@ -108,7 +108,7 @@ def color4output(date_today,price_info_list,sh_info_list,color,persent,persent_s
 		print(Fore.YELLOW+date_today+' '+price_msg+persent_msg)
 	elif color == 'cyan' and int(persent_sh) <0:
 		print(Fore.CYAN+date_today+' '+price_msg+persent_msg)
-	elif color == 'magenta':
+	elif color == 'magenta' or (color == 'cyan' and int(persent_sh) >0):
 		print(Fore.MAGENTA+date_today+' '+price_msg+persent_msg)
 	elif color == 'red' or p_change >0:
 		print(Fore.RED+date_today+' '+price_msg+persent_msg)
