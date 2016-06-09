@@ -97,14 +97,11 @@ def color4rules(date_today,price_info_list):
 		output_color = 'no'
 	return(output_color,persent_str)
 
-#def color4output(date_today,stock_basics_list,price_info_list,color,persent):
 def color4output(date_today,stock_basics_list,price_info_list,sh_info_list,color,persent,persent_sh):
 
 	stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb = stock_basics_list
 	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	sh_open,sh_min,sh_max,sh_p_change,sh_p_change_list,day_data_sh = sh_info_list
-
-	#print(stock_basics_list,sh_info_list)
 
 	price_msg = 'P(min/max/open):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+ ("%.2f" % price_open)
 	#persent_msg = '\t[股票/大盘](当日/取样)\t'+get_color("%.2f" % p_change)+'\t'+get_color("%.2f" % sh_p_change)+'\t'+get_color(str(int(persent)))+'\t'+get_color(persent_sh)
@@ -170,16 +167,14 @@ def do_it(code,basics):
 		info_para_list = [df_sh,date_today,workday,day_list,i]
 		sh_info_list = get_info(info_para_list) 
 		color_sh,persent_sh = color4rules(date_today,sh_info_list)
-		#print(color_sh,persent_sh,sh_info_list)
+
 		if color != 'no':
 			stock_industry = str(basics[basics.index == code][['industry']].values[0][0]) #行业
 			stock_area = str(basics[basics.index == code][['area']].values[0][0]) #区域
 			stock_pe = str(basics[basics.index == code][['pe']].values[0][0]) #市盈率
 			stock_pb = str(basics[basics.index == code][['pb']].values[0][0]) #市净率
 
-			#stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb,stock_eps]
 			stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb]
-			#print(price_info_list,sh_info_list)
 			color4output(date_today,stock_basics_list,price_info_list,sh_info_list,color,persent,persent_sh)
 
 if __name__ == "__main__":
