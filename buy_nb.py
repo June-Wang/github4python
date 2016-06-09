@@ -9,6 +9,7 @@ from colorama import Fore, Back, Style
 from termcolor import colored, cprint
 import time
 import multiprocessing
+import pdb
 
 def get_day(day,loop_i,workday):
 	num = day
@@ -58,7 +59,7 @@ def get_info(info_para_list):
 	p_change_list = get_p_change_for_days(get_day(121,i,workday),df,day_list) #120交易日 取样列表
 	day_data = get_day_data(p_change_list,day_list) #股票时间点取值
 	price_info_list = [price_open,price_min,price_max,p_change,p_change_list,day_data]
-	#print(p_change)
+	#print(price_info_list)
 	return(price_info_list)
 
 def color4rules(date_today,price_info_list):
@@ -80,7 +81,8 @@ def color4rules(date_today,price_info_list):
 	persent = (num + count) / num * 100 - 100
 	persent_str = str(int(persent))
 
-	if persent <= -80 and price_open <= 15:
+	#if persent <= -80 and price_open <= 15:
+	if persent <= -80:
 		output_color = 'cyan'
 	#elif persent > -80 and persent <= -70 and price_open <= 15:
 	elif persent > -80 and persent <= -70:
@@ -102,12 +104,14 @@ def color4output(date_today,stock_basics_list,price_info_list,sh_info_list,color
 	price_open,price_min,price_max,p_change,p_change_list,day_data = price_info_list
 	sh_open,sh_min,sh_max,sh_p_change,sh_p_change_list,day_data_sh = sh_info_list
 
-	#print(stock_basics_list)
+	#print(stock_basics_list,sh_info_list)
 
 	price_msg = 'P(min/max):\t'+("%.2f" % price_min)+' '+("%.2f" % price_max)+'\t'+'price:\t'+ ("%.2f" % price_open)
-	persent_msg = '\t当日股票\t'+get_color(str(int(p_change)))+'\t当日大盘\t'+get_color(str(int(sh_p_change)))+'\t股票取样\t'+get_color(str(int(persent)))+'\t大盘取样\t'+get_color(str(int(persent_sh)))
-	stock_info_msg = '\t市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t行业\t'+stock_industry
+	persent_msg = '\t[股票/大盘](当日/取样)\t'+get_color("%.2f" % p_change)+'\t'+get_color("%.2f" % sh_p_change)+'\t|\t'+get_color(str(int(persent)))+'\t'+get_color(persent_sh)
+	#stock_info_msg = '\t市盈率\t'+stock_pe+'\t市净率\t'+stock_pb+'\t行业 '+stock_industry
+	stock_info_msg = '\t市盈率\t'+stock_pe+'\t'+stock_industry
 	p_change_title = ''
+	#persent_msg = ''
 
 	head_msg = stock_code +" "+stock_name+"\t"
 	mid_msg = date_today+' '+price_msg+' '+p_change_title
@@ -163,11 +167,11 @@ def do_it(code,basics):
 
 		info_para_list = [df_sh,date_today,workday,day_list,i]
 		sh_info_list = get_info(info_para_list) 
-		print(price_info_list+'\t'+sh_info_list)
-
+		#print(sh_info_list)
+		#sys.exit()
 		color,persent = color4rules(date_today,price_info_list)
 		color_sh,persent_sh = color4rules(date_today,sh_info_list)
-		
+		#print(color_sh,persent_sh,sh_info_list)
 		if color != 'no':
 			stock_industry = str(basics[basics.index == code][['industry']].values[0][0]) #行业
 			stock_area = str(basics[basics.index == code][['area']].values[0][0]) #区域
@@ -176,7 +180,7 @@ def do_it(code,basics):
 
 			#stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb,stock_eps]
 			stock_basics_list = [stock_code,stock_name,stock_industry,stock_area,stock_pe,stock_pb]
-			#print(stock_basics_list)
+			#print(price_info_list,sh_info_list)
 			color4output(date_today,stock_basics_list,price_info_list,sh_info_list,color,persent,persent_sh)
 
 if __name__ == "__main__":
