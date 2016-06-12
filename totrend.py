@@ -67,6 +67,7 @@ def do_it(code,basics):
 
 	p_trend,p_sh_trend = get_p_trend(df,df_sh)
 	count = p_trend - p_sh_trend
+	persent = p_trend/count *100
 	if p_sh_trend < p_trend and count >=15:
 		msg_list = list()
 		for key in ['name','industry','pe']:
@@ -75,7 +76,9 @@ def do_it(code,basics):
 		#industry = stock['industry']
 		#pe = stock['pe']
 		msg = '\t'.join(msg_list)
-		print(get_color(str(count))+'\tP\t'+get_color(str(p_trend))+'\t'+'SH\t'+get_color(str((p_sh_trend)))+'\t'+stock_code+' '+msg)
+		#print(get_color(("%.2f" % persent))+'\t'+get_color(str(count))+'\tP\t'+get_color(str(p_trend))+'\t'+'SH\t'+get_color(str((p_sh_trend)))+'\t'+stock_code+' '+msg)
+		persent_msg = 
+		print(get_color(("%.2f" % persent))+'\t'+get_color(str(count))+'\tP\t'+get_color(str(p_trend))+'\tSH\t'+get_color(str((p_sh_trend)))+'\t'+stock_code+' '+msg)
 		
 if __name__ == "__main__":
 	colorama.init()
