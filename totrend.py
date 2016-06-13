@@ -65,7 +65,15 @@ def get_p_trend(df,df_sh):
 	p_down_p = p_down/count*100
 	p_sh_up_p = p_sh_up/count*100
 	p_sh_down_p = p_sh_down/count*100
-	return(p,p_up_p,p_down_p,p_sh,p_sh_up_p,p_sh_down_p)
+	if p >0:
+		p_p = p_up
+	else:
+		p_p = p_down
+	if p_sh >0:
+		p_sh_p = p_sh_up
+	else:
+		p_sh_p = p_sh_down
+	return(p,p_sh,p_p,p_sh_p)
 
 def do_it(code,basics):
 	stock_code = code
@@ -81,19 +89,19 @@ def do_it(code,basics):
 		sys.exit(1)
 
 	#p_trend,p_sh_trend = get_p_trend(df,df_sh)
-	p,p_up_p,p_down_p,p_sh,p_sh_up_p,p_sh_down_p = get_p_trend(df,df_sh)
+	p,p_sh,p_p,p_sh_p = get_p_trend(df,df_sh)
 	count = p - p_sh
 	persent = p/count *100
 	if p_sh < p and count >=15:
 		msg_list = list()
 		for key in ['name','industry','pe']:
 			msg_list.append(str(stock[key]))
-		#name  = stock['name']
-		#industry = stock['industry']
-		#pe = stock['pe']
 		msg = '\t'.join(msg_list)
-		persent_msg = get_color(str(p))+'\t'+get_color(str((p_sh)))+'\t'+ get_color(("%.2f" % persent))
+		num_msg = 'num(code/sh)\t'+get_color("%.2f" % p)+'\t'+get_color("%.2f" % p_sh)
+		persent_str = 'persent(code/sh)\t'+get_color("%.2f" % p_p)+'\t'+get_color("%.2f" % p_sh_p)
+		persent_msg = num_msg+'\t'+ persent_str
 		print(persent_msg+'\t'+stock_code+'\t'+msg)
+		#print(stock_code+'\t'+msg)
 		
 if __name__ == "__main__":
 	colorama.init()
