@@ -144,7 +144,6 @@ def do_it(stock_code,num4days,day_list):
 
 		try:
 			price_open = df[df.index == date_today].open[0]
-			yestoday_price_open = df[df.index == date_yestoday].open[0]
 		except:
 			continue
 
@@ -176,7 +175,7 @@ def do_it(stock_code,num4days,day_list):
 if __name__ == "__main__":
 
 	colorama.init()
-	num4days = 400
+	num4days = 300
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
 	#day_list = [3,5,7,10,12,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110]
 	stock_code = sys.argv[1]
