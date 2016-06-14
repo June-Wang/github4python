@@ -93,6 +93,7 @@ def do_it(code,basics):
 	count = p - p_sh
 	persent = p/count *100
 	if p_sh < p and count >=15:
+	#if p_sh < p:
 		msg_list = list()
 		for key in ['name','industry','pe']:
 			msg_list.append(str(stock[key]))
