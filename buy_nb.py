@@ -153,7 +153,7 @@ def do_it(code,basics):
 	
 		try:
 			price_open = df[df.index == date_today].open[0]
-			yestoday_price_open = df[df.index == date_yestoday].open[0]
+			#yestoday_price_open = df[df.index == date_yestoday].open[0]
 		except:
 			continue
 	
