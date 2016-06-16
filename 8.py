@@ -10,13 +10,15 @@ from termcolor import colored, cprint
 import time
 import multiprocessing
 
-def get_basics_info(code):
+def get_basics_info(code,basics):
+	stock_basics = {}
 	name = str(basics[basics.index == code][['name']].values[0][0])
 	industry = str(basics[basics.index == code][['industry']].values[0][0]) #行业
 	area = str(basics[basics.index == code][['area']].values[0][0]) #区域
 	pe = str(basics[basics.index == code][['pe']].values[0][0]) #市盈率
 	pb = str(basics[basics.index == code][['pb']].values[0][0]) #市净率
-	return(code,name,industry,area,pe,pb)
+	stock_basics[code] = {'name':name,'industry':industry,'area':area,'pe':pe,'pb':pb}
+	return(stock_basics[code])
 
 def do_it(code,basics):
 
@@ -25,22 +27,23 @@ def do_it(code,basics):
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
 	end_day = now - datetime.timedelta(days=num4days)
-	workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
+	#workday = pd.bdate_range(start=str(end_day),end=str(yestoday))
+
+	stock_basics_dict = {}
+	stock_basics_dict[code] = get_basics_info(code,basics)
+	print(p_change,code,stock_basics_dict[code])
 
 	try:
 		df = ts.get_hist_data(stock_code,start=str(end_day),end=str(yestoday))
-		#df_sh = ts.get_hist_data('sh',start=str(end_day),end=str(yestoday))
 	except:
 		print('timeout!')
 		sys.exit(1)
 
-	days = len(workday.date)
+	#days = len(workday.date)
 
-	for day in reversed(df.index.values):
-		my_str = ''
-		date_today = str(workday.date[day])
-		date_yestoday = str(workday.date[day-1])
-
+	for date_today in df.index.values:
+		date_yestoday=str(datetime.datetime.strptime(date_today, '%Y-%m-%d') + datetime.timedelta(days = -1))[:10]
+		print(date_today,date_yestoday)
 		try:
 			p_change = df[df.index == date_today].p_change[0]
 		except:
@@ -49,9 +52,11 @@ def do_it(code,basics):
 		if p_change != p_change:
 			continue
 		
-		count +=1
-		if p_change >3:
-			num
+		sys.exit()
+		#count +=1
+		#if p_change >3:
+		#	num
+
 if __name__ == "__main__":
 
 	colorama.init()
