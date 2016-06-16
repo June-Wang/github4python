@@ -80,6 +80,23 @@ def p_change_persent(df):
 	up_persent = num4up/count*100
 	return(up_persent)
 
+def rules(df,day_list,data_list_dict,p_change):
+	num = len(day_list) +1
+	count = 0
+
+	if p_change >=0:
+		count = count +1
+	else:
+		count = count -1
+
+	for day in day_list:
+		if  data_list_dict[day] >= 0:
+			count =count +1
+		else:
+			count =count -1
+	persent =  count / num * 100
+	return(persent)
+
 def do_it(code,basics):
 
 	num4days = 300
@@ -87,7 +104,7 @@ def do_it(code,basics):
 
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days)
+	end_day = now - datetime.timedelta(days=num4days+140)
 
 	stock_basics_dict = {}
 	stock_basics_dict[code] = get_basics_info(code,basics)
@@ -106,9 +123,15 @@ def do_it(code,basics):
 
 	data_list_dict = get_data_list(df,day_list)
 	#print(data_list_dict)
-	for day in day_list:
-		print(day,("%.2f" % data_list_dict[day]))
-	sys.exit()
+	#for day in day_list:
+	#	print(day,("%.2f" % data_list_dict[day]))
+	#sys.exit()
+	p_change = price_dict[code]['p_change']
+	persent = rules(df,day_list,data_list_dict,p_change)
+	#print(persent)
+	if persent <=-80: 
+		print(code,get_color(str(p_change)),get_color(str(persent)))
+	#sys.exit()
 
 	up_persent = p_change_persent(df)
 	down_persent = -100.00+up_persent
@@ -121,7 +144,7 @@ def do_it(code,basics):
 	msg_mid = code+'\t'+stock_basics_dict[code]['name']
 	#	msg_head = '[up/down]\t'+get_color(("%.2f" % up_persent))+'\t'+get_color(("%.2f" % down_persent))
 	msg_end = '行业\t'+stock_basics_dict[code]['industry']+'\t'+'市盈率\t'+stock_basics_dict[code]['pe']
-	print(msg_head+'\t'+msg_mid+'\t'+msg_end)
+	#print(msg_head+'\t'+msg_mid+'\t'+msg_end)
 
 if __name__ == "__main__":
 
