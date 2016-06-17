@@ -126,11 +126,16 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+get_color("%.2f" % sh_price_dict['p_change'])
 	end_msg = persent_msg+'\t'+p_change_msg
 
-	if persent <-90:
+	if persent <-90 or (persent <-50 and sh_persent <=-90):
 		color('cyan',mid_msg,end_msg)
-	elif persent >= -90 and persent <= -60:
+	elif persent <= -50 and sh_persent <= -40:
+		if price_dict[code]['p_change'] > 0:
+			color('red',mid_msg,end_msg)
+		elif price_dict[code]['p_change'] < 0:
+			color('green',mid_msg,end_msg)
+	elif (persent >= -90 and persent <= -60) or (persent <=-40 and sh_persent <=-90):
 		color('magenta',mid_msg,end_msg)
-	elif persent>=60 and sh_persent >=60:
+	elif persent>=50 and sh_persent >=50:
 		if price_dict[code]['p_change'] > 0:
 			color('red',mid_msg,end_msg)
 		elif price_dict[code]['p_change'] < 0:
