@@ -104,25 +104,43 @@ def rules(df,day_list,data_list_dict,p_change):
 	persent =  count / num * 100
 	return(persent)
 
+def color(color,mid_msg,end_msg):
+	if color == 'yellow':
+		print(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'cyan':
+		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'magenta':
+		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'red':
+		print(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'green':
+		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+
 def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,persent,sh_persent):
 	#date = str(yestoday)[:10]
+	
 	date = df.index.values[day_count]
-	#head_msg = code+'\t'+stock_basics_dict[code]['name']
-	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
+	head_msg = date + '\t'+'P(min/max/close):'
+	mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+str(int(sh_price_dict['close']))
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+get_color("%.2f" % sh_price_dict['p_change'])
 	end_msg = persent_msg+'\t'+p_change_msg
-	#head_msg = ''
-	if persent <-80:
-		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
-	elif persent > -80 and persent <= -70:
-		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
-	elif persent >= 60 :
-		print(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
-	elif persent > 0:
-		print(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
-	elif persent < 0:
-		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+
+	if persent <-90:
+		color('cyan',mid_msg,end_msg)
+	elif persent >= -90 and persent <= -60:
+		color('magenta',mid_msg,end_msg)
+	elif persent>=60 and sh_persent >=60:
+		if price_dict[code]['p_change'] > 0:
+			color('red',mid_msg,end_msg)
+		elif price_dict[code]['p_change'] < 0:
+			color('green',mid_msg,end_msg)
+	elif (persent >= 60 and sh_persent >0) or (persent>=60 and sh_persent >=60):
+		color('yellow',mid_msg,end_msg)
+	elif price_dict[code]['p_change'] > 0:
+		color('red',mid_msg,end_msg)
+	elif price_dict[code]['p_change'] < 0:
+		color('green',mid_msg,end_msg)
 
 def do_it(code,basics,yestoday,end_day,day_list):
 
