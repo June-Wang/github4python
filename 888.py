@@ -75,7 +75,7 @@ def p_change_persent(df):
 			continue
 		
 		count +=1
-		if p_change >0:
+		if p_change >4:
 			num4up +=1
 	up_persent = num4up/count*100
 	return(up_persent)
@@ -127,17 +127,17 @@ def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 	p_change = price_dict[code]['p_change']
 	persent = rules(df,day_list,data_list_dict,p_change)
 
-	up_persent = p_change_persent(df)
-	down_persent = -100.00+up_persent
+	#up_persent = p_change_persent(df)
+	#down_persent = -100.00+up_persent
 
-	if up_persent >= 80:
-		msg_head = get_color(("%.2f" % up_persent))
-	elif down_persent <= -80:
-		msg_head = get_color(("%.2f" % down_persent))
+	#if up_persent >= 20:
+	#	msg_head = get_color(("%.2f" % up_persent))
+	#	msg_mid = code+'\t'+stock_basics_dict[code]['name']
+	#	msg_end = '行业\t'+stock_basics_dict[code]['industry']+'\t'+'市盈率\t'+stock_basics_dict[code]['pe']
+	#elif down_persent <= -80:
+	#	msg_head = get_color(("%.2f" % down_persent))
 
-	msg_mid = code+'\t'+stock_basics_dict[code]['name']
 	#	msg_head = '[up/down]\t'+get_color(("%.2f" % up_persent))+'\t'+get_color(("%.2f" % down_persent))
-	msg_end = '行业\t'+stock_basics_dict[code]['industry']+'\t'+'市盈率\t'+stock_basics_dict[code]['pe']
 	#print(msg_head+'\t'+msg_mid+'\t'+msg_end)
 	color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent)
 
@@ -147,10 +147,10 @@ if __name__ == "__main__":
 
 	num4days = 300
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
-
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
 	end_day = now - datetime.timedelta(days=num4days+140)
+
 
 	try:
 		stock_basics = ts.get_stock_basics()
@@ -169,9 +169,9 @@ if __name__ == "__main__":
 	sh_data_list_dict = get_data_list(df_sh,day_list)
 	sh_p_change = sh_price_dict['p_change']
 	sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
-	#print(str(sh_persent))
 
 	stock_list = stock_basics.index.values
+		
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
 		pool.apply_async(do_it, (stock_code,stock_basics,yestoday,end_day,day_list,sh_persent))

@@ -48,7 +48,7 @@ def p_change_persent(df):
 			continue
 		
 		count +=1
-		if p_change >0:
+		if p_change >4:
 			num4up +=1
 	up_persent = num4up/count*100
 	return(up_persent)
@@ -72,15 +72,15 @@ def do_it(code,basics):
 	up_persent = p_change_persent(df)
 	down_persent = -100.00+up_persent
 
-	if up_persent >= 80:
+	if up_persent >= 40:
 		msg_head = get_color(("%.2f" % up_persent))
+		msg_mid = code+'\t'+stock_basics_dict[code]['name']
+		msg_end = '行业\t'+stock_basics_dict[code]['industry']+'\t'+'市盈率\t'+stock_basics_dict[code]['pe']
+		print(msg_head+'\t'+msg_mid+'\t'+msg_end)
 	elif down_persent <= -80:
 		msg_head = get_color(("%.2f" % down_persent))
 
-	msg_mid = code+'\t'+stock_basics_dict[code]['name']
 	#	msg_head = '[up/down]\t'+get_color(("%.2f" % up_persent))+'\t'+get_color(("%.2f" % down_persent))
-	msg_end = '行业\t'+stock_basics_dict[code]['industry']+'\t'+'市盈率\t'+stock_basics_dict[code]['pe']
-	print(msg_head+'\t'+msg_mid+'\t'+msg_end)
 
 if __name__ == "__main__":
 
