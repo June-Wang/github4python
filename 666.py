@@ -61,7 +61,7 @@ def get_data_list(df,day_list,day_count):
 				data_list[count] = change_sum
 		else:
 			break
-	print(len(data_list))
+	#print(len(data_list))
 	return(data_list,len(data_list))
 
 def p_change_persent(df):
@@ -104,14 +104,15 @@ def rules(df,day_list,data_list_dict,p_change):
 	persent =  count / num * 100
 	return(persent)
 
-def color4msg(df,code,day_count,stock_basics_dict,price_dict,persent,sh_persent):
+def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,persent,sh_persent):
 	#date = str(yestoday)[:10]
 	date = df.index.values[day_count]
 	#head_msg = code+'\t'+stock_basics_dict[code]['name']
 	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))
-	head_msg = ''
-	#end_msg = ''
+	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+str(int(sh_price_dict['close']))
+	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+get_color("%.2f" % sh_price_dict['p_change'])
+	end_msg = persent_msg+'\t'+p_change_msg
+	#head_msg = ''
 	if persent <-80:
 		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif persent > -80 and persent <= -70:
@@ -135,14 +136,10 @@ def do_it(code,basics,yestoday,end_day,day_list):
 		print('timeout!')
 		sys.exit(1)
 
-	#前一天股票价格信息
 	price_dict = {}
 	sh_price_dict = {}
-	#sys.exit()
 	day_count = 0
 	for day in df.index.values:
-		#date = df.index.values[day_count]
-	
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
@@ -155,10 +152,10 @@ def do_it(code,basics,yestoday,end_day,day_list):
 			sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
 			sh_p_change = sh_price_dict['p_change']
 			sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
-		#print(sh_persent)
 		except:
 			break
-		color4msg(df,code,day_count,stock_basics_dict,price_dict,persent,sh_persent)
+		#color4msg(df,code,day_count,stock_basics_dict,price_dict,persent,sh_persent)
+		color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,persent,sh_persent)
 		day_count +=1
 		#print(day_count)
 
