@@ -162,6 +162,8 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	price_dict = {}
 	sh_price_dict = {}
 	day_count = 0
+	p_change_sum = 0
+	sh_p_change_sum = 0
 	for day in df.index.values:
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
@@ -175,12 +177,21 @@ def do_it(code,basics,yestoday,end_day,day_list):
 			sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
 			sh_p_change = sh_price_dict['p_change']
 			sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
+			if p_change >=0:
+				p_change_sum +=1
+			else:
+				p_change_sum -=1
+			if sh_p_change >=0:
+				sh_p_change_sum +=1
+			else:
+				sh_p_change_sum -=1
 		except:
 			break
 		#color4msg(df,code,day_count,stock_basics_dict,price_dict,persent,sh_persent)
 		color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,persent,sh_persent)
 		day_count +=1
 		#print(day_count)
+	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
 
 if __name__ == "__main__":
 
