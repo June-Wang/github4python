@@ -164,9 +164,10 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	p_change_sum = 0
 	#sh_p_change_sum = 0
 	p_count = 0
+	p_list = list()
 	date = df.index.values[0]
 	for day in df.index.values:
-		if day_count == 5:
+		if day_count == 7:
 			break
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
@@ -175,6 +176,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 				break
 			p_change = price_dict[code]['p_change']
 			persent = rules(df,day_list,data_list_dict,p_change)
+			p_list.append(persent)
 
 			#sh_price_dict = get_price_info('sh',df_sh,day_count)
 			#sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
@@ -194,26 +196,32 @@ def do_it(code,basics,yestoday,end_day,day_list):
 		except:
 			break
 		day_count +=1
-		#print(p_count,date,yestoday)
-	if p_count > 3 and date == yestoday:
-		print(p_count,date,yestoday)
+
+	p_sum = 0
+	persent_count = 0
+	for persent in p_list[:5]:
+		if persent >0:
+			persent_count +=1
+			p_sum += persent
+						
+	p_avg = p_sum/persent_count
+	if p_count == 5 and persent_count == 5 and p_avg >=30 and price_dict[code]['close'] <=18:
 		head_msg = code+'\t'+stock_basics_dict[code]['name']
-		print(head_msg)
-		#mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-		#end_msg = get_color(("%.2f" % persent))+'\t'+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
-		#print(head_msg+'\t'+Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		mid_msg = date + '\t'+'close\t'+("%.2f" % price_dict[code]['close'])
+		end_msg = 'avg\t'+get_color(("%.2f" % p_avg))+'\t'+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
+		print(head_msg+'\t'+Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 		
 
 if __name__ == "__main__":
 
 	colorama.init()
 	#stock_code = sys.argv[1]
-	num4days = 5
+	num4days = 20
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
 
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+200)
+	end_day = now - datetime.timedelta(days=num4days+400)
 
 	try:
 		stock_basics = ts.get_stock_basics()

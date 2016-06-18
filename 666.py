@@ -126,7 +126,8 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+get_color("%.2f" % sh_price_dict['p_change'])
 	end_msg = persent_msg+'\t'+p_change_msg
 
-	if (persent <-90 and price_dict[code]['p_change'] > -3 ) or (persent <-50 and sh_persent <=-90 and price_dict[code]['p_change'] > -3):
+	#if (persent <-90 and price_dict[code]['p_change'] > -3 ) or (persent <-50 and sh_persent <=-90 and price_dict[code]['p_change'] > -3):
+	if (persent <-90 and persent>=-80 ) or (persent <-80 and sh_persent <=-90):
 		color('cyan',mid_msg,end_msg)
 	elif persent <= -50 and sh_persent <= -40:
 		if price_dict[code]['p_change'] > 0:
@@ -134,6 +135,7 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 		elif price_dict[code]['p_change'] < 0:
 			color('green',mid_msg,end_msg)
 	elif (persent >= -90 and persent <= -60) or (persent <=-40 and sh_persent <=-90):
+	#elif (persent <= -60 and sh_persent <= -60) or (persent <=-40 and sh_persent <=-90):
 		color('magenta',mid_msg,end_msg)
 	elif persent>=50 and sh_persent >=50:
 		if price_dict[code]['p_change'] > 0:
@@ -168,6 +170,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
+			#print(num25)
 			if num25 <25:
 				break
 			p_change = price_dict[code]['p_change']
@@ -198,11 +201,11 @@ if __name__ == "__main__":
 	colorama.init()
 	stock_code = sys.argv[1]
 	num4days = 200
-	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125] #取样时间列表
+	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
 
 	now = datetime.date.today()
 	yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+day_list[-1])
+	end_day = now - datetime.timedelta(days=num4days+day_list[-1]+100)
 
 	try:
 		stock_basics = ts.get_stock_basics()
