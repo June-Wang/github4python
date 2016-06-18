@@ -102,7 +102,7 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent):
 	head_msg = code+'\t'+stock_basics_dict[code]['name']
 	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
-	if persent <-75:
+	if persent <-80:
 		print(head_msg+'\t'+Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	#elif persent > -80 and persent <= -70:
 	#	print(head_msg+'\t'+Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
@@ -127,18 +127,6 @@ def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 	p_change = price_dict[code]['p_change']
 	persent = rules(df,day_list,data_list_dict,p_change)
 
-	#up_persent = p_change_persent(df)
-	#down_persent = -100.00+up_persent
-
-	#if up_persent >= 20:
-	#	msg_head = get_color(("%.2f" % up_persent))
-	#	msg_mid = code+'\t'+stock_basics_dict[code]['name']
-	#	msg_end = '行业\t'+stock_basics_dict[code]['industry']+'\t'+'市盈率\t'+stock_basics_dict[code]['pe']
-	#elif down_persent <= -80:
-	#	msg_head = get_color(("%.2f" % down_persent))
-
-	#	msg_head = '[up/down]\t'+get_color(("%.2f" % up_persent))+'\t'+get_color(("%.2f" % down_persent))
-	#print(msg_head+'\t'+msg_mid+'\t'+msg_end)
 	color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent)
 
 if __name__ == "__main__":

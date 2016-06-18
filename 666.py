@@ -126,7 +126,7 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+get_color("%.2f" % sh_price_dict['p_change'])
 	end_msg = persent_msg+'\t'+p_change_msg
 
-	if persent <-90 or (persent <-50 and sh_persent <=-90):
+	if (persent <-90 and price_dict[code]['p_change'] > -3 ) or (persent <-50 and sh_persent <=-90 and price_dict[code]['p_change'] > -3):
 		color('cyan',mid_msg,end_msg)
 	elif persent <= -50 and sh_persent <= -40:
 		if price_dict[code]['p_change'] > 0:
@@ -197,7 +197,7 @@ if __name__ == "__main__":
 
 	colorama.init()
 	stock_code = sys.argv[1]
-	num4days = 400
+	num4days = 200
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125] #取样时间列表
 
 	now = datetime.date.today()
