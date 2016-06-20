@@ -204,7 +204,15 @@ if __name__ == "__main__":
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
 
 	now = datetime.date.today()
-	yestoday = now - datetime.timedelta(days=1)
+	d = datetime.datetime.now()
+	d = d.replace(hour = 15,minute = 00,second = 0)
+
+	if datetime.datetime.now() > d:
+		yestoday = now
+	else:
+		yestoday = now - datetime.timedelta(days=1)
+
+	#yestoday = now - datetime.timedelta(days=1)
 	end_day = now - datetime.timedelta(days=num4days+day_list[-1]+100)
 
 	try:
