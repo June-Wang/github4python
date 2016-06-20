@@ -68,7 +68,15 @@ def do_it(code,basics):
 
 	num4days = 15
 	now = datetime.date.today()
-	yestoday = now - datetime.timedelta(days=1)
+	d = datetime.datetime.now()
+	d = d.replace(hour = 15,minute = 00,second = 0)
+
+	if datetime.datetime.now() > d:
+		yestoday = now
+	else:
+		yestoday = now - datetime.timedelta(days=1)
+
+	#yestoday = now - datetime.timedelta(days=1)
 	end_day = now - datetime.timedelta(days=num4days)
 
 	stock_basics_dict = {}
