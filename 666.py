@@ -127,14 +127,14 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 	end_msg = persent_msg+'\t'+p_change_msg
 
 	#if (persent <-90 and price_dict[code]['p_change'] > -3 ) or (persent <-50 and sh_persent <=-90 and price_dict[code]['p_change'] > -3):
-	if (persent <-90 and persent>=-80 ) or (persent <-80 and sh_persent <=-90):
+	if (persent <=-90 and persent>=-80 ) or (persent <-80 and sh_persent <=-90):
 		color('cyan',mid_msg,end_msg)
 	elif persent <= -50 and sh_persent <= -40:
 		if price_dict[code]['p_change'] > 0:
 			color('red',mid_msg,end_msg)
 		elif price_dict[code]['p_change'] < 0:
 			color('green',mid_msg,end_msg)
-	elif (persent >= -90 and persent <= -60) or (persent <=-40 and sh_persent <=-90):
+	elif (persent >= -80 and persent <= -60) or (persent <=-40 and sh_persent <=-80):
 	#elif (persent <= -60 and sh_persent <= -60) or (persent <=-40 and sh_persent <=-90):
 		color('magenta',mid_msg,end_msg)
 	elif persent>=50 and sh_persent >=50:
@@ -200,7 +200,7 @@ if __name__ == "__main__":
 
 	colorama.init()
 	stock_code = sys.argv[1]
-	num4days = 200
+	num4days = 250
 	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
 
 	now = datetime.date.today()
