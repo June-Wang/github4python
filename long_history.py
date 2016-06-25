@@ -216,7 +216,7 @@ if __name__ == "__main__":
 	else:
 		yestoday = now - datetime.timedelta(days=1)
 
-	end_day = now - datetime.timedelta(days=num4days+day_list[-1]+100)
+	end_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
 
 	try:
 		stock_basics = ts.get_stock_basics()
