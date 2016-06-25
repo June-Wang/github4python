@@ -102,10 +102,10 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent):
 	head_msg = code+'\t'+stock_basics_dict[code]['name']
 	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
-	if persent <=-80:
+	if persent <=-90:
 		print(head_msg+'\t'+Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
-	elif persent > -80 and persent <= -65:
-		print(head_msg+'\t'+Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	#elif persent > -80 and persent <= -65:
+	#	print(head_msg+'\t'+Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
 def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 
@@ -134,7 +134,7 @@ if __name__ == "__main__":
 	colorama.init()
 
 	num4days = 300
-	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
+	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180] #取样时间列表
 	now = datetime.date.today()
 	d = datetime.datetime.now()
 	d = d.replace(hour = 15,minute = 00,second = 0)
@@ -145,7 +145,7 @@ if __name__ == "__main__":
 		yestoday = now - datetime.timedelta(days=1)
 
 	#yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+140)
+	end_day = now - datetime.timedelta(days=num4days+day_list[-1])
 
 
 	try:
