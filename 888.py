@@ -150,7 +150,7 @@ if __name__ == "__main__":
 		yestoday = now - datetime.timedelta(days=1)
 
 	#yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+140)
+	end_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
 
 
 	try:
