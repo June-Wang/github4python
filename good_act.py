@@ -126,16 +126,14 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+get_color("%.2f" % sh_price_dict['p_change'])
 	end_msg = persent_msg+'\t'+p_change_msg
 
-	#if (persent <-90 and price_dict[code]['p_change'] > -3 ) or (persent <-50 and sh_persent <=-90 and price_dict[code]['p_change'] > -3):
-	if persent <=-85:
+	if (persent <-90 and price_dict[code]['p_change'] > -3 ) or (persent <-50 and sh_persent <=-90 and price_dict[code]['p_change'] > -3):
 		color('cyan',mid_msg,end_msg)
 	elif persent <= -50 and sh_persent <= -40:
 		if price_dict[code]['p_change'] > 0:
 			color('red',mid_msg,end_msg)
 		elif price_dict[code]['p_change'] < 0:
 			color('green',mid_msg,end_msg)
-	elif (persent >= -85 and persent <= -65) or (persent <=-40 and sh_persent <=-80):
-	#elif (persent <= -60 and sh_persent <= -60) or (persent <=-40 and sh_persent <=-90):
+	elif (persent >= -90 and persent <= -60) or (persent <=-40 and sh_persent <=-90):
 		color('magenta',mid_msg,end_msg)
 	elif persent>=50 and sh_persent >=50:
 		if price_dict[code]['p_change'] > 0:
@@ -150,7 +148,6 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 		color('green',mid_msg,end_msg)
 
 def do_it(code,basics,yestoday,end_day,day_list):
-
 	stock_basics_dict = {}
 	stock_basics_dict[code] = get_basics_info(code,basics)
 
@@ -166,59 +163,78 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	day_count = 0
 	p_change_sum = 0
 	sh_p_change_sum = 0
+	date = df.index.values[0]
 	for day in df.index.values:
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
-			#print(num25)
 			if num25 <25:
 				break
 			p_change = price_dict[code]['p_change']
-			persent = rules(df,day_list,data_list_dict,p_change)
+			#persent = rules(df,day_list,data_list_dict,p_change)
 
 			sh_price_dict = get_price_info('sh',df_sh,day_count)
 			sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
 			sh_p_change = sh_price_dict['p_change']
-			sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
-			if p_change >=0:
-				p_change_sum +=1
-			else:
-				p_change_sum -=1
-			if sh_p_change >=0:
-				sh_p_change_sum +=1
-			else:
-				sh_p_change_sum -=1
+			#sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
+			
 		except:
 			break
-		#color4msg(df,code,day_count,stock_basics_dict,price_dict,persent,sh_persent)
-		color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,persent,sh_persent)
+
+		if p_change >0:
+			p_change_sum +=1
+		else:
+			p_change_sum -=1
+		
+		if sh_p_change >0:		
+			sh_p_change_sum +=1
+		else:
+			sh_p_change_sum -=1
+
 		day_count +=1
-		#print(day_count)
-	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
+
+	persent = p_change_sum/day_count *100
+	#print(str(persent),str(p_change_sum),str(sh_p_change_sum),str(day_count))
+	#if (persent >= 4 and persent <= 7) and p_change_sum >0 and day_count >=60:
+	if p_change_sum >0 and persent >= 15 and day_count >=60:
+		head_msg = code+'\t'+stock_basics_dict[code]['name']
+		mid_msg = date + '\t'+'close\t'+("%.2f" % price_dict[code]['close'])
+		end_msg = '市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
+		p_msg = 'stock/sh\t'+get_color(str(p_change_sum))+'\t'+get_color(str(sh_p_change_sum))+'\tpersent\t'+get_color("%.2f" % persent)
+		day_msg = 'days\t'+get_color(str(day_count))
+		print(Fore.RED+mid_msg+'\t'+p_msg+'\t'+day_msg+'\t'+Fore.YELLOW+head_msg+'\t'+Fore.CYAN+end_msg)
+		
 
 if __name__ == "__main__":
 
 	colorama.init()
-	stock_code = sys.argv[1]
-	num4days = 250
-	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
+	num4days = 100
+	day_list = [i for i in range(5,125,5)]
+	day_list.append(3)
 
 	now = datetime.date.today()
-	d = datetime.datetime.now()
-	d = d.replace(hour = 15,minute = 00,second = 0)
 
+	d = datetime.datetime.now()
+	d = d.replace(hour = 15,minute = 00,second = 0) 
+	
 	if datetime.datetime.now() > d:
 		yestoday = now
 	else:
 		yestoday = now - datetime.timedelta(days=1)
 
-	#yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+day_list[-1]+100)
+	end_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
 
 	try:
 		stock_basics = ts.get_stock_basics()
 	except:
 		print('timeout!')
 		sys.exit(1)
+	
+	stock_list = stock_basics.index.values
+	#stock_list = ['000803']
 
-	do_it(stock_code,stock_basics,yestoday,end_day,day_list)
+	pool = multiprocessing.Pool(processes=4)
+	for stock_code in sorted(stock_list):
+		pool.apply_async(do_it, (stock_code,stock_basics,yestoday,end_day,sorted(day_list)))
+	pool.close()
+	pool.join()

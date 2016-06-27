@@ -127,22 +127,24 @@ def color4msg(df,code,day_count,stock_basics_dict,price_dict,sh_price_dict,perse
 	end_msg = persent_msg+'\t'+p_change_msg
 
 	#if (persent <-90 and price_dict[code]['p_change'] > -3 ) or (persent <-50 and sh_persent <=-90 and price_dict[code]['p_change'] > -3):
-	if persent <=-85:
+	if persent <=-85 or (sh_persent <= -90 and persent <= -60):
 		color('cyan',mid_msg,end_msg)
-	elif persent <= -50 and sh_persent <= -40:
-		if price_dict[code]['p_change'] > 0:
-			color('red',mid_msg,end_msg)
-		elif price_dict[code]['p_change'] < 0:
-			color('green',mid_msg,end_msg)
-	elif (persent >= -85 and persent <= -65) or (persent <=-40 and sh_persent <=-80):
+	#elif persent <= -50 and sh_persent <= -40:
+	#	if price_dict[code]['p_change'] > 0:
+	#		color('red',mid_msg,end_msg)
+	#	elif price_dict[code]['p_change'] < 0:
+	#		color('green',mid_msg,end_msg)
+	#elif (persent >= -85 and persent <= -65) or (persent <=-40 and sh_persent <=-80):
+	elif (persent > -85 and persent <= -70) or ((sh_persent > -90 and sh_persent <=-80) and persent < -60):
 	#elif (persent <= -60 and sh_persent <= -60) or (persent <=-40 and sh_persent <=-90):
 		color('magenta',mid_msg,end_msg)
-	elif persent>=50 and sh_persent >=50:
-		if price_dict[code]['p_change'] > 0:
-			color('red',mid_msg,end_msg)
-		elif price_dict[code]['p_change'] < 0:
-			color('green',mid_msg,end_msg)
-	elif (persent >= 60 and sh_persent >0) or (persent>=60 and sh_persent >=60):
+	#elif persent>=50 and sh_persent >=50:
+	#	if price_dict[code]['p_change'] > 0:
+	#		color('red',mid_msg,end_msg)
+	#	elif price_dict[code]['p_change'] < 0:
+	#		color('green',mid_msg,end_msg)
+	#elif (persent >= 60 and sh_persent >0) or (persent>=60 and sh_persent >=60):
+	elif persent >= 90 and sh_persent >= 80:
 		color('yellow',mid_msg,end_msg)
 	elif price_dict[code]['p_change'] > 0:
 		color('red',mid_msg,end_msg)
@@ -200,8 +202,10 @@ if __name__ == "__main__":
 
 	colorama.init()
 	stock_code = sys.argv[1]
-	num4days = 250
-	day_list = [3,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120] #取样时间列表
+	num4days = 300
+
+	day_list = [i for i in range(5,185,5)]
+	day_list.append(3)
 
 	now = datetime.date.today()
 	d = datetime.datetime.now()
@@ -212,8 +216,7 @@ if __name__ == "__main__":
 	else:
 		yestoday = now - datetime.timedelta(days=1)
 
-	#yestoday = now - datetime.timedelta(days=1)
-	end_day = now - datetime.timedelta(days=num4days+day_list[-1]+100)
+	end_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
 
 	try:
 		stock_basics = ts.get_stock_basics()
@@ -221,4 +224,4 @@ if __name__ == "__main__":
 		print('timeout!')
 		sys.exit(1)
 
-	do_it(stock_code,stock_basics,yestoday,end_day,day_list)
+	do_it(stock_code,stock_basics,yestoday,end_day,sorted(day_list))
