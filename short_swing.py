@@ -185,7 +185,8 @@ def do_it(code,basics,yestoday,end_day,day_list):
 if __name__ == "__main__":
 
 	colorama.init()
-	stock_code = '000803'
+	#stock_code = '000803'
+	stock_code = sys.argv[1]
 	num4days = 250
 	day_list = [i for i in range(5,125,5)]
 	day_list.append(3)
