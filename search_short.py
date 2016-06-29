@@ -103,7 +103,7 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent):
 	head_msg = code+'\t'+stock_basics_dict[code]['name']
 	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
-	print(persent)
+	#print(persent)
 	if persent <=-30:#or (sh_persent <=-90 and persent <= -60):
 		print(head_msg+'\t'+Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	#elif persent > -80 and persent <= -65:
