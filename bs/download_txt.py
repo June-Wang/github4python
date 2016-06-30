@@ -6,6 +6,7 @@ import sys
 import os
 import urllib.request
 from urllib.request import urlopen
+import requests
 
 web_site = 'http://www.zxcs8.com/'
 html = urlopen(web_site)
@@ -113,11 +114,13 @@ for link,page_name in post_pages_list:
 	#print(link,page_name)
 	try:
 		html = urlopen(link)
+		#html = response.read().decode('utf8',errors='replace') #中文乱码问题
 	except:
 		continue
 
 	bsobj = BeautifulSoup(html,"lxml") 
 	bstitle = bsobj.find("h1")
+	print(bstitle)
 	art_title = bstitle.text+'.rar'
 	for download_url in bsobj.findAll("a",{"rel":"nofollow","title":re.compile("^TXT")}):
 		dl_url = download_url["href"]
