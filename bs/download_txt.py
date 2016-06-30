@@ -3,6 +3,8 @@
 from bs4 import BeautifulSoup
 import re
 import sys
+import os
+import urllib.request
 from urllib.request import urlopen
 
 web_site = 'http://www.zxcs8.com/'
@@ -63,6 +65,7 @@ def get_download_url(url):
 	:param url: 页面中的下载链接
 	:return: 跳转后的真实下载链接
 	'''
+	#urllib.parse.unquote(url).decode('gbk','ignore').encode('utf-8','ignore')
 	req = urllib.request.Request(url)
 	req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko')
 	response = urllib.request.urlopen(req)
@@ -115,13 +118,14 @@ for link,page_name in post_pages_list:
 
 	bsobj = BeautifulSoup(html,"lxml") 
 	bstitle = bsobj.find("h1")
-	art_title = bstitle.text
+	art_title = bstitle.text+'.rar'
 	for download_url in bsobj.findAll("a",{"rel":"nofollow","title":re.compile("^TXT")}):
 		dl_url = download_url["href"]
-		try:
-			dlurl = get_download_url(url)
-		except:
-			continue
+		print(dl_url,art_title)
+		#try:
+		dlurl = get_download_url(dl_url)
+		#except:
+		#	continue
 		save_file(dlurl, dlfolder, art_title) 
 		break
 	count +=1
