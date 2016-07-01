@@ -4,8 +4,6 @@ from bs4 import BeautifulSoup
 import re
 import sys
 import os
-import urllib.request
-from urllib.request import urlopen
 import requests
 
 
@@ -85,7 +83,6 @@ def download_file(post_pages_list,dst_path):
 				print(dl_url+'不可访问')
 				continue
 	
-			#dst_path = '/home/wangxj/txt'
 			file_name = art_title
 			#print('开始下载：'+file_name)
 			try:
