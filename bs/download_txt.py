@@ -9,8 +9,10 @@ from urllib.request import urlopen
 import requests
 
 web_site = 'http://www.zxcs8.com/'
-html = urlopen(web_site)
-bsobj = BeautifulSoup(html,"lxml")
+resp = requests.get(web_site)
+bsobj = BeautifulSoup(resp.text,"lxml")
+#print(bsobj)
+#sys.exit(0)
 
 def get_web_index(bsobj):
 	index_list = list()
@@ -27,29 +29,38 @@ def get_web_index(bsobj):
 def get_page4index(index_list):
 	index_pages_list = list()
 	for page_text,url in index_list:
+		#print(page_text,url)
 		link = url+'/page/'
 		page_url = url+'/page/1'
 		try:
-			html = urlopen(page_url)
+			#html = urlopen(page_url)
+			resp = requests.get(page_url)
 		except:
 			continue
-		bsobj = BeautifulSoup(html,"lxml")
-		for page in set(bsobj.findAll("a",{"title":re.compile("尾页")})):
-			number4page = page["href"].split('/')[-1]
-			index_pages_list.append([page_text,link,number4page])
+		bsobj = BeautifulSoup(resp.text,"lxml")
+		#print(bsobj)
+		for page in bsobj.findAll("a",{"title":re.compile("尾页")}):
+			if page["href"]:
+				number4page = page["href"].split('/')[-1]
+				index_pages_list.append([page_text,link,number4page])
 			#print(index_pages_list[-1])
+	#print(index_pages_list)
 	return(index_pages_list)
 
 def get_page4post(index_pages_list):
 	post_pages_list = list()
 	for page_text,link,number4page in index_pages_list:
 		for i in range(1,int(number4page)):
-			page_url = link+'/'+str(i)
+			page_url = link+str(i)
+			print(page_url)
 			try:
-				html = urlopen(page_url)
+				#html = urlopen(page_url)
+				resp = requests.get(page_url)
 			except:
 				continue
-			bsobj = BeautifulSoup(html,"lxml")
+
+			bsobj = BeautifulSoup(resp.text,"lxml")
+			print(bsobj.findAll("a"))
 			for page in bsobj.findAll("a",{"href":re.compile("\/post\/")}):
 				#print(page["href"],page.text)
 				link = page["href"]
@@ -60,75 +71,42 @@ def get_page4post(index_pages_list):
 			return(post_pages_list)
 	#	print(page_text,link,number4page)
 
-def get_download_url(url):
-	'''
-	获取跳转后的真实下载链接
-	:param url: 页面中的下载链接
-	:return: 跳转后的真实下载链接
-	'''
-	#urllib.parse.unquote(url).decode('gbk','ignore').encode('utf-8','ignore')
-	req = urllib.request.Request(url)
-	req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko')
-	response = urllib.request.urlopen(req)
-	dlurl = response.geturl()	 # 跳转后的真实下载链接
-	return(dlurl)
-
-def download_file(dlurl):
-	'''
-	从真实的下载链接下载文件
-	:param dlurl: 真实的下载链接
-	:return: 下载后的文件
-	'''
-	req = urllib.request.Request(dlurl)
-	req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko')
-	response = urllib.request.urlopen(req)
-	return(response.read())
-
-def save_file(dlurl, dlfolder, dlname):
-	'''
-	把下载后的文件保存到下载目录
-	:param dlurl: 真实的下载链接
-	:param dlfolder: 下载目录
-	:return: None
-	'''
-	os.chdir(dlfolder)			  # 跳转到下载目录
-	#filename = dlurl.split('/')[-1] # 获取下载文件名
-	filename = dlname
-	dlfile = download_file(dlurl)
-	with open(filename, 'wb') as f:
-		f.write(dlfile)
-		f.close()
-	return None
-
-#index_list = list
+#print(bsobj)
 index_list = get_web_index(bsobj)
-#index_pages_list = list()
+#print(index_list)
 index_pages_list = get_page4index(index_list)
+#print(index_pages_list)
 post_pages_list = get_page4post(index_pages_list)
 
-dlfolder = "/home/wangxj/txt/"
-count = 0
 for link,page_name in post_pages_list:
-	if count >10:
-		sys.exit(0)
+#	if count >10:
+		#sys.exit(0)
 	#print(link,page_name)
 	try:
-		html = urlopen(link)
-		#html = response.read().decode('utf8',errors='replace') #中文乱码问题
+		#html = urlopen(link)
+		resp = requests.get(link)
 	except:
 		continue
 
-	bsobj = BeautifulSoup(html,"lxml") 
+	bsobj = BeautifulSoup(resp.text,"lxml") 
 	bstitle = bsobj.find("h1")
 	print(bstitle)
 	art_title = bstitle.text+'.rar'
 	for download_url in bsobj.findAll("a",{"rel":"nofollow","title":re.compile("^TXT")}):
 		dl_url = download_url["href"]
-		print(dl_url,art_title)
-		#try:
-		dlurl = get_download_url(dl_url)
-		#except:
-		#	continue
-		save_file(dlurl, dlfolder, art_title) 
+		#print(dl_url,art_title)
+		try:
+		#	dl_file = requests.urlopen(dl_url)
+			r = requests.get(dl_url)
+		except:
+			print(dl_url+'不可访问')
+			continue
+		dst_path = '/home/wangxj/txt'
+		file_name = art_title
+		try:
+			with open(dst_path+'/'+file_name, "wb") as save_file:
+				save_file.write(r.content)
+		except:
+			print(dst_path+'/'+file_name+'写入失败')
+			continue
 		break
-	count +=1
