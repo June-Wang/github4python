@@ -105,9 +105,9 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent):
 	#if persent <=-80:
 	if persent <=-85 or (sh_persent <=-90 and persent <= -60):
 		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
-	#elif persent > -80 and persent <= -65:
+	elif persent > -80 and persent <= -60:
 	#elif (persent > -85 and persent <= -70) or ((sh_persent > -80 and sh_persent <=-70) and persent < -30):
-	#	print(head_msg+'\t'+Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(head_msg+'\t'+Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
 def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 
