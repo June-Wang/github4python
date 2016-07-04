@@ -18,7 +18,8 @@ def do_it(stock_code,stock_basics):
 	num = len(table)
 	if num >= 16:
 		name = stock_basics[stock_basics.index == stock_code]['name'].values[0]
-		print(str(stock_code)+'\t'+name)
+		industry = stock_basics[stock_basics.index == stock_code]['industry'].values[0]
+		print(str(stock_code)+'\t'+name+'\t'+industry)
 
 try:
 	stock_basics = ts.get_stock_basics()
@@ -28,9 +29,9 @@ except:
 
 stock_list = stock_basics.index.values
 
-pool = multiprocessing.Pool(processes=4)
+#pool = multiprocessing.Pool(processes=3)
 for stock_code in sorted(stock_list):
-	#do_it(stock_code,stock_basics)
-	pool.apply_async(do_it, (stock_code,stock_basics))
-	pool.close()
-	pool.join()
+	do_it(stock_code,stock_basics)
+#	pool.apply_async(do_it, (stock_code,stock_basics))
+#	pool.close()
+#	pool.join()
