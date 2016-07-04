@@ -23,7 +23,7 @@ for stock_code in sorted(stock_list):
 	table = pd.read_html(resp.text)[0]
 	num = len(table)
 	#list = table[['股票代码','股票简称','股权登记日']][table.index == 0].values
-	if num == 17:
+	if num >= 16:
 		#code,name,date = list[0]
 		name = stock_basics[stock_basics.index == stock_code]['name'].values[0]
 		print(str(stock_code)+'\t'+name)
