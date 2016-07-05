@@ -112,7 +112,7 @@ def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,day_
 
 	if persent <=-85:
 		color('cyan',mid_msg,end_msg)
-	elif (persent > -85 and persent <= -70) or \
+	elif (persent > -85 and persent <= -60) and \
 	(persent < 0 and sh_persent <0 and day_persent[3] <0 and day_persent[5] <0 and day_persent[10] <0):
 		color('magenta',mid_msg,end_msg)
 	elif day_persent[3] == 0 and day_persent[5] == 0 and day_persent[10] == 0:
