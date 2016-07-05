@@ -22,18 +22,30 @@ def get_color(text):
 
 def get_price_info(code,df,day_count):
 	date = df.index.values[day_count]
-	ten_days_ago = df.index.values[day_count+10]
-	#print(date,ten_days_ago)
 	price = {}
 	price_open = df[df.index == date].open[0] #开盘价格
 	price_close = df[df.index == date].close[0] #收盘价格
-	price_close_ten = df[df.index == ten_days_ago].close[0] #十天前的收盘价格
 	price_min = df[df.index == date].low[0] #当日最低
 	price_max = df[df.index == date].high[0] #当日最高
 	p_change = df[df.index == date].p_change[0] #当日股票涨幅
-	persent = (price_close - price_close_ten)/price_close_ten * 100
-	price[code] = {'open':price_open,'close':price_close,'min':price_min,'max':price_max,'p_change':p_change,'persent10':persent}
+	price[code] = {'open':price_open,'close':price_close,
+					'min':price_min,'max':price_max,
+					'p_change':p_change}
 	return(price[code])
+
+def get_day_persent(df,day_count):
+	days_list = [3,5,10]
+	day_persent = {}
+	data_day = list()
+	for i in range(max(days_list)+1):
+		date_i = df.index.values[day_count+i]
+		#print(date_i)
+		data_day.append(float(df[df.index == date_i].close[0]))
+		#print(data_day)
+		if i in days_list:
+			day_persent[i]=(data_day[0] - max(data_day))/max(data_day) *100
+	#print(day_persent)	
+	return(day_persent)
 
 def get_data_list(df,day_list,day_count):
 	change_sum = 0.0
@@ -87,15 +99,16 @@ def color(color,mid_msg,end_msg):
 	elif color == 'green':
 		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
-def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent):
+def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,day_persent):
 	
 	date = df.index.values[day_count]
 	head_msg = date + '\t'+'P(min/max/close):'
 	mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+str(int(sh_price_dict['close']))
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
-		get_color("%.2f" % sh_price_dict['p_change'])+'\t'+get_color("%.2f" % price_dict[code]['persent10'])
-	end_msg = persent_msg+'\t'+p_change_msg
+		get_color("%.2f" % sh_price_dict['p_change'])
+	day_persent_msg = '(3/5/10)'+'\t'+get_color("%.2f" % day_persent[3])+'\t'+get_color("%.2f" % day_persent[5])+'\t'+get_color("%.2f" % day_persent[10])
+	end_msg = persent_msg+'\t'+p_change_msg+'\t'+day_persent_msg
 
 	if persent <=-85:
 		color('cyan',mid_msg,end_msg)
@@ -126,6 +139,8 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	for day in df.index.values:
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
+			day_persent=get_day_persent(df,day_count)
+			#print(day_persent)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
 			#print(num25)
 			if num25 <25:
@@ -147,7 +162,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 				sh_p_change_sum -=1
 		except:
 			break
-		color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent)
+		color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,day_persent)
 		day_count +=1
 		#print(day_count)
 	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
