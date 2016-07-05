@@ -64,25 +64,25 @@ def get_data_list(df,day_list,day_count):
 	#print(len(data_list))
 	return(data_list,len(data_list))
 
-def p_change_persent(df):
-	count = 0
-	num4up = 0
-	for date_today in df.index.values:
-		date_yestoday=str(datetime.datetime.strptime(date_today, '%Y-%m-%d') + datetime.timedelta(days = -1))[:10]
-		#print(date_today,date_yestoday)
-		try:
-			p_change = df[df.index == date_today].p_change[0]
-		except:
-			continue
-
-		if p_change != p_change:
-			continue
-		
-		count +=1
-		if p_change >0:
-			num4up +=1
-	up_persent = num4up/count*100
-	return(up_persent)
+#def p_change_persent(df):
+#	count = 0
+#	num4up = 0
+#	for date_today in df.index.values:
+#		date_yestoday=str(datetime.datetime.strptime(date_today, '%Y-%m-%d') + datetime.timedelta(days = -1))[:10]
+#		#print(date_today,date_yestoday)
+#		try:
+#			p_change = df[df.index == date_today].p_change[0]
+#		except:
+#			continue
+#
+#		if p_change != p_change:
+#			continue
+#		
+#		count +=1
+#		if p_change >0:
+#			num4up +=1
+#	up_persent = num4up/count*100
+#	return(up_persent)
 
 def rules(df,day_list,data_list_dict,p_change):
 	num = len(day_list) +1
