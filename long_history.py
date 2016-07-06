@@ -109,11 +109,21 @@ def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,down
 		get_color("%.2f" % sh_price_dict['p_change'])
 	down_persent_msg = '\t'.join([get_color("%.2f" % down_persent[i]) for i in days_list_persent])
 	up_persent_msg = '\t'.join([get_color("%.2f" % up_persent[i]) for i in days_list_persent])
-	#print(down_persent_msg,up_persent_msg)
 	days_persent_msg = '3/5/10'+'\t'+down_persent_msg+'\t'+up_persent_msg
 	end_msg = persent_msg+'\t'+p_change_msg+'\t'+days_persent_msg
 
-	if persent <=-85:
+	#if persent <=-85:
+	down_sum = 0.0
+	up_sum = 0.0
+	for i in days_list_persent:
+		down_sum += down_persent[i] 
+		up_sum += up_persent[i] 
+	
+	if persent <0 and sh_persent <0 and price_dict[code]['p_change'] > -9.5 and \
+		price_dict[code]['p_change'] <=0 and sh_price_dict['p_change']<=0 and \
+		down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
+		up_sum ==0:
+		#print(str(down_sum),str(up_sum))
 		color('cyan',mid_msg,end_msg)
 	elif (persent > -85 and persent <= -60) and \
 	(persent < 0 and sh_persent <0 and down_persent[3] <0 and down_persent[5] <0 and down_persent[10] <0):
