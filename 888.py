@@ -121,16 +121,19 @@ def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 		print('timeout!')
 		sys.exit(1)
 
-	#前一天股票价格信息
-	price_dict = {}
-	price_dict[code] = get_price_info(code,df)
-	#sys.exit()
-
-	data_list_dict = get_data_list(df,day_list)
-	p_change = price_dict[code]['p_change']
-	persent = rules(df,day_list,data_list_dict,p_change)
-
-	color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent)
+	day = df.index.values[0]
+	if str(yestoday) == str(day):
+	
+		#前一天股票价格信息
+		price_dict = {}
+		price_dict[code] = get_price_info(code,df)
+		#sys.exit()
+	
+		data_list_dict = get_data_list(df,day_list)
+		p_change = price_dict[code]['p_change']
+		persent = rules(df,day_list,data_list_dict,p_change)
+	
+		color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent)
 
 if __name__ == "__main__":
 

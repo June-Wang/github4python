@@ -127,20 +127,23 @@ def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 		print('timeout!')
 		sys.exit(1)
 
-	#前一天股票价格信息
-	price_dict = {}
-	price_dict[code] = get_price_info(code,df)
+	day = df.index.values[0]
+	if str(yestoday) == str(day):
 	
-	days_list_persent = [3,5,10]
-	day_count = 0
-	down_persent,up_persent = get_days_persent(df,day_count,days_list_persent)
-
-	data_list_dict = get_data_list(df,day_list)
-	p_change = price_dict[code]['p_change']
-	persent = rules(df,day_list,data_list_dict,p_change)
-
-	#color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent)
-	color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent)
+		#前一天股票价格信息
+		price_dict = {}
+		price_dict[code] = get_price_info(code,df)
+		
+		days_list_persent = [3,5,10]
+		day_count = 0
+		down_persent,up_persent = get_days_persent(df,day_count,days_list_persent)
+	
+		data_list_dict = get_data_list(df,day_list)
+		p_change = price_dict[code]['p_change']
+		persent = rules(df,day_list,data_list_dict,p_change)
+	
+		#color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent)
+		color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent)
 
 if __name__ == "__main__":
 
@@ -160,7 +163,6 @@ if __name__ == "__main__":
 		yestoday = now - datetime.timedelta(days=1)
 
 	end_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
-
 
 	try:
 		stock_basics = ts.get_stock_basics()
