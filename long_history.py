@@ -125,9 +125,12 @@ def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,down
 		up_sum ==0:
 		#print(str(down_sum),str(up_sum))
 		color('cyan',mid_msg,end_msg)
-	elif (persent > -85 and persent <= -60) and \
-	(persent < 0 and sh_persent <0 and down_persent[3] <0 and down_persent[5] <0 and down_persent[10] <0):
-		color('magenta',mid_msg,end_msg)
+	#elif (persent > -85 and persent <= -50) and \
+	#		(persent < 0 and sh_persent <15 and \
+	#		down_persent[3] <0 and down_persent[5] <0 and down_persent[10] <0):
+	#elif persent < 0 and sh_persent <15 and \
+	#		down_persent[3] <0 and down_persent[5] <0 and down_persent[10] <0:
+	#	color('magenta',mid_msg,end_msg)
 	elif down_sum == 0:
 		color('yellow',mid_msg,end_msg)
 	elif price_dict[code]['p_change'] > 0:
