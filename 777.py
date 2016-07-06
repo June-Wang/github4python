@@ -103,18 +103,18 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down
 		down_sum += down_persent[i]
 		up_sum += up_persent[i]
 
-	if persent <0 and sh_persent <=0 and price_dict[code]['p_change'] > -9 and \
+	if persent <0 and sh_persent <0 and price_dict[code]['p_change'] > -9 and \
 		price_dict[code]['p_change'] <=0 and sh_price_dict['p_change']<=0 and \
 		down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
 		up_sum ==0:
-		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
+	#	print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 	#elif persent <0 and price_dict[code]['p_change'] > -9 and \
     #    price_dict[code]['p_change'] <=0 and \
     #    down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
     #    up_sum == 0:
 	#	print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 	#elif persent > -80 and persent <= -70:
-	#	print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
+		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 
 def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 
