@@ -175,8 +175,10 @@ if __name__ == "__main__":
 
 	stock_list = stock_basics.index.values
 		
+	start_day = df_sh.index.values[0]
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
-		pool.apply_async(do_it, (stock_code,stock_basics,yestoday,end_day,sorted(day_list),sh_persent))
+		#pool.apply_async(do_it, (stock_code,stock_basics,yestoday,end_day,sorted(day_list),sh_persent))
+		pool.apply_async(do_it, (stock_code,stock_basics,start_day,end_day,sorted(day_list),sh_persent))
 	pool.close()
 	pool.join()
