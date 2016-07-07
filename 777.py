@@ -107,13 +107,13 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down
 		price_dict[code]['p_change'] <=0 and sh_price_dict['p_change']<=0 and \
 		down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
 		up_sum ==0:
-	#	print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
+		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 	#elif persent <0 and price_dict[code]['p_change'] > -9 and \
     #    price_dict[code]['p_change'] <=0 and \
     #    down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
     #    up_sum == 0:
 	#	print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
-	#elif persent > -80 and persent <= -70:
+	elif persent > -80 and persent <= -70:
 		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 
 def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
@@ -166,6 +166,7 @@ if __name__ == "__main__":
 
 	try:
 		stock_basics = ts.get_stock_basics()
+		stock_500 = ts.get_zz500s()
 	except:
 		print('timeout!')
 		sys.exit(1)
@@ -182,7 +183,8 @@ if __name__ == "__main__":
 	sh_p_change = sh_price_dict['p_change']
 	sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
 
-	stock_list = stock_basics.index.values
+	#stock_list = stock_basics.index.values
+	stock_list = stock_500.code.values
 		
 	start_day = df_sh.index.values[0] 
 	pool = multiprocessing.Pool(processes=4)
