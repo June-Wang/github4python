@@ -169,7 +169,8 @@ persent,sh_persent,count_list,days_list_persent,year_list):
 	#day_sum = len(days_list_persent)
 	
 	#if #persent <=-85 and sh_persent <=0 and down_count == 1 and up_count == 1 and min_count ==1: # or \
-	if	(down_count == 1 and up_count == 1 and min_count ==1 and \
+	if	(persent <=-70 and sh_persent <=0) and \
+		(down_count == 1 and up_count == 1 and min_count ==1 and \
 		persent <=0 and sh_persent <=0 and \
 		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9) and \
 		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
