@@ -1,14 +1,15 @@
 #!/usr/bin/env python3.4
 
 import sys
-import tushare as ts
+import re
 import datetime
+import time
+import multiprocessing
+import tushare as ts
 import pandas as pd
 import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
-import time
-import multiprocessing
 
 def get_color(text):
 	my_number = float(text)
@@ -60,19 +61,66 @@ def get_data_list(df,day_list):
 			data_list[count] = change_sum
 	return(data_list)
 
+#def get_days_persent(df,day_count,days_list_persent):
+#	days_list = days_list_persent
+#	down_persent = {}
+#	up_persent = {}
+#	data_day = list()
+#	for i in range(max(days_list)+1):
+#		date_i = df.index.values[day_count+i]
+#		data_day.append(float(df[df.index == date_i].close[0]))
+#		#print(data_day)
+#		if i in days_list:
+#			down_persent[i]=(data_day[0] - max(data_day))/max(data_day) *100
+#			up_persent[i]=(data_day[0] - min(data_day))/min(data_day) *100
+#	return(down_persent,up_persent)
+
 def get_days_persent(df,day_count,days_list_persent):
 	days_list = days_list_persent
 	down_persent = {}
 	up_persent = {}
+	max_persent = {}
+	min_persent = {}
 	data_day = list()
 	for i in range(max(days_list)+1):
 		date_i = df.index.values[day_count+i]
 		data_day.append(float(df[df.index == date_i].close[0]))
 		#print(data_day)
 		if i in days_list:
-			down_persent[i]=(data_day[0] - max(data_day))/max(data_day) *100
-			up_persent[i]=(data_day[0] - min(data_day))/min(data_day) *100
-	return(down_persent,up_persent)
+			down_persent[i]=(data_day[0] - data_day[-1])/max(data_day) *100
+			up_persent[i]=(data_day[0] - data_day[-1])/min(data_day) *100
+
+			max_persent[i]=(data_day[0] - max(data_day))/max(data_day) *100
+			min_persent[i]=(data_day[0] - min(data_day))/min(data_day) *100
+
+	down_count = 0
+	up_count = 0
+	min_count = 0
+	max_count = 0
+	day_sum = len(days_list_persent)
+	for i in days_list_persent:
+		if down_persent[i] < 0:
+			down_count +=1
+		else:
+			down_count -=1
+
+		if up_persent[i] < 0:
+			up_count +=1
+		else:
+			up_count -=1
+
+		if max_persent[i] == 0:
+			max_count +=1
+		else:
+			max_count -=1
+
+		if min_persent[i] == 0:
+			min_count +=1
+		else:
+			min_count -=1
+
+	return(int(down_count/day_sum),int(up_count/day_sum),\
+		int(min_count/day_sum),int(max_count/day_sum))
 
 def rules(df,day_list,data_list_dict,p_change):
 	num = len(day_list) +1
@@ -91,27 +139,27 @@ def rules(df,day_list,data_list_dict,p_change):
 	persent =  count / num * 100
 	return(persent)
 
-def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent):
+def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,count_list,days_list_persent):
 	date = str(yestoday)[:10]
+	down_count,up_count,min_count,max_count = count_list
+	#print(count_list)
 	head_msg = code+'\t'+stock_basics_dict[code]['name']
 	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
 
-	down_sum = 0.0
-	up_sum = 0.0
-	for i in days_list_persent:
-		down_sum += down_persent[i]
-		up_sum += up_persent[i]
-
-	if persent <0 and sh_persent <0 and price_dict[code]['p_change'] > -9 and \
-		price_dict[code]['p_change'] <=0 and sh_price_dict['p_change']<=0 and \
-		down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
-		up_sum ==0:
+	#if persent <0 and sh_persent <0 and price_dict[code]['p_change'] > -9 and \
+	#	price_dict[code]['p_change'] <=0 and sh_price_dict['p_change']<=0 and \
+	#	down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
+	#	up_sum ==0:
+	if (down_count == 1 and up_count == 1 and min_count ==1 and \
+		persent <=0 and sh_persent <=0 and \
+		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-6) and \
+		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
 		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 	#elif persent <0 and price_dict[code]['p_change'] > -9 and \
-    #    price_dict[code]['p_change'] <=0 and \
-    #    down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
-    #    up_sum == 0:
+	#	price_dict[code]['p_change'] <=0 and \
+	#	down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
+	#	up_sum == 0:
 	#	print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 	elif persent > -80 and persent <= -70:
 		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
@@ -136,14 +184,16 @@ def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 		
 		days_list_persent = [3,5,10]
 		day_count = 0
-		down_persent,up_persent = get_days_persent(df,day_count,days_list_persent)
+		#down_persent,up_persent = get_days_persent(df,day_count,days_list_persent)
+		count_list = get_days_persent(df,day_count,days_list_persent)
+		#print(count_list)
 	
 		data_list_dict = get_data_list(df,day_list)
 		p_change = price_dict[code]['p_change']
 		persent = rules(df,day_list,data_list_dict,p_change)
 	
-		#color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent)
-		color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent)
+		#color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent)
+		color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,count_list,days_list_persent)
 
 if __name__ == "__main__":
 
@@ -187,6 +237,24 @@ if __name__ == "__main__":
 	stock_list = stock_500.code.values
 		
 	start_day = df_sh.index.values[0] 
+	pool = multiprocessing.Pool(processes=4)
+	for stock_code in sorted(stock_list):
+		pool.apply_async(do_it, (stock_code,stock_basics,start_day,end_day,sorted(day_list),sh_persent))
+	pool.close()
+	pool.join()
+
+	file = 'final.list'
+	fh = open(file)
+	rows = fh.readlines()
+	fh.close
+	stock_list = list()
+	for code in rows:
+		m = re.match("^\d{6}$",code)
+		if not m:
+			continue
+		stock_code = code.replace("\n", "")
+		stock_list.append(stock_code)
+
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
 		pool.apply_async(do_it, (stock_code,stock_basics,start_day,end_day,sorted(day_list),sh_persent))
