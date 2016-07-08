@@ -1,14 +1,15 @@
 #!/usr/bin/env python3.4
 
 import sys
-import tushare as ts
 import datetime
+import time
+import multiprocessing
 import pandas as pd
+import requests
+import tushare as ts
 import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
-import time
-import multiprocessing
 
 def get_color(text):
 	my_number = float(text)
@@ -99,9 +100,29 @@ def color(color,mid_msg,end_msg):
 	elif color == 'green':
 		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
-def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent):
+def get_share(stock_code):
+
+	url = 'http://data.10jqka.com.cn/financial/sgpx/op/code/code/'+stock_code+'/ajax/1/'
+	resp = requests.get(url)
+
+	try:
+		table = pd.read_html(resp.text)[0]
+	except:
+		print('获取配股分红信息失败！')
+		year_list = list()
+		return(year_list)
+	year_list = [ str(year[0]) for year in table[['除权除息日']].values]
+	return(year_list)
+
+def color4msg(df,code,day_count,price_dict,sh_price_dict,\
+persent,sh_persent,down_persent,up_persent,days_list_persent,year_list):
 	
 	date = df.index.values[day_count]
+	#print(str(date),year_list)
+	if str(date) in year_list:
+		share_msg = '配股分红'
+	else:
+		share_msg = ''
 	head_msg = date + '\t'+'min/max/close'
 	mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+str(int(sh_price_dict['close']))
@@ -110,7 +131,7 @@ def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,down
 	down_persent_msg = '\t'.join([get_color("%.2f" % down_persent[i]) for i in days_list_persent])
 	up_persent_msg = '\t'.join([get_color("%.2f" % up_persent[i]) for i in days_list_persent])
 	days_persent_msg = '3/5/10'+'\t'+down_persent_msg+'\t'+up_persent_msg
-	end_msg = persent_msg+'\t'+p_change_msg+'\t'+days_persent_msg
+	end_msg = persent_msg+'\t'+p_change_msg+'\t'+days_persent_msg+'\t'+share_msg
 
 	#if persent <=-85:
 	down_count = 0
@@ -134,8 +155,8 @@ def color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,down
 
 		color('cyan',mid_msg,end_msg)
 	elif down_count == (day_sum*-1) and up_count == (day_sum*-1) and \
-        persent >0 and \
-        price_dict[code]['p_change'] >0 and sh_price_dict['p_change']>0:
+		persent >0 and \
+		price_dict[code]['p_change'] >0 and sh_price_dict['p_change']>0:
 
 		color('yellow',mid_msg,end_msg)
 	elif price_dict[code]['p_change'] > 0:
@@ -157,6 +178,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	day_count = 0
 	p_change_sum = 0
 	sh_p_change_sum = 0
+	year_list = get_share(code) 
 
 	days_list_persent = [3,5,10]
 	for day in df.index.values:
@@ -185,7 +207,8 @@ def do_it(code,basics,yestoday,end_day,day_list):
 				sh_p_change_sum -=1
 		except:
 			break
-		color4msg(df,code,day_count,price_dict,sh_price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent)
+		color4msg(df,code,day_count,price_dict,sh_price_dict,\
+			persent,sh_persent,down_persent,up_persent,days_list_persent,year_list)
 		day_count +=1
 		#print(day_count)
 	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
