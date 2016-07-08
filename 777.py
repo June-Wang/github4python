@@ -147,20 +147,12 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,coun
 	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
 
-	#if persent <0 and sh_persent <0 and price_dict[code]['p_change'] > -9 and \
-	#	price_dict[code]['p_change'] <=0 and sh_price_dict['p_change']<=0 and \
-	#	down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
-	#	up_sum ==0:
-	if (down_count == 1 and up_count == 1 and min_count ==1 and \
+	if (persent <=-70 and sh_persent <=0) and \
+		(down_count == 1 and up_count == 1 and min_count ==1 and \
 		persent <=0 and sh_persent <=0 and \
-		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-6) and \
+		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
 		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
 		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
-	#elif persent <0 and price_dict[code]['p_change'] > -9 and \
-	#	price_dict[code]['p_change'] <=0 and \
-	#	down_persent[3]<0 and down_persent[5]<0 and down_persent[10]<0 and \
-	#	up_sum == 0:
-	#	print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 	elif persent > -80 and persent <= -70:
 		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 
