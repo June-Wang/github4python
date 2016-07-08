@@ -38,6 +38,8 @@ def get_days_persent(df,day_count,days_list_persent):
 	days_list = days_list_persent
 	down_persent = {}
 	up_persent = {}
+	max_persent = {}
+	min_persent = {}
 	data_day = list()
 	for i in range(max(days_list)+1):
 		date_i = df.index.values[day_count+i]
@@ -46,7 +48,38 @@ def get_days_persent(df,day_count,days_list_persent):
 		if i in days_list:
 			down_persent[i]=(data_day[0] - data_day[-1])/max(data_day) *100
 			up_persent[i]=(data_day[0] - data_day[-1])/min(data_day) *100
-	return(down_persent,up_persent)
+
+			max_persent[i]=(data_day[0] - max(data_day))/max(data_day) *100
+			min_persent[i]=(data_day[0] - min(data_day))/min(data_day) *100
+
+	down_count = 0
+	up_count = 0
+	min_count = 0
+	max_count = 0
+	day_sum = len(days_list_persent)
+	for i in days_list_persent:
+		if down_persent[i] < 0:
+			down_count +=1
+		else:
+			down_count -=1
+
+		if up_persent[i] < 0:
+			up_count +=1
+		else:
+			up_count -=1
+
+		if max_persent[i] == 0:
+			max_count +=1
+		else:
+			max_count -=1
+
+		if min_persent[i] == 0:
+			min_count +=1
+		else:
+			min_count -=1
+
+	return(int(down_count/day_sum),int(up_count/day_sum),\
+		int(min_count/day_sum),int(max_count/day_sum))
 
 def get_data_list(df,day_list,day_count):
 	change_sum = 0.0
@@ -115,9 +148,10 @@ def get_share(stock_code):
 	return(year_list)
 
 def color4msg(df,code,day_count,price_dict,sh_price_dict,\
-persent,sh_persent,down_persent,up_persent,days_list_persent,year_list):
+persent,sh_persent,count_list,days_list_persent,year_list):
 	
 	date = df.index.values[day_count]
+	down_count,up_count,min_count,max_count = count_list
 	#print(str(date),year_list)
 	if str(date) in year_list:
 		share_msg = '配股分红'
@@ -128,33 +162,19 @@ persent,sh_persent,down_persent,up_persent,days_list_persent,year_list):
 	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+str(int(sh_price_dict['close']))
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 		get_color("%.2f" % sh_price_dict['p_change'])
-	down_persent_msg = '\t'.join([get_color("%.2f" % down_persent[i]) for i in days_list_persent])
-	up_persent_msg = '\t'.join([get_color("%.2f" % up_persent[i]) for i in days_list_persent])
-	days_persent_msg = '3/5/10'+'\t'+down_persent_msg+'\t'+up_persent_msg
-	end_msg = persent_msg+'\t'+p_change_msg+'\t'+days_persent_msg+'\t'+share_msg
+	du_msg = 'down/up'+'\t'+get_color(str(down_count))+'\t'+get_color(str(up_count))
+	mm_msg = 'min/max'+'\t'+get_color(str(min_count))+'\t'+get_color(str(max_count))
+	end_msg = persent_msg+'\t'+p_change_msg+'\t'+du_msg+'\t'+mm_msg+'\t'+share_msg
 
-	#if persent <=-85:
-	down_count = 0
-	up_count = 0
-	day_sum = len(days_list_persent)
-	for i in days_list_persent:
-		if down_persent[i] < 0:
-			down_count +=1
-		else:
-			down_count -=1
-
-		if up_persent[i] < 0:
-			up_count +=1
-		else:
-			up_count -=1
+	#day_sum = len(days_list_persent)
 	
-	if down_count == day_sum and up_count == day_sum and \
+	if (down_count == 1 and up_count == 1 and min_count ==1 and \
 		persent <=0 and sh_persent <=0 and \
 		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-6) and \
-		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0):
-
+		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
+		
 		color('cyan',mid_msg,end_msg)
-	elif down_count == (day_sum*-1) and up_count == (day_sum*-1) and \
+	elif down_count == -1 and up_count == -1 and max_count ==1 and \
 		persent >0 and \
 		price_dict[code]['p_change'] >0 and sh_price_dict['p_change']>0:
 
@@ -178,14 +198,16 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	day_count = 0
 	p_change_sum = 0
 	sh_p_change_sum = 0
+	count_list = list()
 	year_list = get_share(code) 
 
 	days_list_persent = [3,5,10]
 	for day in df.index.values:
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
-			down_persent,up_persent = get_days_persent(df,day_count,days_list_persent)
-			#print(down_persent)
+			#down_count,up_count,max_count,min_count = get_days_persent(df,day_count,days_list_persent)
+			count_list = get_days_persent(df,day_count,days_list_persent)
+			#print(count_list)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
 			#print(num25)
 			if num25 <25:
@@ -208,7 +230,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 		except:
 			break
 		color4msg(df,code,day_count,price_dict,sh_price_dict,\
-			persent,sh_persent,down_persent,up_persent,days_list_persent,year_list)
+			persent,sh_persent,count_list,days_list_persent,year_list)
 		day_count +=1
 		#print(day_count)
 	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
