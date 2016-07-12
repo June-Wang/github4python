@@ -33,7 +33,7 @@ def do_it(stock_code,stock_basics):
 	persent = up_num/sum *100
 		
 	#if str(yeji) == '业绩大幅上升':
-	if persent >= 60:
+	if persent >= 60 and sum >3:
 		name = stock_basics[stock_basics.index == stock_code]['name'].values[0]
 		industry = stock_basics[stock_basics.index == stock_code]['industry'].values[0]
 		print(str(stock_code)+'\t'+name+'\t'+industry)
