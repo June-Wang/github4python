@@ -19,12 +19,12 @@ def do_it(stock_code,stock_basics):
 		table = pd.read_html(resp.text)[0]
 	except:
 		return()
-	year_list = [ year[0].split("-")[0] for year in table[['预案公布日']].values]
+	year_list = [ str(year[0]).split("-")[0] for year in table[['预案公布日']].values]
 	local_year = time.strftime("%Y", time.localtime())
 
 	count = 0
-	num = len(table)
-	get_year_list = [int(local_year) - i for i in range(num-1)]
+	num = len(year_list)
+	get_year_list = [str(int(local_year) - i) for i in range(num-1)]
 	for year in year_list:
 		if year in get_year_list:
 			count +=1
