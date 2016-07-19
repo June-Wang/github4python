@@ -47,4 +47,4 @@ for stock_code in sorted(stock_list):
 	if score >= 6.5:
 		name = stock_basics[stock_basics.index == stock_code]['name'].values[0]
 		industry = stock_basics[stock_basics.index == stock_code]['industry'].values[0]
-		print(("%.2f" % score),str(stock_code)+'\t'+name+'\t'+industry)
+		print(("%.1f" % score),str(stock_code)+'\t'+name+'\t'+industry)
