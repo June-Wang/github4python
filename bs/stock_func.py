@@ -50,7 +50,7 @@ def get_report(stock_code):
 #季度年度报告
 #来源：同花顺
 #字段：序号	报告期	公告日期 
-	url = 'http://data.10jqka.com.cn/financial/yjgg/op/code/'+stock_code+'/600519/ajax/1/'
+	url = 'http://data.10jqka.com.cn/financial/yjgg/op/code/'+stock_code+'/ajax/1/'
 	resp = requests.get(url)
 
 	try:
