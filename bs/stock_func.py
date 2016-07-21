@@ -67,3 +67,4 @@ def get_report(stock_code):
 table = get_jiejin('000998')
 if table is not None:
 	print(table)
+#table[table.all().head(10).index[1:]].head(10)
