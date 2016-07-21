@@ -147,11 +147,16 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,coun
 	mid_msg = date + '\t'+'P(min/max/close):\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
 
-	if (persent <=-70 and sh_persent <=0) and \
-		(down_count == 1 and up_count == 1 and min_count ==1 and \
-		persent <=0 and sh_persent <=0 and \
-		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
-		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
+	#if (persent <=-30 and sh_persent <=0) and \
+	#	(down_count == 1 and up_count == 1 and min_count ==1 and \
+	#	persent <=0 and sh_persent <=0 and \
+	#	(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
+	#	(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
+	if  ((persent <= 30 and sh_persent <= -85) or (persent <=-85 and sh_persent <=0)) and \
+        (down_count == 1 and up_count == 1 and min_count ==1 and \
+        persent <=0 and sh_persent <=0 and \
+        (price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
+        (sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
 		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 	elif persent > -80 and persent <= -70:
 		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
@@ -208,7 +213,7 @@ if __name__ == "__main__":
 
 	try:
 		stock_basics = ts.get_stock_basics()
-		stock_500 = ts.get_zz500s()
+		#stock_500 = ts.get_zz500s()
 	except:
 		print('timeout!')
 		sys.exit(1)
@@ -225,8 +230,8 @@ if __name__ == "__main__":
 	sh_p_change = sh_price_dict['p_change']
 	sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
 
-	#stock_list = stock_basics.index.values
-	stock_list = stock_500.code.values
+	stock_list = stock_basics.index.values
+	#stock_list = stock_500.code.values
 		
 	start_day = df_sh.index.values[0] 
 	pool = multiprocessing.Pool(processes=4)
@@ -235,20 +240,20 @@ if __name__ == "__main__":
 	pool.close()
 	pool.join()
 
-	file = 'final.list'
-	fh = open(file)
-	rows = fh.readlines()
-	fh.close
-	stock_list = list()
-	for code in rows:
-		m = re.match("^\d{6}$",code)
-		if not m:
-			continue
-		stock_code = code.replace("\n", "")
-		stock_list.append(stock_code)
-
-	pool = multiprocessing.Pool(processes=4)
-	for stock_code in sorted(stock_list):
-		pool.apply_async(do_it, (stock_code,stock_basics,start_day,end_day,sorted(day_list),sh_persent))
-	pool.close()
-	pool.join()
+#	file = 'final.list'
+#	fh = open(file)
+#	rows = fh.readlines()
+#	fh.close
+#	stock_list = list()
+#	for code in rows:
+#		m = re.match("^\d{6}$",code)
+#		if not m:
+#			continue
+#		stock_code = code.replace("\n", "")
+#		stock_list.append(stock_code)
+#
+#	pool = multiprocessing.Pool(processes=4)
+#	for stock_code in sorted(stock_list):
+#		pool.apply_async(do_it, (stock_code,stock_basics,start_day,end_day,sorted(day_list),sh_persent))
+#	pool.close()
+#	pool.join()
