@@ -158,7 +158,7 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,coun
         (price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
         (sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
 		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
-	elif persent > -80 and persent <= -70:
+	elif persent > -100 and persent <= -75:
 		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 
 def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
