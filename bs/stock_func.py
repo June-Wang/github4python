@@ -32,7 +32,7 @@ def get_yeji(stock_code):
 #业绩信息
 #来源：同花顺
 #字段：序号	报告期	业绩预告类型	业绩预告摘要	净利润变动幅度(%)	上年同期净利润(元)	公告日期
-	url = 'http://data.10jqka.com.cn/market/xsjj/op/code/code/'+stock_code+'/ajax/1/'
+	url = 'http://data.10jqka.com.cn/financial/yjyg/op/code/code/'+stock_code+'/ajax/1/'
 	resp = requests.get(url)
 
 	try:
