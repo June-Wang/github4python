@@ -61,20 +61,6 @@ def get_data_list(df,day_list):
 			data_list[count] = change_sum
 	return(data_list)
 
-#def get_days_persent(df,day_count,days_list_persent):
-#	days_list = days_list_persent
-#	down_persent = {}
-#	up_persent = {}
-#	data_day = list()
-#	for i in range(max(days_list)+1):
-#		date_i = df.index.values[day_count+i]
-#		data_day.append(float(df[df.index == date_i].close[0]))
-#		#print(data_day)
-#		if i in days_list:
-#			down_persent[i]=(data_day[0] - max(data_day))/max(data_day) *100
-#			up_persent[i]=(data_day[0] - min(data_day))/min(data_day) *100
-#	return(down_persent,up_persent)
-
 def get_days_persent(df,day_count,days_list_persent):
 	days_list = days_list_persent
 	down_persent = {}
@@ -101,23 +87,23 @@ def get_days_persent(df,day_count,days_list_persent):
 	for i in days_list_persent:
 		if down_persent[i] < 0:
 			down_count +=1
-		else:
-			down_count -=1
+		#else:
+		#	down_count -=1
 
-		if up_persent[i] < 0:
+		if up_persent[i] > 0:
 			up_count +=1
-		else:
-			up_count -=1
+		#else:
+		#	up_count -=1
 
 		if max_persent[i] == 0:
 			max_count +=1
-		else:
-			max_count -=1
+		#else:
+		#	max_count -=1
 
 		if min_persent[i] == 0:
 			min_count +=1
-		else:
-			min_count -=1
+		#else:
+		#	min_count -=1
 
 	return(int(down_count/day_sum),int(up_count/day_sum),\
 		int(min_count/day_sum),int(max_count/day_sum))
@@ -148,7 +134,7 @@ def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,coun
 	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
 
 	if  ((persent <= -85 and sh_persent <= -90) or (persent <=-85 and sh_persent <=0)) and \
-		(down_count == 1 and up_count == 1 and min_count ==1 and \
+		(up_count == 1 and min_count ==1 and \
 		persent <=0 and sh_persent <=0 and \
 		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
 		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
