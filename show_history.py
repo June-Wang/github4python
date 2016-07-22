@@ -59,24 +59,25 @@ def get_days_persent(df,day_count,days_list_persent):
 	day_sum = len(days_list_persent)
 	for i in days_list_persent:
 		if down_persent[i] < 0:
-			down_count +=1
-		else:
-			down_count -=1
+			down_count -= 1
+		#else:
+		#	down_count -=1
 
-		if up_persent[i] < 0:
+		#print(str(down_persent[i]))
+		if up_persent[i] > 0:
 			up_count +=1
-		else:
-			up_count -=1
+		#else:
+		#	up_count -=1
 
 		if max_persent[i] == 0:
 			max_count +=1
-		else:
-			max_count -=1
+		#else:
+		#	max_count -=1
 
 		if min_persent[i] == 0:
-			min_count +=1
-		else:
 			min_count -=1
+		#else:
+		#	min_count -=1
 
 	return(int(down_count/day_sum),int(up_count/day_sum),\
 		int(min_count/day_sum),int(max_count/day_sum))
@@ -148,8 +149,7 @@ def get_share(stock_code):
 	return(year_list)
 
 def color4msg(df,code,day_count,price_dict,sh_price_dict,\
-persent,sh_persent,count_list,days_list_persent,year_list):
-	
+persent,sh_persent,count_list,days_list_persent,data_list_dict,year_list,day_list):
 	date = df.index.values[day_count]
 	down_count,up_count,min_count,max_count = count_list
 	#print(str(date),year_list)
@@ -157,9 +157,14 @@ persent,sh_persent,count_list,days_list_persent,year_list):
 		share_msg = '配股分红'
 	else:
 		share_msg = ''
+	#try:
+	#	get_color("%.2f" % data_list_dict[day_list[-1]])
+	#except:
+	#	return()
 	head_msg = date + '\t'+'min/max/close'
 	mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+str(int(sh_price_dict['close']))
+		#str(int(sh_price_dict['close']))
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 		get_color("%.2f" % sh_price_dict['p_change'])
 	du_msg = 'down/up'+'\t'+get_color(str(down_count))+'\t'+get_color(str(up_count))
@@ -168,20 +173,16 @@ persent,sh_persent,count_list,days_list_persent,year_list):
 
 	#day_sum = len(days_list_persent)
 	
-	#if #persent <=-85 and sh_persent <=0 and down_count == 1 and up_count == 1 and min_count ==1: # or \
 	if	((persent <= -85 and sh_persent <= -90) or (persent <=-85 and sh_persent <=0)) and \
-		(down_count == 1 and up_count == 1 and min_count ==1 and \
-		persent <=0 and sh_persent <=0 and \
+		(down_count == -1 and min_count == -1 and \
 		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
 		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
 		
 		color('cyan',mid_msg,end_msg)
-	#elif (sh_persent <= -95 and persent <= 15) or (sh_persent <= -70 and persent <= 0):
-	elif persent >=-100 and persent<=-75:
+	elif persent >=-100 and persent<=-75 :
 		color('magenta',mid_msg,end_msg)
-	elif down_count == -1 and up_count == -1 and max_count ==1 and \
-		persent >0 and \
-		price_dict[code]['p_change'] >0 and sh_price_dict['p_change']>0:
+	elif up_count == 1 and max_count ==1 and persent >0 and \
+		price_dict[code]['p_change']>0 and sh_price_dict['p_change']>0:
 
 		color('yellow',mid_msg,end_msg)
 	elif price_dict[code]['p_change'] > 0:
@@ -210,11 +211,10 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	for day in df.index.values:
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
-			#down_count,up_count,max_count,min_count = get_days_persent(df,day_count,days_list_persent)
 			count_list = get_days_persent(df,day_count,days_list_persent)
-			#print(count_list)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
-			#print(num25)
+			
+			#print(str(data_list_dict[day_list[-1]]))
 			if num25 <25:
 				break
 			p_change = price_dict[code]['p_change']
@@ -235,9 +235,8 @@ def do_it(code,basics,yestoday,end_day,day_list):
 		except:
 			break
 		color4msg(df,code,day_count,price_dict,sh_price_dict,\
-			persent,sh_persent,count_list,days_list_persent,year_list)
+			persent,sh_persent,count_list,days_list_persent,data_list_dict,year_list,day_list)
 		day_count +=1
-		#print(day_count)
 	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
 
 if __name__ == "__main__":
