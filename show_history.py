@@ -161,9 +161,10 @@ persent,sh_persent,count_list,days_list_persent,data_list_dict,year_list,day_lis
 	#	get_color("%.2f" % data_list_dict[day_list[-1]])
 	#except:
 	#	return()
+	persent_sum = persent + sh_persent
 	head_msg = date + '\t'+'min/max/close'
 	mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+str(int(sh_price_dict['close']))
+	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+get_color(("%.2f" % persent_sum))+'\t'+str(int(sh_price_dict['close']))
 		#str(int(sh_price_dict['close']))
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 		get_color("%.2f" % sh_price_dict['p_change'])
