@@ -168,9 +168,17 @@ persent,sh_persent,count_list,days_list_persent,data_list_dict,year_list,day_lis
 		#str(int(sh_price_dict['close']))
 	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 		get_color("%.2f" % sh_price_dict['p_change'])
-	du_msg = 'down/up'+'\t'+get_color(str(down_count))+'\t'+get_color(str(up_count))
-	mm_msg = 'min/max'+'\t'+get_color(str(min_count))+'\t'+get_color(str(max_count))
-	end_msg = persent_msg+'\t'+p_change_msg+'\t'+du_msg+'\t'+mm_msg+'\t'+share_msg
+	#if down_count == 0:
+	#	down_count = up_count
+	#if min_count == 0:
+	#	min_count = max_count
+	#du_msg = 'down|up'+'\t'+get_color(str(down_count))#+'\t'+get_color(str(up_count))
+	#mm_msg = 'min|max'+'\t'+get_color(str(min_count))#+'\t'+get_color(str(max_count))
+
+	#du_msg = 'down/up'+'\t'+get_color(str(down_count))+'\t'+get_color(str(up_count))
+	#mm_msg = 'min/max'+'\t'+get_color(str(min_count))+'\t'+get_color(str(max_count))
+	weights =  down_count + up_count + min_count + max_count
+	end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+share_msg
 
 	#day_sum = len(days_list_persent)
 	
