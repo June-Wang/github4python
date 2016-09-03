@@ -60,24 +60,16 @@ def get_days_persent(df,day_count,days_list_persent):
 	for i in days_list_persent:
 		if down_persent[i] < 0:
 			down_count -= 1
-		#else:
-		#	down_count -=1
 
 		#print(str(down_persent[i]))
 		if up_persent[i] > 0:
 			up_count +=1
-		#else:
-		#	up_count -=1
 
 		if max_persent[i] == 0:
 			max_count +=1
-		#else:
-		#	max_count -=1
 
 		if min_persent[i] == 0:
 			min_count -=1
-		#else:
-		#	min_count -=1
 
 	return(int(down_count/day_sum),int(up_count/day_sum),\
 		int(min_count/day_sum),int(max_count/day_sum))
@@ -148,57 +140,6 @@ def get_share(stock_code):
 	year_list = [ str(year[0]) for year in table[['除权除息日']].values]
 	return(year_list)
 
-def color4msg(df,code,day_count,price_dict,sh_price_dict,\
-persent,sh_persent,count_list,days_list_persent,data_list_dict,year_list,day_list):
-	date = df.index.values[day_count]
-	down_count,up_count,min_count,max_count = count_list
-	#print(str(date),year_list)
-	if str(date) in year_list:
-		share_msg = '配股分红'
-	else:
-		share_msg = ''
-	#try:
-	#	get_color("%.2f" % data_list_dict[day_list[-1]])
-	#except:
-	#	return()
-	persent_sum = persent + sh_persent
-	head_msg = date + '\t'+'min/max/close'
-	mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-	persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+get_color(("%.2f" % persent_sum))+'\t'+str(int(sh_price_dict['close']))
-		#str(int(sh_price_dict['close']))
-	p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
-		get_color("%.2f" % sh_price_dict['p_change'])
-	#if down_count == 0:
-	#	down_count = up_count
-	#if min_count == 0:
-	#	min_count = max_count
-	#du_msg = 'down|up'+'\t'+get_color(str(down_count))#+'\t'+get_color(str(up_count))
-	#mm_msg = 'min|max'+'\t'+get_color(str(min_count))#+'\t'+get_color(str(max_count))
-
-	#du_msg = 'down/up'+'\t'+get_color(str(down_count))+'\t'+get_color(str(up_count))
-	#mm_msg = 'min/max'+'\t'+get_color(str(min_count))+'\t'+get_color(str(max_count))
-	weights =  down_count + up_count + min_count + max_count
-	end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+share_msg
-
-	#day_sum = len(days_list_persent)
-	
-	if	((persent <= -85 and sh_persent <= -90) or (persent <=-85 and sh_persent <=0)) and \
-		(weights == 2 and \
-		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
-		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
-		
-		color('cyan',mid_msg,end_msg)
-	elif persent >=-100 and persent<=-75 :
-		color('magenta',mid_msg,end_msg)
-	elif weights == -2 and persent >0 and \
-		price_dict[code]['p_change']>0 and sh_price_dict['p_change']>0:
-
-		color('yellow',mid_msg,end_msg)
-	elif price_dict[code]['p_change'] > 0:
-		color('red',mid_msg,end_msg)
-	elif price_dict[code]['p_change'] < 0:
-		color('green',mid_msg,end_msg)
-
 def do_it(code,basics,yestoday,end_day,day_list):
 
 	try:
@@ -216,6 +157,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	count_list = list()
 	year_list = get_share(code) 
 
+	min_list = list()
 	days_list_persent = [3,5,10]
 	for day in df.index.values:
 		try:
@@ -243,16 +185,67 @@ def do_it(code,basics,yestoday,end_day,day_list):
 				sh_p_change_sum -=1
 		except:
 			break
-		color4msg(df,code,day_count,price_dict,sh_price_dict,\
-			persent,sh_persent,count_list,days_list_persent,data_list_dict,year_list,day_list)
+
+		date = df.index.values[day_count]
+		down_count,up_count,min_count,max_count = count_list
+		#print(str(date),year_list)
+		if str(date) in year_list:
+			share_msg = '配股分红'
+		else:
+			share_msg = ''
+		#try:
+		#	get_color("%.2f" % data_list_dict[day_list[-1]])
+		#except:
+		#	return()
+		persent_sum = persent + sh_persent
+		head_msg = date + '\t'+'min/max/close'
+		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
+		persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+get_color(("%.2f" % persent_sum))+'\t'+str(int(sh_price_dict['close']))
+		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
+			get_color("%.2f" % sh_price_dict['p_change'])
+	
+		weights =  down_count + up_count + min_count + max_count
+		end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+share_msg
+	
+		#day_sum = len(days_list_persent)
+		
+		#if	((persent <= -85 and sh_persent <= -90) or (persent <=-85 and sh_persent <=0)) and \
+		#	(weights == -2 and \
+		#	(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
+		#	(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
+		if weights == -2 and persent < 0 and sh_persent < 0 and \
+			persent_sum <= -100:
+			color('cyan',mid_msg,end_msg)
+			min_list.append(price_dict[code]['close'])
+		#elif persent >=-100 and persent<=-75 :
+		elif weights == -2 and persent < 0 and sh_persent < 0 and \
+			persent_sum <= -50:
+			color('magenta',mid_msg,end_msg)
+			min_list.append(price_dict[code]['close'])
+		#elif weights == 2 and persent >0 and \
+		#	price_dict[code]['p_change']>0 and sh_price_dict['p_change']>0:
+		elif weights == 2 and persent >0 and sh_persent > 0 and \
+			persent_sum >= 100:
+			color('yellow',mid_msg,end_msg)
+		elif price_dict[code]['p_change'] > 0:
+			color('red',mid_msg,end_msg)
+		elif price_dict[code]['p_change'] < 0:
+			color('green',mid_msg,end_msg)
+
 		day_count +=1
-	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum)))
+
+	min_avg = sum(min_list)/len(min_list)
+	min_min = min(min_list)
+	min_max = max(min_list)
+	min_msg = 'min/max/avg:\t'+("%.2f" % min_min)+'\t'+("%.2f" % min_max)+'\t'+("%.2f" % min_avg)
+
+	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\tmin_avg:\t'+ min_msg)
 
 if __name__ == "__main__":
 
 	colorama.init()
 	stock_code = sys.argv[1]
-	num4days = 300
+	num4days = 100
 
 	day_list = [i for i in range(5,185,5)]
 	day_list.append(3)
