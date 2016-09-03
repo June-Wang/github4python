@@ -243,7 +243,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	min_max = max(min_list)
 	min_msg = 'min/max/avg/now:\t'+("%.2f" % min_min)+'\t'+("%.2f" % min_max)+'\t'+("%.2f" % min_avg)+'\t'+("%.2f" % now_price)
 
-	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\tmin_avg:\t'+ min_msg)
+	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\t'+ min_msg)
 
 if __name__ == "__main__":
 
