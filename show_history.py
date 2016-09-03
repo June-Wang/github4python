@@ -156,6 +156,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	sh_p_change_sum = 0
 	count_list = list()
 	year_list = get_share(code) 
+	now_price = 0.0
 
 	min_list = list()
 	days_list_persent = [3,5,10]
@@ -185,6 +186,9 @@ def do_it(code,basics,yestoday,end_day,day_list):
 				sh_p_change_sum -=1
 		except:
 			break
+
+		if day_count == 0:
+			now_price = price_dict[code]['close']
 
 		date = df.index.values[day_count]
 		down_count,up_count,min_count,max_count = count_list
@@ -237,7 +241,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	min_avg = sum(min_list)/len(min_list)
 	min_min = min(min_list)
 	min_max = max(min_list)
-	min_msg = 'min/max/avg:\t'+("%.2f" % min_min)+'\t'+("%.2f" % min_max)+'\t'+("%.2f" % min_avg)
+	min_msg = 'min/max/avg/now:\t'+("%.2f" % min_min)+'\t'+("%.2f" % min_max)+'\t'+("%.2f" % min_avg)+'\t'+("%.2f" % now_price)
 
 	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\tmin_avg:\t'+ min_msg)
 
