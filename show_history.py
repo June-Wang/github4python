@@ -183,14 +183,14 @@ persent,sh_persent,count_list,days_list_persent,data_list_dict,year_list,day_lis
 	#day_sum = len(days_list_persent)
 	
 	if	((persent <= -85 and sh_persent <= -90) or (persent <=-85 and sh_persent <=0)) and \
-		(down_count == -1 and min_count == -1 and \
+		(weights == 2 and \
 		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
 		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
 		
 		color('cyan',mid_msg,end_msg)
 	elif persent >=-100 and persent<=-75 :
 		color('magenta',mid_msg,end_msg)
-	elif up_count == 1 and max_count ==1 and persent >0 and \
+	elif weights == -2 and persent >0 and \
 		price_dict[code]['p_change']>0 and sh_price_dict['p_change']>0:
 
 		color('yellow',mid_msg,end_msg)
