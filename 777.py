@@ -125,23 +125,6 @@ def rules(df,day_list,data_list_dict,p_change):
 	persent =  count / num * 100
 	return(persent)
 
-def color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,count_list,days_list_persent):
-	date = str(yestoday)[:10]
-	down_count,up_count,min_count,max_count = count_list
-	#print(count_list)
-	head_msg = code+'\t'+stock_basics_dict[code]['name']
-	mid_msg = date + '\t'+'min/max/close\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-	end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
-
-	if  ((persent <= -85 and sh_persent <= -90) or (persent <=-85 and sh_persent <=0)) and \
-		(down_count == -1 and min_count == -1 and \
-		(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
-		(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
-
-		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
-	elif persent >=-100 and persent<=-75 :
-		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
-
 def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 
 	stock_basics_dict = {}
@@ -170,8 +153,28 @@ def do_it(code,basics,yestoday,end_day,day_list,sh_persent):
 		p_change = price_dict[code]['p_change']
 		persent = rules(df,day_list,data_list_dict,p_change)
 	
-		#color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,down_persent,up_persent,days_list_persent)
-		color4msg(code,yestoday,stock_basics_dict,price_dict,persent,sh_persent,count_list,days_list_persent)
+		date = str(yestoday)[:10]
+		down_count,up_count,min_count,max_count = count_list
+		#print(count_list)
+		weights =  down_count + up_count + min_count + max_count
+
+		head_msg = code+'\t'+stock_basics_dict[code]['name']
+		mid_msg = date + '\t'+'min/max/close\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
+		end_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t市盈率\t'+stock_basics_dict[code]['pe']+'\t'+stock_basics_dict[code]['industry']
+	
+		if  ((persent <= -85 and sh_persent <= -90) or (persent <=-85 and sh_persent <=0)) and \
+			(down_count == -1 and min_count == -1 and \
+			(price_dict[code]['p_change'] <=0 and price_dict[code]['p_change'] >-9.5) and \
+			(sh_price_dict['p_change'] <=0 or sh_price_dict['p_change'] >0)):
+			print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
+		elif persent >=-100 and persent<=-75 :
+			print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
+		elif weights == -2 and persent < 0 and sh_persent < 0 and \
+            persent_sum <= -100:
+			print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
+		elif weights == -2 and persent < 0 and sh_persent < 0 and \
+            persent_sum <= -50:
+			print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+head_msg +'\t'+end_msg)
 
 if __name__ == "__main__":
 
