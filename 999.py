@@ -144,18 +144,18 @@ def do_it(code,basics,yestoday,end_day,day_list):
 
 	try:
 		df = ts.get_hist_data(code,start=str(end_day),end=str(yestoday))
-		df_sh = ts.get_hist_data('sh',start=str(end_day),end=str(yestoday))
+		#df_sh = ts.get_hist_data('sh',start=str(end_day),end=str(yestoday))
 	except:
 		print('timeout!')
 		sys.exit(1)
 
 	price_dict = {}
-	sh_price_dict = {}
+	#sh_price_dict = {}
 	day_count = 0
 	p_change_sum = 0
-	sh_p_change_sum = 0
+	#sh_p_change_sum = 0
 	count_list = list()
-	year_list = get_share(code) 
+	#year_list = get_share(code) 
 	now_price = 0.0
 	weight_count = 0
 
@@ -173,10 +173,10 @@ def do_it(code,basics,yestoday,end_day,day_list):
 			p_change = price_dict[code]['p_change']
 			persent = rules(df,day_list,data_list_dict,p_change)
 
-			sh_price_dict = get_price_info('sh',df_sh,day_count)
-			sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
-			sh_p_change = sh_price_dict['p_change']
-			sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
+			#sh_price_dict = get_price_info('sh',df_sh,day_count)
+			#sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
+			#sh_p_change = sh_price_dict['p_change']
+			#sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
 			if p_change >=0:
 				p_change_sum +=1
 			else:
@@ -200,18 +200,19 @@ def do_it(code,basics,yestoday,end_day,day_list):
 		if weights == -2:
 			weight_count +=1
 		#print(str(code),get_color(str(weights)),str(weight_count))
-
-		if weight_count == 3:
-			print(str(code),str(weight_count))
+		head_msg = code +'\t'+stock_basics_dict[code]['name']+'\t'+("%.2f" % price_dict[code]['close']+'\t'+stock_basics_dict[code]['industry']
 		day_count +=1
-		if day_count == 3:
+		if day_count == 5:
+			if weight_count == 3:
+				#print(str(code),str(weight_count))
+				print(head_msg)
 			break
 
 if __name__ == "__main__":
 
 	colorama.init()
 	#stock_code = sys.argv[1]
-	num4days = 5
+	num4days = 6
 
 	day_list = [i for i in range(5,185,5)]
 	day_list.append(3)
