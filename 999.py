@@ -21,6 +21,19 @@ def get_color(text):
 		my_text = text
 	return(my_text)
 
+def get_basics_info(code,basics):
+	stock_basics = {}
+	name = str(basics[basics.index == code][['name']].values[0][0])
+	industry = str(basics[basics.index == code][['industry']].values[0][0]) #行业
+	area = str(basics[basics.index == code][['area']].values[0][0]) #区域
+	pe = str(basics[basics.index == code][['pe']].values[0][0]) #市盈率
+	try:
+		pb = str(basics[basics.index == code][['pb']].values[0][0]) #市净率
+	except:
+		pb = 0.0
+	stock_basics[code] = {'name':name,'industry':industry,'area':area,'pe':pe,'pb':pb}
+	return(stock_basics[code])
+
 def get_price_info(code,df,day_count):
 	date = df.index.values[day_count]
 	price = {}
@@ -142,20 +155,19 @@ def get_share(stock_code):
 
 def do_it(code,basics,yestoday,end_day,day_list):
 
+	stock_basics_dict = {}
+	stock_basics_dict[code] = get_basics_info(code,basics)
+
 	try:
 		df = ts.get_hist_data(code,start=str(end_day),end=str(yestoday))
-		#df_sh = ts.get_hist_data('sh',start=str(end_day),end=str(yestoday))
 	except:
 		print('timeout!')
 		sys.exit(1)
 
 	price_dict = {}
-	#sh_price_dict = {}
 	day_count = 0
 	p_change_sum = 0
-	#sh_p_change_sum = 0
 	count_list = list()
-	#year_list = get_share(code) 
 	now_price = 0.0
 	weight_count = 0
 
@@ -167,24 +179,15 @@ def do_it(code,basics,yestoday,end_day,day_list):
 			count_list = get_days_persent(df,day_count,days_list_persent)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
 			
-			#print(str(data_list_dict[day_list[-1]]))
 			if num25 <25:
 				break
 			p_change = price_dict[code]['p_change']
 			persent = rules(df,day_list,data_list_dict,p_change)
 
-			#sh_price_dict = get_price_info('sh',df_sh,day_count)
-			#sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
-			#sh_p_change = sh_price_dict['p_change']
-			#sh_persent = rules(df_sh,day_list,sh_data_list_dict,sh_p_change)
 			if p_change >=0:
 				p_change_sum +=1
 			else:
 				p_change_sum -=1
-			if sh_p_change >=0:
-				sh_p_change_sum +=1
-			else:
-				sh_p_change_sum -=1
 		except:
 			break
 
@@ -193,20 +196,20 @@ def do_it(code,basics,yestoday,end_day,day_list):
 
 		date = df.index.values[day_count]
 		down_count,up_count,min_count,max_count = count_list
-
-		persent_sum = persent + sh_persent
 		weights =  down_count + up_count + min_count + max_count
 		
 		if weights == -2:
 			weight_count +=1
 		#print(str(code),get_color(str(weights)),str(weight_count))
-		head_msg = code +'\t'+stock_basics_dict[code]['name']+'\t'+("%.2f" % price_dict[code]['close'])+'\t'+stock_basics_dict[code]['industry']
+		head_msg = str(code) +'\t'+stock_basics_dict[code]['name']+'\t'+("%.2f" % price_dict[code]['close'])+'\t'+stock_basics_dict[code]['industry']
+		#print(head_msg)
 
 		day_count +=1
-		if day_count == 5:
-			if weight_count == 3:
-				#print(str(code),str(weight_count))
-				print(head_msg)
+		if weight_count == 3:
+			#print(str(code),get_color(str(weights)),str(weight_count))
+			print(head_msg)
+			break
+		if day_count == 4:
 			break
 
 if __name__ == "__main__":
