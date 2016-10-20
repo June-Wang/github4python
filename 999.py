@@ -200,7 +200,8 @@ def do_it(code,basics,yestoday,end_day,day_list):
 		if weights == -2:
 			weight_count +=1
 		#print(str(code),get_color(str(weights)),str(weight_count))
-		head_msg = code +'\t'+stock_basics_dict[code]['name']+'\t'+("%.2f" % price_dict[code]['close']+'\t'+stock_basics_dict[code]['industry']
+		head_msg = code +'\t'+stock_basics_dict[code]['name']+'\t'+("%.2f" % price_dict[code]['close'])+'\t'+stock_basics_dict[code]['industry']
+
 		day_count +=1
 		if day_count == 5:
 			if weight_count == 3:
