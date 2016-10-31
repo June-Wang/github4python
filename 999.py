@@ -161,7 +161,7 @@ def do_it(code,basics,yestoday,end_day,day_list):
 	try:
 		df = ts.get_hist_data(code,start=str(end_day),end=str(yestoday))
 	except:
-		print('timeout!')
+		print('get_hist_data timeout!')
 		sys.exit(1)
 
 	price_dict = {}
@@ -235,7 +235,7 @@ if __name__ == "__main__":
 	try:
 		stock_basics = ts.get_stock_basics()
 	except:
-		print('timeout!')
+		print('get_stock_basics timeout!')
 		sys.exit(1)
 
 	#do_it(stock_code,stock_basics,yestoday,end_day,sorted(day_list))
