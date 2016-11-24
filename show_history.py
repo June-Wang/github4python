@@ -140,7 +140,7 @@ def get_share(stock_code):
 	year_list = [ str(year[0]) for year in table[['除权除息日']].values]
 	return(year_list)
 
-def do_it(code,basics,yestoday,end_day,day_list):
+def do_it(code,yestoday,end_day,day_list):
 
 	try:
 		df = ts.get_hist_data(code,start=str(end_day),end=str(yestoday))
@@ -265,10 +265,4 @@ if __name__ == "__main__":
 
 	end_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
 
-	try:
-		stock_basics = ts.get_stock_basics()
-	except:
-		print('timeout!')
-		sys.exit(1)
-
-	do_it(stock_code,stock_basics,yestoday,end_day,sorted(day_list))
+	do_it(stock_code,yestoday,end_day,sorted(day_list))
