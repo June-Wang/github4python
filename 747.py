@@ -30,7 +30,7 @@ if __name__ == "__main__":
 	else:
 		end_day = now - datetime.timedelta(days=1)
 
-	start_day = now - datetime.timedelta(days=num4days+10)
+	start_day = now - datetime.timedelta(days=num4days+30)
 
 	try:
 		stock_basics = ts.get_stock_basics()
@@ -39,6 +39,7 @@ if __name__ == "__main__":
 		sys.exit(1)
 
 	stock_list = stock_basics.index.values
+	#stock_list = ['002113']
 
 	for stock_code in sorted(stock_list):
 		try:
@@ -48,17 +49,31 @@ if __name__ == "__main__":
 		
 		stock_close = list()
 		for workday in df.index.values:
-			print(workday,df[df.index == workday].close[0],stock_code)
+			#print(workday,df[df.index == workday].close[0],stock_code)
 			stock_close.append(float(df[df.index == workday].close[0]))
-		#print(stock_close)
-		#for i in range(5):
-		#	for y in range(i+1,i+5):
-		#		print(str(i),str(y))
-		items = [1,2,3,4,5]
+
+		mark2break = 0
+		status = 'ok'
+		items = [i for i in range(0,5)]
 		for i in range(0,5):
 			day_count_list = list(map(lambda x:x+i,items))
+			close_list = list()
 			for x in day_count_list:
-				close_list.append(stock_close[x])
-			
-			print(close_list)
-		sys.exit(1)
+				try:
+					close_list.append(stock_close[x])
+				except:
+					status = 'timeout'
+					break
+			#print(str(stock_close[i]),close_list)
+			if status == 'timeout':
+				break
+			if stock_close[i] == min(close_list):
+				mark2break += 1
+		#print(mark2break)
+		print('code:'+stock_code)
+		if mark2break <=3:
+			#break
+			continue
+		else:
+			print(stock_code)
+		#sys.exit(1)
