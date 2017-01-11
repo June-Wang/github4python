@@ -14,7 +14,6 @@ from termcolor import colored, cprint
 #def get_days_persent(df,day_count,days_list_persent):
 
 if __name__ == "__main__":
-
 	colorama.init()
 
 	num4days = 6
@@ -30,7 +29,7 @@ if __name__ == "__main__":
 	else:
 		end_day = now - datetime.timedelta(days=1)
 
-	start_day = now - datetime.timedelta(days=num4days+30)
+	start_day = now - datetime.timedelta(days=num4days+10)
 
 	try:
 		stock_basics = ts.get_stock_basics()
@@ -38,9 +37,10 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	stock_list = stock_basics.index.values
-	#stock_list = ['002113']
+	#stock_list = stock_basics.index.values
+	stock_list = ['002113','000998','600519']
 
+	down2list = list()
 	for stock_code in sorted(stock_list):
 		try:
 			df = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
@@ -70,10 +70,11 @@ if __name__ == "__main__":
 			if stock_close[i] == min(close_list):
 				mark2break += 1
 		#print(mark2break)
-		print('code:'+stock_code)
+		#print('code:'+stock_code)
 		if mark2break <=3:
 			#break
 			continue
 		else:
 			print(stock_code)
+			down2list.append(stock_code)	
 		#sys.exit(1)
