@@ -18,6 +18,7 @@ def get_weight(stock_code,start_day,end_day):
 		df = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
 	except:
 		print('get_hist_data timeout!')
+		sys.exit(1)
 	
 	stock_close = list()
 	for workday in df.index.values:
