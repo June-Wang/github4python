@@ -21,9 +21,15 @@ def get_weight(df):
 #		sys.exit(1)	
 	
 	stock_close = list()
-	for workday in df.index.values:
+	try:
+		for workday in df.index:
 		#print(workday,df[df.index == workday].close[0],stock_code)
-		stock_close.append(float(df[df.index == workday].close[0]))
+			stock_close.append(float(df[df.index == workday].close[0]))
+	except:
+		mark2weight=0
+		return(mark2weight)
+	#for workday in list(df.index):
+	#	stock_close.append(float(df[df.index == workday].close[0]))
 
 	mark2weight = 0
 	status = 'ok'
@@ -112,8 +118,8 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	#stock_list = stock_basics.index.values
-	stock_list = ['002113','000998','600519','600188']
+	stock_list = stock_basics.index.values
+	#stock_list = ['002113','000998','600519','600188']
 
 	down2list = list()
 	#pool = multiprocessing.Pool(processes=4)
@@ -124,7 +130,7 @@ if __name__ == "__main__":
 		except:
 			print('get_hist_data timeout!')
 			continue
-		mark2weight = get_weight(df)
+		mark2weight = get_weight(df_his)
 		#print(stock_code,str(mark2weight))
 		if mark2weight >=3:
 			#print(stock_code)

@@ -21,7 +21,8 @@ def get_weight(stock_code,start_day,end_day):
 		sys.exit(1)
 	
 	stock_close = list()
-	for workday in df.index.values:
+	#for workday in df.index.values:
+	for workday in list(df.index):
 		#print(workday,df[df.index == workday].close[0],stock_code)
 		stock_close.append(float(df[df.index == workday].close[0]))
 
