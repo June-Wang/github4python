@@ -159,6 +159,8 @@ def do_it(code,yestoday,end_day,day_list):
 	now_price = 0.0
 
 	min_list = list()
+	max_list = list()
+	avg_list = list()
 	days_list_persent = [3,5,10]
 	for day in df.index.values:
 		try:
@@ -220,6 +222,7 @@ def do_it(code,yestoday,end_day,day_list):
 		if weights == -2 and persent < 0 and sh_persent < 0 and \
 			persent_sum <= -100:
 			color('cyan',mid_msg,end_msg)
+			#print(price_dict[code]['close'])
 			min_list.append(price_dict[code]['close'])
 		#elif persent >=-100 and persent<=-75 :
 		elif weights == -2 and persent < 0 and sh_persent < 0 and \
@@ -231,16 +234,22 @@ def do_it(code,yestoday,end_day,day_list):
 		elif weights == 2 and persent >0 and sh_persent > 0 and \
 			persent_sum >= 100:
 			color('yellow',mid_msg,end_msg)
+			max_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] > 0:
 			color('red',mid_msg,end_msg)
+			max_list.append(price_dict[code]['close'])
+			avg_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] < 0:
 			color('green',mid_msg,end_msg)
+			min_list.append(price_dict[code]['close'])
+			avg_list.append(price_dict[code]['close'])
 
 		day_count +=1
 
-	min_avg = sum(min_list)/len(min_list)
+	#print(min_list)
+	min_avg = sum(avg_list)/len(avg_list)
 	min_min = min(min_list)
-	min_max = max(min_list)
+	min_max = max(max_list)
 	min_msg = 'min/max/avg/now:\t'+("%.2f" % min_min)+'\t'+("%.2f" % min_max)+'\t'+("%.2f" % min_avg)+'\t'+("%.2f" % now_price)
 
 	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\t'+ min_msg)
