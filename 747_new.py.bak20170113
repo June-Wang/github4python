@@ -11,7 +11,15 @@ import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
 
+#def get_days_persent(df,day_count,days_list_persent):
+
 def get_weight(df):
+#	try:
+#		df = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
+#	except:
+#		print('get_hist_data timeout!')
+#		sys.exit(1)	
+	
 	stock_close = list()
 	try:
 		for workday in df.index:
@@ -20,6 +28,8 @@ def get_weight(df):
 	except:
 		mark2weight=0
 		return(mark2weight)
+	#for workday in list(df.index):
+	#	stock_close.append(float(df[df.index == workday].close[0]))
 
 	mark2weight = 0
 	status = 'ok'
@@ -84,50 +94,6 @@ def get_price_info(code,df):
 	price[code] = {'open':price_open,'close':price_close,'min':price_min,'max':price_max,'p_change':p_change}
 	return(price[code])
 
-def do_it(stock_code,start_day,end_day,stock_basics):
-	try:
-		df_hist_data = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))		
-	except:
-		print('get_hist_data timeout!')
-		sys.exit(1)
-
-	lastday = df_hist_data.index.values[0]
-	price_dict = {}
-	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
-
-	if str(end_day) == str(lastday):
-		data_list_dict = get_data_list(df_hist_data,day_list)	
-		p_change = price_dict[stock_code]['p_change']
-		persent = rules(day_list,data_list_dict,p_change)
-		#print(persent)
-		
-		date = str(end_day)[:10]
-		if persent >= -50:
-			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
-			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
-			close = ("%.2f" % price_dict[stock_code]['close'])
-			output_args = [date,stock_code,close,name,industry]
-			msg = '\t'.join(output_args)
-			print(msg)	
-
-def job2weight(stock_code,stock_list,start_day,end_day,stock_basics):
-	try:
-		df_his = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
-	except:
-		print('get_hist_data timeout!')
-		#continue
-		return
-	mark2weight = get_weight(df_his)
-	if mark2weight >=3:
-		#down2list.append(stock_code)	
-		#print(stock_code)
-		num4days = 300
-		day_list = [i for i in range(5,185,5)]
-		day_list.append(3)
-		start_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
-		days_list_persent = [3,5,10]
-		do_it(stock_code,start_day,end_day,stock_basics)
-
 if __name__ == "__main__":
 	colorama.init()
 
@@ -152,19 +118,54 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	#stock_list = stock_basics.index.values
+	stock_list = stock_basics.index.values
 	#stock_list = ['002113','000998','600519','600188']
-	try:
-		stock_500 = ts.get_zz500s()
-	except:
-		print('get_zz500s timeout!')
-		sys.exit(1)
 
-	stock_list = stock_500.code.values
-	#down2list = list()
-	pool = multiprocessing.Pool(processes=4)
+	down2list = list()
+	#pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
 		#print('code:'+stock_code)
-		pool.apply_async(job2weight,(stock_code,stock_list,start_day,end_day,stock_basics))
-	pool.close()
-	pool.join()
+		try:
+			df_his = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
+		except:
+			print('get_hist_data timeout!')
+			continue
+		mark2weight = get_weight(df_his)
+		#print(stock_code,str(mark2weight))
+		if mark2weight >=3:
+			#print(stock_code)
+			down2list.append(stock_code)	
+		#sys.exit(1)
+	#print(down2list)
+
+	num4days = 300
+	day_list = [i for i in range(5,185,5)]
+	day_list.append(3)
+	start_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
+	days_list_persent = [3,5,10]
+
+	for stock_code in down2list:
+		try:
+			df_hist_data = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))		
+		except:
+			print('get_hist_data timeout!')
+			sys.exit(1)
+
+		lastday = df_hist_data.index.values[0]
+		price_dict = {}
+		price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
+
+		if str(end_day) == str(lastday):
+			data_list_dict = get_data_list(df_hist_data,day_list)	
+			p_change = price_dict[stock_code]['p_change']
+			persent = rules(day_list,data_list_dict,p_change)
+			#print(persent)
+			
+			date = str(end_day)[:10]
+			if persent >= -50:
+				name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
+				industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
+				close = ("%.2f" % price_dict[stock_code]['close'])
+				output_args = [date,stock_code,close,name,industry]
+				msg = '\t'.join(output_args)
+				print(msg)	
