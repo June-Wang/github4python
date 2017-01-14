@@ -36,8 +36,8 @@ for persent in df.changepercent.values:
 
 number_of_stock = len(df.changepercent.values)
 
-now_status = float(persent_all)/float(number_of_stock)
-status_str = get_color(("%.2f" % now_status))
+now_status = int(float(persent_all)/float(number_of_stock)*100)
+status_str = get_color(str(now_status))
 
 msg = get_color(str(persent_all))+"/"+get_color(str(number_of_stock))
 print("")
