@@ -39,5 +39,6 @@ number_of_stock = len(df.changepercent.values)
 now_status = float(persent_all)/float(number_of_stock)
 status_str = get_color(("%.2f" % now_status))
 
-msg = get_color(("%.2f" % float(persent_all)))+"/"+str(number_of_stock)
+msg = get_color(str(persent_all))+"/"+get_color(str(number_of_stock))
+print("")
 print(msg+" = "+status_str)
