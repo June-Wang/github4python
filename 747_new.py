@@ -95,14 +95,14 @@ def do_it(stock_code,start_day,end_day,stock_basics):
 	price_dict = {}
 	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
 
-	if str(end_day) == str(lastday):
+	if (str(end_day) == str(lastday)) or (str(end_day) != str(lastday)):
 		data_list_dict = get_data_list(df_hist_data,day_list)	
 		p_change = price_dict[stock_code]['p_change']
 		persent = rules(day_list,data_list_dict,p_change)
 		#print(persent)
 		
 		date = str(end_day)[:10]
-		if persent >= -50:
+		if persent >= -75:
 			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 			close = ("%.2f" % price_dict[stock_code]['close'])
@@ -118,7 +118,7 @@ def job2weight(stock_code,stock_list,start_day,end_day,stock_basics):
 		#continue
 		return
 	mark2weight = get_weight(df_his)
-	if mark2weight >=3:
+	if mark2weight >3:
 		#down2list.append(stock_code)	
 		#print(stock_code)
 		num4days = 300
