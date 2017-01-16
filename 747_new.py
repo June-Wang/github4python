@@ -102,7 +102,7 @@ def do_it(stock_code,start_day,end_day,stock_basics):
 		#print(persent)
 		
 		date = str(end_day)[:10]
-		if persent >= -75:
+		if persent <= -75:
 			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 			close = ("%.2f" % price_dict[stock_code]['close'])
