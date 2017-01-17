@@ -164,7 +164,8 @@ def do_it(code,yestoday,end_day,day_list):
 	days_list_persent = [3,5,10]
 	for_end = yestoday - datetime.timedelta(days=360)
 	for day in df.index.values:
-		if (yestoday - day).days > 360:
+		today = datetime.datetime.strptime(day, "%Y-%m-%d").date()
+		if (yestoday - today).days > 365:
 			continue
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
