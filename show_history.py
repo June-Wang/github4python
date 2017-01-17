@@ -162,7 +162,10 @@ def do_it(code,yestoday,end_day,day_list):
 	max_list = list()
 	avg_list = list()
 	days_list_persent = [3,5,10]
+	for_end = yestoday - datetime.timedelta(days=360)
 	for day in df.index.values:
+		if (yestoday - day).days > 360:
+			continue
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
 			count_list = get_days_persent(df,day_count,days_list_persent)
