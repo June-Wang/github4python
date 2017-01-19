@@ -205,8 +205,9 @@ def do_it(code,start_day,end_day,day_list):
 
 		
 		persent_ten_list = [data_list_dict[day] for day in days_list_persent]
-		persent_ten_list_msg = "\t".join([(".2%f" % val) for val in persent_ten_list])
-	
+		persent_ten_list_msg = "\t".join([get_color(("%.2f" % val)) for val in persent_ten_list])
+		persent_ten_list_msg = '3/5/10:'+'\t'+ persent_ten_list_msg
+
 		persent_sum = persent + sh_persent
 		head_msg = date + '\t'+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
@@ -215,7 +216,7 @@ def do_it(code,start_day,end_day,day_list):
 			get_color("%.2f" % sh_price_dict['p_change'])
 	
 		weights =  down_count + up_count + min_count + max_count
-		end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+share_msg
+		end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+persent_ten_list_msg+'\t'+share_msg
 	
 		if weights == -2 and persent < 0 and sh_persent < 0 and \
 			persent_sum <= -100:
