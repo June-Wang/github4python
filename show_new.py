@@ -204,10 +204,8 @@ def do_it(code,start_day,end_day,day_list):
 			share_msg = ''
 
 		
-		#for day in days_list_persent:	
-		#	data_list_dict[day]	
 		persent_ten_list = [data_list_dict[day] for day in days_list_persent]
-		print(persent_ten_list)
+		persent_ten_list_msg = "\t".join([(".2%f" % val) for val in persent_ten_list])
 	
 		persent_sum = persent + sh_persent
 		head_msg = date + '\t'+'min/max/close'
