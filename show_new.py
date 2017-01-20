@@ -213,9 +213,18 @@ def do_it(code,start_day,end_day,day_list):
 		persent_msg = get_color(("%.2f" % persent))+'\t'+get_color(("%.2f" % sh_persent))+'\t'+get_color(("%.2f" % persent_sum))+'\t'+str(int(sh_price_dict['close']))
 		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 			get_color("%.2f" % sh_price_dict['p_change'])
+
+		if persent < 0 and sh_persent <0 and \
+			data_list_dict[3] < 0 and data_list_dict[5] <0 and data_list_dict[10] <= -9:
+			act_msg = 'IN'
+		elif persent > 0 and sh_persent >0 and \
+			data_list_dict[3] > 0 and data_list_dict[5] >0 and data_list_dict[10] >= 9:
+			act_msg = 'OUT'
+		else:
+			act_msg = ''
 	
 		weights =  down_count + up_count + min_count + max_count
-		end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+persent_ten_list_msg+'\t'+share_msg
+		end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+persent_ten_list_msg+'\t'+share_msg+act_msg
 	
 		if weights == -2 and persent < 0 and sh_persent < 0 and \
 			persent_sum <= -100:
