@@ -161,6 +161,11 @@ def do_it(code,start_day,end_day,day_list):
 	min_list = list()
 	max_list = list()
 	avg_list = list()
+
+	day3_p_list = list()
+	day5_p_list = list()
+	day10_p_list = list()
+
 	days_list_persent = [3,5,10]
 	for_end = yestoday - datetime.timedelta(days=360)
 	for day in df.index.values:
@@ -206,6 +211,11 @@ def do_it(code,start_day,end_day,day_list):
 		persent_ten_list = [data_list_dict[day] for day in days_list_persent]
 		persent_ten_list_msg = "\t".join([get_color(("%.2f" % val)) for val in persent_ten_list])
 		persent_ten_list_msg = '3/5/10'+'\t'+ persent_ten_list_msg
+		#for day in days_list_persent:
+		#	day_p_dict[day].append(data_list_dict[day])
+		day3_p_list.append(data_list_dict[3])
+		day5_p_list.append(data_list_dict[5])
+		day10_p_list.append(data_list_dict[10])
 
 		persent_sum = persent + sh_persent
 		head_msg = date + '\t'+'min/max/close'
@@ -249,13 +259,18 @@ def do_it(code,start_day,end_day,day_list):
 
 		day_count +=1
 
-	#print(min_list)
+	#print(day_p_dict[3])
+	day3_p = sum(day3_p_list)/len(day3_p_list)
+	day5_p = sum(day5_p_list)/len(day5_p_list)
+	day10_p = sum(day10_p_list)/len(day10_p_list)
+	day_msg = '3/5/10:\t'+("%.2f" % day3_p)+'\t'+("%.2f" % day5_p)+'\t'+("%.2f" % day10_p)
+
 	min_avg = sum(avg_list)/len(avg_list)
 	min_min = min(min_list)
 	min_max = max(max_list)
 	min_msg = 'min/max/avg/now:\t'+("%.2f" % min_min)+'\t'+("%.2f" % min_max)+'\t'+("%.2f" % min_avg)+'\t'+("%.2f" % now_price)
 
-	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\t'+ min_msg)
+	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\t'+ min_msg+'\t'+day_msg)
 
 if __name__ == "__main__":
 
