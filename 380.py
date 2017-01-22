@@ -96,6 +96,9 @@ def do_it(stock_code,start_day,end_day,stock_basics):
 	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
 	
 	for day in df_hist_data.index.values:
+		today = datetime.datetime.strptime(day, "%Y-%m-%d").date()
+		if (lastday - today).days > 365:
+			continue
 		day10_p_list.append(data_list_dict[10])
 
 	day10_p = sum(day10_p_list)/len(day10_p_list)
@@ -106,6 +109,7 @@ def do_it(stock_code,start_day,end_day,stock_basics):
 		#print(persent)
 		
 		date = str(end_day)[:10]
+
 		#if persent <= -75:
 		if day10_p >=1:
 			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
@@ -123,10 +127,10 @@ def job2weight(stock_code,stock_list,start_day,end_day,stock_basics):
 		#continue
 		return
 	mark2weight = get_weight(df_his)
-	if mark2weight >3:
+	if mark2weight >3 or mark2weight <=3:
 		#down2list.append(stock_code)	
 		#print(stock_code)
-		num4days = 300
+		num4days = 360
 		day_list = [i for i in range(5,185,5)]
 		day_list.append(3)
 		start_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
