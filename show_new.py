@@ -225,10 +225,10 @@ def do_it(code,start_day,end_day,day_list):
 			get_color("%.2f" % sh_price_dict['p_change'])
 
 		if persent < 0 and sh_persent <0 and \
-			data_list_dict[3] < 0 and data_list_dict[5] <0 and data_list_dict[10] <= -9:
+			data_list_dict[3] < 0 and data_list_dict[5] <0 and data_list_dict[10] <= -10:
 			act_msg = 'IN'
 		elif persent > 0 and sh_persent >0 and \
-			data_list_dict[3] > 0 and data_list_dict[5] >0 and data_list_dict[10] >= 9:
+			data_list_dict[3] > 0 and data_list_dict[5] >0 and data_list_dict[10] >= 10:
 			act_msg = 'OUT'
 		else:
 			act_msg = ''
