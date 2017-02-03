@@ -208,15 +208,15 @@ def do_it(code,start_day,end_day,day_list):
 		else:
 			share_msg = ''
 		
-		persent_ten_list = [data_list_dict[day] for day in days_list_persent]
-		persent_ten_list_msg = "\t".join([get_color(("%.2f" % val)) for val in persent_ten_list])
-		persent_ten_list_msg = '3/5/10'+'\t'+ persent_ten_list_msg
-		#for day in days_list_persent:
-		#	day_p_dict[day].append(data_list_dict[day])
-		day3_p_list.append(data_list_dict[3])
-		day5_p_list.append(data_list_dict[5])
-		day10_p_list.append(data_list_dict[10])
-
+		choose_day = [i for i in range(10,180,5)]
+		up2day = 0
+		for day in choose_day:
+			if data_list_dict[day] >= 0:
+				up2day +=1
+		
+		up2persent = up2day/len(choose_day) * 100
+		down2persent = (100 - up2persent) * -1
+		
 		persent_sum = persent + sh_persent
 		head_msg = date + '\t'+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
@@ -224,28 +224,18 @@ def do_it(code,start_day,end_day,day_list):
 		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 			get_color("%.2f" % sh_price_dict['p_change'])
 
-		if persent < 0 and sh_persent <0 and \
-			data_list_dict[3] < 0 and data_list_dict[5] <0 and data_list_dict[10] <= -10:
-			act_msg = 'IN'
-		elif persent > 0 and sh_persent >0 and \
-			data_list_dict[3] > 0 and data_list_dict[5] >0 and data_list_dict[10] >= 10:
-			act_msg = 'OUT'
-		else:
-			act_msg = ''
+		day_persent_msg = 'up/down:\t'+get_color(("%.2f" % up2persent))+'\t'+get_color(("%.2f" % down2persent))
 	
 		weights =  down_count + up_count + min_count + max_count
-		end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+persent_ten_list_msg+'\t'+share_msg+act_msg
+		end_msg = persent_msg+'\t'+p_change_msg+'\t'+get_color(str(weights))+'\t'+day_persent_msg+'\t'+share_msg
 	
-		if weights == -2 and persent < 0 and sh_persent < 0 and \
-			persent_sum <= -100:
+		if down2persent <= -95 and persent <= -90 and sh_persent < 0:
 			color('cyan',mid_msg,end_msg)
 			min_list.append(price_dict[code]['close'])
-		elif weights == -2 and persent < 0 and sh_persent < 0 and \
-			persent_sum <= -50:
+		elif down2persent <= -85 and persent <= -80 and sh_persent < 0:
 			color('magenta',mid_msg,end_msg)
 			min_list.append(price_dict[code]['close'])
-		elif weights == 2 and persent >0 and sh_persent > 0 and \
-			persent_sum >= 100:
+		elif up2persent >= 90 and persent >= 90 and sh_persent > 0:
 			color('yellow',mid_msg,end_msg)
 			max_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] > 0:
@@ -259,26 +249,20 @@ def do_it(code,start_day,end_day,day_list):
 
 		day_count +=1
 
-	#print(day_p_dict[3])
-	day3_p = sum(day3_p_list)/len(day3_p_list)
-	day5_p = sum(day5_p_list)/len(day5_p_list)
-	day10_p = sum(day10_p_list)/len(day10_p_list)
-	day_msg = '3/5/10:\t'+("%.2f" % day3_p)+'\t'+("%.2f" % day5_p)+'\t'+("%.2f" % day10_p)
-
 	min_avg = sum(avg_list)/len(avg_list)
 	min_min = min(min_list)
 	min_max = max(max_list)
 	min_msg = 'min/max/avg/now:\t'+("%.2f" % min_min)+'\t'+("%.2f" % min_max)+'\t'+("%.2f" % min_avg)+'\t'+("%.2f" % now_price)
 
-	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\t'+ min_msg+'\t'+day_msg)
+	print('code:\t'+get_color(str(p_change_sum))+'\t'+'sh:\t'+get_color(str(sh_p_change_sum))+'\t'+ min_msg)
 
 if __name__ == "__main__":
 
 	colorama.init()
 	stock_code = sys.argv[1]
-	num4days = 300
+	num4days = 400
 
-	day_list = [i for i in range(5,185,5)]
+	day_list = [i for i in range(5,190,5)]
 	day_list.append(3)
 
 	now = datetime.date.today()
