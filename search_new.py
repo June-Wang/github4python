@@ -1,95 +1,224 @@
 #!/usr/bin/env python3.4
 
 import sys
+import datetime
 import time
+import multiprocessing
+import pandas as pd
+import requests
 import tushare as ts
-import sqlalchemy as sa
-import mysql.connector
+import colorama
+from colorama import Fore, Back, Style
+from termcolor import colored, cprint
 
-try:
-    year = sys.argv[1]
-except:
-    print('year not null!')
-    sys.exit(1)
+def get_color(text):
+	my_number = float(text)
+	if my_number > 0:
+		my_text = colored(text, 'red')
+	elif my_number < 0:
+		my_text = colored(text, 'green')
+	else:
+		my_text = text
+	return(my_text)
 
-if not year:
-    print('year not null!')
-    sys.exit(1)
+def get_price_info(code,df,day_count):
+	date = df.index.values[day_count]
+	price = {}
+	price_open = df[df.index == date].open[0] #开盘价格
+	price_close = df[df.index == date].close[0] #收盘价格
+	price_min = df[df.index == date].low[0] #当日最低
+	price_max = df[df.index == date].high[0] #当日最高
+	p_change = df[df.index == date].p_change[0] #当日股票涨幅
+	price[code] = {'open':price_open,'close':price_close,
+					'min':price_min,'max':price_max,
+					'p_change':p_change}
+	return(price[code])
 
-#year = '2016'
-conn = sa.create_engine('mysql+mysqlconnector://stockadmin:stock2016@localhost/stock')
+def get_data_list(df,day_list,day_count):
+	change_sum = 0.0
+	count = 0
+	data_list = {}
+	end_num = day_list[-1]+1
+	for date in df.index.values[day_count:]:
+		if count < end_num:
+			try:
+				my_change_tmp = float(df[df.index == date].p_change[0])
+			except:
+				my_change_tmp = 0.0
+			change_sum += my_change_tmp
+			count = count +1
+			#if count in day_list:
+			data_list[count] = change_sum
+		else:
+			break
+	return(data_list,len(data_list))
 
-stock_name_sql = '''select code,name,industry,pe from list;'''
-rows = conn.execute(stock_name_sql)
+def color(color,mid_msg,end_msg):
+	if color == 'yellow':
+		print(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'cyan':
+		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'magenta':
+		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'red':
+		print(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'green':
+		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
-stock_list = list()
-stock_name = dict()
-stock_industry = dict()
-stock_pe = dict()
-for code,name,industry,pe in rows:
-    if pe < 150: #市盈率
-        stock_name[code] = name
-        stock_industry[code] = industry
-        stock_pe[code] = pe
-        stock_list.append(code)
+def get_day_persent(data_list_dict):
+	up2days = 0
+	count = 0
+	for num in data_list_dict:
+		if data_list_dict[num] > 0:
+			up2days +=1
+		count +=1
 
-today_sql = '''select code,trade from today group by code;'''
-rows = conn.execute(today_sql)
+	up2persents = float(up2days)/float(len(data_list_dict)) * 100
+	down2persents = (100 - up2persents) * -1
+	day_persents = int(up2persents + down2persents)
+	#print(str(up2days),str(count))
+	return(day_persents)
 
-stock_price = dict()
-for code,price in rows:
-    stock_price[code] = price
+def get_share(stock_code):
 
-profit_sql = '''select code,sum(net_profit_ratio),sum(gross_profit_rate),sum(eps),sum(roe),count(*) from profit where year = %s group by code;'''
-rows = conn.execute(profit_sql,year)
+	url = 'http://data.10jqka.com.cn/financial/sgpx/op/code/code/'+stock_code+'/ajax/1/'
+	resp = requests.get(url)
 
-profit_list = list()
-for code,net_profit_ratio,gross_profit_rate,eps,roe,count in rows:
-    net_profit_ratio_avg = net_profit_ratio/count #净利率
-    gross_profit_rate_avg = gross_profit_rate/count #毛利率
-    roe_avg = roe/count #净资产收益率
-    eps_avg = eps/count #每股收益
-    #if net_profit_ratio_avg >= 40 and gross_profit_rate_avg >= 40:
-    if net_profit_ratio_avg >= 30 and gross_profit_rate_avg >= 45 and eps_avg >0 and roe_avg >=5:
-    #if net_profit_ratio_avg >= 30 and gross_profit_rate_avg >= 45 and roe_avg >=5:
-        profit_list.append(code)
+	try:
+		table = pd.read_html(resp.text)[0]
+	except:
+		print('获取配股分红信息失败！')
+		year_list = list()
+		return(year_list)
+	year_list = [ str(year[0]) for year in table[['除权除息日']].values]
+	return(year_list)
 
-growth_sql = '''select code,sum(mbrg),sum(nprg),sum(nav),sum(targ),sum(epsg),sum(seg),count(*) from growth where year = %s group by code'''
-rows = conn.execute(growth_sql,year)
+def do_it(code,start_day,end_day,day_list):
 
-growth_list = list()
-for code,mbrg,nprg,nav,targ,epsg,seg,count in rows:
-    mbrg_avg = mbrg/count #主营业务收入增长率
-    nprg_avg = nprg/count #净利润增长率
-    nav_avg = nav/count #净资产增长率
-    targ_avg = targ/count #总资产增长率
-    epsg_avg = epsg/count #每股收益增长率
-    seg_avg = seg/count #股东权益增长率
-    if mbrg_avg >= 60 and nprg_avg >0 and count >=0:
-    #if mbrg_avg >= 30 and nprg_avg > 0 and nav_avg >0 and epsg_avg >0:
-        growth_list.append(code)
+	try:
+		df = ts.get_hist_data(code,start=str(start_day),end=str(end_day))
+		df_sh = ts.get_hist_data('sh',start=str(start_day),end=str(end_day))
+	except:
+		print('get_hist_data timeout!')
+		sys.exit(1)
 
-Market_Cap_sql = '''select today.code,today.trade,list.totals from today,list where today.code=list.code'''
-rows = conn.execute(Market_Cap_sql)
+	price_dict = {}
+	sh_price_dict = {}
+	day_count = 0
+	p_change_sum = 0
+	sh_p_change_sum = 0
+	year_list = get_share(code) 
+	now_price = 0.0
 
-Market_Cap_list = list()
-Market_Cap_dict = dict()
-for code,trade,totals in rows:
-    Market_Cap = trade*totals/10000 #市值（亿）
-    totals_b = totals/10000 #总股本（亿）
-    if Market_Cap < 50000 and totals_b < 15000:
-        Market_Cap_dict[code] = Market_Cap
-        Market_Cap_list.append(code)
+	price_list = list()
 
-stock_set = set(stock_list)
-profit_set = set(profit_list)
-growth_set = set(growth_list)
-Market_Cap_set = set(Market_Cap_list)
+	act_list = list()
+	act_buy_list = list()
+	act_sell_list = list()
 
-code_list = list(stock_set & profit_set & growth_set & Market_Cap_set)
+	days_list_persent = [1,3,5,10]
+	for_end = yestoday - datetime.timedelta(days=360)
+	for day in df.index.values:
+		today = datetime.datetime.strptime(day, "%Y-%m-%d").date()
+		if (yestoday - today).days > 420:
+			continue
+		try:
+			price_dict[code] = get_price_info(code,df,day_count)
+			data_list_dict,num25 = get_data_list(df,day_list,day_count)
 
-for code in sorted(set(code_list)):
-    if code not in stock_price:
-        continue
-    if stock_price[code] >0:
-        print('\t'.join([code,stock_name[code],stock_industry[code],("%.2f" % stock_price[code]),("%.2f" % Market_Cap_dict[code]),("%.2f" % stock_pe[code])]))
+			if num25 <25:
+				break
+			p_change = price_dict[code]['p_change']
+
+			sh_price_dict = get_price_info('sh',df_sh,day_count)
+			sh_p_change = sh_price_dict['p_change']
+			sh_data_list_dict,num25 = get_data_list(df_sh,day_list,day_count)
+
+		except:
+			break
+
+		if day_count == 0:
+			now_price = price_dict[code]['close']
+
+		date = df.index.values[day_count]
+
+		if str(date) in year_list:
+			share_msg = '配股分红'
+		else:
+			share_msg = ''
+	
+		persent = get_day_persent(data_list_dict)	
+		sh_persent = get_day_persent(sh_data_list_dict)
+		
+		head_msg = date + '\t'+'min/max/close'
+		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
+		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+str(int(sh_price_dict['close']))
+		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
+			get_color("%.2f" % sh_price_dict['p_change'])
+
+		dp_msg = '/'.join(str(i) for i in days_list_persent)+':\t'+'\t'.join([ get_color("%.2f" % data_list_dict[i]) for i in days_list_persent ])
+		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+share_msg
+
+		down2persent = max([ data_list_dict[i] for i in days_list_persent ])
+		up2persent = min([ data_list_dict[i] for i in days_list_persent ])
+
+		if (persent <= -90 and sh_persent <= -90) and\
+			(price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0): # or\
+			#(persent < 0 and price_dict[code]['p_change'] < 0 and down2persent < 0 and price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0):
+		#	color('cyan',mid_msg,end_msg)
+			act_buy_list.append(price_dict[code]['close'])
+		elif persent <= -70 and\
+			(price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0):
+		#	color('magenta',mid_msg,end_msg)
+			act_buy_list.append(price_dict[code]['close'])
+		elif persent == 100 and sh_persent >= 90 and\
+			(price_dict[code]['p_change'] > 0 and sh_price_dict['p_change'] > 0):
+		#	color('yellow',mid_msg,end_msg)
+			act_sell_list.append(price_dict[code]['close'])
+		#elif price_dict[code]['p_change'] > 0:
+		#	color('red',mid_msg,end_msg)
+		#elif price_dict[code]['p_change'] < 0:
+		#	color('green',mid_msg,end_msg)
+
+		price_list.append(price_dict[code]['close'])
+		day_count +=1
+
+	price_avg = sum(price_list)/len(price_list)
+	price_min = min(price_list)
+	price_max = max(price_list)
+
+	#act_max = sum(act_sell_list)/len(act_sell_list)
+	act_max = min(act_sell_list)
+	act_min = sum(act_buy_list)/len(act_buy_list)
+	#act_min = max(act_buy_list)
+	price_income = int((act_max - act_min)/act_min * 100)
+
+	price_msg = 'min/max/avg/now:\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+("%.2f" % price_avg)+'\t'+("%.2f" % now_price)
+	act_msg = 'buy/sell:\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)
+	#income_msg = 'income:\t'+get_color(str(price_income))+' %'
+	income_msg = 'income:\t'+str(price_income)+' %'
+
+	print(code+'\t'+price_msg+'\t'+act_msg+'\t'+income_msg)
+
+if __name__ == "__main__":
+
+	colorama.init()
+	stock_code = sys.argv[1]
+	num4days = 420
+
+	day_list = [i for i in range(5,180,5)]
+	#day_list.append(3)
+
+	now = datetime.date.today()
+	d = datetime.datetime.now()
+	d = d.replace(hour = 15,minute = 00,second = 0)
+
+	if datetime.datetime.now() > d:
+		yestoday = now
+	else:
+		yestoday = now - datetime.timedelta(days=1)
+
+	start_day = now - datetime.timedelta(days=num4days+max(day_list)*2)
+	end_day = yestoday
+
+	do_it(stock_code,start_day,end_day,sorted(day_list))
