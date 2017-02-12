@@ -107,7 +107,7 @@ def do_it(code,start_day,end_day,day_list):
 	day_count = 0
 	p_change_sum = 0
 	sh_p_change_sum = 0
-	year_list = get_share(code) 
+	#year_list = get_share(code) 
 	now_price = 0.0
 
 	price_list = list()
@@ -142,10 +142,11 @@ def do_it(code,start_day,end_day,day_list):
 
 		date = df.index.values[day_count]
 
-		if str(date) in year_list:
-			share_msg = '配股分红'
-		else:
-			share_msg = ''
+		#if str(date) in year_list:
+		#	share_msg = '配股分红'
+		#else:
+		#	share_msg = ''
+		share_msg = ''
 	
 		persent = get_day_persent(data_list_dict)	
 		sh_persent = get_day_persent(sh_data_list_dict)
