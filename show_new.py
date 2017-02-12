@@ -116,7 +116,7 @@ def do_it(code,start_day,end_day,day_list):
 	act_buy_list = list()
 	act_sell_list = list()
 
-	days_list_persent = [1,3,5,10]
+	days_list_persent = [3,5,10]
 	for_end = yestoday - datetime.timedelta(days=360)
 	for day in df.index.values:
 		today = datetime.datetime.strptime(day, "%Y-%m-%d").date()
