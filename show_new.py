@@ -194,7 +194,7 @@ def do_it(code,start_day,end_day,day_list):
 	price_income = int((act_max - act_min)/act_min * 100)
 
 	price_msg = 'min/max/avg/now:\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+("%.2f" % price_avg)+'\t'+("%.2f" % now_price)
-	act_msg = 'buy/sell:\t'+str(act_min)+'\t'+str(act_max)
+	act_msg = 'buy/sell:\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)
 	income_msg = 'income:\t'+get_color(str(price_income))+' %'
 
 	print(code+'\t'+price_msg+'\t'+act_msg+'\t'+income_msg)
