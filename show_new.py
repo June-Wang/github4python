@@ -149,6 +149,9 @@ def do_it(code,start_day,end_day,day_list):
 	
 		persent = get_day_persent(data_list_dict)	
 		sh_persent = get_day_persent(sh_data_list_dict)
+
+		#down2persent = max([ data_list_dict[i] for i in days_list_persent ])
+		#up2persent = min([ data_list_dict[i] for i in days_list_persent ])
 		
 		head_msg = date + '\t'+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
@@ -157,10 +160,11 @@ def do_it(code,start_day,end_day,day_list):
 			get_color("%.2f" % sh_price_dict['p_change'])
 
 		dp_msg = '/'.join(str(i) for i in days_list_persent)+':\t'+'\t'.join([ get_color("%.2f" % data_list_dict[i]) for i in days_list_persent ])
+
+		#up2down_msg = 'up/down:\t'+get_color("%.2f" % up2persent)+'\t'+ get_color("%.2f" % down2persent)
+		#end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+up2down_msg+'\t'+share_msg
 		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+share_msg
 
-		down2persent = max([ data_list_dict[i] for i in days_list_persent ])
-		up2persent = min([ data_list_dict[i] for i in days_list_persent ])
 
 		if data_list_dict[10] <= -10 and persent <= -80 and\
 			(data_list_dict[10] > data_list_dict[5]):
