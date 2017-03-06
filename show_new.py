@@ -162,26 +162,16 @@ def do_it(code,start_day,end_day,day_list):
 		down2persent = max([ data_list_dict[i] for i in days_list_persent ])
 		up2persent = min([ data_list_dict[i] for i in days_list_persent ])
 
-		#if (persent <= -90 and sh_persent <= -90) and\
-		#	(price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0):
-		if data_list_dict[10] <= -10 and persent < 0 and\
+		if data_list_dict[10] <= -10 and persent <= -80 and\
 			(data_list_dict[10] > data_list_dict[5]):
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		#elif (persent <= -70 and\
-		#	(price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0)) or \
-		#	(data_list_dict[10] <= -10 and price_dict[code]['p_change'] < 0):
-		#elif (data_list_dict[10] <= -6 and price_dict[code]['p_change'] < 0) and\
-		elif data_list_dict[10] <= -6 and persent <0 and\
+		elif data_list_dict[10] <= -6 and persent <= -50 and\
 			(data_list_dict[10] > data_list_dict[5]):
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		#elif ((persent == 100 and sh_persent >= 90) or persent == 100) and\
-		#	(price_dict[code]['p_change'] > 0 and sh_price_dict['p_change'] > 0):
-		#elif ((persent == 100 and sh_persent >= 90) or persent >= 90) and \
-		#	(data_list_dict[10] >= 10 and price_dict[code]['p_change'] > 0):
-		elif ((persent == 100 and sh_persent >= 90) or persent >= 90) and \
-			data_list_dict[10] >= 8 and\
+		elif ((persent >= 90 and sh_persent >= 90) or (persent >= 90 and\
+			data_list_dict[10] >= 10)) and\
 			(data_list_dict[10] < data_list_dict[5]):
 			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
