@@ -165,7 +165,6 @@ def do_it(code,start_day,end_day,day_list):
 		#end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+up2down_msg+'\t'+share_msg
 		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+share_msg
 
-
 		if data_list_dict[10] <= -10 and persent <= -80 and\
 			(data_list_dict[10] > data_list_dict[5]):
 			color('cyan',mid_msg,end_msg)
