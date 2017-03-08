@@ -153,9 +153,10 @@ def do_it(code,start_day,end_day,day_list):
 		#down2persent = max([ data_list_dict[i] for i in days_list_persent ])
 		#up2persent = min([ data_list_dict[i] for i in days_list_persent ])
 		
+		persents = (persent + sh_persent)/2
 		head_msg = date + '\t'+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+str(int(sh_price_dict['close']))
+		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+get_color(str(int(persents)))+'\t'+str(int(sh_price_dict['close']))
 		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 			get_color("%.2f" % sh_price_dict['p_change'])
 
@@ -165,17 +166,20 @@ def do_it(code,start_day,end_day,day_list):
 		#end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+up2down_msg+'\t'+share_msg
 		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+share_msg
 
-		if data_list_dict[10] <= -10 and persent <= -80 and\
-			(data_list_dict[10] > data_list_dict[5]):
+		#if data_list_dict[10] <= -10 and persent <= -80 and\
+		#	(data_list_dict[10] > data_list_dict[5]):
+		if persents <= -90 and persent <= -80 and data_list_dict[10] <= -10:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif data_list_dict[10] <= -6 and persent <= -50 and\
-			(data_list_dict[10] > data_list_dict[5]):
+		#elif data_list_dict[10] <= -6 and persent <= -50 and\
+		#	(data_list_dict[10] > data_list_dict[5]):
+		elif persents <= -80 and persent <= -60 and data_list_dict[10] <= -8:
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif ((persent >= 90 and sh_persent >= 90) or (persent >= 90 and\
-			data_list_dict[10] >= 10)) and\
-			(data_list_dict[10] < data_list_dict[5]):
+		#elif (persent >= 90 and sh_persent >= 90 and data_list_dict[10] >= 8) or (persent >= 90 and\
+		#	data_list_dict[10] >= 5 and (data_list_dict[10] < data_list_dict[5])):
+		#elif persent >= 90 and sh_persent >= 90 and data_list_dict[10] >= 5:
+		elif persents >= 80 and persent >= 90:# and data_list_dict[10] >= 8:
 			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] > 0:
@@ -190,9 +194,14 @@ def do_it(code,start_day,end_day,day_list):
 	price_min = min(price_list)
 	price_max = max(price_list)
 
-	act_max = (min(act_sell_list) + max(act_sell_list))/2
-	act_min = (min(act_buy_list) + max(act_buy_list))/2
-	price_income = int((act_max - act_min)/act_min * 100)
+	try:
+		act_max = (min(act_sell_list) + max(act_sell_list))/2
+		act_min = (min(act_buy_list) + max(act_buy_list))/2
+		price_income = int((act_max - act_min)/act_min * 100)
+	except:
+		act_max = 0
+		act_min = 0
+		price_income = 0
 
 	price_msg = 'min/max/avg/now:\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+("%.2f" % price_avg)+'\t'+("%.2f" % now_price)
 	act_msg = 'buy/sell:\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)
