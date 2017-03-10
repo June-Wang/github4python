@@ -116,7 +116,7 @@ def do_it(code,start_day,end_day,day_list):
 	act_buy_list = list()
 	act_sell_list = list()
 
-	days_list_persent = [3,5,10,15]
+	days_list_persent = [3,5,10]
 	for_end = yestoday - datetime.timedelta(days=360)
 	#for_end = yestoday - datetime.timedelta(days=760)
 	for day in df.index.values:
@@ -152,25 +152,25 @@ def do_it(code,start_day,end_day,day_list):
 		persent = get_day_persent(data_list_dict)	
 		sh_persent = get_day_persent(sh_data_list_dict)
 
-		#w_data_list = [data_list_dict[i] for i in range(1,120)]
-		#up_data = 0
-		#down_data = 0
-		#for data in w_data_list:
-		#	if data >= 0:
-		#		up_data += 1
-		#	else:
-		#		down_data +=1
+		w_data_list = [data_list_dict[i] for i in range(1,60)]
+		up_data = 0
+		down_data = 0
+		for data in w_data_list:
+			if data >= 0:
+				up_data += 1
+			else:
+				down_data +=1
 
-		#if up_data >= down_data:
-		#	w_data = (up_data-down_data)/len(w_data_list)*100
-		#else:
-		#	w_data = (down_data-up_data)/len(w_data_list)*-100
+		if up_data >= down_data:
+			w_data = (up_data-down_data)/len(w_data_list)*100
+		else:
+			w_data = (down_data-up_data)/len(w_data_list)*-100
 		
 		#print(str(len(w_data_list)),str(up_data),str(down_data))
 
 		#persents = (persent + sh_persent)/2
 		persents = persent*0.8 + sh_persent*0.2
-		head_msg = date + '\t'+'min/max/close'
+		head_msg = date + ' '+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
 		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+get_color(str(int(persents)))+'\t'+str(int(sh_price_dict['close']))
 		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
@@ -178,9 +178,9 @@ def do_it(code,start_day,end_day,day_list):
 
 		dp_msg = '/'.join(str(i) for i in days_list_persent)+':\t'+'\t'.join([ get_color("%.2f" % data_list_dict[i]) for i in days_list_persent ])
 
-		#w_data_msg = 'wight:\t'+get_color(str(int(w_data)))
+		w_data_msg = 'wight:\t'+get_color(str(int(w_data)))
 
-		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+share_msg
+		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+w_data_msg+'\t'+share_msg
 
 		#if data_list_dict[10] <= -10 and persent <= -80 and\
 		#	(data_list_dict[10] > data_list_dict[5]):
