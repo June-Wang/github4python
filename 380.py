@@ -113,17 +113,19 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	else:
 		w_data = (down_data-up_data)/len(w_data_list)*-100
 	#if (str(end_day) == str(lastday)) or (str(end_day) != str(lastday)):
+
 	if w_data == -100:
 		p_change = price_dict[stock_code]['p_change']
 		persent = rules(day_list,data_list_dict,p_change)
-		
-		date = str(end_day)[:10]
-		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
-		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
-		close = ("%.2f" % price_dict[stock_code]['close'])
-		output_args = [date,stock_code,close,name,("%.2f" % persent),str(int(w_data)),industry]
-		msg = '\t'.join(output_args)
-		print(msg)
+	
+		if persent <= -80:	
+			date = str(end_day)[:10]
+			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
+			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
+			close = ("%.2f" % price_dict[stock_code]['close'])
+			output_args = [date,stock_code,close,("%.2f" % persent),str(int(w_data)),name,industry]
+			msg = '\t'.join(output_args)
+			print(msg)
 
 def job2weight(stock_code,end_day,stock_basics):
 	#try:
@@ -170,15 +172,15 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	#stock_list = stock_basics.index.values
+	stock_list = stock_basics.index.values
 	#stock_list = ['002113','000998','600519','600188']
-	try:
-		stock_500 = ts.get_zz500s()
-	except:
-		print('get_zz500s timeout!')
-		sys.exit(1)
+	#try:
+	#	stock_500 = ts.get_zz500s()
+	#except:
+	#	print('get_zz500s timeout!')
+	#	sys.exit(1)
 
-	stock_list = ['002113','000998','600519','600188']
+	#stock_list = ['002113','000998','600519','600188']
 	#stock_list = stock_500.code.values
 	#down2list = list()
 	pool = multiprocessing.Pool(processes=4)
