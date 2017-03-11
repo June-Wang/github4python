@@ -184,13 +184,13 @@ def do_it(code,start_day,end_day,day_list):
 
 		#if data_list_dict[10] <= -10 and persent <= -80 and\
 		#	(data_list_dict[10] > data_list_dict[5]):
-		if (persents <= -90 and persent <= -90) or data_list_dict[10] <= -20:
+		if ((persents <= -90 and persent <= -90) or data_list_dict[10] <= -20) and w_data <= -90:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		#elif data_list_dict[10] <= -6 and persent <= -50 and\
 		#	(data_list_dict[10] > data_list_dict[5]):
 		elif (persents <= -80 and persent <= -60 and data_list_dict[10] <= -8) or\
-			(data_list_dict[10] <= -6 and persent < 0 and persents < 0 and sh_persent >0):
+			(data_list_dict[10] <= -6 and persent < 0 and persents < 0 and sh_persent >0) or w_data == -100:
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		#elif (persent >= 90 and sh_persent >= 90 and data_list_dict[10] >= 8) or (persent >= 90 and\
