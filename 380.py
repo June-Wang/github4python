@@ -52,8 +52,8 @@ def get_data_list(df,day_list):
 			change_tmp = 0.0
 		change_sum += change_tmp
 		count = count +1
-		if count in day_list:
-			data_list[count] = change_sum
+		#if count in day_list:
+		data_list[count] = change_sum
 	return(data_list)
 
 def rules(day_list,data_list_dict,p_change):
@@ -84,7 +84,8 @@ def get_price_info(code,df):
 	price[code] = {'open':price_open,'close':price_close,'min':price_min,'max':price_max,'p_change':p_change}
 	return(price[code])
 
-def do_it(stock_code,start_day,end_day,stock_basics):
+def do_it(stock_code,start_day,end_day,day_list,stock_basics):
+	#print(stock_code,start_day,end_day)
 	try:
 		df_hist_data = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))		
 	except:
@@ -94,55 +95,63 @@ def do_it(stock_code,start_day,end_day,stock_basics):
 	lastday = df_hist_data.index.values[0]
 	price_dict = {}
 	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
-	
-	for day in df_hist_data.index.values:
-		today = datetime.datetime.strptime(day, "%Y-%m-%d").date()
-		if (lastday - today).days > 365:
-			continue
-		day10_p_list.append(data_list_dict[10])
 
-	day10_p = sum(day10_p_list)/len(day10_p_list)
-	if (str(end_day) == str(lastday)) or (str(end_day) != str(lastday)):
-		data_list_dict = get_data_list(df_hist_data,day_list)	
+	data_list_dict = get_data_list(df_hist_data,day_list)
+	#print(data_list_dict)
+	w_data_list = [data_list_dict[i] for i in range(1,60)]
+	#print(w_data_list)
+	up_data = 0
+	down_data = 0
+	for data in w_data_list:
+		if data >= 0:
+			up_data += 1
+		else:
+			down_data +=1
+
+	if up_data >= down_data:
+		w_data = (up_data-down_data)/len(w_data_list)*100
+	else:
+		w_data = (down_data-up_data)/len(w_data_list)*-100
+	#if (str(end_day) == str(lastday)) or (str(end_day) != str(lastday)):
+	if w_data == -100:
 		p_change = price_dict[stock_code]['p_change']
 		persent = rules(day_list,data_list_dict,p_change)
-		#print(persent)
 		
 		date = str(end_day)[:10]
+		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
+		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
+		close = ("%.2f" % price_dict[stock_code]['close'])
+		output_args = [date,stock_code,close,name,("%.2f" % persent),str(int(w_data)),industry]
+		msg = '\t'.join(output_args)
+		print(msg)
 
-		#if persent <= -75:
-		if day10_p >=1:
-			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
-			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
-			close = ("%.2f" % price_dict[stock_code]['close'])
-			output_args = [date,stock_code,close,name,industry]
-			msg = '\t'.join(output_args)
-			print(msg++'\t'+("%.2f" % persent)+'\t'+'10:\t'("%.2f" % day10_p))
-
-def job2weight(stock_code,stock_list,start_day,end_day,stock_basics):
-	try:
-		df_his = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
-	except:
-		print('get_hist_data timeout!')
+def job2weight(stock_code,end_day,stock_basics):
+	#try:
+	#	df_his = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
+	#except:
+	#	print('get_hist_data timeout!')
 		#continue
-		return
-	mark2weight = get_weight(df_his)
-	if mark2weight >3 or mark2weight <=3:
+	#	return
+	#mark2weight = get_weight(df_his)
+	#if mark2weight >3 or mark2weight <=3:
 		#down2list.append(stock_code)	
 		#print(stock_code)
-		num4days = 360
-		day_list = [i for i in range(5,185,5)]
-		day_list.append(3)
-		start_day = now - datetime.timedelta(days=num4days+max(day_list)+100)
-		days_list_persent = [3,5,10]
-		do_it(stock_code,start_day,end_day,stock_basics)
+	#num4days = 360
+	#print(stock_code,end_day,stock_basics)
+	num4days = 60
+	day_list = [i for i in range(5,180,5)]
+	#day_list.append(3)
+	start_day = now - datetime.timedelta(days=num4days+max(day_list)+61)
+	#days_list_persent = [3,5,10]
+	#print(start_day,end_day)
+	do_it(stock_code,start_day,end_day,day_list,stock_basics)
 
 if __name__ == "__main__":
 	colorama.init()
 
-	num4days = 6
-	day_list = [i for i in range(5,185,5)]
-	day_list.append(3)
+	#num4days = 6
+	#day_list = [i for i in range(5,185,5)]
+	#day_list.append(3)
 
 	now = datetime.date.today()
 	d = datetime.datetime.now()
@@ -153,7 +162,7 @@ if __name__ == "__main__":
 	else:
 		end_day = now - datetime.timedelta(days=1)
 
-	start_day = now - datetime.timedelta(days=num4days*2)
+	#start_day = now - datetime.timedelta(days=num4days*2)
 
 	try:
 		stock_basics = ts.get_stock_basics()
@@ -169,11 +178,13 @@ if __name__ == "__main__":
 		print('get_zz500s timeout!')
 		sys.exit(1)
 
-	stock_list = stock_500.code.values
+	stock_list = ['002113','000998','600519','600188']
+	#stock_list = stock_500.code.values
 	#down2list = list()
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
+		#print(end_day)
 		#print('code:'+stock_code)
-		pool.apply_async(job2weight,(stock_code,stock_list,start_day,end_day,stock_basics))
+		pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
 	pool.close()
 	pool.join()
