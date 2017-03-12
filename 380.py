@@ -123,37 +123,18 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 			close = ("%.2f" % price_dict[stock_code]['close'])
-			output_args = [date,stock_code,close,("%.2f" % persent),str(int(w_data)),name,industry]
+			output_args = [date,stock_code,close,str(int((persent))),str(int(w_data)),name,industry]
 			msg = '\t'.join(output_args)
 			print(msg)
 
 def job2weight(stock_code,end_day,stock_basics):
-	#try:
-	#	df_his = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))
-	#except:
-	#	print('get_hist_data timeout!')
-		#continue
-	#	return
-	#mark2weight = get_weight(df_his)
-	#if mark2weight >3 or mark2weight <=3:
-		#down2list.append(stock_code)	
-		#print(stock_code)
-	#num4days = 360
-	#print(stock_code,end_day,stock_basics)
 	num4days = 60
 	day_list = [i for i in range(5,180,5)]
-	#day_list.append(3)
 	start_day = now - datetime.timedelta(days=num4days+max(day_list)+61)
-	#days_list_persent = [3,5,10]
-	#print(start_day,end_day)
 	do_it(stock_code,start_day,end_day,day_list,stock_basics)
 
 if __name__ == "__main__":
 	colorama.init()
-
-	#num4days = 6
-	#day_list = [i for i in range(5,185,5)]
-	#day_list.append(3)
 
 	now = datetime.date.today()
 	d = datetime.datetime.now()
@@ -163,8 +144,6 @@ if __name__ == "__main__":
 		end_day = now
 	else:
 		end_day = now - datetime.timedelta(days=1)
-
-	#start_day = now - datetime.timedelta(days=num4days*2)
 
 	try:
 		stock_basics = ts.get_stock_basics()
@@ -185,8 +164,6 @@ if __name__ == "__main__":
 	#down2list = list()
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
-		#print(end_day)
-		#print('code:'+stock_code)
 		pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
 	pool.close()
 	pool.join()
