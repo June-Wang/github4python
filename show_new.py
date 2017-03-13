@@ -184,19 +184,23 @@ def do_it(code,start_day,end_day,day_list):
 
 		#if data_list_dict[10] <= -10 and persent <= -80 and\
 		#	(data_list_dict[10] > data_list_dict[5]):
-		if ((persents <= -90 and persent <= -90) or data_list_dict[10] <= -20) and w_data <= -90:
+		#if ((persents <= -90 and persent <= -90) or data_list_dict[10] <= -20) and w_data <= -90:
+		if ((persent <= -80 and sh_persent < 0) or (persent <= 0 and sh_persent <= -80)) and w_data == -100:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		#elif data_list_dict[10] <= -6 and persent <= -50 and\
 		#	(data_list_dict[10] > data_list_dict[5]):
-		elif (persents <= -80 and persent <= -60 and data_list_dict[10] <= -8) or\
-			(data_list_dict[10] <= -6 and persent < 0 and persents < 0 and sh_persent >0) or w_data == -100:
+		#elif (persents <= -80 and persent <= -60 and data_list_dict[10] <= -8) or\
+		#	(data_list_dict[10] <= -6 and persent < 0 and persents < 0 and sh_persent >0) or w_data == -100:
+		elif persent <= -80 and w_data == -100:
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		#elif (persent >= 90 and sh_persent >= 90 and data_list_dict[10] >= 8) or (persent >= 90 and\
 		#	data_list_dict[10] >= 5 and (data_list_dict[10] < data_list_dict[5])):
 		#elif persent >= 90 and sh_persent >= 90 and data_list_dict[10] >= 5:
-		elif persents >= 90 and persent >= 90 and data_list_dict[10] >= 9:
+		#elif (persents >= 90 and persent >= 90 and data_list_dict[10] >= 9 and w_data >= 90) or\
+		#	(persent == 90 and w_data == 90):
+		elif persent == 100 and sh_persent >= 90 and w_data == 100:
 			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] > 0:
@@ -224,7 +228,11 @@ def do_it(code,start_day,end_day,day_list):
 	act_msg = 'buy/sell:\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)
 	income_msg = 'income:\t'+get_color(str(price_income))+' %'
 
-	print(code+'\t'+price_msg+'\t'+act_msg+'\t'+income_msg)
+	output_args = [code,price_msg,act_msg,income_msg]
+	msg = '\t'.join(output_args)
+
+	#print(code+'\t'+price_msg+'\t'+act_msg+'\t'+income_msg)
+	print(msg)
 
 if __name__ == "__main__":
 
