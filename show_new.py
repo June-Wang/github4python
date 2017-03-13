@@ -159,10 +159,12 @@ def do_it(code,start_day,end_day,day_list):
 			else:
 				down_data +=1
 
-		if up_data >= down_data:
-			w_data = (up_data-down_data)/len(w_data_list)*100
-		else:
-			w_data = (down_data-up_data)/len(w_data_list)*-100
+		#if up_data >= down_data:
+		#	w_data = (up_data-down_data)/len(w_data_list)*100
+		#else:
+		#	w_data = (down_data-up_data)/len(w_data_list)*-100
+
+		w_data = (up_data-down_data)/len(w_data_list)*100
 		
 		#print(str(len(w_data_list)),str(up_data),str(down_data))
 

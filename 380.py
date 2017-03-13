@@ -108,11 +108,12 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 		else:
 			down_data +=1
 
-	if up_data >= down_data:
-		w_data = (up_data-down_data)/len(w_data_list)*100
-	else:
-		w_data = (down_data-up_data)/len(w_data_list)*-100
-	#if (str(end_day) == str(lastday)) or (str(end_day) != str(lastday)):
+	#if up_data >= down_data:
+	#	w_data = (up_data-down_data)/len(w_data_list)*100
+	#else:
+	#	w_data = (down_data-up_data)/len(w_data_list)*-100
+
+	w_data = (up_data-down_data)/len(w_data_list)*100
 
 	if w_data == -100:
 		p_change = price_dict[stock_code]['p_change']
