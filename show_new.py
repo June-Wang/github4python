@@ -150,7 +150,11 @@ def do_it(code,start_day,end_day,day_list):
 		persent = get_day_persent(data_list_dict)	
 		sh_persent = get_day_persent(sh_data_list_dict)
 
-		w_data_list = [data_list_dict[i] for i in range(1,60)]
+		try:
+			w_data_list = [data_list_dict[i] for i in range(1,60)]
+		except:
+			continue
+
 		up_data = 0
 		down_data = 0
 		for data in w_data_list:
@@ -163,22 +167,25 @@ def do_it(code,start_day,end_day,day_list):
 		#	w_data = (up_data-down_data)/len(w_data_list)*100
 		#else:
 		#	w_data = (down_data-up_data)/len(w_data_list)*-100
-
 		w_data = (up_data-down_data)/len(w_data_list)*100
 		
 		#print(str(len(w_data_list)),str(up_data),str(down_data))
 
 		#persents = (persent + sh_persent)/2
-		persents = persent*0.8 + sh_persent*0.2
+		#persents = persent*0.8 + sh_persent*0.2
 		head_msg = date + ' '+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+get_color(str(int(persents)))+'\t'+str(int(sh_price_dict['close']))
+		#persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+get_color(str(int(persents)))+'\t'+str(int(sh_price_dict['close']))
+		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+str(int(sh_price_dict['close']))
 		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 			get_color("%.2f" % sh_price_dict['p_change'])
 
 		dp_msg = '/'.join(str(i) for i in days_list_persent)+':\t'+'\t'.join([ get_color("%.2f" % data_list_dict[i]) for i in days_list_persent ])
 
-		w_data_msg = 'wight:\t'+get_color(str(int(w_data)))
+		try:
+			w_data_msg = 'wight:\t'+get_color(str(int(w_data)))
+		except:
+			continue
 
 		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+w_data_msg+'\t'+share_msg
 
