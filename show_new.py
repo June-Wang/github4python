@@ -118,9 +118,15 @@ def do_it(code,start_day,end_day,day_list):
 
 	days_list_persent = [3,5,10]
 	for_end = yestoday - datetime.timedelta(days=360)
+	sum_day = len(df)
+	alldays = 430
+
+	if sum_day < alldays:
+		alldays = sum_day
+
 	for day in df.index.values:
 		today = datetime.datetime.strptime(day, "%Y-%m-%d").date()
-		if (yestoday - today).days > 430:
+		if (yestoday - today).days > alldays:
 			continue
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
@@ -163,19 +169,10 @@ def do_it(code,start_day,end_day,day_list):
 			else:
 				down_data +=1
 
-		#if up_data >= down_data:
-		#	w_data = (up_data-down_data)/len(w_data_list)*100
-		#else:
-		#	w_data = (down_data-up_data)/len(w_data_list)*-100
 		w_data = (up_data-down_data)/len(w_data_list)*100
 		
-		#print(str(len(w_data_list)),str(up_data),str(down_data))
-
-		#persents = (persent + sh_persent)/2
-		#persents = persent*0.8 + sh_persent*0.2
 		head_msg = date + ' '+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
-		#persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+get_color(str(int(persents)))+'\t'+str(int(sh_price_dict['close']))
 		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+str(int(sh_price_dict['close']))
 		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 			get_color("%.2f" % sh_price_dict['p_change'])
@@ -187,19 +184,15 @@ def do_it(code,start_day,end_day,day_list):
 		except:
 			continue
 
-		end_msg = persent_msg+'\t'+p_change_msg+'\t'+dp_msg+'\t'+w_data_msg+'\t'+share_msg
+		end_output_args = [persent_msg,p_change_msg,dp_msg,w_data_msg,share_msg]
+		end_msg = '\t'.join(end_output_args)
 
-		#if ((persents <= -90 and persent <= -90) or data_list_dict[10] <= -20) and w_data <= -90:
 		if ((persent <= -80 and sh_persent < 0) or (persent <= 0 and sh_persent <= -80)) and w_data == -100:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		#elif (persents <= -80 and persent <= -60 and data_list_dict[10] <= -8) or\
-		#	(data_list_dict[10] <= -6 and persent < 0 and persents < 0 and sh_persent >0) or w_data == -100:
 		elif persent <= -80 and w_data == -100:
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		#elif (persents >= 90 and persent >= 90 and data_list_dict[10] >= 9 and w_data >= 90) or\
-		#	(persent == 90 and w_data == 90):
 		elif ((persent == 100 and sh_persent >= 90) or persent == 100) and w_data == 100:
 			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
