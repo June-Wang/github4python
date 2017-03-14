@@ -200,7 +200,7 @@ def do_it(code,start_day,end_day,day_list):
 			act_buy_list.append(price_dict[code]['close'])
 		#elif (persents >= 90 and persent >= 90 and data_list_dict[10] >= 9 and w_data >= 90) or\
 		#	(persent == 90 and w_data == 90):
-		elif persent == 100 and sh_persent >= 90 and w_data == 100:
+		elif ((persent == 100 and sh_persent >= 90) or persent == 100) and w_data == 100:
 			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] > 0:
