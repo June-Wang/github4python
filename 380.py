@@ -98,10 +98,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 	data_list_dict = get_data_list(df_hist_data,day_list)
 	#print(data_list_dict)
-	try:
-		w_data_list = [data_list_dict[i] for i in range(1,60)]
-	except:
-		continue
+	w_data_list = [data_list_dict[i] for i in range(1,60)]
 
 	#print(w_data_list)
 	up_data = 0
