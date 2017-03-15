@@ -189,10 +189,10 @@ def do_it(code,start_day,end_day,day_list):
 		end_output_args = [persent_msg,p_change_msg,dp_msg,w_data_msg,share_msg]
 		end_msg = '\t'.join(end_output_args)
 
-		if ((persent <= -80 and sh_persent < 0) or (persent <= -80 and sh_persent <= -80)) and w_data == -100:
+		if persent <= -90 and sh_persent <= -80 and w_data <= -90:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif persent <= -80 and w_data == -100:
+		elif (persent <= -80 and w_data <= -90) or (persent <= -40 and w_data == -100) or (sh_persent <= -50 and w_data == -100):
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		elif ((persent == 100 and sh_persent >= 90) or persent == 100) and w_data == 100:
