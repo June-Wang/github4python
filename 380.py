@@ -120,7 +120,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 		p_change = price_dict[stock_code]['p_change']
 		persent = rules(day_list,data_list_dict,p_change)
 	
-		if persent <= -40:	
+		if persent <= -60:	
 			date = str(end_day)[:10]
 			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
