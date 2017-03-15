@@ -64,6 +64,8 @@ def color(color,mid_msg,end_msg):
 		print(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'green':
 		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+	elif color == 'white':
+		print(Fore.WHITE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
 def get_day_persent(data_list_dict):
 	up2days = 0
@@ -117,7 +119,7 @@ def do_it(code,start_day,end_day,day_list):
 	act_sell_list = list()
 
 	days_list_persent = [3,5,10]
-	for_end = yestoday - datetime.timedelta(days=360)
+	#for_end = yestoday - datetime.timedelta(days=360)
 	sum_day = len(df)
 	alldays = 430
 
@@ -200,6 +202,8 @@ def do_it(code,start_day,end_day,day_list):
 			color('red',mid_msg,end_msg)
 		elif price_dict[code]['p_change'] < 0:
 			color('green',mid_msg,end_msg)
+		elif price_dict[code]['p_change'] == 0:
+			color('white',mid_msg,end_msg)
 
 		price_list.append(price_dict[code]['close'])
 		day_count +=1
