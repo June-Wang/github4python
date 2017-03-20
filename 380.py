@@ -116,7 +116,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 	w_data = (up_data-down_data)/len(w_data_list)*100
 
-	if w_data == -100:
+	if w_data <= -90:
 		p_change = price_dict[stock_code]['p_change']
 		persent = rules(day_list,data_list_dict,p_change)
 	
