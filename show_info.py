@@ -204,7 +204,8 @@ def do_it(code,start_day,end_day,day_list):
 		if persent <= -90 and sh_persent <= -80 and w_data <= -90:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif (persent <= -80 and w_data <= -90) or (persent <= -40 and w_data == -100) or (sh_persent <= -50 and w_data == -100):
+		elif ((persent <= -80 and w_data <= -90) or (persent <= -40 and w_data == -100) or (sh_persent <= -50 and w_data == -100)) and\
+			data_list_dict[10] <= -5:
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		elif w_data == -100 and persent <= -30:
