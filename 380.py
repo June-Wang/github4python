@@ -84,6 +84,22 @@ def get_price_info(code,df):
 	price[code] = {'open':price_open,'close':price_close,'min':price_min,'max':price_max,'p_change':p_change}
 	return(price[code])
 
+def get_w_data(data_list_dict,days):
+
+	w_data_list = [data_list_dict[i] for i in range(1,days)]
+
+	#print(w_data_list)
+	up_data = 0
+	down_data = 0
+	for data in w_data_list:
+		if data >= 0:
+			up_data += 1
+		else:
+			down_data +=1
+
+	w_data = (up_data-down_data)/len(w_data_list)*100
+	return(w_data)
+
 def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	#print(stock_code,start_day,end_day)
 	try:
@@ -97,26 +113,13 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
 
 	data_list_dict = get_data_list(df_hist_data,day_list)
-	#print(data_list_dict)
-	w_data_list = [data_list_dict[i] for i in range(1,60)]
 
-	#print(w_data_list)
-	up_data = 0
-	down_data = 0
-	for data in w_data_list:
-		if data >= 0:
-			up_data += 1
-		else:
-			down_data +=1
+	w_data_day_list = [60,90,120]
+	w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]
+	w_data = w_data_list[0] #60
+	w_data_avg = sum(w_data_list)/len(w_data_list)
 
-	#if up_data >= down_data:
-	#	w_data = (up_data-down_data)/len(w_data_list)*100
-	#else:
-	#	w_data = (down_data-up_data)/len(w_data_list)*-100
-
-	w_data = (up_data-down_data)/len(w_data_list)*100
-
-	if w_data <= -90:
+	if w_data <= -90 and w_data_avg <= -90:
 		p_change = price_dict[stock_code]['p_change']
 		persent = rules(day_list,data_list_dict,p_change)
 	
@@ -125,7 +128,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 			close = ("%.2f" % price_dict[stock_code]['close'])
-			output_args = [date,stock_code,close,str(int((persent))),str(int(w_data)),name,industry]
+			output_args = [date,stock_code,close,'persent:',str(int((persent))),'60/avg:',str(int(w_data)),str(int(w_data_avg)),name,industry]
 			msg = '\t'.join(output_args)
 			print(msg)
 
@@ -153,16 +156,16 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	stock_list = stock_basics.index.values
+	#stock_list = stock_basics.index.values
 	#stock_list = ['002113','000998','600519','600188']
-	#try:
-	#	stock_500 = ts.get_zz500s()
-	#except:
-	#	print('get_zz500s timeout!')
-	#	sys.exit(1)
+	try:
+		stock_500 = ts.get_zz500s()
+	except:
+		print('get_zz500s timeout!')
+		sys.exit(1)
 
 	#stock_list = ['002113','000998','600519','600188']
-	#stock_list = stock_500.code.values
+	stock_list = stock_500.code.values
 	#down2list = list()
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
