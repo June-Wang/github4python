@@ -178,7 +178,7 @@ def do_it(code,start_day,end_day,day_list):
 
 		w_data_day_list = [60,90,120]
 		w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]		
-		w_data = w_data_list[0]
+		w_data = w_data_list[0] #60
 
 		head_msg = date + ' '+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
