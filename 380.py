@@ -140,6 +140,7 @@ def job2weight(stock_code,end_day,stock_basics):
 
 if __name__ == "__main__":
 	colorama.init()
+		
 
 	now = datetime.date.today()
 	d = datetime.datetime.now()
@@ -156,16 +157,34 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	#stock_list = stock_basics.index.values
-	#stock_list = ['002113','000998','600519','600188']
 	try:
-		stock_500 = ts.get_zz500s()
+		list_code = sys.argv[1]
+		
+		if int(list_code) == 500:
+			try:
+				stock_500 = ts.get_zz500s()
+			except:
+				print('get_zz500s timeout!')
+				sys.exit(1)
+			stock_list = stock_500.code.values
+		else:
+			sys.exit(1)
 	except:
-		print('get_zz500s timeout!')
-		sys.exit(1)
+		stock_list = stock_basics.index.values
+
+	#if list_code:
+	#else:
+	#	stock_list = stock_basics.index.values
 
 	#stock_list = ['002113','000998','600519','600188']
-	stock_list = stock_500.code.values
+	#try:
+	#	stock_500 = ts.get_zz500s()
+	#except:
+	#	print('get_zz500s timeout!')
+	#	sys.exit(1)
+
+	#stock_list = ['002113','000998','600519','600188']
+	#stock_list = stock_500.code.values
 	#down2list = list()
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
