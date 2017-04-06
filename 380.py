@@ -128,7 +128,8 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 			close = ("%.2f" % price_dict[stock_code]['close'])
-			output_args = [date,stock_code,close,'persent:',str(int((persent))),'60/avg:',str(int(w_data)),str(int(w_data_avg)),name,industry]
+			output_args = [date,stock_code,close,'day10:',str(int(data_list_dict[10])),\
+					'now/60/avg:',str(int((persent))),str(int(w_data)),str(int(w_data_avg)),name,industry]
 			msg = '\t'.join(output_args)
 			print(msg)
 
