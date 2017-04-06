@@ -192,8 +192,6 @@ def do_it(code,start_day,end_day,day_list):
 
 		w_data_avg = sum(w_data_list)/len(w_data_list)
 		try:
-			#w_data_msg = 'wight:\t'+'\t'.join(w_data_list_msg) #+'\t'+get_color(str(int(w_data_avg)))
-			#w_data_msg = 'wight:\t'+'\t'.join(w_data_list_msg)+'\t'+get_color(str(int(w_data_avg)))
 			w_data_msg = 'wight:\t'+get_color(str(int(w_data)))+'\t'+get_color(str(int(w_data_avg)))
 		except:
 			continue
@@ -201,15 +199,20 @@ def do_it(code,start_day,end_day,day_list):
 		end_output_args = [persent_msg,p_change_msg,dp_msg,w_data_msg,share_msg]
 		end_msg = '\t'.join(end_output_args)
 
-		if persent <= -90 and sh_persent <= -80 and w_data <= -90:
+		#if persent <= -90 and sh_persent <= -80 and w_data <= -90:
+		if persent == -100 and sh_persent <= -80 and w_data_avg == -100:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif ((persent <= -80 and w_data <= -90) or (persent <= -40 and w_data == -100) or (sh_persent <= -50 and w_data == -100)) and\
-			data_list_dict[10] <= -5:
+		#elif ((persent <= -80 and w_data <= -90) or (persent <= -40 and w_data == -100) or (sh_persent <= -50 and w_data == -100)) and\
+		#	data_list_dict[10] <= -5:
+		elif (persent == -100 and w_data <= -90 and w_data_avg <= -90) or\
+			(persent <= -80 and w_data == -100 and w_data_avg == -100) or\
+			(persent <= -90 and w_data <= -90 and w_data_avg <= -90):
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif w_data == -100 and persent <= -30:
-			color('blue',mid_msg,end_msg)
+		#elif w_data == -100 and persent <= -30:
+		#elif w_data == -100 and w_data_avg == -100:
+		#	color('blue',mid_msg,end_msg)
 		elif ((persent == 100 and sh_persent >= 90) or persent == 100) and w_data == 100:
 			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
