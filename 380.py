@@ -172,20 +172,7 @@ if __name__ == "__main__":
 	except:
 		stock_list = stock_basics.index.values
 
-	#if list_code:
-	#else:
-	#	stock_list = stock_basics.index.values
-
 	#stock_list = ['002113','000998','600519','600188']
-	#try:
-	#	stock_500 = ts.get_zz500s()
-	#except:
-	#	print('get_zz500s timeout!')
-	#	sys.exit(1)
-
-	#stock_list = ['002113','000998','600519','600188']
-	#stock_list = stock_500.code.values
-	#down2list = list()
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
 		pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
