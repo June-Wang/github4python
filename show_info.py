@@ -223,7 +223,8 @@ def do_it(code,start_day,end_day,day_list):
 		price_list.append(price_dict[code]['close'])
 		day_count +=1
 
-	price_avg = sum(price_list)/len(price_list)
+	#price_avg = sum(price_list)/len(price_list)
+	price_avg = sum(act_buy_list)/len(act_buy_list)
 	price_min = min(price_list)
 	price_max = max(price_list)
 
