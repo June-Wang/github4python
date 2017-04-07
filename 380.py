@@ -114,24 +114,25 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 	data_list_dict = get_data_list(df_hist_data,day_list)
 
+	p_change = price_dict[stock_code]['p_change']
+	persent = rules(day_list,data_list_dict,p_change)
+
 	w_data_day_list = [60,90,120]
 	w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]
 	w_data = w_data_list[0] #60
 	w_data_avg = sum(w_data_list)/len(w_data_list)
 
-	if w_data <= -90 and w_data_avg <= -90:
-		p_change = price_dict[stock_code]['p_change']
-		persent = rules(day_list,data_list_dict,p_change)
-	
-		if persent <= -100 and data_list_dict[10] <= -8:	
-			date = str(end_day)[:10]
-			name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
-			industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
-			close = ("%.2f" % price_dict[stock_code]['close'])
-			output_args = [date,stock_code,close,'day10:',str(int(data_list_dict[10])),\
-					'now/60/avg:',str(int((persent))),str(int(w_data)),str(int(w_data_avg)),name,industry]
-			msg = '\t'.join(output_args)
-			print(msg)
+	if (w_data <= -90 and w_data_avg <= -90 and data_list_dict[10] <= -15) or\
+		(persent == -100 and w_data <= -90 and w_data_avg <= -90 and data_list_dict[10] <= -8) or\
+		(w_data == -100 and data_list_dict[10] <=0 and data_list_dict[5] and (data_list_dict[5] < data_list_dict[10])):
+		date = str(end_day)[:10]
+		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
+		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
+		close = ("%.2f" % price_dict[stock_code]['close'])
+		output_args = [date,stock_code,close,'day10:',str(int(data_list_dict[10])),\
+				'now/60/avg:',str(int((persent))),str(int(w_data)),str(int(w_data_avg)),name,industry]
+		msg = '\t'.join(output_args)
+		print(msg)
 
 def job2weight(stock_code,end_day,stock_basics):
 	num4days = 60

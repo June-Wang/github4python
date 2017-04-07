@@ -207,7 +207,8 @@ def do_it(code,start_day,end_day,day_list):
 		#	data_list_dict[10] <= -5:
 		elif (persent == -100 and w_data <= -90 and w_data_avg <= -90) or\
 			(persent <= -80 and w_data == -100 and w_data_avg == -100) or\
-			(persent <= -90 and w_data <= -90 and w_data_avg <= -90):
+			(persent <= -90 and w_data <= -90 and w_data_avg <= -90) or\
+			(w_data == -100 and data_list_dict[10] <=0 and data_list_dict[5] and (data_list_dict[5] < data_list_dict[10])):
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		#elif w_data == -100 and persent <= -30:
@@ -227,18 +228,19 @@ def do_it(code,start_day,end_day,day_list):
 		day_count +=1
 
 	#price_avg = sum(price_list)/len(price_list)
-	price_avg = sum(act_buy_list)/len(act_buy_list)
 	price_min = min(price_list)
 	price_max = max(price_list)
 
 	try:
 		act_max = (min(act_sell_list) + max(act_sell_list))/2
 		act_min = (min(act_buy_list) + max(act_buy_list))/2
+		price_avg = sum(act_buy_list)/len(act_buy_list)
 		price_income = int((act_max - act_min)/act_min * 100)
 	except:
 		act_max = 0
 		act_min = 0
 		price_income = 0
+		price_avg = 0
 
 	price_msg = 'min/max/avg/now:\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+("%.2f" % price_avg)+'\t'+("%.2f" % now_price)
 	act_msg = 'buy/sell:\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)
