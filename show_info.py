@@ -139,7 +139,7 @@ def do_it(code,start_day,end_day,day_list):
 	days_list_persent = [3,5,10]
 	#for_end = yestoday - datetime.timedelta(days=360)
 	sum_day = len(df)
-	alldays = 430
+	alldays = 360
 
 	if sum_day < alldays:
 		alldays = sum_day
