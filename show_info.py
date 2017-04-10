@@ -207,8 +207,8 @@ def do_it(code,start_day,end_day,day_list):
 		w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]		
 		w_data = w_data_list[0] #60
 
-		w_data_grow_day_list = [30,60,90,120]
-		w_data_grow_list = [ data_grow_dict[i] for i in w_data_grow_day_list ]
+		w_data_grow_day_list = [10,20]
+		w_data_grow_list = [ get_color(str(int(data_grow_dict[i]))) for i in w_data_grow_day_list ]
 		#print(w_data_grow_list)
 		w_data_grow_msg = '\t'.join(w_data_grow_list)
 
