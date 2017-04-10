@@ -53,6 +53,23 @@ def get_data_list(df,day_list,day_count):
 			break
 	return(data_list,len(data_list))
 
+def get_data_grow_list(df,day_list,day_count):
+		count = 0
+		data_count_list = {}
+		sum = day_list[-1]+1
+		for date in df.index.values[day_count:]:
+				try:
+						change = float(df[df.index == date].p_change[0])
+				except:
+						change = 0
+				if change >= 0:
+						count =count +1
+				else:
+						count =count -1
+		persent = count / num * 100
+		data_count_list[count] = persent
+		return(data_count_list)
+
 def color(color,mid_msg,end_msg):
 	if color == 'yellow':
 		print(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
@@ -151,6 +168,7 @@ def do_it(code,start_day,end_day,day_list):
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
+			data_grow_dict = get_data_grow_list(df,day_list,day_count)
 
 			if num25 <25:
 				break
@@ -179,6 +197,9 @@ def do_it(code,start_day,end_day,day_list):
 		w_data_day_list = [60,90,120]
 		w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]		
 		w_data = w_data_list[0] #60
+
+		#w_data_grow_list = [ data_grow_dict[i] for i in w_data_day_list ]
+		#print(w_data_grow_list)
 
 		head_msg = date + ' '+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
