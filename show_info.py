@@ -54,21 +54,29 @@ def get_data_list(df,day_list,day_count):
 	return(data_list,len(data_list))
 
 def get_data_grow_list(df,day_list,day_count):
-		count = 0
-		data_count_list = {}
-		sum = day_list[-1]+1
-		for date in df.index.values[day_count:]:
-				try:
-						change = float(df[df.index == date].p_change[0])
-				except:
-						change = 0
-				if change >= 0:
-						count =count +1
-				else:
-						count =count -1
-		persent = count / num * 100
-		data_count_list[count] = persent
-		return(data_count_list)
+	count = 0
+	w_count = 0
+	data_grow_list = {}
+	end_num = day_list[-1]+1
+	#days = len(df.index.values[day_count:])
+	for date in df.index.values[day_count:]:
+		if count < end_num:
+			try:
+				change = float(df[df.index == date].p_change[0])
+			except:
+				change = 0
+			if change >= 0:
+				w_count = w_count +1
+			else:
+				w_count = w_count -1
+			count = count +1
+			persent = w_count / count * 100
+			data_grow_list[count] = persent
+		else:
+			break
+	#data_grow_str = [str(data_grow_list[i]) for i in range(5,20,5)]
+	#print(data_grow_str)
+	return(data_grow_list)
 
 def color(color,mid_msg,end_msg):
 	if color == 'yellow':
@@ -168,7 +176,6 @@ def do_it(code,start_day,end_day,day_list):
 		try:
 			price_dict[code] = get_price_info(code,df,day_count)
 			data_list_dict,num25 = get_data_list(df,day_list,day_count)
-			data_grow_dict = get_data_grow_list(df,day_list,day_count)
 
 			if num25 <25:
 				break
@@ -180,6 +187,8 @@ def do_it(code,start_day,end_day,day_list):
 
 		except:
 			break
+		
+		data_grow_dict = get_data_grow_list(df,day_list,day_count)
 
 		if day_count == 0:
 			now_price = price_dict[code]['close']
@@ -198,8 +207,10 @@ def do_it(code,start_day,end_day,day_list):
 		w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]		
 		w_data = w_data_list[0] #60
 
-		#w_data_grow_list = [ data_grow_dict[i] for i in w_data_day_list ]
+		w_data_grow_day_list = [30,60,90,120]
+		w_data_grow_list = [ data_grow_dict[i] for i in w_data_grow_day_list ]
 		#print(w_data_grow_list)
+		w_data_grow_msg = '\t'.join(w_data_grow_list)
 
 		head_msg = date + ' '+'min/max/close'
 		mid_msg = head_msg+'\t'+("%.2f" % price_dict[code]['min'])+'\t'+("%.2f" % price_dict[code]['max'])+'\t'+("%.2f" % price_dict[code]['close'])
@@ -217,7 +228,7 @@ def do_it(code,start_day,end_day,day_list):
 		except:
 			continue
 
-		end_output_args = [persent_msg,p_change_msg,dp_msg,w_data_msg,share_msg]
+		end_output_args = [persent_msg,p_change_msg,dp_msg,w_data_msg,w_data_grow_msg,share_msg]
 		end_msg = '\t'.join(end_output_args)
 
 		#if persent <= -90 and sh_persent <= -80 and w_data <= -90:
