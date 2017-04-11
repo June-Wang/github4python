@@ -236,9 +236,8 @@ def do_it(code,start_day,end_day,day_list):
 		elif (persent == -100 and w_data <= -90 and w_data_avg <= -90) or\
 			(persent <= -80 and w_data == -100 and w_data_avg == -100) or\
 			(persent <= -90 and w_data <= -90 and w_data_avg <= -90) or\
-			(w_data == -100 and data_list_dict[10] <=0 and data_list_dict[5] and (data_list_dict[5] < data_list_dict[10])) or\
-			(w_data_grow_list[0] == -100 and w_data_grow_list[1] == -100 and persent <= -30) or\
-			(w_data_grow_list[0] <= -90 and w_data_grow_list[1] <= -90 and w_data <= -90 and w_data_avg <= -90 and persent <= -30):
+			(w_data_grow_list[0] == -100 and w_data_grow_list[1] == -100 and persent <= -70) or\
+			(w_data_grow_list[0] <= -90 and w_data_grow_list[1] <= -90 and w_data <= -90 and w_data_avg <= -90 and persent <= -70):
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		elif ((persent == 100 and sh_persent >= 90) or persent == 100) and w_data == 100:
