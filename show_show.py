@@ -207,18 +207,15 @@ def do_it(code,start_day,end_day,day_list):
 		w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]		
 		w_data = w_data_list[0] #60
 
-		#w_data_grow_day_list = [3,5,10,15,20,30]
-		#w_data_grow_list = [ get_color(str(int(data_grow_dict[i]))) for i in w_data_grow_day_list ]
-		#print(w_data_grow_list)
-		#w_data_grow_msg = '\t'.join(w_data_grow_list)
-		
 		w_data_grow_day_list =[30,60]
 		w_data_grow_list = [ get_w_data(data_grow_dict,i) for i in w_data_grow_day_list ]
-
 		w_data_grow_msg = '/'.join(str(i) for i in w_data_grow_day_list)+':\t'+'\t'.join([ get_color(str(int(i))) for i in w_data_grow_list])
 
-		#head_msg = date + ' '+'min/max/close'
-		mid_msg = date+'\t'+("%.2f" % price_dict[code]['close'])
+		price_list = [price_dict[code]['min'],price_dict[code]['max'],price_dict[code]['close']]
+		#price_msg = 'min/max:\t'+("%.2f" % price_dict[code]['min'])+'/'+("%.2f" % price_dict[code]['max'])
+		price_msg = '\t'.join([("%.2f" % i) for i in price_list])
+		#mid_msg = date+'\t'+price_msg+'\t'+("%.2f" % price_dict[code]['close'])
+		mid_msg = date+'\t'+price_msg
 		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+str(int(sh_price_dict['close']))
 		p_change_msg = get_color("%.2f" % price_dict[code]['p_change'])+'\t'+\
 			get_color("%.2f" % sh_price_dict['p_change'])
@@ -226,7 +223,6 @@ def do_it(code,start_day,end_day,day_list):
 		dp_msg = '/'.join(str(i) for i in days_list_persent)+':\t'+'\t'.join([ get_color("%.2f" % data_list_dict[i]) for i in days_list_persent ])
 
 		w_data_list_msg = [ get_color(str(int(i))) for i in w_data_list ]
-
 		w_data_avg = sum(w_data_list)/len(w_data_list)
 		try:
 			w_data_msg = 'wight:\t'+get_color(str(int(w_data)))+'\t'+get_color(str(int(w_data_avg)))
@@ -236,21 +232,15 @@ def do_it(code,start_day,end_day,day_list):
 		end_output_args = [persent_msg,p_change_msg,dp_msg,w_data_msg,w_data_grow_msg,share_msg]
 		end_msg = '\t'.join(end_output_args)
 
-		#if persent <= -90 and sh_persent <= -80 and w_data <= -90:
 		if persent == -100 and sh_persent <= -80 and w_data_avg == -100:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		#elif ((persent <= -80 and w_data <= -90) or (persent <= -40 and w_data == -100) or (sh_persent <= -50 and w_data == -100)) and\
-		#	data_list_dict[10] <= -5:
 		elif (persent == -100 and w_data <= -90 and w_data_avg <= -90) or\
 			(persent <= -80 and w_data == -100 and w_data_avg == -100) or\
 			(persent <= -90 and w_data <= -90 and w_data_avg <= -90) or\
 			(w_data == -100 and data_list_dict[10] <=0 and data_list_dict[5] and (data_list_dict[5] < data_list_dict[10])):
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		#elif w_data == -100 and persent <= -30:
-		#elif w_data == -100 and w_data_avg == -100:
-		#	color('blue',mid_msg,end_msg)
 		elif ((persent == 100 and sh_persent >= 90) or persent == 100) and w_data == 100:
 			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
