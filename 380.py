@@ -56,6 +56,29 @@ def get_data_list(df,day_list):
 		data_list[count] = change_sum
 	return(data_list)
 
+def get_data_grow_list(df,day_list):
+	count = 0
+	w_count = 0
+	data_grow_list = {}
+	end_num = day_list[-1]+1
+	for date in df.index.values:
+		if count < end_num:
+			try:
+				change = float(df[df.index == date].p_change[0])
+			except:
+				change = 0
+			if change >= 0:
+				w_count = w_count +1
+			else:
+				w_count = w_count -1
+			count = count +1
+			persent = w_count / count * 100
+			data_grow_list[count] = persent
+		else:
+			break
+	#print(data_grow_list)
+	return(data_grow_list)
+
 def rules(day_list,data_list_dict,p_change):
 	num = len(day_list) +1
 	count = 0
@@ -113,18 +136,28 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
 
 	data_list_dict = get_data_list(df_hist_data,day_list)
+	data_grow_dict = get_data_grow_list(df_hist_data,day_list)
 
 	p_change = price_dict[stock_code]['p_change']
 	persent = rules(day_list,data_list_dict,p_change)
 
 	w_data_day_list = [60,90,120]
 	w_data_list = [ get_w_data(data_list_dict,i) for i in w_data_day_list ]
+	#data_grow_list = [ data_grow_dict[i] for i in w_data_day_list ]
 	w_data = w_data_list[0] #60
 	w_data_avg = sum(w_data_list)/len(w_data_list)
 
-	if (w_data <= -90 and w_data_avg <= -90 and data_list_dict[10] <= -15) or\
-		(persent == -100 and w_data <= -90 and w_data_avg <= -90 and data_list_dict[10] <= -8) or\
-		(w_data == -100 and data_list_dict[10] <=0 and data_list_dict[5] and (data_list_dict[5] < data_list_dict[10])):
+	data_grow_dict = get_data_grow_list(df_hist_data,day_list)
+	w_data_grow_day_list =[30,60]
+	#print(data_grow_dict)
+	w_data_grow_list = [ get_w_data(data_grow_dict,i) for i in w_data_grow_day_list ]
+	#print(stock_code,w_data_grow_list)
+
+	if (persent == -100 and w_data <= -90 and w_data_avg <= -90) or\
+		(persent <= -80 and w_data == -100 and w_data_avg == -100) or\
+		(persent <= -90 and w_data <= -90 and w_data_avg <= -90) or\
+		(w_data_grow_list[0] == -100 and w_data_grow_list[1] == -100 and persent <= -80) or\
+		(w_data_grow_list[0] <= -90 and w_data_grow_list[1] <= -90 and w_data == -90 and w_data_avg <= -90 and persent <= -70):
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
