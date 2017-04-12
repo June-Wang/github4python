@@ -162,9 +162,8 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 		close = ("%.2f" % price_dict[stock_code]['close'])
-		rules_list = [ 'now/w_data/avg:',str(int((persent))),str(int(w_data)),str(int(w_data_avg))]
-		rules_msg = '\t'.join(rules_list)
-		w_data_grow_msg = '30/60:\t'+'\t'.join(w_data_grow_list)
+		rules_msg = '\t'.join([ 'now/w_data/avg:',str(int((persent))),str(int(w_data)),str(int(w_data_avg))])
+		w_data_grow_msg = '30/60:\t'+'\t'.join([str(int(i)) for i in w_data_grow_list])
 		output_args = [date,stock_code,close,'day10:',str(int(data_list_dict[10])),\
 				rules_msg,w_data_grow_msg,name,industry]
 		msg = '\t'.join(output_args)
