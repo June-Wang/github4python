@@ -158,7 +158,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	#	(persent <= -90 and w_data <= -90 and w_data_avg <= -90) or\
 	#	(w_data_grow_list[0] == -100 and w_data_grow_list[1] == -100 and persent <= -80) or\
 	#	(w_data_grow_list[0] <= -90 and w_data_grow_list[1] <= -90 and w_data == -90 and w_data_avg <= -90 and persent <= -70):
-	if w_data_grow_list[0] <= -80 and w_data_grow_list[1] <= -80 and w_data == -80 and w_data_avg <= -80 and persent <= -90:
+	if w_data_grow_list[0] <= -80 and w_data_grow_list[1] <= -80 and w_data <= -80 and w_data_avg <= -80 and persent <= -90:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
