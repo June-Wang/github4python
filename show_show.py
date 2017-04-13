@@ -283,7 +283,7 @@ if __name__ == "__main__":
 
 	colorama.init()
 	stock_code = sys.argv[1]
-	num4days = 420
+	num4days = 460
 	#num4days = 1420
 
 	day_list = [i for i in range(5,180,5)]
