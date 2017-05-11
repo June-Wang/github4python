@@ -233,11 +233,11 @@ def do_it(code,start_day,end_day,day_list):
 		if persent == -100 and sh_persent <= -80 and w_data_avg == -100:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif (persent == -100 and w_data <= -90 and w_data_avg <= -90) or\
+		elif sh_persent <= -80 and ((persent == -100 and w_data <= -90 and w_data_avg <= -90) or\
 			(persent <= -80 and w_data == -100 and w_data_avg == -100) or\
 			(persent <= -90 and w_data <= -90 and w_data_avg <= -90) or\
 			(w_data_grow_list[0] == -100 and w_data_grow_list[1] == -100 and persent <= -90) or\
-			(w_data_grow_list[0] <= -90 and w_data_grow_list[1] <= -90 and w_data <= -90 and w_data_avg <= -90 and persent <= -80):
+			(w_data_grow_list[0] <= -90 and w_data_grow_list[1] <= -90 and w_data <= -90 and w_data_avg <= -90 and persent <= -80)):
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		elif (((persent == 100 and sh_persent >= 90) or persent == 100) or\
