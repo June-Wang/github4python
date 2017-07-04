@@ -142,31 +142,24 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	p_change = price_dict[stock_code]['p_change']
 	persent = rules(day_list,data_list_dict,p_change)
 
-	data_grow_dict = get_data_grow_list(df_hist_data,day_list)
-
-	day_list = [i for i in range(10,120,10)]
-	#w_data_grow_day_list =[30,60]
-
-	#w_data_day_list = [60,90,120]
 	w_data_list = [ get_w_data(data_list_dict,i) for i in day_list ]
-	#data_grow_list = [ data_grow_dict[i] for i in w_data_day_list ]
-	#w_data = w_data_list[0] #60
-	#w_data_avg = sum(w_data_list)/len(w_data_list)
-
+	data_grow_dict = get_data_grow_list(df_hist_data,day_list)
 	#print(data_grow_dict)
+
 	w_data_grow_list = [ get_w_data(data_grow_dict,i) for i in day_list ]
 	#print(stock_code,w_data_grow_list)
 
 	w_weight_list = [ sum(w_data_list)/len(w_data_list),sum(w_data_grow_list)/len(w_data_grow_list),persent ]
 	w_weight = sum(w_weight_list)/len(w_weight_list)
-	w_weight_msg = 'W:\t'+get_color(str(int(w_weight)))
+	w_weight_msg = 'W:\t'+str(int(w_weight))
 
-	if w_weight <= -75 or w_weight > -75:
+	#print(w_weight_msg)
+	if w_weight <= -85:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 		close = ("%.2f" % price_dict[stock_code]['close'])
-		output_args = [date,stock_code,close,'day10:',str(int(data_list_dict[10])),w_weight_msg,name,industry]
+		output_args = [date,stock_code,close,w_weight_msg,name,industry]
 		msg = '\t'.join(output_args)
 		print(msg)
 
