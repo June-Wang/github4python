@@ -154,7 +154,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	w_weight_msg = 'W:\t'+str(int(w_weight))
 
 	#print(w_weight_msg)
-	if w_weight <= -30:
+	if w_weight <= -90:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
