@@ -1,3 +1,8 @@
 #!/bin/bash
 
-grep -oP 'data-code=\"\d{6}\"' ./n*.html|awk -F'"' '{print $(NF-1)}'|sort -u > nxx.list
+file="$1"
+
+test -f ${file} ||\
+eval "echo ${file} not found!;exit 1"
+
+grep -oP 's[z|h]\d{6}' ${file}|sort -u|grep -v sh000001|sed 's/^..//'|sort
