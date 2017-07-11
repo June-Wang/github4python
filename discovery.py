@@ -165,7 +165,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 def job2weight(stock_code,end_day,stock_basics):
 	num4days = 60
-	day_list = [i for i in range(5,180,5)]
+	day_list = [i for i in range(5,130,5)]
 	start_day = now - datetime.timedelta(days=num4days+max(day_list)+61)
 	do_it(stock_code,start_day,end_day,day_list,stock_basics)
 
