@@ -203,16 +203,11 @@ def do_it(code,start_day,end_day,day_list):
 		persent = get_day_persent(data_list_dict)	
 		sh_persent = get_day_persent(sh_data_list_dict)
 
-		day_list = [i for i in range(10,120,10)]
+		#day_list = [i for i in range(10,120,10)]
 		w_data_list = [ get_w_data(data_list_dict,i) for i in day_list ]		
-		#w_data = w_data_list[0] #30
-
-		#w_data_grow_day_list =[i for i in range(10,120,10)]
 		w_data_grow_list = [ get_w_data(data_grow_dict,i) for i in day_list ]
-		#w_data_grow_msg = '/'.join(str(i) for i in w_data_grow_day_list)+':\t'+'\t'.join([ get_color(str(int(i))) for i in w_data_grow_list])
-
-		#price_list = [price_dict[code]['min'],price_dict[code]['max'],price_dict[code]['close']]
 		price_list = [price_dict[code]['close']]
+
 		price_msg = '\t'.join([("%.2f" % i) for i in price_list])
 		mid_msg = date+'\t'+ price_msg
 		persent_msg = get_color(str(int(persent)))+'\t'+get_color(str(int(sh_persent)))+'\t'+str(int(sh_price_dict['close']))
@@ -221,26 +216,17 @@ def do_it(code,start_day,end_day,day_list):
 
 		dp_msg = '/'.join(str(i) for i in days_list_persent)+':\t'+'\t'.join([ get_color("%.2f" % data_list_dict[i]) for i in days_list_persent ])
 
-		#w_data_list_msg = [ get_color(str(int(i))) for i in w_data_list ]
-		#w_data_avg = sum(w_data_list)/len(w_data_list)
-		#try:
-		#	w_data_msg = 'wight:\t'+get_color(str(int(w_data)))+'\t'+get_color(str(int(w_data_avg)))
-		#except:
-		#	continue
-
 		w_weight_list = [ sum(w_data_list)/len(w_data_list),sum(w_data_grow_list)/len(w_data_grow_list),persent ]
 		w_weight = sum(w_weight_list)/len(w_weight_list)
 		w_weight_msg = 'W:\t'+get_color(str(int(w_weight)))
 
-		#end_output_args = [persent_msg,p_change_msg,dp_msg,w_data_msg,w_data_grow_msg,w_weight_msg,share_msg]
 		end_output_args = [persent_msg,p_change_msg,dp_msg,w_weight_msg,share_msg]
 		end_msg = '\t'.join(end_output_args)
-		
 
 		if w_weight <= -90:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif w_weight <= -85:
+		elif w_weight <= -80:
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		elif w_weight == 100:
@@ -285,9 +271,8 @@ if __name__ == "__main__":
 	colorama.init()
 	stock_code = sys.argv[1]
 	num4days = 460
-	#num4days = 1420
 
-	day_list = [i for i in range(5,180,5)]
+	day_list = [i for i in range(5,130,5)]
 	#day_list.append(3)
 
 	now = datetime.date.today()
