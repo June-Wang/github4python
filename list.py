@@ -247,8 +247,8 @@ def do_it(code,start_day,end_day,day_list):
 	price_max = max(price_list)
 
 	try:
-		act_max = (min(act_sell_list) + max(act_sell_list))/2
-		act_min = (min(act_buy_list) + max(act_buy_list))/2
+		act_max = sum(act_sell_list)/len(act_sell_list)
+		act_min = sum(act_buy_list)/len(act_buy_list)
 		price_avg = sum(act_buy_list)/len(act_buy_list)
 		price_income = int((act_max - act_min)/act_min * 100)
 	except:
