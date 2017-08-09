@@ -154,8 +154,8 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	w_weight_msg = 'W:\t'+str(int(w_weight))
 
 	#print(w_weight_msg)
-	if w_weight <= -90:
-	#if (w_weight <= -80 and persent <= -50 and sh_persent < 50) or (w_weight <= -90 and persent <= -80 and sh_persent < 50):
+	#if w_weight <= -90:
+	if (w_weight <= -80 and persent <= -50 and sh_persent < 50) or (w_weight <= -90 and persent <= -80 and sh_persent < 50):
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
@@ -189,20 +189,21 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	try:
-	    list_code = sys.argv[1]
+	file = sys.argv[1]
+	if not os.path.isfile(file):
+			print(file,'not found!')
+			sys.exit(1)
 
-	    if int(list_code) == 500:
-	        try:
-	            stock_500 = ts.get_zz500s()
-	        except:
-	            print('get_zz500s timeout!')
-	            sys.exit(1)
-	        stock_list = stock_500.code.values
-	    else:
-	        sys.exit(1)
-	except:
-	    stock_list = stock_basics.index.values
+	with open(file,"r") as fh:
+			rows = fh.readlines()
+
+	stock_list = list()
+	for code in rows:
+			m = re.match("^\d{6}$",code)
+			if not m:
+					continue
+			stock_code = code.replace("\n", "")
+			stock_list.append(stock_code)
 
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
