@@ -257,7 +257,7 @@ def do_it(code,start_day,end_day,day_list):
 		#price_income = 0
 		price_avg = 0
 
-	income_avg = price_avg + price_avg*0.3
+	income_avg = price_avg + price_avg*0.25
 	price_msg = 'min/max/avg/now:\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+("%.2f" % price_avg)+'\t'+("%.2f" % now_price)
 	#act_msg = 'buy/sell(20%):\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)+'\t'+("%.2f" % income)
 	act_msg = 'buy/sell(30%):\t'+("%.2f" % act_min)+'\t'+("%.2f" % income_avg)
