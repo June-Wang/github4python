@@ -223,10 +223,17 @@ def do_it(code,start_day,end_day,day_list):
 		end_output_args = [persent_msg,p_change_msg,dp_msg,w_weight_msg,share_msg]
 		end_msg = '\t'.join(end_output_args)
 
-		if w_weight <= -90 and persent <= -90 and sh_persent <= 0:
+		day_list_w = 0
+		for i in days_list_persent:
+			if data_list_dict[i] < 0:
+				day_list_w = day_list_w -1
+
+		#if w_weight <= -90 and persent <= -90 and sh_persent <= 0:
+		if persent == -100 and w_weight < 0 and price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0 and day_list_w == -3:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif w_weight <= -90 and persent <= -80 and sh_persent <= 0:
+		#elif w_weight <= -90 and persent <= -80 and sh_persent <= 0:
+		elif persent < 0 and sh_persent < 50 and w_weight < 0 and price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0 and day_list_w == -3:
 			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		elif w_weight == 100 and persent >= 90 and sh_persent > 80:
@@ -276,7 +283,7 @@ if __name__ == "__main__":
 	stock_code = sys.argv[1]
 	num4days = 460
 
-	day_list = [i for i in range(5,60,5)]
+	day_list = [i for i in range(5,60)]
 	#day_list.append(3)
 
 	now = datetime.date.today()
