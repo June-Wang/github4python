@@ -155,7 +155,8 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 	#print(w_weight_msg)
 	#if w_weight <= -90:
-	if w_weight <= -80 and persent <= -90 and sh_persent <= 0:
+	#if w_weight <= -80 and persent <= -90 and sh_persent <= 0:
+	if w_weight == -100:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
