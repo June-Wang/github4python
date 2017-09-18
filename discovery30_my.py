@@ -153,14 +153,15 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	w_weight = sum(w_weight_list)/len(w_weight_list)
 	w_weight_msg = 'W:\t'+str(int(w_weight))
 
-	#print(w_weight_msg)
+	#print(msg)
 	#if w_weight <= -80 and persent <= 90 and sh_persent <= 0:
 	if w_weight == -100:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
+		pe = 'PE:\t' + str(stock_basics[stock_basics.index == stock_code][['pe']].values[0][0])
 		close = ("%.2f" % price_dict[stock_code]['close'])
-		output_args = [date,stock_code,close,w_weight_msg,name,industry]
+		output_args = [date,stock_code,close,w_weight_msg,pe,name,industry]
 		msg = '\t'.join(output_args)
 		print(msg)
 
@@ -189,11 +190,25 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	try:
-		stock_list = stock_basics[stock_basics.pe <= 50].index
-	except:
-	    stock_list = stock_basics.index.values
+	file = sys.argv[1]
+	if not os.path.isfile(file):
+			print(file,'not found!')
+			sys.exit(1)
 
+	with open(file,"r") as fh:
+			rows = fh.readlines()
+
+	stock_list_file = list()
+	for code in rows:
+			m = re.match("^\d{6}$",code)
+			if not m:
+					continue
+			stock_code = code.replace("\n", "")
+			stock_list_file.append(stock_code)
+	
+	stock_list = set(list(stock_basics[stock_basics.pe < 50].index)) & set(list(stock_list_file))
+
+	#print(list(stock_list))
 	pool = multiprocessing.Pool(processes=4)
 	for stock_code in sorted(stock_list):
 		pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
