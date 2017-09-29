@@ -229,7 +229,7 @@ def do_it(code,start_day,end_day,day_list):
 				day_list_w = day_list_w -1
 
 		#if w_weight <= -90 and persent <= -90 and sh_persent <= 0:
-		if persent == -100 and w_weight < 0 and price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0 and day_list_w == -3:
+		if persent == -100 and w_weight == -100 and price_dict[code]['p_change'] < 0 and sh_price_dict['p_change'] < 0 and day_list_w == -3:
 			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
 		#elif w_weight <= -90 and persent <= -80 and sh_persent <= 0:
