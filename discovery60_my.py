@@ -156,7 +156,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	#print(w_weight_msg)
 	#if w_weight <= -90:
 	#if w_weight <= -80 and persent <= -90 and sh_persent <= 0:
-	if w_weight == -100:
+	if w_weight == -100 and persent == -100:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
@@ -167,7 +167,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 def job2weight(stock_code,end_day,stock_basics):
 	num4days = 60
-	day_list = [i for i in range(5,60,5)]
+	day_list = [i for i in range(5,60)]
 	start_day = now - datetime.timedelta(days=num4days+max(day_list)+61)
 	do_it(stock_code,start_day,end_day,day_list,stock_basics)
 
