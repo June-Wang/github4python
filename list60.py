@@ -11,6 +11,8 @@ import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
 
+#pip install html5lib
+
 def get_color(text):
 	my_number = float(text)
 	if my_number > 0:
