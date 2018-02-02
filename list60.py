@@ -10,6 +10,10 @@ import tushare as ts
 import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
+from urllib.request import urlopen  
+from urllib.request import Request  
+import random  
+import re
 
 #pip install html5lib
 
@@ -110,13 +114,36 @@ def get_day_persent(data_list_dict):
 	#print(str(up2days),str(count))
 	return(day_persents)
 
+def getContent(url,headers):  
+    """ 
+    此函数用于抓取返回403禁止访问的网页 
+    """  
+    random_header = random.choice(headers)  
+  
+    """ 
+    对于Request中的第二个参数headers，它是字典型参数，所以在传入时 
+    也可以直接将个字典传入，字典中就是下面元组的键值对应 
+    """  
+    req =Request(url)  
+    req.add_header("User-Agent", random_header)  
+    req.add_header("GET",url)  
+    #req.add_header("Host","blog.csdn.net")  
+    #req.add_header("Referer","http://www.csdn.net/")  
+  
+    #content=urlopen(req).read().decode("UTF-8")  
+    content=urlopen(req).read()
+    return content
+
 def get_share(stock_code):
 
 	url = 'http://data.10jqka.com.cn/financial/sgpx/op/code/code/'+stock_code+'/ajax/1/'
-	resp = requests.get(url)
+	#resp = requests.get(url)
+	my_headers = ["Mozilla/5.0 (Windows NT 6.1; Win64; x64)"]
+	resp = getContent(url,my_headers)
 
 	try:
-		table = pd.read_html(resp.text)[0]
+		#table = pd.read_html(resp.text)[0]
+		table = pd.read_html(resp)[0]
 	except:
 		print('获取配股分红信息失败！')
 		year_list = list()
