@@ -206,7 +206,8 @@ if __name__ == "__main__":
 			stock_code = code.replace("\n", "")
 			stock_list_file.append(stock_code)
 	
-	stock_list = set(list(stock_basics[stock_basics.pe < 50].index)) & set(list(stock_list_file))
+	#stock_list = set(list(stock_basics[stock_basics.pe < 50].index)) & set(list(stock_list_file))
+	stock_list = stock_list_file
 
 	#print(list(stock_list))
 	pool = multiprocessing.Pool(processes=4)
