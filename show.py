@@ -114,9 +114,7 @@ def get_day_persent(data_list_dict):
 	return(day_persents)
 
 def getContent(url):  
-	""" 
-	此函数用于抓取返回403禁止访问的网页 
-	"""  
+	#此函数用于抓取返回403禁止访问的网页 
 	#random_header = random.choice(headers)  
 	opener=urllib.request.build_opener()
 	cookie='v=AkDLYWX1DnGnYPJ1uM1znWOgEcUWySSTxq14l7rRDNvuNe7zYtn0Ixa9SCUI'
@@ -172,7 +170,6 @@ def do_it(code,start_day,end_day,day_list):
 	now_price = 0.0
 
 	price_list = list()
-
 	act_list = list()
 	act_buy_list = list()
 	act_sell_list = list()
