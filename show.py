@@ -136,12 +136,13 @@ def getContent(url,headers):
 def get_share(stock_code):
 
 	url = 'http://data.10jqka.com.cn/financial/sgpx/op/code/code/'+stock_code+'/ajax/1/'
-	my_headers = ["Mozilla/5.0 (Windows NT 6.1; Win64; x64)"]
+	#my_headers = ["Mozilla/5.0 (Windows NT 6.1; Win64; x64)"]
+	my_headers = ["Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36"]
 
 	#resp = requests.get(url)
-	resp = getContent(url,my_headers)
 
 	try:
+		resp = getContent(url,my_headers)
 		#table = pd.read_html(resp.text)[0]
 		table = pd.read_html(resp)[0]
 	except:
