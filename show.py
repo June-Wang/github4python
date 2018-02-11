@@ -11,9 +11,9 @@ import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
 import urllib.request
-from urllib.request import urlopen  
-from urllib.request import Request  
-import random  
+#from urllib.request import urlopen  
+#from urllib.request import Request  
+#import random  
 import re
 
 def get_color(text):
@@ -114,15 +114,15 @@ def get_day_persent(data_list_dict):
 	return(day_persents)
 
 def getContent(url):  
-    """ 
-    此函数用于抓取返回403禁止访问的网页 
-    """  
-    #random_header = random.choice(headers)  
-    opener=urllib.request.build_opener()
-    cookie='v=AkDLYWX1DnGnYPJ1uM1znWOgEcUWySSTxq14l7rRDNvuNe7zYtn0Ixa9SCUI'
-    opener.addheaders = [('Cookie', cookie)]
-    content = opener.open(url).read()
-    return content
+	""" 
+	此函数用于抓取返回403禁止访问的网页 
+	"""  
+	#random_header = random.choice(headers)  
+	opener=urllib.request.build_opener()
+	cookie='v=AkDLYWX1DnGnYPJ1uM1znWOgEcUWySSTxq14l7rRDNvuNe7zYtn0Ixa9SCUI'
+	opener.addheaders = [('Cookie', cookie)]
+	content = opener.open(url).read()
+	return content
 
 def get_share(stock_code):
 
