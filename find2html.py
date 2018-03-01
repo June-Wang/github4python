@@ -161,7 +161,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 	industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
 	close = ("%.2f" % price_dict[stock_code]['close'])
-	output_args = [date,stock_code,close,w_weight_msg,name,industry]
+	output_args = [date,stock_code,name,close,w_weight_msg,industry]
 	#msg = '\t'.join(output_args)
 	#print(msg)
 	return(output_args)
@@ -218,8 +218,8 @@ if __name__ == "__main__":
 	pool.close()
 	pool.join()
 
-	print(results)
+	#print(results)
 	#for result in results:
 	#	print(result)
-	df_html = pd.DataFrame(results,columns=['日期','代码','价格','权重','名称','行业'])
+	df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','权重','行业'])
 	print(df_html.to_html(index=False))
