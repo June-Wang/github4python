@@ -12,35 +12,6 @@ import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
 
-def get_weight(df):
-	stock_close = list()
-	try:
-		for workday in df.index:
-		#print(workday,df[df.index == workday].close[0],stock_code)
-			stock_close.append(float(df[df.index == workday].close[0]))
-	except:
-		mark2weight=0
-		return(mark2weight)
-
-	mark2weight = 0
-	status = 'ok'
-	items = [i for i in range(0,5)]
-	for i in range(0,5):
-		day_count_list = list(map(lambda x:x+i,items))
-		close_list = list()
-		for x in day_count_list:
-			try:
-				close_list.append(stock_close[x])
-			except:
-				status = 'timeout'
-				break
-		#print(str(stock_close[i]),close_list)
-		if status == 'timeout':
-			break
-		if stock_close[i] == min(close_list):
-			mark2weight += 1
-	return(mark2weight)
-
 def get_data_list(df,day_list):
 	change_sum = 0.0
 	count = 0
