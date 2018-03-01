@@ -137,7 +137,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
 
 	data_list_dict = get_data_list(df_hist_data,day_list)
-	data_grow_dict = get_data_grow_list(df_hist_data,day_list)
+	#data_grow_dict = get_data_grow_list(df_hist_data,day_list)
 
 	p_change = price_dict[stock_code]['p_change']
 	persent = rules(day_list,data_list_dict,p_change)
