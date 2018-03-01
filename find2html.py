@@ -219,7 +219,5 @@ if __name__ == "__main__":
 	pool.join()
 
 	#print(results)
-	#for result in results:
-	#	print(result)
 	df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','权重','行业'])
 	print(df_html.to_html(index=False))
