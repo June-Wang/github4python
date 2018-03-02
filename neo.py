@@ -8,9 +8,6 @@ import time
 import multiprocessing
 import tushare as ts
 import pandas as pd
-#import colorama
-#from colorama import Fore, Back, Style
-#from termcolor import colored, cprint
 
 def get_data_list(df,day_list):
 	change_sum = 0.0
@@ -51,34 +48,6 @@ def get_data_grow_list(df,day_list):
 	#print(data_grow_list)
 	return(data_grow_list)
 
-def rules(day_list,data_list_dict,p_change):
-	num = len(day_list) +1
-	count = 0
-
-	if p_change >=0:
-		count = count +1
-	else:
-		count = count -1
-
-	for day in day_list:
-		if  data_list_dict[day] >= 0:
-			count =count +1
-		else:
-			count =count -1
-	persent =  count / num * 100
-	return(persent)
-
-#def get_price_info(code,df):
-#	date = df.index.values[0]
-#	price = {}
-#	price_open = df[df.index == date].open[0] #开盘价格
-#	price_close = df[df.index == date].close[0] #开盘价格
-#	price_min = df[df.index == date].low[0] #当日最低
-#	price_max = df[df.index == date].high[0] #当日最高
-#	p_change = df[df.index == date].p_change[0] #当日股票涨幅
-#	price[code] = {'open':price_open,'close':price_close,'min':price_min,'max':price_max,'p_change':p_change}
-#	return(price[code])
-
 def get_w_data(data_list_dict,days):
 
 	w_data_list = [data_list_dict[i] for i in range(1,days)]
@@ -94,53 +63,6 @@ def get_w_data(data_list_dict,days):
 
 	w_data = (up_data-down_data)/len(w_data_list)*100
 	return(w_data)
-
-def do_it(stock_code,start_day,end_day,day_list,stock_basics):
-	#print(stock_code,start_day,end_day)
-	try:
-		df_hist_data = ts.get_hist_data(stock_code,start=str(start_day),end=str(end_day))		
-	except:
-		print('get_hist_data timeout!')
-		sys.exit(1)
-
-	#lastday = df_hist_data.index.values[0]
-	price_dict = {}
-	price_dict[stock_code] = get_price_info(stock_code,df_hist_data)
-	p_change = price_dict[stock_code]['p_change']
-
-	persent = rules(day_list,data_list_dict,p_change)
-
-	data_list_dict = get_data_list(df_hist_data,day_list)
-	w_data_list = [ get_w_data(data_list_dict,i) for i in day_list ]
-	data_grow_dict = get_data_grow_list(df_hist_data,day_list)
-	#print(data_grow_dict)
-
-	w_data_grow_list = [ get_w_data(data_grow_dict,i) for i in day_list ]
-	#print(stock_code,w_data_grow_list)
-
-	w_weight_list = [ sum(w_data_list)/len(w_data_list),sum(w_data_grow_list)/len(w_data_grow_list),persent ]
-	w_weight = sum(w_weight_list)/len(w_weight_list)
-	#w_weight_msg = 'W:\t'+str(int(w_weight))
-	w_weight_msg = str(int(w_weight))
-
-	#print(w_weight_msg)
-	#if w_weight <= -80 and persent <= 90 and sh_persent <= 0:
-	#if w_weight == -100:
-	date = str(end_day)[:10]
-	name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
-	industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
-	close = ("%.2f" % price_dict[stock_code]['close'])
-	output_args = [date,stock_code,name,close,w_weight_msg,industry]
-	#msg = '\t'.join(output_args)
-	#print(msg)
-	return(output_args)
-
-#def job2weight(stock_code,end_day,stock_basics):
-#	num4days = 30
-#	day_list = [i for i in range(5,num4days)]
-#	start_day = now - datetime.timedelta(days=num4days+max(day_list))
-#	result = do_it(stock_code,start_day,end_day,day_list,stock_basics)
-#	return(result)
 
 def color_negative_red(val):
 	"""
@@ -199,14 +121,15 @@ def get_df_hist_data(stock_code,start_day,end_day):
     return(df_hist_data)
 
 def get_stock_info(stock_code,stock_basics,df_hist_data,end_day):
+	"""
+	获取最后一天的股票信息
+	"""
 	date = str(end_day)[:10]
 	name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 	industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
-	#close = ("%.2f" % price_dict[stock_code]['close'])
 	lastday = df_hist_data.index.values[0]
 	close = ("%.2f" % df_hist_data[df_hist_data.index == lastday].close[0])
 	output_args = [date,stock_code,name,close,industry]
-	#msg = '\t'.join(output_args)
 	#print(msg)
 	return(output_args)
 
@@ -222,20 +145,16 @@ def get_stock_basics():
 	return(stock_basics)
 
 def job2weight(stock_code,start_day,end_day,stock_basics):
+	"""
+	获取单个股票权重 主任务
+	"""
 	#Beginning
-	#stock_code='000998'
 	df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
 
 	data_list_dict = get_data_list(df_hist_data,day_list)
 	
-	#rules
-	#date = df_hist_data.index.values[0]
-	#p_change = df_hist_data[df_hist_data.index == date].p_change[0]
-	#persent = rules(day_list,data_list_dict,p_change)
-
 	#get_day_persent
 	persent = get_day_persent(data_list_dict)
-
 	#print(persent)
 
 	w_data_list = [ get_w_data(data_list_dict,i) for i in day_list ]
@@ -247,15 +166,41 @@ def job2weight(stock_code,start_day,end_day,stock_basics):
 	w_weight = sum(w_weight_list)/len(w_weight_list)
 	#print(str(w_weight))
 
-
 	stock_info = get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
 	stock_info.append(str(int(w_weight)))
 	#print(stock_info)
-	#sys.exit(1)
 	#end
 	return(stock_info)
 
+def get_stock_list(file):
+	"""
+	从文件获取股票列表
+	"""
+	if not os.path.isfile(file):
+		print(file,'not found!')
+		sys.exit(1)
+
+	with open(file,"r") as fh:
+		rows = fh.readlines()
+	#print(rows)
+
+	stock_list = list()
+	for code in rows:
+		m = re.match("^\d{6}$",code)
+		if not m:
+			continue
+		stock_code = code.replace("\n", "")
+		stock_list.append(stock_code)
+	#print(stock_list)
+	return(stock_list)
+
 if __name__ == "__main__":
+
+	file = sys.argv[1]
+	stock_list = get_stock_list(file)
+	#stock_list = ['000998','600188','601933']
+	#print(stock_list)
+	#sys.exit(1)
 
 	num4days=30
 	day_list = [i for i in range(5,num4days)]
@@ -269,7 +214,6 @@ if __name__ == "__main__":
 	cpus = multiprocessing.cpu_count()
 	pool = multiprocessing.Pool(processes=cpus)
 
-	stock_list = ['000998','600188','601933']
 	results = []
 	for stock_code in sorted(stock_list):
 		result = pool.apply_async(job2weight,(stock_code,start_day,end_day,stock_basics))
