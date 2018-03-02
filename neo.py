@@ -104,7 +104,6 @@ def get_start_day(now,num4days,day_list):
     """
     获取时间周期的开始时间
     """
-    #day_list = [i for i in range(5,num4days)]
     start_day = now - datetime.timedelta(days=num4days+max(day_list))
     return(start_day)
 
@@ -144,10 +143,11 @@ def get_stock_basics():
         sys.exit(1)
     return(stock_basics)
 
-def job2weight(stock_code,start_day,end_day,stock_basics):
+def job2weight(stock_code,start_day,end_day,stock_basics,day_list):
     """
     获取单个股票权重 主任务
     """
+    #print(day_list)
     #Beginning
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
 
@@ -203,7 +203,8 @@ if __name__ == "__main__":
     #sys.exit(1)
 
     num4days=30
-    day_list = [i for i in range(5,num4days)]
+    day_list = [i for i in range(5,30)]
+    #print(day_list)
 
     now = datetime.date.today()
     end_day = get_end_day(now)
@@ -216,7 +217,7 @@ if __name__ == "__main__":
 
     results = []
     for stock_code in sorted(stock_list):
-        result = pool.apply_async(job2weight,(stock_code,start_day,end_day,stock_basics))
+        result = pool.apply_async(job2weight,(stock_code,start_day,end_day,stock_basics,day_list))
         results.append(result.get())
         #print(result.get())
     pool.close()
