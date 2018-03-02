@@ -264,8 +264,6 @@ if __name__ == "__main__":
 	end_day = get_end_day(now)
 	start_day = get_start_day(now,num4days,day_list)
 
-	#print(start_day,end_day)
-
 	stock_basics=get_stock_basics()
 
 	cpus = multiprocessing.cpu_count()
@@ -281,5 +279,5 @@ if __name__ == "__main__":
 	pool.join()
 
 	#print(results)
-	df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','权重','行业'])
+	df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
 	print(df_html.to_html(index=False))
