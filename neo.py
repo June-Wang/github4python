@@ -210,7 +210,7 @@ if __name__ == "__main__":
     #sys.exit(1)
 
     num4days=30
-    day_list = [i for i in range(5,30)]
+    day_list = [i for i in range(5,num4days)]
     #print(day_list)
 
     now = datetime.date.today()
