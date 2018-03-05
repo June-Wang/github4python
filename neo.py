@@ -64,15 +64,6 @@ def get_w_data(data_list_dict,days):
     w_data = (up_data-down_data)/len(w_data_list)*100
     return(w_data)
 
-def color_negative_red(val):
-    """
-    Takes a scalar and returns a string with
-    the css property `'color: red'` for negative
-    strings, black otherwise.
-    """
-    color = 'red' if val < 0 else 'black'
-    return 'color: %s' % color
-
 def get_day_persent(data_list_dict):
     up2days = 0
     count = 0
@@ -194,6 +185,22 @@ def get_stock_list(file):
     #print(stock_list)
     return(stock_list)
 
+def color_negative_red(val):
+    """
+    Takes a scalar and returns a string with
+    the css property `'color: red'` for negative
+    strings, black otherwise.
+    """
+    val = int(val)
+    if val > 0:
+        color = 'red'
+    elif val < 0:
+        color = 'green'
+    else:
+        color = 'black'
+    #color = 'red' if val > 0 elif < 0 'green' else 'black'
+    return 'color: %s' % color
+
 if __name__ == "__main__":
 
     file = sys.argv[1]
@@ -224,5 +231,8 @@ if __name__ == "__main__":
     pool.join()
 
     #print(results)
-    df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
-    print(df_html.to_html(index=False))
+    #df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
+    df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
+    s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重']]).render()
+    print(s)
+    #print(s.to_html(index=False))
