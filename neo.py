@@ -209,8 +209,8 @@ if __name__ == "__main__":
     #print(stock_list)
     #sys.exit(1)
 
-    num4days=30
-    day_list = [i for i in range(5,num4days)]
+    num4days=160
+    day_list = [i for i in range(5,30)]
     #print(day_list)
 
     now = datetime.date.today()
@@ -231,6 +231,7 @@ if __name__ == "__main__":
     pool.join()
 
     #print(results)
+    #print(len(results))
     #df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
     df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
     s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重']]).render()
