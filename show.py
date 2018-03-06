@@ -11,9 +11,6 @@ import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
 import urllib.request
-#from urllib.request import urlopen  
-#from urllib.request import Request  
-#import random  
 import re
 
 def get_color(text):
@@ -255,30 +252,17 @@ def do_it(code,start_day,end_day,day_list):
 
 		price_list.append(price_dict[code]['close'])
 		day_count +=1
-
-	#price_avg = sum(price_list)/len(price_list)
-	#price_min = min(price_list)
-	#price_max = max(price_list)
-
 	try:
-		#act_max = sum(act_sell_list)/len(act_sell_list)
 		act_min = sum(act_buy_list)/len(act_buy_list)
 		price_avg = sum(act_buy_list)/len(act_buy_list)
-		#price_income = int((act_max - act_min)/act_min * 100)
 	except:
-		#act_max = 0
 		act_min = 0
-		#price_income = 0
 		price_avg = 0
 
 	income_avg = price_avg + price_avg*0.25
-	#price_msg = 'min/max/avg/now:\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+("%.2f" % price_avg)+'\t'+("%.2f" % now_price)
 	price_msg = 'now:\t'+("%.2f" % now_price)
-	#act_msg = 'buy/sell(20%):\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)+'\t'+("%.2f" % income)
 	act_msg = 'buy/sell(25%):\t'+("%.2f" % act_min)+'\t'+("%.2f" % income_avg)
-	#income_msg = 'income:\t'+get_color(str(price_income))+' %'
 
-	#output_args = [code,price_msg,act_msg,income_msg]
 	output_args = [code,price_msg,act_msg]
 	msg = '\t'.join(output_args)
 
