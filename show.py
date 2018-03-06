@@ -85,19 +85,19 @@ def get_data_grow_list(df,day_list,day_count):
 
 def color(color,mid_msg,end_msg):
 	if color == 'yellow':
-		print(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		return(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'cyan':
-		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		return(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'magenta':
-		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		return(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'red':
-		print(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		return(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'green':
-		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		return(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'white':
-		print(Fore.WHITE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		return(Fore.WHITE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'blue':
-		print(Fore.BLUE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		return(Fore.BLUE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
 def get_day_persent(data_list_dict):
 	up2days = 0
@@ -238,20 +238,20 @@ def do_it(code,start_day,end_day,day_list):
 		end_msg = '\t'.join(end_output_args)
 
 		if w_weight <= -90 and persent <= -90 and sh_persent <= 0:
-			color('cyan',mid_msg,end_msg)
+			print(color('cyan',mid_msg,end_msg))
 			act_buy_list.append(price_dict[code]['close'])
 		elif w_weight <= -90 and persent <= -80 and sh_persent <= 0:
-			color('magenta',mid_msg,end_msg)
+			print(color('magenta',mid_msg,end_msg))
 			act_buy_list.append(price_dict[code]['close'])
 		elif w_weight == 100 and persent >= 90 and sh_persent > 80:
-			color('yellow',mid_msg,end_msg)
+			print(color('yellow',mid_msg,end_msg))
 			act_sell_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] > 0:
-			color('red',mid_msg,end_msg)
+			print(color('red',mid_msg,end_msg))
 		elif price_dict[code]['p_change'] < 0:
-			color('green',mid_msg,end_msg)
+			print(color('green',mid_msg,end_msg))
 		elif price_dict[code]['p_change'] == 0:
-			color('white',mid_msg,end_msg)
+			print(color('white',mid_msg,end_msg))
 
 		price_list.append(price_dict[code]['close'])
 		day_count +=1

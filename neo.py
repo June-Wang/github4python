@@ -234,5 +234,6 @@ if __name__ == "__main__":
     #df_html = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
     df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
     s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重']]).render()
+    #df['new'] = df['权重'].apply(color_negative_red)
     print(s)
     #print(s.to_html(index=False))
