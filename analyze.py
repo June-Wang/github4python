@@ -66,6 +66,26 @@ def get_cycle_date_list(df_hist_data,day_list):
         cycle_date_list.append(day_time)
     return(cycle_date_list)
 
+def get_p_change_grow_list(df_hist_data,day_list):
+    """
+    获取周期内涨跌幅的和
+    """
+    p_change_grow_list = list()
+    for day in day_list:
+        start_t = day
+        end_t = day + cycle_time
+        p_change_list = df_hist_data[['p_change']].values[start_t:end_t]
+        count = 0
+        for p_change in p_change_list:
+            if p_change > 0:
+                count = count + 1
+            else:
+                count = count - 1
+        #print(count)
+        result = count / len(p_change_list) * 100
+        p_change_grow_list.append(("%.2f" % result))
+    return(p_change_grow_list)
+
 if __name__ == "__main__":
 
     #file = sys.argv[1]
@@ -95,5 +115,8 @@ if __name__ == "__main__":
     print(cycle_date_list)
 
     #info_list = np.vstack(cycle_date_list) + np.vstack(cycle_p_change_list)
-    info = pd.Series((cycle_p_change_list),index = cycle_date_list)
-    print(info)
+    #info = pd.Series((cycle_p_change_list),index = cycle_date_list)
+    #print(info)
+    
+    p_change_grow_list = get_p_change_grow_list(df_hist_data,day_list)
+    print(p_change_grow_list)
