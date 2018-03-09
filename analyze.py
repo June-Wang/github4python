@@ -89,26 +89,43 @@ def get_color(text):
         text_color = text
     return(text_color)
 
-def get_persent_sum_dict(df_hist_data,day_range):
-    date_list = [i for i in range(5,day_range,5)]
-    date_list.append(3)
-    date_list = sorted(date_list)
+def get_persent_dict(df_hist_data,day_list):
+    date_list = [i for i in range(1,30)]
     #print(len(date_list))
     day_persent = dict()
     days_persent_list = list()
     for date in date_list:
+        #print(date)
         day_persent[date] = get_cycle_p_change_list(df_hist_data,day_list,date)
-        days_persent_list.append(np.dstack(day_persent[date]))
+        #days_persent_list.append(np.dstack(day_persent[date]))
         #print(day_persent[date])
+        #print(len(day_persent[date]))
 
-    #print(days_persent_list)
-    persent_sum_dict = dict()
-    for i in range(0,len(days_persent_list)):
-        persent_sum_dict[i] = np.sum(days_persent_list[i][0].astype(np.float))/len(days_persent_list)
-    print(persent_sum_dict)
+    persent_dict = dict()
+    for day in day_list:
+        #print("day_index:\t"+str(day))
+        #print(len(date_list))
+        #sum = 0.0
+        count = 0
+        for date in date_list:
+            #print("index:\t"+str(day)+"\t"+day_persent[date][day])
+            #sum += float(day_persent[date][day])
+            #print(day_persent[date][day])
+            if float(day_persent[date][day]) > 0:
+                count = count +1
+            else:
+                count = count -1
+        result = count / len(date_list) * 100
+        persent_dict[day] = ("%.2f" % result)
+        #print("day_index:\t"+str(day)+'\t'+"day_persent["+str(day)+"]"+"\t"+str(day_persent[day]))
+        #print(day_persent[day])
 
-    #return(days_persent_list)
-    return(persent_sum_dict)
+    #persent_sum_dict = dict()
+    #for i in range(0,len(days_persent_list)):
+    #    persent_sum_dict[i] = np.sum(days_persent_list[i][0].astype(np.float))/len(days_persent_list)
+    #print(persent_sum_dict)
+
+    return(persent_dict)
 
 if __name__ == "__main__":
 
@@ -129,7 +146,7 @@ if __name__ == "__main__":
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
     #print(start_day,end_day)
     #print(df_hist_data)
-    ###cycle_p_change_list = get_cycle_p_change_list(df_hist_data,day_list,cycle_time)
+    cycle_p_change_list = get_cycle_p_change_list(df_hist_data,day_list,cycle_time)
     #print(cycle_p_change_list)
     #print(len(cycle_p_change_list))
 
@@ -144,14 +161,15 @@ if __name__ == "__main__":
     #print(p_change_grow_list)
     #print(len(p_change_grow_list))
 
-    #day_list_persent = [3,5,10,20,30,60]
-    #cycle_p_change = dict()
-    #for day in day_list_persent:
-    #    cycle_p_change[day] = get_cycle_p_change_list(df_hist_data,day_list,day)
+    day_list_persent = [3,5,10,20,30,60]
+    cycle_p_change = dict()
+    for day in day_list_persent:
+        cycle_p_change[day] = get_cycle_p_change_list(df_hist_data,day_list,day)
         #print(cycle_p_change_list[day])
-    persent_sum_dict = get_persent_sum_dict(df_hist_data,day_range)
+    #get_persent_sum_dict(df_hist_data,day_list)
     #print(np.sum(list(days_persent_list[0][0])))
-    sys.exit(0)
+    #sys.exit(0)
+    persent_dict = get_persent_dict(df_hist_data,day_list)
 
     for day in day_list:
         #persent = float(cycle_p_change_list[day])+float(p_change_grow_list[day])
@@ -173,4 +191,4 @@ if __name__ == "__main__":
         #print(color_field)
         
         #output_color = '\t'.join(get_color(str(field)) for field in color_field)
-        print(date+"\t"+str(price)+"\t3/5/10/20/30/60\t"+cycle_p_change_msg+"\tMA\t"+ma_msg+"\t"+get_color(str(p_change_grow_list[day])))
+        print(date+"\t"+str(price)+"\t3/5/10/20/30/60\t"+cycle_p_change_msg+"\tMA\t"+ma_msg+"\t"+get_color(str(p_change_grow_list[day]))+"\tW:\t"+get_color(str(persent_dict[day])))
