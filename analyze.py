@@ -89,14 +89,35 @@ def get_color(text):
         text_color = text
     return(text_color)
 
+def get_persent_sum_dict(df_hist_data,day_range):
+    date_list = [i for i in range(5,day_range,5)]
+    date_list.append(3)
+    date_list = sorted(date_list)
+    #print(len(date_list))
+    day_persent = dict()
+    days_persent_list = list()
+    for date in date_list:
+        day_persent[date] = get_cycle_p_change_list(df_hist_data,day_list,date)
+        days_persent_list.append(np.dstack(day_persent[date]))
+        #print(day_persent[date])
+
+    #print(days_persent_list)
+    persent_sum_dict = dict()
+    for i in range(0,len(days_persent_list)):
+        persent_sum_dict[i] = np.sum(days_persent_list[i][0].astype(np.float))/len(days_persent_list)
+    print(persent_sum_dict)
+
+    #return(days_persent_list)
+    return(persent_sum_dict)
+
 if __name__ == "__main__":
 
     #stock_list = ['000998']
 
-    cycle_time = 20
+    cycle_time = 30
     day_range = 90
 
-    num4days = day_range + cycle_time*2 +60
+    num4days = day_range + cycle_time + 60*2
 
     day_list = [i for i in range(0,day_range+1)]
 
@@ -104,12 +125,12 @@ if __name__ == "__main__":
     end_day = get_end_day(now)
     start_day = get_start_day(now,num4days)
 
-    stock_code = '600188'
+    stock_code = '000998'
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
-    print(start_day,end_day)
+    #print(start_day,end_day)
     #print(df_hist_data)
-    cycle_p_change_list = get_cycle_p_change_list(df_hist_data,day_list,cycle_time)
-    print(cycle_p_change_list)
+    ###cycle_p_change_list = get_cycle_p_change_list(df_hist_data,day_list,cycle_time)
+    #print(cycle_p_change_list)
     #print(len(cycle_p_change_list))
 
     #cycle_date_list = get_cycle_date_list(df_hist_data,day_list)
@@ -120,15 +141,36 @@ if __name__ == "__main__":
     #print(info)
     
     p_change_grow_list = get_p_change_grow_list(df_hist_data,day_list,cycle_time)
-    print(p_change_grow_list)
+    #print(p_change_grow_list)
     #print(len(p_change_grow_list))
+
+    #day_list_persent = [3,5,10,20,30,60]
+    #cycle_p_change = dict()
+    #for day in day_list_persent:
+    #    cycle_p_change[day] = get_cycle_p_change_list(df_hist_data,day_list,day)
+        #print(cycle_p_change_list[day])
+    persent_sum_dict = get_persent_sum_dict(df_hist_data,day_range)
+    #print(np.sum(list(days_persent_list[0][0])))
+    sys.exit(0)
 
     for day in day_list:
         #persent = float(cycle_p_change_list[day])+float(p_change_grow_list[day])
         date = df_hist_data.index.values[day]
         price = df_hist_data[['close']].values[day][0]
-        #print(price)
-        ma20 = df_hist_data[['ma20']].values[day][0]
-        color_field = [cycle_p_change_list[day],p_change_grow_list[day]]
-        output_color = '\t'.join(get_color(str(field)) for field in color_field)
-        print(date+"\t"+str(price)+"\t"+output_color+"\t"+str(ma20))
+        #front_msg = date +'\t'+ type(price)
+        #print(type(price))
+
+        ma_field = ['ma5','ma10','ma20']
+        ma_list = [ df_hist_data[[field]].values[day][0] for field in ma_field ]
+        ma_msg = '\t'.join([("%.2f" % field) for field in ma_list])
+        #print(ma_msg)
+        
+        cycle_p_change_list = [ cycle_p_change[i][day] for i in day_list_persent ]
+        #print(cycle_p_change_list)
+        cycle_p_change_msg = '\t'.join([get_color(str(field)) for field in cycle_p_change_list])
+        #print(cycle_p_change_msg)
+        #color_field = [cycle_p_change_list[day],p_change_grow_list[day]]
+        #print(color_field)
+        
+        #output_color = '\t'.join(get_color(str(field)) for field in color_field)
+        print(date+"\t"+str(price)+"\t3/5/10/20/30/60\t"+cycle_p_change_msg+"\tMA\t"+ma_msg+"\t"+get_color(str(p_change_grow_list[day])))
