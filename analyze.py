@@ -59,26 +59,6 @@ def get_cycle_p_change_list(df_hist_data,day_list,cycle_time):
         #print(day_time,str(cycle_p_change_sum))
     return(cycle_p_change_list)
 
-#def get_p_change_grow_list(df_hist_data,day_list,cycle_time):
-#    """
-#    获取周期内涨跌幅的和
-#    """
-#    p_change_grow_list = list()
-#    for day in day_list:
-#        start_t = day
-#        end_t = day + cycle_time
-#        p_change_list = df_hist_data[['p_change']].values[start_t:end_t]
-#        count = 0
-#        for p_change in p_change_list:
-#            if p_change > 0:
-#                count = count + 1
-#            else:
-#                count = count - 1
-#        #print(count)
-#        result = count / len(p_change_list) * 100
-#        p_change_grow_list.append(int(result))
-#    return(p_change_grow_list)
-
 def get_color(text):
     text_f = float(text)
     if text_f > 0:
@@ -173,12 +153,10 @@ if __name__ == "__main__":
         w_list = [ float(persent_cycle[cycle][day]) for cycle in persent_cycle_list]
         w_msg = 'W('+'/'.join(str(i) for i in persent_cycle_list)+')\t'+'\t'.join([ get_color(str(field)) for field in w_list])
 
-        #persent = int(sum(cycle_p_change_list) / len(cycle_p_change_list)*0.4 + sum(w_list)/len(w_list)*0.6 )
         persent = float(persent_cycle[30][day])
 
         front_msg = date +'\t'+ str(price)
-
-        mid_msg = "P(3/5/10)\t"+cycle_p_change_msg
+        mid_msg = "P("+'/'.join(str(i) for i in day_list_persent)+")\t"+cycle_p_change_msg
         end_msg = w_msg
 
         #mid_msg = ''
