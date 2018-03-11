@@ -130,6 +130,7 @@ def get_persent_dict(df_hist_data,day_list):
 if __name__ == "__main__":
 
     #stock_list = ['000998']
+    stock_code = sys.argv[1]
 
     cycle_time = 30
     day_range = 90
@@ -142,7 +143,7 @@ if __name__ == "__main__":
     end_day = get_end_day(now)
     start_day = get_start_day(now,num4days)
 
-    stock_code = '000998'
+    #stock_code = '000998'
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
     #print(start_day,end_day)
     #print(df_hist_data)
