@@ -90,7 +90,7 @@ def get_color(text):
     return(text_color)
 
 def get_persent_dict(df_hist_data,day_list):
-    date_list = [i for i in range(1,30)]
+    date_list = [i for i in range(1,60)]
     #print(len(date_list))
     day_persent = dict()
     days_persent_list = list()
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     cycle_time = 30
     day_range = 90
 
-    num4days = day_range + cycle_time + 60*2
+    num4days = day_range*2 + cycle_time 
 
     day_list = [i for i in range(0,day_range+1)]
 
@@ -175,12 +175,11 @@ if __name__ == "__main__":
         #persent = float(cycle_p_change_list[day])+float(p_change_grow_list[day])
         date = df_hist_data.index.values[day]
         price = df_hist_data[['close']].values[day][0]
-        #front_msg = date +'\t'+ type(price)
         #print(type(price))
 
         ma_field = ['ma5','ma10','ma20']
         ma_list = [ df_hist_data[[field]].values[day][0] for field in ma_field ]
-        ma_msg = '\t'.join([("%.2f" % field) for field in ma_list])
+        ma_msg = 'MA(5/10/20)\t'+'\t'.join([("%.2f" % field) for field in ma_list])
         #print(ma_msg)
         
         cycle_p_change_list = [ cycle_p_change[i][day] for i in day_list_persent ]
@@ -191,4 +190,21 @@ if __name__ == "__main__":
         #print(color_field)
         
         #output_color = '\t'.join(get_color(str(field)) for field in color_field)
-        print(date+"\t"+str(price)+"\t3/5/10/20/30/60\t"+cycle_p_change_msg+"\tMA\t"+ma_msg+"\t"+get_color(str(p_change_grow_list[day]))+"\tW:\t"+get_color(str(persent_dict[day])))
+        #print(date+"\t"+str(price)+"\t3/5/10/20/30/60\t"+cycle_p_change_msg+"\t"+ma_msg+"\t"+get_color(str(p_change_grow_list[day]))+"\tW:\t"+get_color(str(persent_dict[day])))
+        
+        front_msg = date +'\t'+ str(price)
+        mid_msg = "3/5/10/20/30/60\t"+cycle_p_change_msg+"\t"+ma_msg
+        end_msg = get_color(str(p_change_grow_list[day]))+"\tW:\t"+get_color(str(persent_dict[day]))
+
+        W_int= float(persent_dict[day])
+        p_change = float(df_hist_data[['p_change']].values[day][0])
+        #print(p_change)
+        p_change_60 = float(cycle_p_change[60][day])
+        if W_int <= -90 and p_change_60 <= -20:
+            print(Fore.CYAN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
+        elif p_change >0:
+            print(Fore.RED+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
+        elif p_change < 0:
+            print(Fore.GREEN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
+        else:
+            print(front_msg+'\t'+mid_msg+'\t'+end_msg)
