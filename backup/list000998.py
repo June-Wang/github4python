@@ -10,8 +10,6 @@ import tushare as ts
 import colorama
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
-import urllib.request
-import re
 
 def get_color(text):
 	my_number = float(text)
@@ -77,24 +75,24 @@ def get_data_grow_list(df,day_list,day_count):
 		else:
 			break
 	#data_grow_str = [str(data_grow_list[i]) for i in range(5,20,5)]
-	#print(data_grow_list)
+	#print(data_grow_str)
 	return(data_grow_list)
 
 def color(color,mid_msg,end_msg):
 	if color == 'yellow':
-		return(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(Fore.YELLOW+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'cyan':
-		return(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(Fore.CYAN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'magenta':
-		return(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(Fore.MAGENTA+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'red':
-		return(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(Fore.RED+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'green':
-		return(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(Fore.GREEN+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'white':
-		return(Fore.WHITE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(Fore.WHITE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 	elif color == 'blue':
-		return(Fore.BLUE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
+		print(Fore.BLUE+mid_msg+Style.RESET_ALL+'\t'+end_msg)
 
 def get_day_persent(data_list_dict):
 	up2days = 0
@@ -110,22 +108,13 @@ def get_day_persent(data_list_dict):
 	#print(str(up2days),str(count))
 	return(day_persents)
 
-def getContent(url):  
-	#此函数用于抓取返回403禁止访问的网页 
-	#random_header = random.choice(headers)  
-	opener=urllib.request.build_opener()
-	cookie='v=AkDLYWX1DnGnYPJ1uM1znWOgEcUWySSTxq14l7rRDNvuNe7zYtn0Ixa9SCUI'
-	opener.addheaders = [('Cookie', cookie)]
-	content = opener.open(url).read()
-	return content
-
 def get_share(stock_code):
 
 	url = 'http://data.10jqka.com.cn/financial/sgpx/op/code/code/'+stock_code+'/ajax/1/'
+	resp = requests.get(url)
 
 	try:
-		resp = getContent(url)
-		table = pd.read_html(resp)[0]
+		table = pd.read_html(resp.text)[0]
 	except:
 		print('获取配股分红信息失败！')
 		year_list = list()
@@ -167,6 +156,7 @@ def do_it(code,start_day,end_day,day_list):
 	now_price = 0.0
 
 	price_list = list()
+
 	act_list = list()
 	act_buy_list = list()
 	act_sell_list = list()
@@ -174,8 +164,7 @@ def do_it(code,start_day,end_day,day_list):
 	days_list_persent = [3,5,10]
 	#for_end = yestoday - datetime.timedelta(days=360)
 	sum_day = len(df)
-	#alldays = 360
-	alldays = 60
+	alldays = 360
 
 	if sum_day < alldays:
 		alldays = sum_day
@@ -234,36 +223,45 @@ def do_it(code,start_day,end_day,day_list):
 		end_output_args = [persent_msg,p_change_msg,dp_msg,w_weight_msg,share_msg]
 		end_msg = '\t'.join(end_output_args)
 
-		if w_weight <= -90 and persent <= -90 and sh_persent <= 0:
-			print(color('cyan',mid_msg,end_msg))
+		if w_weight <= -90:
+			color('cyan',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif w_weight <= -90 and persent <= -80 and sh_persent <= 0:
-			print(color('magenta',mid_msg,end_msg))
+		elif w_weight <= -85:
+			color('magenta',mid_msg,end_msg)
 			act_buy_list.append(price_dict[code]['close'])
-		elif w_weight == 100 and persent >= 90 and sh_persent > 80:
-			print(color('yellow',mid_msg,end_msg))
+		elif w_weight == 100:
+			color('yellow',mid_msg,end_msg)
 			act_sell_list.append(price_dict[code]['close'])
 		elif price_dict[code]['p_change'] > 0:
-			print(color('red',mid_msg,end_msg))
+			color('red',mid_msg,end_msg)
 		elif price_dict[code]['p_change'] < 0:
-			print(color('green',mid_msg,end_msg))
+			color('green',mid_msg,end_msg)
 		elif price_dict[code]['p_change'] == 0:
-			print(color('white',mid_msg,end_msg))
+			color('white',mid_msg,end_msg)
 
 		price_list.append(price_dict[code]['close'])
 		day_count +=1
+
+	#price_avg = sum(price_list)/len(price_list)
+	price_min = min(price_list)
+	price_max = max(price_list)
+
 	try:
-		act_min = sum(act_buy_list)/len(act_buy_list)
+		act_max = (min(act_sell_list) + max(act_sell_list))/2
+		act_min = (min(act_buy_list) + max(act_buy_list))/2
 		price_avg = sum(act_buy_list)/len(act_buy_list)
+		price_income = int((act_max - act_min)/act_min * 100)
 	except:
+		act_max = 0
 		act_min = 0
+		price_income = 0
 		price_avg = 0
 
-	income_avg = price_avg + price_avg*0.25
-	price_msg = 'now:\t'+("%.2f" % now_price)
-	act_msg = 'buy/sell(25%):\t'+("%.2f" % act_min)+'\t'+("%.2f" % income_avg)
+	price_msg = 'min/max/avg/now:\t'+("%.2f" % price_min)+'\t'+("%.2f" % price_max)+'\t'+("%.2f" % price_avg)+'\t'+("%.2f" % now_price)
+	act_msg = 'buy/sell:\t'+("%.2f" % act_min)+'\t'+("%.2f" % act_max)
+	income_msg = 'income:\t'+get_color(str(price_income))+' %'
 
-	output_args = [code,price_msg,act_msg]
+	output_args = [code,price_msg,act_msg,income_msg]
 	msg = '\t'.join(output_args)
 
 	print(msg)
@@ -272,9 +270,9 @@ if __name__ == "__main__":
 
 	colorama.init()
 	stock_code = sys.argv[1]
-	num4days = 160
+	num4days = 460
 
-	day_list = [i for i in range(5,30)]
+	day_list = [i for i in range(5,90,5)]
 	#day_list.append(3)
 
 	now = datetime.date.today()

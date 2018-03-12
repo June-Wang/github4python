@@ -154,7 +154,8 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	w_weight_msg = 'W:\t'+str(int(w_weight))
 
 	#print(w_weight_msg)
-	if w_weight < -5:
+	#if w_weight <= -90:
+	if (w_weight <= -80 and persent <= -50 and sh_persent < 50) or (w_weight <= -90 and persent <= -80 and sh_persent < 50):
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
@@ -165,7 +166,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 def job2weight(stock_code,end_day,stock_basics):
 	num4days = 60
-	day_list = [i for i in range(5,60)]
+	day_list = [i for i in range(5,130,5)]
 	start_day = now - datetime.timedelta(days=num4days+max(day_list)+61)
 	do_it(stock_code,start_day,end_day,day_list,stock_basics)
 
@@ -188,12 +189,24 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	#stock_list = list()
-	#stock_list == ['600519']
+	file = sys.argv[1]
+	if not os.path.isfile(file):
+			print(file,'not found!')
+			sys.exit(1)
 
-	#pool = multiprocessing.Pool(processes=4)
-	#for stock_code in sorted(stock_list):
-		#pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
-	job2weight('600519',end_day,stock_basics)
-	#pool.close()
-	#pool.join()
+	with open(file,"r") as fh:
+			rows = fh.readlines()
+
+	stock_list = list()
+	for code in rows:
+			m = re.match("^\d{6}$",code)
+			if not m:
+					continue
+			stock_code = code.replace("\n", "")
+			stock_list.append(stock_code)
+
+	pool = multiprocessing.Pool(processes=4)
+	for stock_code in sorted(stock_list):
+		pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
+	pool.close()
+	pool.join()

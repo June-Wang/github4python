@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<!-- saved from url=(0019)http://gu.qq.com/i/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./WEB自选股_files/index.php"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>WEB自选股</title>
+  <script>
+    window.Qtimes = (new Date).getTime();
+  </script>
+  <style type="text/css">
+  	.zxg-wrapper-header {
+	  max-width: 1160px;
+	  margin: 0 auto;
+	  position: relative;
+	  min-width: 1000px;
+	  padding: 0 10px;
+	  _width: 1000px;
+	  font: 12px/1.5 Arial,Helvetica,sans-serif;
+	}
+	.header-v1 .logonav {
+	  height: 33px;
+	  line-height: 33px;
+	  margin: 5px 0;
+	  overflow: hidden;
+	}
+	.header-v1 .logonav .col-1-1 {
+	  float: left;
+	  width: 300px;
+	}
+	.header-v1 .logonav .col-1-1 .logo {
+	  background: url(http://mat1.gtimg.com/finance/tammy/stock2014/zq.png) no-repeat 0 0;
+	  display: block;
+	  width: 134px;
+	  height: 33px;
+	  float: left;
+	}
+	.header-v1 .logonav .col-1-1 .adgj-logo {
+	  background: url(http://mat1.gtimg.com/finance/images/stock/p/quotpage/guojin_logo.png) no-repeat;
+	  display: block;
+	  width: 142px;
+	  height: 30px;
+	  float: left;
+	}
+	.header-v1 .logonav .col-1-2 {
+	  float: left;
+	}
+	.header-v1 .logonav .col-1-2 a.cur {
+	  background: url(http://mat1.gtimg.com/finance/png/st/p/hqhk_gg/logonav_v1.1/sprite_v20111121105116.png) no-repeat 0 8px;
+	  color: #fff;
+	}
+	.header-v1 .logonav .col-1-2 a {
+	  margin: 0 5px;
+	  text-align: center;
+	  width: 37px;
+	  height: 27px;
+	  display: inline-block;
+	}
+	.header-v1 .logonav .col-1-3 {
+	  float: right;
+	  margin-right: 10px;
+	  display: inline;
+	}
+	.header-v1 .logonav .col-1-3 a {
+	  color: #838383;
+	  text-decoration: none;
+	}
+	.header-v1 .logonav .col-1-3 a:hover {
+	  color: #C00;
+	  text-decoration: underline;
+	}
+	.header-v1 .logonav .col-1-3 span {
+	  color: #D7D7D7;
+	  margin: 0 5px;
+	}
+	.header-v1 .nav {
+	  clear: both;
+	  position: relative;
+	  z-index: 100;
+	}
+	.header-v1 .nav .nav-1 {
+	  height: 32px;
+	  line-height: 32px;
+	  background: url(http://mat1.gtimg.com/finance/png/st/p/hqhk_gg/mainnav_v1.1/sprite_v20111121113517.png) repeat-x 0 -214px;
+	}
+	.header-v1 .nav .nav-1 a {
+	  color: #fff;
+	  float: left;
+	  padding: 0 17px;
+	  text-decoration: none;
+	}
+	.header-v1 .nav .nav-1 a:hover {
+	  text-decoration: underline;
+	}
+	.header-v1 .nav .nav-1 span {
+	  border-left: 1px solid #0E679F;
+	  border-right: 1px solid #003E6F;
+	  float: left;
+	  height: 13px;
+	  line-height: 13px;
+	  width: 0;
+	  margin-top: 10px;
+	  display: inline-block;
+	}
+	.header-v1 .nav .nav-1 span.st2 {
+	  height: 32px;
+	  line-height: 32px;
+	  margin: 0 4px;
+	}
+  * html,* html body {_background-image:url(about:blank);_background-attachment:fixed;}</style>
+<style type="text/css">ul,li,input{padding:0;margin:0}li{list-style:none}.portfolio-ad{position:absolute;right:10px;height:31px;overflow-y:hidden}.portfolio-ad .ad-app{width:128px;height:21px;display:block;background:url(http://mat1.gtimg.com/finance/images/stock/p/quotpage/flash_ad_app.png) no-repeat}.usVolume{position:absolute;right:65px;bottom:45px;color:#888;font-size:12px}.graphic-menu-active{background:#fff;color:#333!important}.graphic-menu-inactive{background:0 0;color:#1b6393}.graphic-nav-ul{font-size:0;border:1px solid #d9e6ef;height:30px;width:523px;text-align:left;background:#e8f5ff;background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background:-moz-linear-gradient(top,#e8f5ff 0,#d7ecfc 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#e8f5ff),color-stop(100%,#d7ecfc));background:-webkit-linear-gradient(top,#e8f5ff 0,#d7ecfc 100%);background:-o-linear-gradient(top,#e8f5ff 0,#d7ecfc 100%);background:-ms-linear-gradient(top,#e8f5ff 0,#d7ecfc 100%);background:linear-gradient(to bottom,#e8f5ff 0,#d7ecfc 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8f5ff', endColorstr='#d7ecfc', GradientType=0)}.graphic-nav-ul .fqList{z-index:50;position:relative;width:60px;background:#fff;display:none}.graphic-nav-ul .fqList li{width:60px;display:block;border:1px solid #d9e6ef;border-top:none}.graphic-nav-ul li{display:inline-block;*display:inline;*zoom:1;width:40px;height:22px;text-align:center;font-size:12px;color:#1b6393;padding-top:9px;border-right:1px solid #d9e6ef;cursor:pointer}.graphic-nav-ul .popup-close{width:28px;height:25px;float:right;background-position:0 -89px;position:absolute;top:-32px;right:10px;border:none}.graphic-nav-ul .zoom{float:right;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAMAAADH72RtAAAAyVBMVEUBS3w4Xnz///8BS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3wBS3w4Xnz33rjiAAAAQnRSTlMAAAABAgMEBgcJCg4SFRggIiYsLjY8PUhJTE5RVlxeYGNucHFzdXd4fYCCjY6PkJGSk5SVlpeanKipvs/V2d/k7vbcRIt1AAAAmElEQVQY01XORxKCUBRE0fufqCDmhDlnVMw5sv9FOfiIZQ9PV3U1gLNbeq5bBgCB+LoTA4zWNBrIpqBLchMtlSYi4isR6kVAOERCYQwIW37SBYQd+DrQ/4pSyldKwQgQ3GQo9gAQsotwZ5bSf5rD4E/vFgi1c9XCco7txz2jhUTD28/rJunrM68ljH15lf4F8/Su/QvGyvsA1ZINvx4Uh/YAAAAASUVORK5CYII=) center center no-repeat}.fqType .currentFq{color:#ddd}.popup{background:url(http://mat1.gtimg.com/finance/images/stock/p/quotpage/bg20130321.png) no-repeat}.compare{width:100%;position:absolute;bottom:0;padding-bottom:15px;font-size:12px}.compare .compare-left{float:left;clear:both}.compare .compare-left label{font-weight:700;float:left;margin-left:10px;padding-top:5px}.compare .compare-left input{height:22px;width:110px;border:1px solid #A9C1D9;float:left;margin-left:10px;line-height:22px}.compare .compare-left input[type='button']{float:left;height:24px;width:43px;margin-left:0;border:1px solid #A9C1D9;border-left:none;background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background:-moz-linear-gradient(top,#f7f4fb 0,#e3ebf2 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#f7f4fb),color-stop(100%,#e3ebf2));background:-webkit-linear-gradient(top,#f7f4fb 0,#e3ebf2 100%);background:-o-linear-gradient(top,#f7f4fb 0,#e3ebf2 100%);background:-ms-linear-gradient(top,#f7f4fb 0,#e3ebf2 100%);background:linear-gradient(to bottom,#f7f4fb 0,#e3ebf2 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f4fb', endColorstr='#e3ebf2', GradientType=0)}.overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:50;background:#000;opacity:.7;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";filter:alpha(opacity=70);display:none}.alpine-graphic-larger{position:fixed;display:block;opacity:1;left:50%;margin-left:-400px;top:50%;margin-top:-300px;z-index:99;background:#fff;font-size:12px}.alpine-graphic-larger .portfolio-ad{display:none}.alpine-graphic-larger .larger-title{width:100%;height:39px;background:#c2dcee}.alpine-graphic-larger .larger-title .larger-name{color:#0062a5;font-size:14px;float:left;margin-left:20px;height:39px;line-height:39px;text-shadow:0 0 1px rgba(255,255,255,.5)}.alpine-graphic-larger .larger-title .larger-code{color:#5396c3;font-size:14px;float:left;margin-left:7px;height:39px;line-height:39px;text-shadow:0 0 1px rgba(255,255,255,.5)}.alpine-graphic-larger .larger-title .larger-status{font:12px SimSun;color:#1c628d;float:left;width:62px;padding-left:28px;height:23px;line-height:23px;margin-left:27px;margin-top:8px}.alpine-graphic-larger .sideBar{position:absolute;overflow-x:hidden;top:82px;right:-57px;width:57px;background:#ccc9c7;border-radius:0 4px 4px 0;padding:10px 0}.alpine-graphic-larger .sideBar .invalid{cursor:default!important;color:#a8a5a3!important;border:none!important;background:none!important}.alpine-graphic-larger .sideBar li{width:100%;font-size:13px;font-family:"Microsoft YaHei",MicrosoftJhengHei,STHeiti,MingLiu;height:25px;text-align:center;cursor:pointer;padding-top:10px}.alpine-graphic-larger .sideBar .cur{background:#6f6259;cursor:default;color:#fff;border-top:1px solid #444;border-bottom:1px solid #444}.alpine-graphic-larger .user-graphic-panel{width:60px;position:absolute;right:0;z-index:100;border:1px solid #bab5b5;background:#ededed;background:rgba(237,237,237,.8);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";filter:alpha(opacity=90);border-radius:4px 4px;box-shadow:2px 0 2px rgba(50,50,50,.4);padding-bottom:5px;display:none}.alpine-graphic-larger .user-graphic-panel li{width:35px;height:35px;margin-left:13px}.alpine-graphic-larger .user-graphic-panel li .popup{display:inline-block;width:33px;height:33px;margin:1px;cursor:pointer}.alpine-graphic-larger .user-graphic-panel li .line{background-position:0 -118px}.alpine-graphic-larger .user-graphic-panel li .line.cur-type{background-position:-33px -118px}.alpine-graphic-larger .user-graphic-panel li .horizon{background-position:0 -151px}.alpine-graphic-larger .user-graphic-panel li .horizon.cur-type{background-position:-33px -151px}.alpine-graphic-larger .user-graphic-panel li .regression{background-position:0 -184px}.alpine-graphic-larger .user-graphic-panel li .regression.cur-type{background-position:-33px -184px}.alpine-graphic-larger .user-graphic-panel li .rect{background-position:0 -217px}.alpine-graphic-larger .user-graphic-panel li .rect.cur-type{background-position:-33px -217px}.alpine-graphic-larger .user-graphic-panel li .cycle{background-position:0 -250px}.alpine-graphic-larger .user-graphic-panel li .cycle.cur-type{background-position:-33px -250px}.alpine-graphic-larger .user-graphic-panel li .division{background-position:0 -283px}.alpine-graphic-larger .user-graphic-panel li .division.cur-type{background-position:-33px -283px}.alpine-graphic-larger .user-graphic-panel li .percentage{background-position:0 -316px}.alpine-graphic-larger .user-graphic-panel li .percentage.cur-type{background-position:-33px -316px}.alpine-graphic-larger .user-graphic-panel li .band{background-position:0 -349px}.alpine-graphic-larger .user-graphic-panel li .band.cur-type{background-position:-33px -349px}.alpine-graphic-larger .user-graphic-panel li .fibonacci{background-position:0 -382px}.alpine-graphic-larger .user-graphic-panel li .fibonacci.cur-type{background-position:-33px -382px}.alpine-graphic-larger .user-graphic-panel li .up{background-position:0 -415px}.alpine-graphic-larger .user-graphic-panel li .up.cur-type{background-position:-33px -415px}.alpine-graphic-larger .user-graphic-panel li .down{background-position:0 -448px}.alpine-graphic-larger .user-graphic-panel li .down.cur-type{background-position:-33px -448px}.alpine-graphic-larger .user-graphic-panel li .text{background-position:0 -481px}.alpine-graphic-larger .user-graphic-panel li .text.cur-type{background-position:-33px -481px}.alpine-graphic-larger .user-graphic-panel li .pointer{background-position:0 -514px}.alpine-graphic-larger .user-graphic-panel li .pointer.cur-type{background-position:-33px -514px}.alpine-graphic-larger .user-graphic-panel li .remove{background-position:0 -547px}.alpine-graphic-larger .user-graphic-panel li .remove.cur-type{background-position:-33px -547px}.alpine-graphic-larger .user-graphic-panel li .clear{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAACXBIWXMAAAsTAAALEwEAmpwYAAA57GlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMjEgNzkuMTU1NzcyLCAyMDE0LzAxLzEzLTE5OjQ0OjAwICAgICAgICAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgICAgICAgICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgICAgICAgICB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgICAgICAgICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cyk8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgICAgPHhtcDpDcmVhdGVEYXRlPjIwMTUtMTEtMTdUMTY6NTk6MDcrMDg6MDA8L3htcDpDcmVhdGVEYXRlPgogICAgICAgICA8eG1wOk1vZGlmeURhdGU+MjAxNS0xMS0xN1QxNzowODoyMCswODowMDwveG1wOk1vZGlmeURhdGU+CiAgICAgICAgIDx4bXA6TWV0YWRhdGFEYXRlPjIwMTUtMTEtMTdUMTc6MDg6MjArMDg6MDA8L3htcDpNZXRhZGF0YURhdGU+CiAgICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2UvcG5nPC9kYzpmb3JtYXQ+CiAgICAgICAgIDxwaG90b3Nob3A6Q29sb3JNb2RlPjM8L3Bob3Rvc2hvcDpDb2xvck1vZGU+CiAgICAgICAgIDx4bXBNTTpJbnN0YW5jZUlEPnhtcC5paWQ6N2Y3OTc4NjYtMDMyYi03MzQ0LThlMmEtYzE2YzYxMWNmMjcwPC94bXBNTTpJbnN0YW5jZUlEPgogICAgICAgICA8eG1wTU06RG9jdW1lbnRJRD5hZG9iZTpkb2NpZDpwaG90b3Nob3A6YjVlMzJhNjgtOGQwYS0xMWU1LWI2ZGItOTMzZDY1NTgxNzI1PC94bXBNTTpEb2N1bWVudElEPgogICAgICAgICA8eG1wTU06T3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6NjdjOWZhYjMtNmIzNi0zMTQ5LTk2ODUtODIzZDI1OGIxOWEyPC94bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ+CiAgICAgICAgIDx4bXBNTTpIaXN0b3J5PgogICAgICAgICAgICA8cmRmOlNlcT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+Y3JlYXRlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6aW5zdGFuY2VJRD54bXAuaWlkOjY3YzlmYWIzLTZiMzYtMzE0OS05Njg1LTgyM2QyNThiMTlhMjwvc3RFdnQ6aW5zdGFuY2VJRD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OndoZW4+MjAxNS0xMS0xN1QxNjo1OTowNyswODowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnNvZnR3YXJlQWdlbnQ+QWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpPC9zdEV2dDpzb2Z0d2FyZUFnZW50PgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+c2F2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ+eG1wLmlpZDo3Zjc5Nzg2Ni0wMzJiLTczNDQtOGUyYS1jMTZjNjExY2YyNzA8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMTUtMTEtMTdUMTc6MDg6MjArMDg6MDA8L3N0RXZ0OndoZW4+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpzb2Z0d2FyZUFnZW50PkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE0IChXaW5kb3dzKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmNoYW5nZWQ+Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk+CiAgICAgICAgICAgIDwvcmRmOlNlcT4KICAgICAgICAgPC94bXBNTTpIaXN0b3J5PgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj43MjAwMDAvMTAwMDA8L3RpZmY6WFJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOllSZXNvbHV0aW9uPjcyMDAwMC8xMDAwMDwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6UmVzb2x1dGlvblVuaXQ+MjwvdGlmZjpSZXNvbHV0aW9uVW5pdD4KICAgICAgICAgPGV4aWY6Q29sb3JTcGFjZT42NTUzNTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+MzM8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+MzM8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPD94cGFja2V0IGVuZD0idyI/Pn9SNXsAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAETVJREFUeAEAJRHa7gD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAA////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAA////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAA////AP///wD///8Ae3t7NJWVla2VlZXHlJSUu5SUlLuUlJS7lJSUu5SUlLuUlJS7lJSUu5SUlLuUlJS7lJSUu5SUlLuUlJS7lJSUu5SUlLuUlJS7lJSUu5SUlLuUlJS7lJSUu5SUlLuUlJS7lJSUxJWVlbuKiopI////AP///wD///8AAP///wD///8A////AIODg5aVlZX/lZWV/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/jo6Om////wD///8A////AAD///8A////AP///wCgoKCelJSU/5OTk/+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5SUlP+UlJT/lJSU/5qamp7///8A////AP///wAA////AP///wD///8AlJSUkqCgoP+UlJT/lJSU/5aWlv+Tk5P/mJiY/5qamv+Xl5f/mpqa/5GRkf+YmJj/mJiY/5aWlv+UlJT/lJSU/5OTk/+Wlpb/l5eX/5ubm/+Wlpb/kpKS/5aWlv+VlZX/k5OT/5ubm/+YmJiY////AP///wD///8AAP///wD///8A////ACsrKxJlZWV+np6e/5SUlP+WlpaYnp6e1IWFheV/f39mnJyc/46OjraZmZl+kpKSnZSUlP+Li4vJnZ2d+pqamqWTk5N5k5OTwZWVlf98fHxbjIyM156envCWlpaMkZGR/p2dnf9/f3+YPz8/H////wD///8A////AAD///8A////AP///wArKysAZWVlAJmZma+cnJz/YmJiMZ6engCOjo6JhoaGqFFRUYCOjo4AmZmZAJKSkgBMTExRn5+f/35+fmOampoAk5OTAJOTkwBmZmaLeHh4h5OTk6iampoWg4ODAI+Pj/+dnZ3pf39/AD8/PwD///8A////AP///wAA////AP///wD///8AKysrAIODgwCDg4OEnZ2d/35+fmasrKwAqampmKWlpf9CQkJTREREAIKCggB7e3sAbW1tlJiYmO5tbW2cl5eXAIeHhwA/Pz8AOzs7RLCwsP92dnaXXV1dAIODg0ienp7/hoaGpIaGhgA/Pz8A////AP///wD///8AAP///wD///8A////AIyMjACMjIwAjIyMWJaWlv+VlZWBrKysmVdXV7ClpaUAtLS030RERGOCgoIAe3t7z7y8vKCYmJgAV1dXh5eXl9OHh4cAPz8/UZqamvWVlZUOdnZ2q11dXYGEhIRRnJyc/46OjoGOjo4Ajo6OAP///wD///8A////AAD///8A////AP///wCRkZEAkZGRAJGRkSuWlpb/mZmZ/2VlZaVXV1cAqKioAKioqASNjY2+goKC+5WVlXy8vLwAmJiYAFdXVwBaWlprh4eH7ZKSks2jo6MflZWVAHZ2dgCAgIClkZGR/5aWlv+RkZFbkZGRAJGRkQD///8A////AP///wAA////AP///wD///8AeHh4AHh4eAB4eHgNmJiY/5OTk/8dHR0KHR0dAHFxcQBxcXEAhYWFtLGxsf9SUlJLQEBAAGJiYgBCQkIAMTExOqioqP+cnJy/hISEAJ2dnQCmpqYAgICAEJaWlv+VlZX/fHx8Jnx8fAB8fHwA////AP///wD///8AAP///wD///8A////AHh4eAB4eHgAeHh4AImJicqjo6P/enp6zm1tbQBxcXEAcXFx0qOjo4axsbEAmpqa50BAQHNiYmIAQkJCVZ+fn/+MjIwGZGRkcYSEhNadnZ0ApqamAaioqN+Xl5f/kJCQ9XBwcAhwcHAAcHBwAP///wD///8A////AAD///8A////AP///wCUlJQAlJSUAJSUlACUlJSnmJiY/46OjsFtbW2VcXFxp66urpOjo6MArq6uAK6urhGhoaG7YmJilZWVldS7u7syjIyMAGRkZABMTEx+nZ2du4SEhKxra2uQmZmZ/5WVldZwcHAAcHBwAHBwcAD///8A////AP///wAA////AP///wD///8Ai4uLAIuLiwCLi4sAi4uLhKCgoP9UVFRLiYmJyqysrP9OTk4LIiIiAE9PTwAnJycAZmZmVLi4uP9zc3N5KSkpAGVlZQC6uroAbm5uDqKiov+IiIjQXFxcHpaWlv+QkJCpkJCQAJCQkACQkJAA////AP///wD///8AAP///wD///8A////AHZ2dgB2dnYAdnZ2AHZ2dkuampr/k5OT/52dnUqFhYVRY2Nj5SIiIgFPT08AJycnUYqKivejo6Mnk5OTzikpKXJlZWUAurq6Faenp/5mZmZHZ2dnRpKSkv+enp7/fn5+gH5+fgB+fn4Afn5+AP///wD///8A////AAD///8A////AP///wCRkZEAkZGRAJGRkQCRkZEomZmZ/4yMjMWdnZ0AhYWFAHZ2dn15eXm0T09PR6Kiou24uLgzo6OjAJqamhiXl5fPZWVlYZGRkb85OTltZmZmAGdnZwB1dXWgoKCg/5CQkEmQkJAAkJCQAJCQkAD///8A////AP///wAA////AP///wD///8Ac3NzAHNzcwBzc3MAc3NzDZqamv+JiYnjhoaGAF1dXQAlJSUAdXV1pbKysv9zc3M/BAQEAHNzcwCysrIAiYmJNri4uP9jY2OfQEBAAFNTUwB/f38Af39/qKCgoP93d3cod3d3AHd3dwB3d3cA////AP///wD///8AAP///wD///8A////AHNzcwBzc3MAc3NzAHNzcwCRkZHWlZWV/4aGhhJdXV0AJSUlVpGRkcOmpqZwcHBwzQQEBBBzc3MAsrKyG5CQkOR+fn5YoKCgtUBAQHVTU1MAjY2NAI+Pj/KWlpb/g4ODB4ODgwCDg4MAg4ODAP///wD///8A////AAD///8A////AP///wCIiIgAiIiIAIiIiACIiIgAiIiIppubm/+dnZ1dXV1dKYuLi/ipqakspqamAIuLi4RgYGDNc3NzFKenp+E2NjZ3fn5+ALGxsRqamprvU1NTPI2NjTienp7/ioqKyIODgwCDg4MAg4ODAIODgwD///8A////AP///wAA////AP///wD///8AeXl5AHl5eQB5eXkAeXl5AHl5eX2bm5v/lpaW/6urq/+VlZUkqampAKWlpQClpaUAg4ODbby8vP9FRUVgGhoaABoaGgCxsbEAm5ubBampqeyYmJj/nJyc/4GBgaGBgYEAgYGBAIGBgQCBgYEA////AP///wD///8AAP///wD///8A////AImJiQCJiYkAiYmJAImJiQCJiYlGmZmZ/4uLi8WBgYGkhISElIyMjAClpaUApaWlGpqamr1zc3OrcnJyshoaGg4aGhoAtra2AKSkpHd6enqvhYWFt5ubm/+Ojo54jo6OAI6OjgCOjo4Ajo6OAP///wD///8A////AAD///8A////AP///wB9fX0AfX19AH19fQB9fX0AfX19JZubm/+Pj4+tQUFBAFdXV9uMjIyGpqamAJqamvY2NjZ8c3NzAHNzc4ZxcXHoo6OjALa2tnBsbGzqenp6AIGBgXyenp7/eHh4QHh4eAB4eHgAeHh4AHh4eAD///8A////AP///wAA////AP///wD///8AbW1tAG1tbQBtbW0AbW1tAG1tbQSZmZn9np6e/0FBQQxXV1cAgoKCpqampv9LS0tQpKSkAKKiogCXl5cAd3d3WaOjo/9tbW2ibGxsAISEhACZmZnhnp6e/4SEhB2EhIQAhISEAISEhACEhIQA////AP///wD///8AAP///wD///8A////AG1tbQBtbW0AbW1tAG1tbQBtbW0AcnJylbS0tP9vb2+0mpqaAJSUlLSSkpL/iIiIWaSkpAuioqIkl5eXC3t7ez+mpqb/ampqoZubmwCEhISWpqam/4eHh8OEhIQAhISEAISEhACEhIQAhISEAP///wD///8A////AAD///8A////AP///wAsLCwALCwsACwsLAAsLCwALCwsACwsLAeKiorcq6ur/5qamv+Xl5f/lJSU/5qamv+VlZX/k5OT/5SUlP+YmJj/k5OT/5ycnP+bm5v/oKCg/5qamvlBQUElQUFBAEFBQQBBQUEAQUFBAEFBQQD///8A////AP///wAA////AP///wD///8ALCwsACwsLAAsLCwALCwsACwsLAAsLCwAMDAwD42NjYacnJy1lJSUqpSUlKWUlJSqlJSUs5SUlLKUlJS0lZWVq5SUlKWUlJSplpaWtpmZmZtpaWkgQUFBAEFBQQBBQUEAQUFBAEFBQQBBQUEA////AP///wD///8AAP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAEAAP//fgYRMN5OjgwAAAAASUVORK5CYII=)}.alpine-graphic-larger .user-graphic-panel li.cur,.alpine-graphic-larger .user-graphic-panel .cur{background:#6f6259;cursor:default;color:#fff}.alpine-graphic-larger .user-graphic-panel .panel-top{height:23px;width:100%;margin:0;border-bottom:1px solid #bab5b5;background:-webkit-gradient(linear,0 0,0 100%,from(rgba(255,255,255,.498039)),color-stop(.75,rgba(255,255,255,0)),to(#b8bfc5));filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#B8BFC5', GradientType=0)}.alpine-graphic-larger .user-graphic-panel .panel-top .popup-close{display:inline-block;background-position:-48px -90px;width:9px;height:9px;position:absolute;right:8px;top:8px}.alpine-graphic-larger .user-graphic-panel .panel-top .menu{display:inline-block;background-position:-38px -89px;width:9px;height:9px;position:absolute;left:8px;top:8px;cursor:default}.alpine-graphic-larger .compare{height:80px;background:#dde8f3;clear:both;color:#81a1c4}.alpine-graphic-larger .compare:before{display:block;height:10px;content:' ';border-top:1px solid #fff;margin-top:1px}.alpine-graphic-larger .compare .compare-left label{float:none;display:block;font-weight:400;padding-bottom:5px;margin-left:40px}.alpine-graphic-larger .compare .compare-left input[type=text]{padding:0 0 0 13px;height:32px;width:237px;border:1px solid #a0b5cb;border-right:none;box-shadow:0 0 1px #fff,inset 0 0 1px rgba(0,0,0,.4);background:#f5fbff;color:#b3b6b8;margin-left:40px;line-height:32px}.alpine-graphic-larger .compare .compare-left input[type=button]{width:77px;height:34px;background:#4f90c1;border:none;border-top:1px solid #8db5d8;border-bottom:1px solid #356790;font-family:"Microsoft YaHei",MicrosoftJhengHei,STHeiti,MingLiu;color:#fff;text-shadow:0 0 1px rgba(0,0,0,.3);box-shadow:0 0 2px #1a5481,inset 0 0 1px #70b6eb;margin-left:0;filter:none}.alpine-graphic-larger .compare .compare-panel{overflow:hidden;float:left;padding-top:10px;height:50px;border-left:1px solid #fff;box-shadow:-1px 0 0 #ddd;margin-left:20px;width:400px;font-size:12px;line-height:17px;white-space:nomal}.alpine-graphic-larger .compare .compare-panel .compare-item{padding-left:10px;display:inline-block;*display:inline;zoom:1;white-space:nowrap}.alpine-graphic-larger .compare .compare-panel .compare-item label{display:inline-block;margin:0 0 0 5px;cursor:pointer}.alpine-graphic-larger .compare .compare-panel .compare-item input[type='checkbox']{opacity:0;display:inline;width:0}.alpine-graphic-larger .compare .compare-panel .compare-item input[type='checkbox'] .checked+.checkbox{background:#81a1c4}.alpine-graphic-larger .compare .compare-panel .compare-item input[type='checkbox'] .checked+.checkbox .checkmark{display:block}.alpine-graphic-larger .compare .compare-panel .compare-item .checkbox{display:inline-block;width:10px;height:10px;box-shadow:0 0 1px #fff;border:1px solid #638eb0;background:#fff;cursor:pointer}.alpine-graphic-larger .compare .compare-panel .compare-item .checkmark{font-size:14px;overflow:hidden;display:none;height:11px;color:#fff;font-family:MicroSoft Yahei}.alpine-graphic-larger .compare .compare-panel .checked .checkmark{display:block}.alpine-graphic-larger .compare .compare-panel .checked .checkbox{background:#81a1c4}.cmp-tips{position:absolute;display:none;width:315px;height:190px;top:50%;left:50%;margin:-95px 0 0 -157px;font-size:14px;color:#105787;text-align:center;border:1px solid #DDE8F3;background:#f5fbff;box-shadow:0 2px 5px 0 rgba(3,30,49,.75);z-index:200}.cmp-tips div{margin-top:60px;font-family:"Microsoft YaHei",MicrosoftJhengHei,STHeiti,MingLiu}.cmp-tips input{display:block;position:absolute;left:50%;margin-left:-65px;margin-top:30px;width:130px;height:43px;color:#fff;font:700 18px "Microsoft YaHei",MicrosoftJhengHei,STHeiti,MingLiu;text-shadow:.5px 1px 1px rgba(0,0,0,.33);background:#2989cb;background-image:-webkit-gradient(linear,center top,center bottom,from(#59aae2),to(#2989cb));background-image:-webkit-linear-gradient(top,#59aae2,#2989cb);background-image:-moz-linear-gradient(top,#59aae2,#2989cb);background-image:-o-linear-gradient(top,#59aae2,#2989cb);background-image:-ms-linear-gradient(top,#59aae2,#2989cb);background-image:linear-gradient(to bottom,#59aae2,#2989cb);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#59aae2', endColorstr='#2989cb', GradientType=1);box-shadow:1px 2px 2px #3075a4,inset 1px 2px 1px rgba(255,255,255,.3);border-radius:5px;border:none;cursor:pointer}</style><style>*{-webkit-tap-highlight-color:rgba(0,0,0,0)}html{-webkit-text-size-adjust:100%;-webkit-touch-callout:none;-webkit-user-select:none}a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,p,pre,q,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;outline:0;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}a:link{background:0 0}a:hover{text-decoration:underline}a,ins{text-decoration:none}ol,ul{list-style:none}fieldset,img{border:0}table{border-collapse:collapse;border-spacing:0}th{text-align:inherit}iframe{display:block}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}.d-clear:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}.d-clear{zoom:1}.d-left,.d-right{display:inline}.d-left{float:left}.d-right{float:right}.d-text-overflow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body{background:#fff;font:12px/1.5 Arial,Helvetica,sans-serif}.fall{color:#090!important}.en .fall,.rise{color:#fe0002!important}.en .rise{color:#090!important}.up-arrow span{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/up-arrow.png) no-repeat right 2px;padding-right:5px;position:relative;right:-5px}.down-arrow span{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/down-arrow.png) no-repeat right 2px;padding-right:5px;position:relative;right:-5px}.en .up-arrow span{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/up-arrow-turn.png) no-repeat right 2px;padding-right:5px;position:relative;right:-5px}.en .down-arrow span{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/down-arrow-turn.png) no-repeat right 2px;padding-right:5px;position:relative;right:-5px}.zxg-wrapper{max-width:1160px;margin:0 auto;position:relative;min-width:1000px;padding:0 10px;_width:1000px}#msg{background-color:#F5EF83;color:#625E18;padding:10px 52px;border:1px solid #bfba66;z-index:21;opacity:.8;vertical-align:middle;line-height:30px;font-weight:700;font-size:16px;box-shadow:0 1px 4px rgba(49,49,64,.1);-webkit-box-shadow:0 0 2px #BBB;-moz-box-shadow:0 0 2px #bbb}#msg .ok{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -84px -61px;width:30px;height:24px;position:absolute;top:12px;left:18px}#msg .error{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -118px -62px;width:30px;height:24px;position:absolute;top:12px;left:18px}#dora_notes{display:none;background-color:#fff8c1;border:1px solid #fdd66e;position:absolute;padding:15px 25px;z-index:111}#zxg-tip{display:none;background-color:#fff8c1;border:1px solid #fdd66e;position:absolute;padding:5px 10px;z-index:111}.error_box{display:none;background-color:#fff8c1;border:1px solid #fdd66e;position:absolute;padding:0 10px;line-height:22px;z-index:111}.col{line-height:34px;float:left}.span1{width:70px}.span2{width:77px}.span3{width:88px}.span62p{width:62px}.span62p a{text-align:left;text-indent:22px}.span79p{width:102px;text-align:left;text-indent:2em;white-space:nowrap;position:relative}.quotation .span79p{text-align:left}.span70p{width:70px;padding-right:5px}.span59p{width:59px}.span60p{width:60px}.span64p{width:64px}.span50p{width:50px}.span55p{width:55px}.margin0{margin:0!important}.span164p{width:164px}.span27_{width:3.9%}.span30_{width:4.06%}.span43_{width:6.34%}.span63_{width:9.62%}.span52_,.span54_{width:8.02%}.span62_{width:9.21%}.span64_{width:9.6%}.span67_{width:9.99%}.span80_{width:11.88%}.span86_{width:12.78%}.span128_{width:19.01%}.span565_{width:83.9%}.span_dilutionCost,.span_numbers{width:9.68%}.span_holdMarketValue{width:10.43%}.span_holdPl,.span_todayPL{width:11.63%}.span_holdPlRatio{width:9.85%}.span_allPL{width:11.63%}.span_ratePL{width:9.85%}.spanper1{width:7%}.ui-dialog{background-color:rgba(0,0,0,.5);FILTER:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);outline:0;border:1px solid #9da8bf}.ui-dialog-content{background:#fff}.ui-dialog-close{color:#999;cursor:pointer;display:block;font-family:tahoma;font-size:24px;font-weight:700;height:18px;line-height:14px;position:absolute;right:16px;text-decoration:none;top:16px;z-index:10}.ui-dialog-close:hover{color:#666;text-shadow:0 0 2px #aaa}.ui-dialog-title{height:40px;font-size:16px;line-height:40px;border-bottom:1px solid #E1E1E1;color:#fff;background-color:#598cc7;padding-left:15px}.ui-dialog-title .ui_stock_title{color:#fff}.ui-dialog-title .ui_stock_title em{display:block;width:25px;height:24px;margin-top:8px;float:left}.ui-dialog-title .ui_stock_title .ui_stock_icon0{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -29px -322px;margin-right:10px}.ui-dialog-title .ui_stock_title .ui_stock_icon1{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -95px -321px;margin-right:10px}.ui-dialog-title .ui_stock_title .ui_stock_icon2{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -62px -321px;margin-right:10px}.ui-dialog-title .ui_stock_title .ui_stock_icon3{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -29px -322px;margin-right:10px}.ui-dialog-container{padding:15px 20px 20px;font-size:12px}.ui-dialog-message{min-height:100px}.ui-dialog-message .ui_stock_group{height:150px;position:relative}.ui-dialog-message .ui_stock_group input{position:absolute;top:38px;left:35px;width:400px;height:25px;padding:5px 10px;border:1px solid #9da8bf;background-color:#eff2f6;color:#6a6a6a;text-align:center}.ui-dialog-message .ui_stock_group .hint{position:absolute;top:93px;left:140px;color:#9D9D9D}.ui-dialog-message .ui_stock_group .error{color:red}.ui-dialog-message .ui_stock_group_del{height:100px}.ui-dialog-message .ui_stock_group_del .delinfo{color:#4f4f4f;font-size:17px;height:47px;line-height:47px;text-indent:50px;float:left;margin:27px 0 0;background:url(http://mat1.gtimg.com/finance/images/stock/p/webstock/v0.1/confirm//error.png) no-repeat 0}.ui-dialog-message .ui_stock_group_del i{font-style:normal}.ui-dialog-yingkui{height:200px;position:relative;padding:15px 0 25px}.ui-dialog-yingkui .head{height:30px}.ui-dialog-yingkui .head h3{font-size:16px;float:left;margin:3px 0 0 10px;font-weight:700;color:#3374ca}.ui-dialog-yingkui .head .price{float:left;margin:8px 0 0 10px}.ui-dialog-yingkui .head .price span{margin:0 5px}.ui-dialog-yingkui table{border-collapse:collapse;border-spacing:0;text-align:center;width:100%}.ui-dialog-yingkui table td{vertical-align:middle}.ui-dialog-yingkui .table{margin:18px 0}.ui-dialog-yingkui .content .h{border-top:1px #D7DCEF solid;background-color:#EFF0F6;border-bottom:1px #D7DCEF solid;vertical-align:middle;height:25px;line-height:25px}.ui-dialog-yingkui .content .span0{width:25px}.ui-dialog-yingkui .content .span1{width:50px}.ui-dialog-yingkui .content .span2{width:70px}.ui-dialog-yingkui .content .span3{width:100px}.ui-dialog-yingkui .content .g{border-bottom:1px solid #E5E5E5;height:33px;line-height:33px;color:#929BA5}.ui-dialog-yingkui .content .c{border-bottom:1px solid #E5E5E5;height:33px;line-height:33px}.ui-dialog-yingkui .content .c .type{width:60px;border:1px solid #ccc;height:20px}.ui-dialog-yingkui .content .c .type:focus{outline:0}.ui-dialog-yingkui .content .c .date{height:17px;display:block;width:20px;background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -31px -295px}.ui-dialog-yingkui .content .c .del{display:block;width:30px;height:29px;margin-left:17px;background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -87px -283px}#ui-dialog-list{margin-right:18px}.ui-dialog-yingkui .content .c input{border:1px solid #ccc;width:90px;height:15px;padding:3px 0;color:#494D4E;text-align:center}.ui-dialog-yingkui .content .c input:focus{outline:0}.ui-dialog-operation{zoom:1;height:54px;background-color:#ebf1f7;border-top:1px solid #fff}.ui-dialog-operation a.ui-dialog-add{position:absolute;bottom:10px;left:10px;display:block;width:145px;height:30px;line-height:30px;text-decoration:none;text-align:center;color:#3d80d9;border:1px solid #3d80d9;background-color:#e2eaf2}.ui-dialog-operation a.ui-dialog-add em{width:25px;height:25px;position:absolute;top:3px;left:19px;background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -123px -221px}.ui-dialog-operation a.ui-dialog-add:hover{background-color:#c0daf4}.ui-dialog-operation a.ui-dialog-add:hover em{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -125px -184px}.ui-dialog-cancel,.ui-dialog-confirm{position:absolute;bottom:10px;right:10px}.ui-dialog-operation .ui-dialog-confirm{position:absolute;bottom:10px;right:120px}.ui-dialog-operation a.ui-dialog-button-disabled,.ui-dialog-operation a.ui-dialog-button-orange,.ui-dialog-operation a.ui-dialog-button-white{display:inline-block;*display:inline;*zoom:1;text-align:center;text-decoration:none;vertical-align:middle;cursor:pointer;font-size:12px;font-weight:700;border-radius:2px;padding:0 12px;line-height:33px;height:33px;width:70px;*overflow:visible;border:1px solid #b8cfdf}.ui-dialog-operation a.ui-dialog-button-orange:hover,.ui-dialog-operation a.ui-dialog-button-white:hover{text-decoration:none}.ui-dialog-operation a.ui-dialog-button-orange{color:#4f4f4f;background-color:#fafdff}.ui-dialog-operation a.ui-dialog-button-orange:hover{background-color:#c0daf4}.ui-dialog-operation a.ui-dialog-button-white{color:#676d70}.ui-dialog-operation a.ui-dialog-button-white:hover{background-color:#c0daf4}.ui-dialog-operation a.ui-dialog-button-disabled{color:#676d70}.ui-dialog-operation .error{display:none;color:#FE2121;position:absolute;bottom:18px;left:20px}.msgbox{padding:6px 8px 5px;width:143px;line-height:16px;border:1px solid #fdd66f;background-color:#fff8c1;position:absolute;left:215px;top:18px;display:none}.ui_stock_remind{color:#4f4f4f}.remind_ad{position:absolute;right:1px;top:75px;padding:18px 37px 0 40px;background-color:#fff}.remind_ol{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/b18a62f19c347072.png) no-repeat;width:8px;height:8px;position:absolute;top:88px;right:192px}.remind_ad img{width:115px;height:177px}.ui_stock_remind #ss_notes_text{margin:10px 0 20px 20px;width:413px;height:57px;font-size:12px;resize:none}.ui_stock_remind .f{height:50px;border-bottom:1px solid #d7dbe3}.ui_stock_remind .m{border-top:1px solid #fff;padding:10px 20px}.ui_stock_remind .f h3{line-height:50px;float:left;text-indent:20px;font-weight:700;font-size:18px;color:#3374ca}.ui_stock_remind .f .info{float:left;line-height:55px;height:50px}.ui_stock_remind .f .info .scode{margin-left:5px}.ui_stock_remind .f .info .price{font-weight:700}.ui_stock_remind .m .inputbox{padding-left:5px;padding-top:3px;height:17px;position:relative}.ui_stock_remind .m .cl{color:#9D9D9D}.ui_stock_remind .m .tl{margin-bottom:10px}.ui_stock_remind .m hr{margin:10px 14px;border:none;border-top-width:1px;border-top-style:dotted;border-top-color:#CCC}.ui_stock_remind .m .ml li{height:35px;line-height:35px}.ui_stock_remind .m .msg{position:absolute;top:97px;left:12px}.ui_stock_remind .m .tt1{position:absolute;top:122px;left:12px}.ui_stock_remind .m .tt2{position:absolute;top:248px;left:12px}.ui_stock_remind .m .tt3{position:absolute;top:339px;left:12px}.ui_stock_remind .m .fr{display:block;text-align:right}.ui_stock_remind .m table{display:table}.ui_stock_remind .m .t1{margin:50px 0 0 10px}.ui_stock_remind .m .t2{margin:30px 0 0 10px}.ui_stock_remind .m .t3{margin:20px 0 0 10px}.ui_stock_remind .m tr{display:table-row;vertical-align:inherit;height:30px}.ui_stock_remind .m td{padding:0 3px;vertical-align:middle}#dndProxy{height:30px;line-height:30px;border:1px dashed #8ab7dd;display:none;position:absolute;　filter:Alpha(Opacity=80,Style=0);opacity:.8;background-color:#d7e6f2;z-index:111}.ui-poptip{border:1px solid #fdd66f;padding:3px 10px;background:#fff8c1;text-align:left}.ui-poptip em{color:red;font-style:normal}.ui-dropdownmenu{color:#000;text-decoration:none;display:inline-block;_display:inline;_width:93px;*display:inline!important;*width:93px!important;zoom:1;overflow:hidden;vertical-align:middle;height:26px;border:1px solid #fff;text-indent:0;padding:0;margin:0}.ui-dropdownmenu li{padding:0 5px;cursor:pointer;line-height:26px;background:#fff;text-align:left;margin:0}.ui-dropdownmenu .color{padding-right:15px;display:block;_padding:0;_display:inline;*padding:0!important;*display:inline!important}.ui-dropdownmenu .down{float:right;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon2.png) no-repeat;width:15px;height:11px;margin-top:8px}.ui-dropdownmenu-show{border:1px solid #4d7ab6;overflow:visible;vertical-align:top;height:auto}.ui-dropdownmenu-show li:hover{background:#e2effa}.quotation .quotation-inner .etf,.quotation .quotation-inner .fj,.quotation .quotation-inner .hk,.quotation .quotation-inner .kj,.quotation .quotation-inner .lof,.quotation .quotation-inner .us,.quotation .quotation-inner .zq,.sline .stock_name .etf,.sline .stock_name .fj,.sline .stock_name .hk,.sline .stock_name .kj,.sline .stock_name .lof,.sline .stock_name .us,.sline .stock_name .zq{position:absolute;top:6px;left:82px;width:15px;height:15px}.quotation .quotation-inner .us,.sline .stock_name .us{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -124px -126px}.quotation .quotation-inner .hk,.sline .stock_name .hk{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -154px -126px}.quotation .quotation-inner .etf,.sline .stock_name .etf{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -66px -126px}.quotation .quotation-inner .lof,.sline .stock_name .lof{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -94px -126px}.quotation .quotation-inner .kj,.sline .stock_name .kj{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -36px -126px}.quotation .quotation-inner .fj,.sline .stock_name .fj{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -5px -126px}.quotation .quotation-inner .zq,.sline .stock_name .zq{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -182px -126px}
+/*!
+ * lhgcore Calendar Plugin StyleSheet
+ * Copyright (c) 2009 - 2012 By Li Hui Gang
+ */.lcui_border{font:12px/1.333 tahoma,arial,\5b8b\4f53,sans-serif;background-color:#fff}.cui_nm,.cui_ny,.cui_pm,.cui_py,.lcui_l,.lcui_lb,.lcui_lt,.lcui_r,.lcui_rb,.lcui_rt{width:3px;background-color:#598CC7;color:#598CC7;font-weight:700}.lcui_lt,.lcui_rt{height:10px}.lcui_lt{background-position:-65px 0}.lcui_rt{background-position:-69px 0}.lcui_lb,.lcui_rb{height:3px}.lcui_lb{background-position:-65px -11px}.lcui_rb{background-position:-69px -11px}.lcui_l,.lcui_r{background-repeat:repeat-y}.lcui_l{background-position:-73px 0}.lcui_r{background-position:-77px 0}.lcui_b,.lcui_t{background-color:#598CC7;:repeat-x;font-size:0}.lcui_t{background-position:0 0}.lcui_b{background-position:0 -10px}.lcui_head{padding:5px 8px 3px}.lcui_body thead{text-align:center;color:#598CC7;font:14px "幼圆",Tahoma,Arial,sans-serif;font-weight:700;height:18px}.cui_py{display:block;width:9px;height:16px;background-position:-25px 0}.cui_ny{display:block;width:9px;height:16px;background-position:-35px 0}.cui_iy{width:40px;margin:0;padding:0;border:1px solid #eee;height:14px;font:12px tahoma,arial;cursor:pointer;text-align:center;_vertical-align:middle;margin-right:2px}.cui_pm{display:block;width:9px;height:16px;background-position:-45px 0}.cui_nm{display:block;width:9px;height:16px;background-position:-55px 0}.cui_im{width:20px;margin:0;padding:0;border:1px solid #eee;height:14px;font:12px tahoma,arial;cursor:pointer;text-align:center;_vertical-align:middle;margin-right:2px}.cui_db td{background-color:#f7f7f7;color:#999;font:11px verdana,arial,sans-serif;cursor:default;height:20px;width:24px;text-align:center}.cui_db a{color:#000;text-decoration:none;display:block;height:20px;line-height:20px;width:24px;cursor:default}.cui_db a:hover,.cui_today a{background-color:#AACAF3}.cui_foot{padding:2px 0 1px;_padding:1px 0 0;display:none}.lcui_empty,.lcui_today{width:44px}.cui_dbtn,.cui_tbtn{display:block;border:1px solid #999;color:#000;text-decoration:none;background-color:#f2f2f2;width:38px;height:17px;line-height:17px;line-height:20px\0}.cui_dbtn:hover,.cui_tbtn:hover{border:1px solid #0a246a;background-color:#c2cbe0}.lcui_time input{margin:0;padding:0;border:1px solid #999;width:20px;height:17px;font:11px Verdana,Arial;text-align:center;background-color:#f2f2f2;line-height:17px}.cui_ymlist{position:absolute;border:1px solid #0093d1;background-color:#fff;width:120px}.cui_lbox a{display:block;padding:3px 0;background:#f7f7f7;text-decoration:none;cursor:default;color:#000;text-align:center;font:11px verdana,arial,sans-serif}.cui_lbox a:hover{background:#3991d1;color:#fff}.cui_ybar{background-color:#f7f7f7}.cui_ybar a{display:block;text-decoration:none;text-align:center;color:#000}
+.qtip{position:absolute;left:-28000px;top:-28000px;display:none;max-width:280px;min-width:50px;font-size:10.5px;line-height:12px;direction:ltr;box-shadow:none;padding:0}.qtip-content{position:relative;padding:5px 9px;overflow:hidden;text-align:left;word-wrap:break-word}.qtip-titlebar{position:relative;padding:5px 35px 5px 10px;overflow:hidden;border-width:0 0 1px;font-weight:700}.qtip-titlebar+.qtip-content{border-top-width:0!important}.qtip-close{position:absolute;right:-9px;top:-9px;cursor:pointer;outline:medium none;border-width:1px;border-style:solid;border-color:transparent}.qtip-titlebar .qtip-close{right:4px;top:50%;margin-top:-9px}* html .qtip-titlebar .qtip-close{top:16px}.qtip-icon .ui-icon,.qtip-titlebar .ui-icon{display:block;text-indent:-1000em;direction:ltr}.qtip-icon,.qtip-icon .ui-icon{-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;text-decoration:none}.qtip-icon .ui-icon{width:18px;height:14px;line-height:14px;text-align:center;text-indent:0;font:normal bold 10px/13px Tahoma,sans-serif;color:inherit;background:transparent none no-repeat -100em -100em}.qtip-default{border-width:1px;border-style:solid;border-color:#F1D031;background-color:#FFFFA3;color:#555}.qtip-default .qtip-titlebar{background-color:#FFEF93}.qtip-default .qtip-icon{border-color:#CCC;background:#F1F1F1;color:#777}.qtip-default .qtip-titlebar .qtip-close{border-color:#AAA;color:#111}/*! Light tooltip style */.qtip-light{background-color:#fff;border-color:#E2E2E2;color:#454545}.qtip-light .qtip-titlebar{background-color:#f1f1f1}/*! Dark tooltip style */.qtip-dark{background-color:#505050;border-color:#303030;color:#f3f3f3}.qtip-dark .qtip-titlebar{background-color:#404040}.qtip-dark .qtip-icon{border-color:#444}.qtip-dark .qtip-titlebar .ui-state-hover{border-color:#303030}/*! Cream tooltip style */.qtip-cream{background-color:#FBF7AA;border-color:#F9E98E;color:#A27D35}.qtip-cream .qtip-titlebar{background-color:#F0DE7D}.qtip-cream .qtip-close .qtip-icon{background-position:-82px 0}/*! Red tooltip style */.qtip-red{background-color:#F78B83;border-color:#D95252;color:#912323}.qtip-red .qtip-titlebar{background-color:#F06D65}.qtip-red .qtip-close .qtip-icon{background-position:-102px 0}.qtip-red .qtip-icon,.qtip-red .qtip-titlebar .ui-state-hover{border-color:#D95252}/*! Green tooltip style */.qtip-green{background-color:#CAED9E;border-color:#90D93F;color:#3F6219}.qtip-green .qtip-titlebar{background-color:#B0DE78}.qtip-green .qtip-close .qtip-icon{background-position:-42px 0}/*! Blue tooltip style */.qtip-blue{background-color:#E5F6FE;border-color:#ADD9ED;color:#5E99BD}.qtip-blue .qtip-titlebar{background-color:#D0E9F5}.qtip-blue .qtip-close .qtip-icon{background-position:-2px 0}</style><style>.header-v1 .logonav{height:33px;line-height:33px;margin:5px 0;overflow:hidden}.header-v1 .logonav .col-1-1{float:left;width:300px}.header-v1 .logonav .col-1-1 .logo{background:url(http://mat1.gtimg.com/finance/tammy/stock2014/zq.png) no-repeat 0 0;display:block;width:134px;height:33px;float:left}.header-v1 .logonav .col-1-1 .adgj-logo{background:url(http://mat1.gtimg.com/finance/images/stock/p/quotpage/guojin_logo.png) no-repeat;display:block;width:142px;height:30px;float:left}.header-v1 .logonav .col-1-2{float:left}.header-v1 .logonav .col-1-2 a.cur{background:url(http://mat1.gtimg.com/finance/png/st/p/hqhk_gg/logonav_v1.1/sprite_v20111121105116.png) no-repeat 0 8px;color:#fff}.header-v1 .logonav .col-1-2 a{margin:0 5px;text-align:center;width:37px;height:27px;display:inline-block}.header-v1 .logonav .col-1-3{float:right;margin-right:10px;display:inline}.header-v1 .logonav .col-1-3 a{color:#838383;text-decoration:none}.header-v1 .logonav .col-1-3 a:hover{color:#C00;text-decoration:underline}.header-v1 .logonav .col-1-3 span{color:#D7D7D7;margin:0 5px}.header-v1 .nav{clear:both;position:relative;z-index:100}.header-v1 .nav .nav-1{height:32px;line-height:32px;background:url(http://mat1.gtimg.com/finance/png/st/p/hqhk_gg/mainnav_v1.1/sprite_v20111121113517.png) repeat-x 0 -214px}.header-v1 .nav .nav-1 a{color:#fff;float:left;padding:0 17px;text-decoration:none}.header-v1 .nav .nav-1 a:hover{text-decoration:underline}.header-v1 .nav .nav-1 span{border-left:1px solid #0E679F;border-right:1px solid #003E6F;float:left;height:13px;line-height:13px;width:0;margin-top:10px;display:inline-block}.header-v1 .nav .nav-1 span.st2{height:32px;line-height:32px;margin:0 4px}.header-v1 .nav .nav-2{background:url(http://mat1.gtimg.com/finance/png/st/p/hqhk_gg/mainnav_v1.1/sprite_v20111121113517.png) repeat-x 0 -246px;height:39px;line-height:39px}.header-v1 .nav .nav-2 .top-smartbox{float:left;width:310px;height:25px;line-height:25px;margin-top:6px;padding-left:10px;position:relative}.header-v1 .nav .nav-2 .top-smartbox input:focus{outline:0}.header-v1 .nav .nav-2 .top-smartbox .smartbox-submit{background:url(http://mat1.gtimg.com/finance/images/stock/p/hqhk_gg/mainnav_v1.1/sprite-21.png) no-repeat -66px -29px;margin-left:5px;width:66px;height:26px;font-size:12px;color:#024F7B;cursor:pointer;border:none;text-indent:-999em;float:left}.header-v1 .nav .nav-2 .top-smartbox #trigger{height:25px;float:left;font-size:14px;width:61px;border:none;cursor:pointer;margin:1px 0 0 5px;background:url(http://mat1.gtimg.com/finance/images/stock/p/hqhk_gg/mainnav_v1.1/sprite-21.png) no-repeat 0 -30px}.header-v1 .nav .nav-2 .top-smartbox #trigger .pptext{float:left;height:23px;width:43px;line-height:23px;text-align:center;padding:1px 1px 0 3px}.header-v1 .nav .nav-2 .top-smartbox #trigger .icon{float:right;background:url(http://mat1.gtimg.com/finance/png/st/p/hqhk_gg/mainnav_v1.1/sprite-2_v20111121142445.png) -142px -30px no-repeat rgba(0,0,0,0);height:21px;width:11px;margin-right:3px;margin-top:2px}.header-v1 .nav .nav-2 .top-smartbox .ui-popup{display:none;border:1px solid #D0CECE;text-align:left;padding:1px;background:#fff}.header-v1 .nav .nav-2 .top-smartbox .ui-popup li{padding:2px 14px 0 3px;width:38px;color:#000;background:#fff;text-align:center;cursor:pointer;font-size:14px}.header-v1 .nav .nav-2 .top-smartbox .input{background:url(http://mat1.gtimg.com/finance/images/stock/p/hqhk_gg/mainnav_v1.1/sprite-21.png) no-repeat 0 0;line-height:25px;padding-left:4px;width:167px;height:25px;font-size:14px;border:none;float:left}.header-v1 .nav .nav-2 .cutline{border-left:1px solid #D2EEFA;border-right:1px solid #FEFFFD;float:left;font-size:0;height:39px;line-height:39px;width:0;margin:0 5px}.header-v1 .istock{font-size:12px;color:#005078;margin-left:10px;margin-top:2px;display:inline-block;float:left}.header-v1 .icall{background:url(http://mat1.gtimg.com/finance/images/stock/p/hqhk_gg/mainnav_v1.1/icon.png) no-repeat;width:14px;height:13px;margin:8px 7px;float:left}#h_msgbox{cursor:pointer}</style><style>.dora-ui-smartbox-result{width:311px;border:1px solid #9c9c9c;padding:5px 0;cursor:pointer;font-family:Arial;position:absolute;z-index:999;background-color:#fff}.dora-ui-smartbox-ul li{height:20px;line-height:20px;margin:0 2px}.dora-ui-smartbox-item-hover{background-color:#deefff}.dora-ui-smartbox-ul li>div{margin:0 5px}.dora-ui-smartbox-ul li span{float:left;height:20px}.dora-ui-smartbox-ul li span.items-1{width:49px;margin-right:5px}.dora-ui-smartbox-ul li span.items-2{width:128px;overflow:hidden}.dora-ui-smartbox-ul li span.items-3{width:85px;overflow:hidden}.dora-ui-smartbox-ul li span.items-4{width:30px;text-align:right;color:#a9a9a9}.dora-ui-smartbox-ul li span .lightColor{color:#f45243}</style><style>.h_marketBox{float:left;height:38px;margin-left:0}.h_marketBox a{color:#1145BB}#arr_do,#arr_up{float:left;height:13px;overflow:hidden;cursor:pointer;margin-top:12px;background:url(http://mat1.gtimg.com/finance/images/stock/p/hqhk_gg/mainnav_v1.1/sprite-3.png) no-repeat}#arr_up{background-position:0 -30px;width:13px}#arr_do{background-position:-13px -30px;width:12px}.h_marketBox ul{overflow:hidden;height:38px;margin-left:10px;float:left;cursor:default}.stand{width:5px;display:inline-block}</style><style>#QQFooter{width:960px;margin:0 auto;clear:both;font-size:12px;position:relative}#QQFooter li{text-align:center;line-height:32px;list-style:none outside none}#QQFooter #yijian{float:right;margin-right:20px}#QQFooter #yijian a{color:#1044BA;text-decoration:underline}#QQFooter #yijian a:hover{color:#C00}#QQFooter a{color:#333;text-decoration:none}#QQFooter a:hover{color:#C00;text-decoration:underline}</style><style>.zxg-userinfo{height:30px;line-height:30px;padding:10px;position:relative;z-index:99}.zxg-userinfo .user_name{margin-right:10px;cursor:default}.zxg-userinfo .user_msgbox{margin-right:20px;cursor:pointer}.zxg-userinfo .user_msgbox em{margin:0 5px;color:#c00;font-style:normal}.zxg-userinfo .user_button{margin:0 5px;color:#1044BA}.zxg-userinfo .user_lint{margin:0 3px}.zxg-userinfo .adgj_cps{float:right;color:#1044BA}.zxg-userinfo .adgj_jy{display:inline-block;background:url(http://mat1.gtimg.com/finance/images/stock/p/quotpage/guojiquotpagen-ad6.png) no-repeat;width:103px;height:25px;*zoom:1;vertical-align:middle}.zxg-userinfo .adwj_qb{display:inline-block;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/survery.png) no-repeat;width:103px;height:25px;*zoom:1;vertical-align:middle}.zxg-userinfo .adwj_yj{display:inline-block;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/1933332ea9bc0f6c.png) no-repeat;width:210px;height:25px;*zoom:1;vertical-align:middle}.zxg-userinfo .ui-dropdownmenu-show{margin-top:2px}</style><style>.zxg-group{height:33px;overflow:hidden;background-color:#fff}.zxg-group .g_box{position:absolute;top:1px;left:0}.zxg-group .g_ul{height:32px;float:left}.zxg-group .g_ul li{float:left;width:87px;height:32px;line-height:32px;cursor:pointer;position:relative}.zxg-group .g_ul li .g_name{float:left;width:65px;height:32px;text-align:center;color:#4f82c4;font-weight:700;overflow:hidden}.zxg-group .g_ul li .g_nemu{float:left;width:19px;height:32px;border-right:1px solid #fff;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon2.png) no-repeat center}.zxg-group .g_ul li.active{background-color:#fff;border-left:1px solid #6ba4d7;border-right:1px solid #6ba4d7;border-top:1px solid #6ba4d7}.zxg-group .g_ul li.tab{background-color:#4273b4;color:#fff;border-left:1px solid #6ba4d7;border-bottom:1px solid #6ba4d7}.zxg-group .g_ul li.tab .g_name{color:#fff;width:85px}.zxg-group .g_ul li.tab .g_nemu{float:left;width:19px;height:32px;border-right:1px solid #234777;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon1.png) no-repeat center}.zxg-group .g_ul li.tab .g_nemu_end{border-right:none}.zxg-group .g_ul li.groupDragClass{visibility:hidden;border-left:none}.zxg-group .g_ul .liProxy{position:absolute;filter:Alpha(Opacity=80,Style=0);opacity:.8;cursor:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/74af2c259433b4ce.cur),pointer}.zxg-group .g_ul .liProxy.active{background-color:#ebf1f8;color:#fff}.zxg-group .g_ul .liProxy.tab{background-color:#38629f;color:#4f82c4}.zxg-group .g_add{display:block;float:left;width:81px;height:24px;line-height:24px;border:1px solid #5581bc;text-align:center;text-decoration:none;text-indent:10px;font-weight:700;color:#fff;margin:3px 0 0 5px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon3.png) #8cb3e4 no-repeat 3px 3.3px}.zxg-group .g_nemu_ul{position:absolute;top:30px;left:-1px;width:85px;border:1px solid #97ABC6;border-top:none;display:none;z-index:1}.zxg-group li .g_nemu_ul li{float:left;height:33px;line-height:33px;background-color:#fff;color:#5B5B5B;text-indent:25px}.zxg-group li .g_nemu_ul li.g_edit{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon4.png) #FFF no-repeat 6px 9px}.zxg-group li .g_nemu_ul li.g_batch{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/batch.png) #FFF no-repeat 5px 8px}.zxg-group li .g_nemu_ul li.g_del{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon5.png) #FFF no-repeat 6px 9px}</style><style>.zxg-tool{border:1px solid #6ba4d7;height:55px;background-color:#fff}.zxg-tool .tool_col_1{width:343px;height:55px;border-right:1px dashed #7cafdc;float:left}.zxg-tool .tool_col_1 .fun{margin:15px 10px 0;_margin:15px 10px 0 5px}.zxg-tool .tool_col_1 .market{margin-top:15px}.zxg-tool .tool_col_1 .tab{height:25px;line-height:25px;float:left;font-size:12px;color:#5581bc;font-weight:700;border:1px solid #5581bc;border-right:none}.zxg-tool .tool_col_1 .tab li{height:25px;text-align:center;padding:0 10px;float:left;border-right:1px solid #5581bc;cursor:pointer}.zxg-tool .tool_col_1 .tab li.active{color:#fff;background-color:#8cb3e4;cursor:default}.zxg-tool .tool_col_2{height:55px;float:left}.zxg-tool .marketStat{height:20px;line-height:20px;position:absolute;top:52px;left:382px;cursor:default}.zxg-tool .mks{color:#2B6CC2;float:left;margin:0 3px;text-align:center;height:20px;margin-right:30px}.zxg-tool .mks .mks_time{display:none}.zxg-tool .market .marketG{height:27px;line-height:27px;float:right;margin-right:17px;font-size:12px;color:#5581bc;position:relative;font-weight:700}.zxg-tool .marketG .title{float:left}.zxg-tool .market .g_nemu{float:left;width:19px;height:28px;border-right:1px solid #fff;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon2.png) no-repeat center}.zxg-tool .marketG .drop{z-index:9999;position:absolute;top:29px;border:1;border:1px solid #6ba4d7;border-top:none;width:100%;background-color:#fff;cursor:pointer;margin-left:-4px}.zxg-tool .marketG .drop li{padding-left:21px}.zxg-tool .marketG .drop li.first{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/fenshi_pop.png) no-repeat 0 -19px;height:6px;margin-top:-5px}.zxg-tool .marketG .drop li.on{background-color:#e0eaf5}.zxg-tool .marketG .drop li.active{background-color:#a2c2e9;color:#fff}#upload{width:66px;height:26px;background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/icon.png) no-repeat -82px -3px #E2EAF2;position:absolute;top:14px;left:-73px}.zxg-tool .tmsContain div{float:left;background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/web_05.png) repeat-x 0 0;height:13px;font:4px Arial,Helvetica,sans-serif;background-color:none}.zxg-tool .tmsContain .left{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/fenshi_pop.png) no-repeat 0 0;height:13px;width:3px}.zxg-tool .tmsContain .right{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/fenshi_pop.png) no-repeat -25px 0;height:13px;width:3px}.zxg-tool .mks.width{min-width:190px;*midth:190px;text-align:left}.zxg-tool .mks.last{text-align:left}.zxg-tool .mks .mks_state,.zxg-tool .nowTime{color:#68686C}.zxg-tool .mks .mks_timezone{color:#2B6CC2}.zxg-tool .tool-smartbox{position:absolute;font-size:12px;top:34px;right:1px;width:270px;height:55px;border-left:1px dashed #7cafdc;background-color:#fff}.zxg-tool .tool-smartbox .input{border:1px solid #87a7cd;height:23px;width:200px;line-height:23px;padding:0 5px;position:absolute;top:15px;left:10px}.zxg-tool .tool-smartbox input:focus{outline:0}#tool-smartbox-button{display:block;height:23px;line-height:23px;background-color:#e0eaf5;color:#4d7fc2;position:absolute;top:15px;left:221px;font-size:12px;text-align:center;width:40px;border:1px solid #87a7cd;text-decoration:none}</style><style>.zxg-ykcollect{border:1px solid #6ba4d7;border-top:none;overflow:hidden;display:none;background-color:#fff}.zxg-ykcollect .mk2{height:35px;float:left;width:100%}.zxg-ykcollect .mk2 .name{font-size:14px;color:#3661a1;float:left;margin:7px 2% 0 30px;display:block}.zxg-ykcollect .mk2 .l{float:left;height:35px;line-height:35px;font-weight:700;width:23%;text-align:center}.zxg-ykcollect .mk2 .l .t{float:left;display:block;font-weight:400;padding:0 20px}.zxg-ykcollect .mk{height:55px;float:left;width:33%}.zxg-ykcollect .mk .name{font-size:14px;color:#3661a1;float:left;margin:18px 0;display:block;width:13.63%;text-align:center}.zxg-ykcollect .mk .l{font-size:12px;margin-top:5px}.zxg-ykcollect .mk .l li{float:right;width:41%;height:22px;line-height:22px;margin-right:2%;text-align:right;font-weight:700}.zxg-ykcollect .mk .l .t{float:left;display:block;font-weight:400}.zxg-ykcollect .line{border-right:1px solid #6ba4d7}.zxg-ykcollect .ga{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/mk_ga.png) #fff no-repeat left}.zxg-ykcollect .hk{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/mk_hk.png) #fff no-repeat left}.zxg-ykcollect .us{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/mk_us.png) #fff no-repeat left}.zxg-ykcollect .ykcollect-totalwrapper{padding:10px 10px 0}.zxg-ykcollect .yktitle{color:#285fa6;font-weight:700}.ykcollect-oneline{line-height:32px;border-bottom:1px solid #e4e4e4;padding:0 10px}.zxg-ykcollect .yklist-four{padding-top:5px;padding-bottom:5px}.zxg-ykcollect .yklist-four li{float:left;width:25%;height:97px;margin:0;padding:0;_width:24.8%;*width:24.8%!important;overflow:hidden}.zxg-ykcollect .yklist-four li dl dt{float:left;text-align:center;line-height:1;width:70px;padding-top:20px}.zxg-ykcollect .yklist-four li dl dd{margin-left:80px;margin-right:25px}.zxg-ykcollect .yklist-four li dl dd div{line-height:24px}.zxg-ykcollect .yklist-four li dl dd span{float:right}.zxg-ykcollect .yklist-three{padding-top:5px;padding-bottom:5px}.zxg-ykcollect .yklist-three li{float:left;width:33.33%;height:64px;_width:33%;*width:33%!important;overflow:hidden}.zxg-ykcollect .yklist-three li dl dt{float:left;text-align:center;line-height:1;width:14%;padding-top:7px}.zxg-ykcollect .yklist-three li dl dd{margin-left:15%;margin-right:3%;padding-top:5px}.zxg-ykcollect .yklist-three li dl dd div{line-height:26px;float:left}.zxg-ykcollect .yklist-three li dl dd .left{width:48%;margin-right:4%;_margin-right:10px;*margin-right:10px!important}.zxg-ykcollect .yklist-three li dl dd .right{width:48%}.zxg-ykcollect .yklist-three li dl dd span{float:right}.zxg-ykcollect .yksline{border-right:1px solid #e4e4e4;height:100%;float:right}.zxg-ykcollect .down{float:right;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon2.png) no-repeat;width:15px;height:11px;margin-top:8px}.ykcollect-currency{float:right;width:130px;height:32px;position:relative;overflow:hidden;margin-right:15px}.ykcollect-currency ul{border:1px solid #fff;position:absolute;right:0;top:2px;background:#fff;zoom:1;_width:63px;*width:63px!important}.ykcollect-currency ul li{padding:0 5px;cursor:pointer;line-height:26px}.ykcollect-dropdown{overflow:visible}.ykcollect-dropdown ul{border:1px solid #4d7ab6}.ykcollect-dropdown ul li:hover{background:#e2effa}.dlb-cysz,.dlb-dryk,.dlb-ljyk,.dlb-ykbl,.dlb-zyk{float:left}.dlb-cysz span,.dlb-dryk span,.dlb-ljyk span,.dlb-ykbl span,.dlb-zyk span{float:right}.dlb-zyk{width:16%}.dlb-cysz,.dlb-dryk,.dlb-ljyk,.dlb-ykbl{width:14%;margin-right:30px}.ykcollect-icon-ga{width:27px;height:19px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/yk-cn.png) no-repeat;display:block;margin:auto;margin-bottom:5px}.ykcollect-icon-jj{width:27px;height:19px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/yk-fn.png) no-repeat;display:block;margin:auto;margin-bottom:5px}.ykcollect-icon-us{width:27px;height:19px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/yk-us.png) no-repeat;display:block;margin:auto;margin-bottom:5px}.ykcollect-icon-hk{width:27px;height:19px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/yk-hk.png) no-repeat;display:block;margin:auto;margin-bottom:5px}.dlb-zyk .ykcollect-icon-one{float:left;margin-top:6px;margin-bottom:0;margin-right:5px}</style><style>.zxg-batch{height:34px;border:1px solid #7cafdc;border-top:none;display:none;background-color:#fff}.zxg-batch .button{padding:0;display:block;height:23px;line-height:23px;color:#4d7fc2;background-color:#e0eaf5;margin:5px 0 0 10px;text-align:center;border:1px solid #87a7cd;cursor:pointer}.zxg-batch .button:hover{background-color:#ebf1f8}.zxg-batch a{color:#4d7fc2;text-decoration:none}.zxg-batch .g_nemu{float:right;width:19px;height:23px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon2.png) no-repeat center}.zxg-batch .g_nemu_ul{display:none;width:100%;left:-1px;position:relative;border:1px solid #97ABC6;border-top:none;background-color:#FFF;cursor:pointer;z-index:1}.zxg-batch .g_nemu_ul li{clear:both}.zxg-batch .amount{position:relative;color:#4d7fc2;height:35px;line-height:35px;margin-right:8px}.zxg-batch .amount .copy,.zxg-batch .amount .del,.zxg-batch .amount .move{display:none;width:66%;height:90%;position:absolute;top:0;left:0;z-index:100;background-color:#FFF}.zxg-batch .amount .close{display:inline-block}.zxg-batch-cover{width:20px}.zxg-batch-cover-all{top:8px;position:absolute;left:1px;z-index:100}.zxg-batch-cover-list{position:absolute;top:0;left:0;z-index:1}.zxg-batch-cover.item{background-color:#FFF;height:29px;line-height:33px;text-align:center;border-bottom:1px solid #E4E4E4;position:absolute;left:0;z-index:2}</style><style>.zxg-tablehead{height:34px;background-color:#f3f7fc;border-left:1px solid #6ba4d7;border-right:1px solid #6ba4d7;border-bottom:1px solid #c3ccd4;box-shadow:0 1px 4px rgba(49,49,64,.1);-webkit-box-shadow:0 0 2px #bbb;-moz-box-shadow:0 0 2px #bbb;color:#5b6b7f;position:relative}.zxg-tablehead .t-button{text-decoration:none;display:block;width:100%;color:#285fa6;font-weight:700;height:34px;outline:0}.width1000 .zxg-tablehead .t-button-auto,.width1100 .zxg-tablehead .t-button-auto{background:0 0}.zxg-tablehead .headerDesc{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/asc.png) no-repeat right;border-bottom:#aacaf3 2px solid;padding-right:6px}.zxg-tablehead .headerAsc{background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/desc.png) no-repeat right;border-bottom:#aacaf3 2px solid;padding-right:6px}.zxg-tablehead .t-col{width:88%;height:34px;text-align:right}.zxg-tablehead .f-col{width:12%;height:34px}.zxg-tablehead .b-col{width:25%;text-align:center;height:34px}.marketContain{height:34px}.marketContain.hover{background-color:#e0eaf5}.marketContain .market .marketG{width:72px;height:27px;line-height:27px;float:right;margin-right:70px;margin-top:4px;font-size:12px;color:#285fa6;position:relative;font-weight:700}.marketContain .marketG .title{float:left}.marketContain .market .g_nemu{float:left;width:17px;height:28px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon2.png) no-repeat center}.marketContain .marketG .drop{z-index:9999;position:absolute;top:29px;border:1;border:1px solid #6ba4d7;border-top:none;width:100%;background-color:#fff;cursor:pointer;margin-left:-4px}.marketContain .marketG .drop li{text-align:center;color:#5581bc}.marketContain .marketG .drop li.first{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/fenshi_pop2.png) no-repeat 0 -57px;height:6px;margin-top:-5px}.marketContain .marketG .drop li.on{background-color:#e0eaf5}.marketContain .marketG .drop li.active{background-color:#a2c2e9;color:#fff}</style><style>.zxg-stocklist{border:1px solid #6ba4d7;border-top:none;position:relative;background:url(http://mat1.gtimg.com/finance/images/stock/p/zixuangu/graphic/BG.png) repeat 0 0}.zxg-stocklist a{color:#3374CA}.sline{height:29px;border-bottom:1px solid #E4E4E4;zoom:1;cursor:pointer}.myDragClass{visibility:hidden}#dndProxy,.draging .sline,.myDragClass,.zxg-stocklist.draging{background-image:url(about:blank);cursor:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/74af2c259433b4ce.cur)10 0,pointer}.sline:hover{background-color:#e2effa}.odd{background-color:#fff}.even{background-color:#f9f9f9}.sline dt{float:left;width:353px;line-height:29px;vertical-align:middle;height:29px;text-align:right}.sline .opt a{display:inline-block;height:23px;width:30px;_display:block;_width:25px;margin-top:2px}.sline .opt .drop{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/24_03.png) no-repeat 0 0;border:none;height:99px;width:66px;z-index:110;margin-left:-38px}.sline .opt .drop li{height:29px;margin-top:1px;width:61px;margin-left:1px}.sline .opt .drop li:hover{background-color:#e0eaf5}.sline .opt .drop li.first{margin-top:5px}.sline .opt .drop a{width:64px}.sline .opt .drop span{float:left;display:inline-block;height:25px;_display:block;_width:25px}.sline .opt .drop .icon{width:27px;margin-left:-2px}.sline .opt span.tx{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat 0 -1px}.sline .opt span.tx_on{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -25px -1px}.sline .opt a.yk{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat 0 -25px}.sline .opt a.yk:hover{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -51px -25px}.sline .opt a.yk_on{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -25px -25px}.sline .opt a.yk_on:hover{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -80px -25px}.sline .opt span.nt{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -198px -73px}.sline .opt span.nt_on{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -198px -48px}.sline .opt span.top{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -198px -96px}.sline .opt a.del{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat 0 -73px}.sline .opt a.del:hover{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -53px -73px}.sline .opt a.operate{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -203px -27px}.sline .opt a.operate:hover{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/icon_151125.png) no-repeat -203px -2px}.sline dd{line-height:29px;height:29px;text-align:right;overflow:hidden}.sline dd .cg{overflow:hidden}.sline .hl,.sline .hl2,.sline .hl3,.sline .hlName,.sline .hlPrice{background-color:#e2effa;margin-left:10px;overflow:hidden;margin-right:-10px}.sline .hlop{background-color:#e2effa;overflow:hidden}.screen_lt_1200 .sline .hl,.screen_lt_1200 .sline .hl2,.screen_lt_1200 .sline .hl3,.screen_lt_1200 .sline .hlName,.screen_lt_1200 .sline .hlPrice{margin-left:0;margin-right:0}.sline.active,.sline_hover,.sline_hover .hl,.sline_hover .hl2,.sline_hover .hl3,.sline_hover .hlName,.sline_hover .hlPrice{background-color:#cde1f1}.sline .hlName{margin-left:0;padding-right:10px}.sline .t-col{width:24.5%;height:29px;text-align:center;float:left}.sline .symbole{position:relative;text-align:left}.sline .symbole a{margin-left:22px}.sline .jz{color:#b1b0b0;padding:0 20px}.stock_name{float:left;position:relative;overflow:none;white-space:nowrap}.ys_icon{position:absolute;top:8px;right:-17px;height:12px;width:13px;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/d50d7c3bde764127.png) no-repeat}.guide{position:absolute;width:100%;height:100%;top:0;left:0;z-index:9999;bottom:0;right:0}.guide .bg{background:#000;opacity:.5;filter:alpha(opacity=50);width:100%;height:100%}.guide .g_batch{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/batch_oper.png);width:344px;height:246px;position:absolute;top:0}.guide .g_fold{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/top_oper.png);width:195px;height:269px;position:absolute;top:0}.guide .g_market{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/marketSwitch.png);width:435px;height:190px;position:absolute;top:0}.guide .g_listDrag{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/b8e83e4697ef0af1.png);width:896px;height:150px;position:absolute;top:0}.guide .g_close{width:160px;height:58px;position:absolute;top:0;top:50px;right:50px;cursor:pointer}.guide .g_close.try{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/try.png)}.guide .g_close.know{background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/know.png)}.sline dd .drop{z-index:9999;position:absolute;top:23px;border:1;border:1px solid #6ba4d7;border-top:none;width:64px;background-color:#fff;cursor:pointer;margin-left:-34px}.sline dd .drop a span{width:30px}</style><style>.add_stock{padding:10px;border:1px solid #6ba4d7;border-top:none}.add_stock .alC{text-align:center;padding-top:26px;height:41px}.add_stock .add_smartbox{width:254px;height:25px;margin:0 auto;position:relative}.add_stock .add_smartbox .input{border:1px solid #87a7cd;height:23px;width:200px;line-height:23px;padding:0 5px;position:absolute;top:0;left:0}.add_stock .add_smartbox input:focus{outline:0}#add-smartbox-button{display:block;height:25px;line-height:23px;background-color:#e0eaf5;color:#4d7fc2;position:absolute;top:0;left:211px;font-size:12px;text-align:center;width:40px;border:1px solid #87a7cd;text-decoration:none}</style><style>.zxg-new{border:1px solid #6ba4d7;margin-top:0;position:relative;display:none;border-top:none}.new_box{height:282px;margin:17px}.new_box a{text-decoration:none;color:#3374ca}.new_box dt{height:30px;line-height:30px;font-size:16px;font-weight:700;border-bottom:1px solid #D5DEED;position:relative}.new_box dt .more{position:absolute;right:10px;bottom:-3px;font-size:12px;font-weight:400}.new_box dd{height:25px;line-height:25px;overflow:hidden;position:relative}.new_box dd i{position:absolute;right:10px;top:0;font-style:normal;color:#B4B3B3}.app_banner{height:47px;cursor:pointer;background:url(http://mat1.gtimg.com/finance/images/stock/p/web-zixuangu/dba2d8a61b18ec52.png) no-repeat right top;border-bottom:1px solid #6ba4d7}</style></head>
+<body class="cn width1200">
+<div class="zxg-wrapper-header" id="zxg-wrapper-header" style="display: block;"><div class="header-v1">
+  <div class="logonav">
+    <div class="col-1-1">
+      <a href="http://finance.qq.com/" target="_blank" class="logo" title="腾讯财经"></a>
+      <a href="http://www.gjzq.com.cn/" target="_blank" class="adgj-logo" title="国金证劵"></a>
+    </div>
+    <div class="col-1-2">
+      <a target="_blank" href="http://stock.qq.com/hqing/zhishu/000001.htm?pgv_ref=fi_quote_navi_bar" class="cur">证券</a>
+      <a target="_blank" href="http://stockhtm.finance.qq.com/fund/djj_jjcx/000001.htm?pgv_ref=fi_quote_navi_bar">基金</a>
+      <a target="_blank" href="http://stock.qq.com/hk/?pgv_ref=fi_quote_navi_bar">港股</a>
+      <a target="_blank" href="http://stock.qq.com/usstock/?pgv_ref=fi_quote_navi_bar">美股</a>
+    </div>
+    <div class="col-1-3">
+      <a href="http://gu.qq.com/i/">收藏本页</a>
+      <span>|</span>
+      <a target="_blank" href="http://stock.finance.qq.com/help.php">帮助中心</a>
+      <span>|</span>
+      <a target="_blank" href="http://stock.qq.com/l/stock/xingu/xgxt/list2015052081440.htm">股民学堂</a>
+      <span>|</span>
+      <a target="_blank" href="http://stock.qzone.qq.com/">官方博客</a>
+      <span>|</span>
+      <a target="_blank" href="http://support.qq.com/beta2/simple/write.html?fid=614">意见反馈</a>
+    </div>
+  </div>
+  <div class="nav">
+    <div class="nav-1 d-clear">
+      <a target="_blank" href="http://finance.qq.com/stock/?pgv_ref=fi_quote_navi_bar" data-boss="nav_index">证券首页</a>
+      <span></span>
+      <a target="_blank" href="http://stockapp.finance.qq.com/mstats/?pgv_ref=fi_quote_navi_bar&amp;id=bd_ind" data-boss="nav_lzbk">领涨板块</a>
+      <span></span>
+      <a target="_blank" href="http://stockapp.finance.qq.com/mstats/?pgv_ref=fi_quote_navi_bar&amp;id=sha_zf" data-boss="nav_zdph">涨跌排行</a>
+      <span></span>
+      <a target="_blank" href="http://stock.qq.com/zjlx/#?pgv_ref=fi_quote_navi_bar#ggzlzc" data-boss="nav_zjlx">资金流向</a>
+      <span></span>
+      <a target="_blank" href="http://stock.qq.com/data/#ljzf?pgv_ref=fi_quote_navi_bar#ljzf" data-boss="nav_jsxg">技术选股</a>
+      <span></span>
+      <a target="_blank" href="http://stock.qq.com/stock/xingu?pgv_ref=fi_quote_navi_bar" data-boss="nav_xg">新股</a>
+      <span></span>
+      <a target="_blank" href="http://stock.qq.com/data/#qgqp" data-boss="nav_qgqp">千股千评</a>
+      <span></span>
+      <a target="_blank" href="http://stockapp.finance.qq.com/doctor/?pgv_ref=fi_quote_navi_bar" data-boss="nav_gpys">股票医生</a>
+      <span class="st2"></span>
+      <a target="_blank" href="http://stockapp.finance.qq.com/mstats/?pgv_ref=fi_quote_navi_bar" data-boss="nav_hqzx">行情中心</a>
+      <span class="st2"></span>
+      <a target="_blank" href="http://finance.qq.com/products/portfolio/?pgv_ref=fi_quote_navi_bar" data-boss="nav_zxgapp">自选股APP</a>
+      <span class="st2"></span>
+      <a target="_blank" href="http://finance.qq.com/products/licaivip/index.htm?pgv_ref=zxg_navi_bar" data-boss="nav_dsjjj"> 大数据基金<img src="./WEB自选股_files/new.gif"></a>
+    </div>
+  </div>
+ <div style="text-align: center; padding: 350px 0px 20px; display: none;" id="pageLoading"><img style="width: 40px;height: 40px;" src="./WEB自选股_files/e0241a5737aa1228.gif"></div> 
+</div></div>
+
+
+
+
+<script type="text/javascript">
+	function getCookie(cookieName) {
+		var re = new RegExp("\\b"+cookieName+"=([^;]*)\\b");
+		var arr =  re.exec(document.cookie);
+		return arr?arr[1]:"";
+	}
+	if(!getCookie('w_r_token') && !getCookie('uin')){
+		document.getElementById('zxg-wrapper-header').style.display='none';
+	}
+	else{
+		document.getElementById('zxg-wrapper-header').style.display='block';
+	}
+</script>
+<script src="./WEB自选股_files/aio_zixuangu.js.下载"></script>
+
+<script id="app-qr" data-bw="1500" data-sw="1300" src="./WEB自选股_files/ce56e2f3303d17b6.js.下载"></script>
+
+<div style="z-index: 999; position: fixed; top: 310px; right: 15px; display: none; background: url(&quot;http://mat1.gtimg.com/finance/images/stock/p/portfolio/app-qr2.jpg&quot;) no-repeat; width: 120px; height: 171px;"><div class="top" style="width:95px; height: 25px; overflow: hidden; cursor: pointer;"></div><div class="close" style="border:0;width:25px; height: 25px; overflow: hidden; cursor: pointer;position: absolute; top: 0px; right: 0px;"></div><a style=" width:120px; height: 146px; overflow: hidden; cursor: pointer; display: block;" href="http://finance.qq.com/products/portfolio/download.htm?pgv_ref=qrcode.pic" target="_blank" id="xiaok-btn-link"></a></div><div style="z-index: 999; display: block; height: 140px; position: fixed; right: 15px; bottom: 45px;">	<a href="javascript:;" onmouseover="this.style.backgroundPosition=&#39;-71px 0&#39;;this.parentNode.children[2].style.display=&#39;block&#39;" onmouseout="this.style.backgroundPosition=&#39;0 0&#39;;this.parentNode.children[2].style.display=&#39;none&#39;" style="background:url(http://mat1.gtimg.com/finance/images/stock/p/cms/8257d2f41ba47e69.png) no-repeat; display:block; height:75px; width:58px;" title="手机访问"></a>	<a href="http://gu.qq.com/i/#" onmouseover="this.style.backgroundPosition=&#39;-71px -83px&#39;" onmouseout="this.style.backgroundPosition=&#39;0 -83px&#39;" target="_self" style="background:url(http://mat1.gtimg.com/finance/images/stock/p/cms/8257d2f41ba47e69.png) 0 -83px no-repeat; display:block; height:57px; margin-top:8px; width:58px" title="返回顶部" onclick="window.scrollTo(0,0);return false"></a>	<div style="background:url(http://mat1.gtimg.com/finance/images/stock/p/cms/54652dd0d7a2e8be.png) no-repeat; display:none; height:212px; position:absolute; top:-120px; right:60px; width:227px;"></div></div><div data-widget-cid="widget-1" class="zxg-wrapper">
+  <div id="zxg-header"><div class="header-v1" data-widget-cid="widget-2">
+  <div class="nav">
+    <div class="nav-2 d-clear">
+      <div class="top-smartbox">
+        <input type="text" autocomplete="off" class="input" id="top-smartbox" placeholder="股票代码/名称/拼音" data-widget-cid="widget-23">
+        <div id="trigger">
+          <div class="pptext">全部</div>
+          <div class="icon"></div>
+        </div>
+        <ul class="ui-popup" id="popup" data-widget-cid="widget-22">
+          <li data-market="all">全部</li>
+          <li data-market="gp">沪深</li>
+          <li data-market="hk">港股</li>
+          <li data-market="jj">基金 </li>
+          <li data-market="us">美股</li>
+          <li data-market="qh">期货</li>
+        </ul>
+        <input type="submit" value="股票查询" name="submitbtn" id="submitbtn" class="smartbox-submit">
+        <span style="float:left;color:#d70300;margin:2px 2px;display:none;">(<span style="font-weight:bold;" id="h_msgbox">0</span>)</span>
+      <div id="dora-ui-smartbox577420636517973-result" class="dora-ui-smartbox-result" style="display:none; overflow:hidden;"><ul id="dora-ui-smartbox577420636517973-ul" class="dora-ui-smartbox-ul"></ul></div></div>
+      <div class="cutline"></div>
+      <div class="stock-box"><div data-widget-cid="widget-24" class="h_marketBox">
+  <div title="点击向上滚动" id="arr_up" boss="6017"></div>
+  <div title="点击向下滚动" id="arr_do" boss="6018"></div>
+  <ul>
+    <li type="all" index="0">
+    <a target="_blank" href="http://gu.qq.com/hqing/zhishu/000001.htm" onmousedown="app.boss.act(&#39;roll_index_sh&#39;);">
+    上证指数</a>:<span style="color:#009900" class="fall">3182.80</span><span class="stand"></span><span style="color:#009900" class="fall">-0.41%</span><span class="stand"></span>1614.55亿 | <a target="_blank" href="http://gu.qq.com/hqing/zhishu/399001.htm" onmousedown="app.boss.act(&#39;roll_index_sz&#39;);"> 深证成指</a>:<span style="color:#009900" class="fall">10474.83</span><span class="stand"></span><span style="color:#009900" class="fall">-0.57%</span><span class="stand"></span>2225.73亿 | <a target="_blank" href="http://gu.qq.com/sz399006" onmousedown="app.boss.act(&#39;roll_index_sz&#39;);"> 创业板指</a>:<span style="color:#009900" class="fall">1829.51</span><span class="stand"></span><span style="color:#009900" class="fall">-0.35%</span><span class="stand"></span>194.54亿
+  </li>
+    <li type="hk" index="1">
+    <a target="_blank" href="http://gu.qq.com/hkHSI" onmousedown="app.boss.act(&#39;roll_index_hs&#39;);">
+      恒生指数</a>:<span style="color:#009900" class="fall">25448.39</span><span class="stand"></span><span style="color:#009900" class="fall">-1.30%</span><span class="stand"></span>902.57亿 | <a target="_blank" href="http://gu.qq.com/hkHSCEI" onmousedown="app.boss.act(&#39;roll_HSCEI&#39;);">国企指数</a>:<span style="color:#009900" class="fall">10313.59</span><span class="stand"></span><span style="color:#009900" class="fall">-0.95%</span><span class="stand"></span>181.01亿 | <a target="_blank" href="http://gu.qq.com/hkHSCCI" onmousedown="app.boss.act(&#39;roll_HSCEI&#39;);">红筹指数</a>:<span style="color:#009900" class="fall">3975.35</span><span class="stand"></span><span style="color:#009900" class="fall">-1.03%</span><span class="stand"></span>46.70亿
+    </li>
+    <li type="us" index="2">
+    <a target="_blank" href="http://gu.qq.com/astock/ggcx/DJI.htm" onmousedown="app.boss.act(&#39;roll_dowJones&#39;);">道琼斯</a>:<span style="color:#fe0002" class="rise">21479.27</span><span class="stand"></span><span style="color:#fe0002" class="rise">+129.64</span><span class="stand"></span><span style="color:#fe0002" class="rise">+0.61%</span> | <a target="_blank" href="http://gu.qq.com/astock/ggcx/IXIC.htm" onmousedown="app.boss.act(&#39;roll_IXIC&#39;);">
+      纳斯达克</a>:<span style="color:#009900" class="fall">6110.06</span><span class="stand"></span><span style="color:#009900" class="fall">-30.36</span><span class="stand"></span><span style="color:#009900" class="fall">-0.49%</span> | <a target="_blank" href="http://gu.qq.com/usINX" onmousedown="app.boss.act(&#39;roll_usINX&#39;);">
+      标普500</a>:<span style="color:#fe0002" class="rise">2429.01</span><span class="stand"></span><span style="color:#fe0002" class="rise">+5.60</span><span class="stand"></span><span style="color:#fe0002" class="rise">+0.23%</span>
+    </li>
+  </ul></div></div>
+    </div>
+  </div>
+  <div style="width:100%;height:40px;display:block;position:relative;" id="banner">
+    <a href="http://finance.qq.com/products/portfolio/play_xcx.html?pgv_ref=web_portfolio" target="_blank" data-boss="btn_bannerad">    
+      <img src="./WEB自选股_files/3d1147ae4c3daa91.png" style="width: 100%;height: 40px;">
+    </a>
+
+    <!-- <object style="outline:none;width:100%;height:40px;margin:0 auto;display:block;" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+      <param name="Movie" value="http://mat1.gtimg.com/finance/images/stock/p/cms/bab552d40e175994.swf">
+      <param value="always" name="allowscriptaccess">
+      <param value="opaque" name="wmode">
+      <param value="high" name="quality">
+      <param value="application/x-shockwave-flash" name="type">
+      <embed width="100%" height="40px" style="width:100%;height:40px;" wmode="opaque" allowscriptaccess="always" type="application/x-shockwave-flash" bgcolor="#FFFFFF" quality="high" src="http://mat1.gtimg.com/finance/images/stock/p/cms/bab552d40e175994.swf" name="sample" swliveconnect="true" play="true"></object>
+      <a style="filter:alpha(opacity=0);position:absolute;width:100%;height:40px;left:0px;top:0px;cursor:pointer;z-index:10;background-color:#fff;opacity:0;" target="_blank" href="http://finance.qq.com/products/portfolio/download.htm?pgv_ref=web.stock.frontpage"></a> -->
+  </div>
+</div></div>
+  <div id="zxg-body">
+    <div id="dora_notes"></div>
+    <div id="zxg-tip"></div>
+  <div data-widget-cid="widget-4" class="zxg-userinfo"></div><div data-widget-cid="widget-5" class="zxg-stock" style="width: 1160px; z-index: 98; position: sticky; top: 0px; height: 126px;"><div data-widget-cid="widget-6" class="zxg-group"><div class="g_box">
+  <ul class="g_ul">
+    
+      
+      <li class="active g_li" data-gid="1">
+        <div class="g_name">我的自选</div>
+        <a href="javascript:;" class="g_nemu"></a>
+        <ul class="g_nemu_ul">
+          <li class="g_edit">更改名称</li>
+          <li class="g_del">删除组合</li>
+        </ul>
+      </li>
+      
+    
+  </ul>
+  <a href="javascript:;" class="g_add">添加组合</a>
+</div></div><div data-widget-cid="widget-8" class="zxg-tool">
+  <div class="tool_col_1">
+    <ul class="tab fun">
+      <li data-type="mk" class="active">当日行情</li>
+      <li data-type="yk">盈亏一览</li>
+      <li data-type="new">新闻公告</li>
+    </ul>
+  </div>
+  <div class="tool_col_2"></div>
+  <div class="tool-smartbox">
+    <a href="javascript:;" id="upload"></a>
+    <input type="text" autocomplete="off" class="input" id="tool-smartbox" placeholder="股票代码/名称/拼音" data-widget-cid="widget-25">
+    <a href="javascript:;" id="tool-smartbox-button">添加</a>
+  <div id="dora-ui-smartbox7878524833514229-result" class="dora-ui-smartbox-result" style="display:none; overflow:hidden;"><ul id="dora-ui-smartbox7878524833514229-ul" class="dora-ui-smartbox-ul"></ul></div></div>
+<div data-widget-cid="widget-9" class="marketStat" style="left: 386px;"><div class="mks nowTime">
+  <span>北京</span>
+  <span class="mks_timezone"></span>&nbsp;15:44:35
+</div>
+<div class="mks">
+  <span class="mks_name">沪深</span>
+  <span class="mks_time"><span class="mks_timezone"></span>&nbsp;15:01:33</span>
+  <span class="mks_state">已收盘</span>
+</div>
+<div class="mks" id="HKSTATE">
+  <span class="mks_name">港股</span>
+  <span class="mks_time"><span class="mks_timezone"></span>&nbsp;15:44:34</span>
+  <span class="mks_state">交易中</span>
+</div>
+<div class="mks">
+  <span class="mks_name">美股</span>
+  <span class="mks_time"><span class="mks_timezone">EDT</span>&nbsp;14:15:59</span>
+  <span class="mks_state">独立日休市</span>
+</div></div><div data-widget-cid="widget-30" style="color: rgb(151, 121, 26); background: rgb(250, 240, 202); padding: 0px 10px; z-index: 99; position: absolute; left: 560px; top: 34px;"><span id="tmsg">20秒</span>前的港股行情，更新获取行情 <a href="javascript:;" style="color:#97791a;font-size:10px">X</a> </div></div><div data-widget-cid="widget-10" class="zxg-ykcollect" style="display: none;"></div><div data-widget-cid="widget-11" class="zxg-batch"><ul class="d-left" style="width: 500px;">
+    <li class="d-left button delete" style="width:50px;"><a href="javascript:;">删除</a></li>
+    <li class="d-left button topBatch" style="width:50px;"><a href="javascript:;">置顶</a></li>
+    <li class="d-left button drop-down" style="width:76px;">
+        移动到
+        <a href="javascript:;" class="g_nemu"></a>
+        <ul class="g_nemu_ul" act-type="move">
+            
+                <li class="g_nemu_ul_li" data-gid="1">我的自选</li>
+            
+        </ul>
+    </li>
+    <li class="d-left button drop-down" style="width:76px;">
+        复制到
+        <a href="javascript:;" class="g_nemu"></a>
+        <ul class="g_nemu_ul" act-type="copy">
+            
+                <li class="g_nemu_ul_li" data-gid="1">我的自选</li>
+            
+        </ul>
+    </li>
+</ul>
+<ul class="d-right amount">
+    您已选择
+    <span class="selected">0</span>
+    /
+    <span class="all">13</span>
+    支
+    <div class="move">正在移动中...</div>
+    <div class="copy">正在复制中...</div>
+    <div class="del">正在删除中...</div>
+    <div class="top">正在置顶中...</div>
+    <li class="button close" style="width:50px;display:none;"><a href="javascript:;">退出</a></li>
+</ul></div><div data-widget-cid="widget-13" class="zxg-tablehead"><div class="zxg-batch-cover-all zxg-batch-cover">
+<input class="zxg-batch-checkbox-all" type="checkbox">
+</div>
+
+<div class="t-col col" style="width: 100%">
+  <div class="d-left span164p marketContain"><div data-widget-cid="widget-14" class="market"><div class="marketG">
+	<span class="title">全部股票</span>
+	<a href="javascript:;" class="g_nemu"></a>
+	<div class="drop" style="display: none;">
+		<ul>
+			<li class="first"></li>
+			
+			<li class="all active" data-item="all">全部</li>
+			
+			
+			  <li data-item="ga">沪深</li>
+			
+			  <li data-item="hk">港股</li>
+			
+			  
+			
+			  
+			
+			</ul>
+	</div>
+</div></div></div>
+  <div class="d-left" style="width: 189px;">
+    <div class="d-left span70p"><a href="javascript:;" class="t-button" data-item="latestPrice">最新价</a></div>
+    <div class="d-left span50p"><a href="javascript:;" class="t-button" data-item="updownLimit">涨跌额</a></div>
+    <div class="d-left span64p"><a href="javascript:;" class="t-button" data-item="updownExtent">涨跌幅</a></div>
+  </div>
+  <div style="margin-left: 353px;">
+    <div class="d-left span64_">昨收</div>
+    <div class="d-left span64_">今开</div>
+    <div class="d-left span64_">最高</div>
+    <div class="d-left span64_">最低</div>
+    <div class="d-left span67_"><a href="javascript:;" class="t-button" data-item="volume">成交量(股)</a></div>
+    <div class="d-left span63_"><a href="javascript:;" class="t-button" data-item="turnover">成交额</a></div>
+    <div class="d-left span62_"><a href="javascript:;" class="t-button" data-item="marketValue">市值(亿)</a></div>
+    <div class="d-left span54_"><a href="javascript:;" class="t-button" data-item="turnoverRate">换手率</a></div>
+    <div class="d-left span63_"><a href="javascript:;" class="t-button" data-item="peRatio">市盈率</a></div>
+    <div class="d-left span43_"><a href="javascript:;" class="t-button t-button-auto" data-item="yingkui">盈亏</a></div>
+    <div class="d-left span30_">删除</div>
+    <div class="d-left span30_">操作</div>
+  </div>
+<!-- </div>
+<div class="f-col col"> -->
+</div>
+</div></div><div data-widget-cid="widget-15" class="zxg-stocklist" style="min-height: 472px;">
+<dl id="sh000001" type="ZS" class="sline s_ga sh even" data-symbol="sh000001" tabindex="0">
+  <dt data-symbol="sh000001">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="0">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="000001(000001)" href="http://gu.qq.com/sh000001">000001</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="上证指数" href="http://gu.qq.com/sh000001">上证指数</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">3182.80</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-13.11</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.41%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh000001">
+
+    
+      <div class="d-left span64_ cg ">
+        3195.91
+      </div>
+      <div class="d-left span64_ cg ">
+        3192.89
+      </div>
+      <div class="d-left span64_ cg ">
+        3193.06
+      </div>
+      <div class="d-left span64_ cg ">
+        3174.31
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="141,114,967.00">1.41亿</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="161,454,560,000.00">1614.55亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>0.00</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>0.00%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        0.00
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh000001" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh000001" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      <a></a>
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="hk00371" class="sline s_hk hk odd" data-symbol="hk00371" tabindex="1">
+  <dt data-symbol="hk00371">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="1">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="00371(00371)" href="http://gu.qq.com/hk00371">00371</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="北控水务集团" href="http://gu.qq.com/hk00371">北控水务</a>
+        
+        <em class="hk"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">5.95</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.13</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-2.14%</span>
+    </div>
+  </dt>
+  <dd data-symbol="hk00371">
+
+    
+      <div class="d-left span64_ cg ">
+        6.08
+      </div>
+      <div class="d-left span64_ cg ">
+        6.14
+      </div>
+      <div class="d-left span64_ cg ">
+        6.14
+      </div>
+      <div class="d-left span64_ cg ">
+        5.90
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="18,682,659.00">1868.27万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="111,863,060.28">1.12亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>521.03</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        --
+      </div>
+      <div class="d-left span63_ cg ">
+        16.06
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="hk00371" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="hk00371" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sh600188" class="sline s_ga sh even" data-symbol="sh600188" tabindex="2">
+  <dt data-symbol="sh600188">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="2">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="600188(600188)" href="http://gu.qq.com/sh600188">600188</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="兖州煤业" href="http://gu.qq.com/sh600188">兖州煤业</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">12.29</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.23</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-1.84%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh600188">
+
+    
+      <div class="d-left span64_ cg ">
+        12.52
+      </div>
+      <div class="d-left span64_ cg ">
+        12.49
+      </div>
+      <div class="d-left span64_ cg ">
+        12.51
+      </div>
+      <div class="d-left span64_ cg ">
+        12.14
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="11,743,800.00">1174.38万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="144,360,000.00">1.44亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>603.69</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>0.40%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        17.44
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh600188" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh600188" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sz002252" class="sline s_ga sz odd" data-symbol="sz002252" tabindex="3">
+  <dt data-symbol="sz002252">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="3">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="002252(002252)" href="http://gu.qq.com/sz002252">002252</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="上海莱士" href="http://gu.qq.com/sz002252">上海莱士</a>
+        
+        <em class="sz"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270" data-val="2017-04-21 09:00 停牌：重大事项">
+      停牌
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span data-val="0.00">0.00</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span data-val="0.00%">0.00%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sz002252">
+
+    
+      <div class="d-left span64_ cg ">
+        20.24
+      </div>
+      <div class="d-left span64_ cg ">
+        20.24
+      </div>
+      <div class="d-left span64_ cg ">
+        0.00
+      </div>
+      <div class="d-left span64_ cg ">
+        0.00
+      </div>
+      <div class="d-left span67_ cg ">
+        <span>0.00</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span>0.00</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>1005.98</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>0.00%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        66.05
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sz002252" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sz002252" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sh600664" class="sline s_ga sh even" data-symbol="sh600664" tabindex="4">
+  <dt data-symbol="sh600664">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="4">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="600664(600664)" href="http://gu.qq.com/sh600664">600664</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="哈药股份" href="http://gu.qq.com/sh600664">哈药股份</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#fe0002" class="rise">5.82</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#fe0002" class="rise">+0.01</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#fe0002" class="rise">+0.17%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh600664">
+
+    
+      <div class="d-left span64_ cg ">
+        5.81
+      </div>
+      <div class="d-left span64_ cg ">
+        5.81
+      </div>
+      <div class="d-left span64_ cg ">
+        5.84
+      </div>
+      <div class="d-left span64_ cg ">
+        5.78
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="11,608,300.00">1160.83万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="67,410,000.00">6741.00万</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>147.90</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>0.47%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        20.06
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh600664" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh600664" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sh601933" class="sline s_ga sh odd" data-symbol="sh601933" tabindex="5">
+  <dt data-symbol="sh601933">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="5">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="601933(601933)" href="http://gu.qq.com/sh601933">601933</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="永辉超市" href="http://gu.qq.com/sh601933">永辉超市</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">7.00</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.18</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-2.51%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh601933">
+
+    
+      <div class="d-left span64_ cg ">
+        7.18
+      </div>
+      <div class="d-left span64_ cg ">
+        7.19
+      </div>
+      <div class="d-left span64_ cg ">
+        7.21
+      </div>
+      <div class="d-left span64_ cg ">
+        6.91
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="96,308,200.00">9630.82万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="673,960,000.00">6.74亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>669.93</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>1.48%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        44.26
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh601933" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh601933" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sh600519" class="sline s_ga sh even" data-symbol="sh600519" tabindex="6">
+  <dt data-symbol="sh600519">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="6">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="600519(600519)" href="http://gu.qq.com/sh600519">600519</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="贵州茅台" href="http://gu.qq.com/sh600519">贵州茅台</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">451.92</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-8.45</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-1.84%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh600519">
+
+    
+      <div class="d-left span64_ cg ">
+        460.37
+      </div>
+      <div class="d-left span64_ cg ">
+        458.96
+      </div>
+      <div class="d-left span64_ cg ">
+        460.00
+      </div>
+      <div class="d-left span64_ cg ">
+        449.00
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="5,648,800.00">564.88万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="2,563,890,000.00">25.64亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>5677.02</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>0.45%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        31.62
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh600519" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh600519" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sz000998" class="sline s_ga sz odd" data-symbol="sz000998" tabindex="7">
+  <dt data-symbol="sz000998">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="7">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="000998(000998)" href="http://gu.qq.com/sz000998">000998</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="隆平高科" href="http://gu.qq.com/sz000998">隆平高科</a>
+        
+        <em class="sz"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#fe0002" class="rise">23.01</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#fe0002" class="rise">+0.49</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#fe0002" class="rise">+2.18%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sz000998">
+
+    
+      <div class="d-left span64_ cg ">
+        22.52
+      </div>
+      <div class="d-left span64_ cg ">
+        22.55
+      </div>
+      <div class="d-left span64_ cg ">
+        23.44
+      </div>
+      <div class="d-left span64_ cg ">
+        22.46
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="21,331,200.00">2133.12万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="491,520,000.00">4.92亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>289.05</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>2.23%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        50.18
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sz000998" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sz000998" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sh600354" class="sline s_ga sh even" data-symbol="sh600354" tabindex="8">
+  <dt data-symbol="sh600354">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="8">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="600354(600354)" href="http://gu.qq.com/sh600354">600354</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="敦煌种业" href="http://gu.qq.com/sh600354">敦煌种业</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">7.52</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.12</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-1.57%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh600354">
+
+    
+      <div class="d-left span64_ cg ">
+        7.64
+      </div>
+      <div class="d-left span64_ cg ">
+        7.64
+      </div>
+      <div class="d-left span64_ cg ">
+        7.64
+      </div>
+      <div class="d-left span64_ cg ">
+        7.47
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="12,049,100.00">1204.91万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="90,680,000.00">9068.00万</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>39.69</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>2.69%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        50.02
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh600354" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh600354" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sh600066" class="sline s_ga sh odd" data-symbol="sh600066" tabindex="9">
+  <dt data-symbol="sh600066">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="9">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="600066(600066)" href="http://gu.qq.com/sh600066">600066</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="宇通客车" href="http://gu.qq.com/sh600066">宇通客车</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">21.97</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.10</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.45%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh600066">
+
+    
+      <div class="d-left span64_ cg ">
+        22.07
+      </div>
+      <div class="d-left span64_ cg ">
+        22.06
+      </div>
+      <div class="d-left span64_ cg ">
+        22.13
+      </div>
+      <div class="d-left span64_ cg ">
+        21.67
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="7,688,500.00">768.85万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="168,530,000.00">1.69亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>486.40</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>0.40%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        12.22
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh600066" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh600066" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sz002056" class="sline s_ga sz even" data-symbol="sz002056" tabindex="10">
+  <dt data-symbol="sz002056">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="10">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="002056(002056)" href="http://gu.qq.com/sz002056">002056</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="横店东磁" href="http://gu.qq.com/sz002056">横店东磁</a>
+        
+        <em class="sz"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">7.64</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.16</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-2.05%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sz002056">
+
+    
+      <div class="d-left span64_ cg ">
+        7.80
+      </div>
+      <div class="d-left span64_ cg ">
+        7.79
+      </div>
+      <div class="d-left span64_ cg ">
+        7.80
+      </div>
+      <div class="d-left span64_ cg ">
+        7.60
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="35,313,100.00">3531.31万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="271,160,000.00">2.71亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>125.57</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>2.15%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        30.78
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sz002056" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sz002056" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sz000970" class="sline s_ga sz odd" data-symbol="sz000970" tabindex="11">
+  <dt data-symbol="sz000970">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="11">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="000970(000970)" href="http://gu.qq.com/sz000970">000970</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="中科三环" href="http://gu.qq.com/sz000970">中科三环</a>
+        
+        <em class="sz"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#009900" class="fall">14.68</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#009900" class="fall">-0.39</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#009900" class="fall">-2.59%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sz000970">
+
+    
+      <div class="d-left span64_ cg ">
+        15.07
+      </div>
+      <div class="d-left span64_ cg ">
+        15.02
+      </div>
+      <div class="d-left span64_ cg ">
+        15.21
+      </div>
+      <div class="d-left span64_ cg ">
+        14.68
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="31,842,900.00">3184.29万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="474,980,000.00">4.75亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>156.37</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>2.99%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        47.86
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sz000970" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sz000970" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+<dl id="sh600259" class="sline s_ga sh even" data-symbol="sh600259" tabindex="12">
+  <dt data-symbol="sh600259">
+    <div class="zxg-batch-cover item opt">
+      <input class="zxg-batch-checkbox-one" type="checkbox" style="width:12px;" data-index="12">
+    </div>
+    <div class="stock_name">
+      <div class="symbole d-left span62p cg ">
+        <a target="_blank" title="600259(600259)" href="http://gu.qq.com/sh600259">600259</a>
+      </div>
+      <div class="d-left span79p cg">
+        <a target="_blank" title="广晟有色" href="http://gu.qq.com/sh600259">广晟有色</a>
+        
+        <em class="sh"></em>
+        
+      </div>
+      
+    </div>
+    <div class="d-left span70p cg margin0 " data-maxwidth="270">
+      <span style="color :#fe0002" class="rise">39.57</span>
+    </div>
+    <div class="d-left span50p cg margin0 ">
+      <span style="color :#fe0002" class="rise">+0.21</span>
+    </div>
+    <div class="d-left span64p cg margin0 ">
+      <span style="color :#fe0002" class="rise">+0.53%</span>
+    </div>
+  </dt>
+  <dd data-symbol="sh600259">
+
+    
+      <div class="d-left span64_ cg ">
+        39.36
+      </div>
+      <div class="d-left span64_ cg ">
+        39.63
+      </div>
+      <div class="d-left span64_ cg ">
+        40.18
+      </div>
+      <div class="d-left span64_ cg ">
+        39.38
+      </div>
+      <div class="d-left span67_ cg ">
+        <span data-val="5,755,700.00">575.57万</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        <span data-val="228,900,000.00">2.29亿</span>
+      </div>
+      <div class="d-left span62_ cg ">
+        <span>119.42</span>
+      </div>
+      <div class="d-left span54_ cg ">
+        <span>2.23%</span>
+      </div>
+      <div class="d-left span63_ cg ">
+        127.61
+      </div>
+    
+
+    <div class="d-right span30_ opt oper">
+      <a href="javascript:;" data-symbol="sh600259" title="操作" class="operate"></a>
+      <div class="drop" style="display: none;">
+          <ul>
+            <li data-item="remind" class="first">
+                  
+                    <a href="javascript:;" class="tx_ac"><span class="tx tx_ac icon"></span><span>提醒</span></a>
+                    
+            </li>
+            <li data-item="note">
+                  
+                    <a href="javascript:;" class="nt_ac"><span class="nt icon"></span><span>备注</span></a>
+                              
+            </li>
+            <li data-item="top">
+                  <a href="javascript:;" class="top_ac"><span class="top icon"></span><span>置顶</span></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="d-right span30_ opt">
+      <a href="javascript:;" data-symbol="sh600259" title="删除" class="del"></a>
+    </div>
+
+    <div class="d-right span30_ opt ">
+    
+      
+      <a href="javascript:;" title="盈亏" class="yk yk_ac"></a>
+      
+    
+    </div>
+
+  </dd>
+</dl>
+
+</div><div id="add_stock" data-widget-cid="widget-20" class="add_stock" style="display: none; min-height: 0px;">
+  <div class="alC" style="  padding-top: 130px;">
+    <img src="./WEB自选股_files/ini.png" alt="">
+  </div>
+  <div class="add_smartbox">
+    <input type="text" class="input" placeholder="代码/名称/拼音" id="add-smartbox" autocomplete="off" data-widget-cid="widget-28">
+    <input type="submit" class="button" value="添加" id="add-smartbox-button">
+  <div id="dora-ui-smartbox6039724069092218-result" class="dora-ui-smartbox-result" style="display:none; overflow:hidden;"><ul id="dora-ui-smartbox6039724069092218-ul" class="dora-ui-smartbox-ul"></ul></div></div>
+  <div class="alC" style="color:#777;">
+    (输入股票代码、名称、拼音首字母缩写搜索，如:00700、腾讯控股、txkg。)
+  </div>
+</div><div data-widget-cid="widget-21" class="zxg-new" style="display: none;"><!-- <div class="app_banner"></div> -->
+<div class="d-clear">
+  
+    <dl class="new_box d-left" style="width:46%">
+      <dt>自选股沪深新闻 <a target="_blank" href="http://finance.qq.com/stock/sother/news.htm?q=sh600188,sz002252,sh600664,sh601933,sh600519,sz000998,sh600354,sh600066,sz002056,sz000970,sh600259" class="more" onmousedown="app.boss.act(&#39;news_more_hs&#39;)">更多&gt;&gt;</a></dt>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600519.shtml">贵州茅台</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/036321.htm?stockcode=sh600519&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">贵州茅台五连跌 6000亿估值会成泡沫吗</a> <i>1小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600519.shtml">贵州茅台</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/034587.htm?stockcode=sh600519&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">源达投顾：权重指数再次走弱拖累行情 短期宜看不宜动</a> <i>2小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600519.shtml">贵州茅台</a>] <a target="_blank" href="http://finance.qq.com/a/20170704/033529.htm?stockcode=sh600519&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">茅台市值跌去340亿！白马股下挫是技术性回调吗？</a> <i>2小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600519.shtml">贵州茅台</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/028920.htm?stockcode=sh600519&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">上证50指数再度走弱 贵州茅台跌超2%</a> <i>4小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/000998.shtml">隆平高科</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/025869.htm?stockcode=sz000998&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">利好刺激农林牧渔板块上涨 2.29亿元大单抢筹27只个股</a> <i>5小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600354.shtml">敦煌种业</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/025869.htm?stockcode=sz000998&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">利好刺激农林牧渔板块上涨 2.29亿元大单抢筹27只个股</a> <i>5小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600188.shtml">兖州煤业</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/025860.htm?stockcode=sh600188&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">产品价格上涨提升业绩预期 三板块有望领跑半年报业绩浪</a> <i>5小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600188.shtml">兖州煤业</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/024096.htm?stockcode=sh600188&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">兖煤在澳洲赢了一场31亿美元竞购战</a> <i>5小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600519.shtml">贵州茅台</a>] <a target="_blank" href="http://stock.qq.com/a/20170704/017350.htm?stockcode=sh600519&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">开盘：两市低开沪指跌0.09% 酿酒板块持续调整</a> <i>6小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/000998.shtml">隆平高科</a>] <a target="_blank" href="http://finance.qq.com/products/portfolio/news_zixuangu.htm?id=kuaibao-20170704C01CNN00&amp;s=w&amp;from=web&amp;r?stockcode=sz000998&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hs&#39;)">国际大米价格出现上涨</a> <i>7小时前</i></dd>
+      
+    </dl>
+    <dl class="new_box d-left" style="width:47%">
+      <dt>自选股沪深公告<a target="_blank" href="http://finance.qq.com/stock/sother/notice.htm?q=sh600188,sz002252,sh600664,sh601933,sh600519,sz000998,sh600354,sh600066,sz002056,sz000970,sh600259" class="more" onmousedown="app.boss.act(&#39;notice_more_hs&#39;)">更多&gt;&gt;</a></dt>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/002252.shtml">上海莱士</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002252.htm#notice-detail?id=1203677480&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">上海莱士：公司债券受托管理事务年度报告（2016年度）</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/002252.shtml">上海莱士</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002252.htm#notice-detail?id=1203677475&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">上海莱士：关于重大事项继续停牌的公告</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/002252.shtml">上海莱士</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002252.htm#notice-detail?id=1203677478&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">上海莱士：关于召开2017年第一次临时股东大会的通知</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/002252.shtml">上海莱士</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002252.htm#notice-detail?id=1203677477&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">上海莱士：关于重大事项进展情况暨召开股东大会审议申请继续停牌...</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/002252.shtml">上海莱士</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002252.htm#notice-detail?id=1203677476&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">上海莱士：第四届董事会第十八次（临时）会议决议的公告</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/002252.shtml">上海莱士</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002252.htm#notice-detail?id=1203677479&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">上海莱士：独立董事关于公司重大事项申请继续停牌的独立意见</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/000998.shtml">隆平高科</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000998.htm#notice-detail?id=1203677921&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">隆平高科：关于收回理财产品本金和收益及以闲置募集资金购买理财...</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600354.shtml">敦煌种业</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600354.htm#notice-detail?id=1203678065&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">敦煌种业：2017年第一次临时股东大会法律意见书</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600354.shtml">敦煌种业</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600354.htm#notice-detail?id=1203678069&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">敦煌种业：关于玉米新品种通过国家审定的公告</a> <i>16小时前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/sstock/ggcx/600354.shtml">敦煌种业</a>] <a target="_blank" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600354.htm#notice-detail?id=1203678068&amp;d=20170704" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">敦煌种业：七届监事会第一次会议决议公告</a> <i>16小时前</i></dd>
+      
+    </dl>
+  
+  
+    <dl class="new_box d-left" style="width:46%">
+      <dt>自选股港股新闻<a target="_blank" href="http://finance.qq.com/stock/sother/news.htm?q=hk00371" class="more" onmousedown="app.boss.act(&#39;news_more_hk&#39;)">更多&gt;&gt;</a></dt>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170615/023650.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">北控水务集团升逾5% 获摩通升目标价</a> <i>19天前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170420/034516.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">北控水务集团(00371)附属建议发行21亿元绿色资产支持票据</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170405/024378.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">瑞信：持续看淡北控水务(00371) 目标价降至4港元</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170405/021058.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">第一上海：北控水务集团业绩符合预期 轻资产模式与生态战略转型...</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170405/015037.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">汇丰: 金隅(02009)、北控水务(00371)及中国建材(03323)将受惠雄...</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170405/028398.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">抢不到雄安概念股？莫放走这些基金！</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170404/004767.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">港股雄安概念股抢先爆发 A股不想放假想开盘</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170403/018702.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">美银美林：北控水务(00371)目标价升至7.2港元 重申“买入”评级</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170403/012893.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">中央设立雄安新区 三大港股直接受益</a> <i>3个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.qq.com/a/20170330/045605.htm?stockcode=hk00371&amp;version=2" onmousedown="app.boss.act(&#39;news_details_hk&#39;)">杭世珺辞任北控水务集团(00371)独立非执行董事</a> <i>3个月前</i></dd>
+      
+    </dl>
+    <dl class="new_box d-left" style="width:47%">
+      <dt>自选股港股公告<a target="_blank" href="http://finance.qq.com/stock/sother/notice.htm?q=hk00371" class="more" onmousedown="app.boss.act(&#39;notice_more_hs&#39;)">更多&gt;&gt;</a></dt>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170605-002829159" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">截至2017年5月31日止之股份发行人的证券变动月报表</a> <i>1个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170601-002826639" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">组织章程大纲及细则</a> <i>1个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170601-002826583" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">二零一七年六月一日举行之股东周年大会投票表决结果</a> <i>1个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170504-002802475" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">截至2017年4月30日止之股份发行人的证券变动月报表</a> <i>2个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170501-002798368" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">海外监管公告 - 本公司全资附属公司北控水务（中国）投资有限公...</a> <i>2个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170427-002794906" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">海外监管公告 - 在中国发行境内熊猫债券</a> <i>2个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170426-002792163" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">股东周年大会通告</a> <i>2个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170426-002792151" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">于二零一七年六月一日（星期四）下午三时正举行之二零一七年股东...</a> <i>2个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170426-002792143" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">建议发行及购回股份之一般授权、  重选退任董事、  修订公司细则...</a> <i>2个月前</i></dd>
+      
+      <dd>[<a target="_blank" href="http://stockhtm.finance.qq.com/hk/ggcx/00371.htm">北控水务集团</a>] <a target="_blank" href="http://stock.finance.qq.com/hk/gsgg.php?ID=HKEX-EPS-20170426-002792131" onmousedown="app.boss.act(&#39;notice_details_hs&#39;)">2016 年报</a> <i>2个月前</i></dd>
+      
+    </dl>
+  
+  
+</div></div><div class="zxg-extra" data-widget-cid="widget-29" style="height: 500px; display: none;"></div></div>
+  <div id="zxg-footer"><div id="QQFooter" data-widget-cid="widget-3"><div id="QQFooter">
+  <ul>
+    <li>
+      <span id="yijian"><a href="http://support.qq.com/beta2/simple/write.html?fid=614" target="_blank" class="fUL fc1">意见反馈</a>
+      </span>腾讯声明：频道所载文章、数据等内容纯属作者个人观点，仅供投资者参考，并不构成投资建议。投资者据此操作，风险自担。</li>
+
+    <li><a href="http://www.tencent.com/">关于腾讯</a> | <a href="http://www.tencent.com/index_e.shtml">About Tencent</a> | <a href="http://www.qq.com/contract.shtml">服务条款</a> | <a href="http://adver.qq.com/">广告服务</a> | <a href="http://hr.tencent.com/">腾讯招聘</a> | <a href="http://gongyi.qq.com/">腾讯公益</a> | <a href="http://service.qq.com/">客服中心</a> | <a href="http://www.qq.com/map/">网站导航</a>
+    </li>
+
+    <li>Copyright © 1998 - 2017Tencent Inc. All Rights Reserved</li>
+    <li>腾讯公司 版权所有</li>
+  </ul>
+</div>
+</div></div>
+  <div id="dndProxy" style="display: none;">
+    <div class="d-left span2"></div>
+    <div class="d-left span2"></div>
+  </div>
+</div></body></html>

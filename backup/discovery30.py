@@ -154,7 +154,8 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	w_weight_msg = 'W:\t'+str(int(w_weight))
 
 	#print(w_weight_msg)
-	if w_weight < -5:
+	#if w_weight <= -80 and persent <= 90 and sh_persent <= 0:
+	if w_weight == -100:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
@@ -188,12 +189,13 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	#stock_list = list()
-	#stock_list == ['600519']
+	try:
+		stock_list = stock_basics[stock_basics.pe <= 50].index
+	except:
+	    stock_list = stock_basics.index.values
 
-	#pool = multiprocessing.Pool(processes=4)
-	#for stock_code in sorted(stock_list):
-		#pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
-	job2weight('600519',end_day,stock_basics)
-	#pool.close()
-	#pool.join()
+	pool = multiprocessing.Pool(processes=4)
+	for stock_code in sorted(stock_list):
+		pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
+	pool.close()
+	pool.join()

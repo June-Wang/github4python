@@ -154,7 +154,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 	w_weight_msg = 'W:\t'+str(int(w_weight))
 
 	#print(w_weight_msg)
-	if w_weight < -5:
+	if w_weight <= -80 and persent <= 90 and sh_persent <= 0:
 		date = str(end_day)[:10]
 		name = stock_basics[stock_basics.index == stock_code][['name']].values[0][0]
 		industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
@@ -165,6 +165,7 @@ def do_it(stock_code,start_day,end_day,day_list,stock_basics):
 
 def job2weight(stock_code,end_day,stock_basics):
 	num4days = 60
+	#day_list = [i for i in range(5,60,5)]
 	day_list = [i for i in range(5,60)]
 	start_day = now - datetime.timedelta(days=num4days+max(day_list)+61)
 	do_it(stock_code,start_day,end_day,day_list,stock_basics)
@@ -188,12 +189,23 @@ if __name__ == "__main__":
 		print('get_stock_basics timeout!')
 		sys.exit(1)
 
-	#stock_list = list()
-	#stock_list == ['600519']
+	try:
+	    list_code = sys.argv[1]
 
-	#pool = multiprocessing.Pool(processes=4)
-	#for stock_code in sorted(stock_list):
-		#pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
-	job2weight('600519',end_day,stock_basics)
-	#pool.close()
-	#pool.join()
+	    if int(list_code) == 500:
+	        try:
+	            stock_500 = ts.get_zz500s()
+	        except:
+	            print('get_zz500s timeout!')
+	            sys.exit(1)
+	        stock_list = stock_500.code.values
+	    else:
+	        sys.exit(1)
+	except:
+	    stock_list = stock_basics.index.values
+
+	pool = multiprocessing.Pool(processes=4)
+	for stock_code in sorted(stock_list):
+		pool.apply_async(job2weight,(stock_code,end_day,stock_basics))
+	pool.close()
+	pool.join()
