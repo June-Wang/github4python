@@ -141,6 +141,9 @@ if __name__ == "__main__":
         date = df_hist_data.index.values[day]
         price = df_hist_data[['close']].values[day][0]
         #print(type(price))
+        yesterday_price = df_hist_data[['close']].values[day+1][0]
+
+        price_wave = (price - yesterday_price)/yesterday_price*100
 
         #ma_field = ['ma5','ma10','ma20']
         #ma_list = [ df_hist_data[[field]].values[day][0] for field in ma_field ]
@@ -156,7 +159,7 @@ if __name__ == "__main__":
         persent = float(persent_cycle[30][day])
 
         front_msg = date +'\t'+ str(price)
-        mid_msg = "P("+'/'.join(str(i) for i in day_list_persent)+")\t"+cycle_p_change_msg
+        mid_msg = "P(1/"+'/'.join(str(i) for i in day_list_persent)+")\t"+get_color(("%.2f" % float(price_wave)))+'\t'+cycle_p_change_msg
         end_msg = w_msg
 
         #mid_msg = ''
