@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.4
+#!/usr/bin/env python3
 
 import sys
 import re
@@ -9,7 +9,6 @@ import multiprocessing
 import tushare as ts
 import pandas as pd
 import numpy as np
-
 
 def get_end_day(now):
     """
@@ -101,6 +100,9 @@ def get_persent_dict(df_hist_data,day_list,cycle):
     return(persent_dict)
 
 def job4persent(stock_code,stock_basics,start_day,end_day,day_list,cycle_time):
+	"""
+	获取persent主任务
+	"""
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
     persent_dict = get_persent_dict(df_hist_data,day_list,cycle_time)
     #print(persent_dict[0])
