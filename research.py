@@ -109,7 +109,18 @@ def job4persent(stock_code,stock_basics,start_day,end_day,day_list,cycle_time):
     get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
     stock_info = get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
     #print(persent_dict[0])
+
+    day_list_persent = [3,5,10]
+    cycle_p_change = dict()
+    for day in day_list_persent:
+        cycle_p_change[day] = get_cycle_p_change_list(df_hist_data,day_list,day)
+
+    cycle_p_change_list = [ float(cycle_p_change[i][0]) for i in day_list_persent ]
+    p3,p5,p10 = cycle_p_change_list
+
     stock_info.append(int(float(persent_dict[0])))
+    stock_info.append(p10)
+    #print(stock_info)
     return(stock_info)
 
 def get_stock_basics():
@@ -180,6 +191,6 @@ if __name__ == "__main__":
     pool.join()
 
     #print(results)
-    df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重'])
-    s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重']]).render()
+    df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重','P10'])
+    s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重','P10']]).render()
     print(s)
