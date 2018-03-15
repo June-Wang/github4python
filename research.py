@@ -100,9 +100,9 @@ def get_persent_dict(df_hist_data,day_list,cycle):
     return(persent_dict)
 
 def job4persent(stock_code,stock_basics,start_day,end_day,day_list,cycle_time):
-	"""
-	获取persent主任务
-	"""
+    """
+    获取persent主任务
+    """
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
     persent_dict = get_persent_dict(df_hist_data,day_list,cycle_time)
     #print(persent_dict[0])
