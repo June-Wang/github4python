@@ -106,7 +106,7 @@ if __name__ == "__main__":
     cycle_time = 30
     day_range = 150
 
-    num4days = day_range*2 + cycle_time 
+    num4days = day_range*2 + cycle_time
 
     day_list = [i for i in range(0,day_range+1)]
 
@@ -140,9 +140,7 @@ if __name__ == "__main__":
         #persent = float(cycle_p_change_list[day])+float(p_change_grow_list[day])
         date = df_hist_data.index.values[day]
         price = df_hist_data[['close']].values[day][0]
-        #print(type(price))
         yesterday_price = df_hist_data[['close']].values[day+1][0]
-
         price_wave = (price - yesterday_price)/yesterday_price*100
 
         #ma_field = ['ma5','ma10','ma20']
@@ -152,23 +150,30 @@ if __name__ == "__main__":
         
         cycle_p_change_list = [ float(cycle_p_change[i][day]) for i in day_list_persent ]
         cycle_p_change_msg = '\t'.join([get_color(str(field)) for field in cycle_p_change_list])
-        
+
         w_list = [ float(persent_cycle[cycle][day]) for cycle in persent_cycle_list]
         w_msg = 'W('+'/'.join(str(i) for i in persent_cycle_list)+')\t'+'\t'.join([ get_color(str(field)) for field in w_list])
 
         persent = float(persent_cycle[30][day])
+        try:
+            yesterday_persent = float(persent_cycle[30][day+1])
+        except:
+            break
+
+        #persent_wave = float(persent_cycle[30][day]) - float(persent_cycle[30][day+1])
 
         front_msg = date +'\t'+ str(price)
         mid_msg = "P(1/"+'/'.join(str(i) for i in day_list_persent)+")\t"+get_color(("%.2f" % float(price_wave)))+'\t'+cycle_p_change_msg
-        end_msg = w_msg
+        end_msg = w_msg +'\t'#+ get_color(("%.2f" % persent_wave))
 
-        #mid_msg = ''
-        #end_msg = 'persent:\t'+get_color(str(persent))
+        p3,p5,p10 = cycle_p_change_list
 
         p_change = float(df_hist_data[['p_change']].values[day][0])
-        if persent == -100:
+        #if persent == -100 and p10 <= -10:
+        if p10 <= -10:
             print(Fore.CYAN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
         elif persent == 100:
+        #elif p10 >= 9:
             print(Fore.YELLOW+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
         elif p_change >0:
             print(Fore.RED+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
