@@ -154,7 +154,8 @@ if __name__ == "__main__":
         w_list = [ float(persent_cycle[cycle][day]) for cycle in persent_cycle_list]
         w_msg = 'W('+'/'.join(str(i) for i in persent_cycle_list)+')\t'+'\t'.join([ get_color(str(field)) for field in w_list])
 
-        persent = float(persent_cycle[30][day])
+        persent30 = float(persent_cycle[30][day])
+        persent60 = float(persent_cycle[60][day])
         try:
             yesterday_persent = float(persent_cycle[30][day+1])
         except:
@@ -170,9 +171,9 @@ if __name__ == "__main__":
 
         p_change = float(df_hist_data[['p_change']].values[day][0])
         #if persent == -100 and p10 <= -10:
-        if p10 <= -10 and persent <= -90:
+        if (p10 <= -10 and persent30 <= -90) or (persent30 <= -90 and persent60 <= -90):
             print(Fore.CYAN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
-        elif persent == 100:
+        elif persent30 == 100 and persent60 == 100:
         #elif p10 >= 9:
             print(Fore.YELLOW+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
         elif p_change >0:
