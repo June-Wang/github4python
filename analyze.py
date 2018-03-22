@@ -11,6 +11,7 @@ import pandas as pd
 import numpy as np
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
+import urllib.request
 
 def get_end_day(now):
     """
@@ -98,6 +99,29 @@ def get_persent_dict(df_hist_data,day_list,cycle):
 
     return(persent_dict)
 
+def getContent(url):  
+    #此函数用于抓取返回403禁止访问的网页 
+    #random_header = random.choice(headers)  
+    opener=urllib.request.build_opener()
+    cookie='v=AkDLYWX1DnGnYPJ1uM1znWOgEcUWySSTxq14l7rRDNvuNe7zYtn0Ixa9SCUI'
+    opener.addheaders = [('Cookie', cookie)]
+    content = opener.open(url).read()
+    return content
+
+def get_share(stock_code):
+
+    url = 'http://data.10jqka.com.cn/financial/sgpx/op/code/code/'+stock_code+'/ajax/1/'
+
+    try:
+        resp = getContent(url)
+        table = pd.read_html(resp)[0]
+    except:
+        print('获取配股分红信息失败！')
+        year_list = list()
+        return(year_list)
+    year_list = [ str(year[0]) for year in table[['除权除息日']].values]
+    return(year_list)
+
 if __name__ == "__main__":
 
     #stock_list = ['000998']
@@ -108,6 +132,7 @@ if __name__ == "__main__":
 
     num4days = day_range*2 + cycle_time
 
+    year_list = get_share(stock_code)
     day_list = [i for i in range(0,day_range+1)]
 
     now = datetime.date.today()
@@ -143,6 +168,11 @@ if __name__ == "__main__":
         yesterday_price = df_hist_data[['close']].values[day+1][0]
         price_wave = (price - yesterday_price)/yesterday_price*100
 
+        if str(date) in year_list:
+            share_msg = '配股分红'
+        else:
+            share_msg = ''
+
         #ma_field = ['ma5','ma10','ma20']
         #ma_list = [ df_hist_data[[field]].values[day][0] for field in ma_field ]
         #ma_msg = 'MA(5/10/20)\t'+'\t'.join([("%.2f" % field) for field in ma_list])
@@ -165,7 +195,7 @@ if __name__ == "__main__":
 
         front_msg = date +'\t'+ str(price)
         mid_msg = "P(1/"+'/'.join(str(i) for i in day_list_persent)+")\t"+get_color(("%.2f" % float(price_wave)))+'\t'+cycle_p_change_msg
-        end_msg = w_msg +'\t'#+ get_color(("%.2f" % persent_wave))
+        end_msg = w_msg +'\t'+ share_msg #+ get_color(("%.2f" % persent_wave))
 
         p3,p5,p10 = cycle_p_change_list
 
