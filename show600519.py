@@ -129,7 +129,7 @@ if __name__ == "__main__":
     stock_code = '600519'
 
     cycle_time = 30
-    day_range = 150
+    day_range = 30
 
     num4days = day_range*2 + cycle_time
 
