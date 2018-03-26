@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
     #stock_list = ['000998']
     #stock_code = sys.argv[1]
-    stock_code = '600519'
+    stock_code = '000998'
 
     cycle_time = 30
     day_range = 60
@@ -201,10 +201,9 @@ if __name__ == "__main__":
         p3,p5,p10 = cycle_p_change_list
 
         p_change = float(df_hist_data[['p_change']].values[day][0])
-        if persent30 <= -80:
-        #if (p10 <= -10 and persent30 <= -90) or (persent30 <= -90 and persent60 <= -90):
+        if p5 <= -10 and p10 <= -10 and persent30 <= -90:
             print(Fore.CYAN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
-        elif p10 >=15:
+        elif p10 >= 9 and persent30 == 100 and persent60 == 100:
         #elif p10 >= 9:
             print(Fore.YELLOW+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
         elif p_change >0:
