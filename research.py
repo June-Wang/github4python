@@ -104,8 +104,12 @@ def job4persent(stock_code,stock_basics,start_day,end_day,day_list,cycle_time):
     获取persent主任务
     """
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
-    persent_dict = get_persent_dict(df_hist_data,day_list,cycle_time)
+    #persent_dict = get_persent_dict(df_hist_data,day_list,cycle_time)
     #print(persent_dict[0])
+    #print(persent_dict)
+    #persent_30 = get_persent_dict(df_hist_data,day_list,30)[0]
+    #persent_60 = get_persent_dict(df_hist_data,day_list,60)[0]
+    #print(persent_60)
     get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
     stock_info = get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
     #print(persent_dict[0])
@@ -118,7 +122,11 @@ def job4persent(stock_code,stock_basics,start_day,end_day,day_list,cycle_time):
     cycle_p_change_list = [ float(cycle_p_change[i][0]) for i in day_list_persent ]
     p3,p5,p10 = cycle_p_change_list
 
-    stock_info.append(int(float(persent_dict[0])))
+    #权重30 权重60
+    for day in [30,60]:
+        stock_info.append(int(float(get_persent_dict(df_hist_data,day_list,day)[0])))
+
+    #stock_info.append(int(float(persent_dict[0])))
     stock_info.append(p10)
     #print(stock_info)
     return(stock_info)
@@ -191,6 +199,6 @@ if __name__ == "__main__":
     pool.join()
 
     #print(results)
-    df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重','P10'])
-    s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重','P10']]).render()
+    df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重30','权重60','P10'])
+    s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重30','权重60','P10']]).render()
     print(s)
