@@ -40,17 +40,19 @@ data_list = list()
 
 for stat in stat_list:
     cursor.execute(pv_stat_query,(stat,top))
-    for (stat,url,count) in cursor:
-        if count >= 10:
-            data_list.append([stat,url,count])
+    data_list.append(cursor.fetchall())
+#print(data_list)
 
 cursor.close()
 cnx.close()
 
-#print(np.vstack(my_list))
-df = pd.DataFrame(np.vstack(data_list),columns=['状态','URL','数量'])
-s = df.style.set_properties(**{'background-color': '#D2D8F9',
+data = np.vstack(data_list)
+
+result = [ row for row in data if int(row[-1]) >10]
+#print(result)
+df = pd.DataFrame(result,columns=['状态','URL','数量'])
+html = df.style.set_properties(**{'background-color': '#D2D8F9',
                            'color': '#000000',
                            'border-color': 'white'}).render()
 #print(s.to_html(index=False))
-print(s)
+print(html)
