@@ -201,7 +201,7 @@ if __name__ == "__main__":
 
         p_change = float(df_hist_data[['p_change']].values[day][0])
         #if persent == -100 and p10 <= -10:
-        if (p10 <= -10 and persent30 <= -90) or (persent30 <= -90 and persent60 <= -90):
+        if (p10 <= -15 and persent30 <= -90) or (persent30 <= -90 and persent60 <= -90):
             print(Fore.CYAN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
         elif persent30 == 100 and persent60 == 100:
         #elif p10 >= 9:
