@@ -129,7 +129,7 @@ if __name__ == "__main__":
     stock_code = '600519'
 
     cycle_time = 30
-    day_range = 60
+    day_range = 90
 
     num4days = day_range*2 + cycle_time
 
@@ -157,7 +157,7 @@ if __name__ == "__main__":
     #print(np.sum(list(days_persent_list[0][0])))
     #sys.exit(0)
     
-    persent_cycle_list = [30,60]
+    persent_cycle_list = [30,60,90]
     persent_cycle = dict()
     for cycle in persent_cycle_list:
         persent_cycle[cycle] = get_persent_dict(df_hist_data,day_list,cycle)
