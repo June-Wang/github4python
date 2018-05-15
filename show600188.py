@@ -148,7 +148,7 @@ if __name__ == "__main__":
     for day in day_list_persent:
         cycle_p_change[day] = get_cycle_p_change_list(df_hist_data,day_list,day)
     
-    persent_cycle_list = [30,60]
+    persent_cycle_list = [30,60,90]
     persent_cycle = dict()
     for cycle in persent_cycle_list:
         persent_cycle[cycle] = get_persent_dict(df_hist_data,day_list,cycle)
