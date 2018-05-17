@@ -106,7 +106,8 @@ def getContent(url):
     cookie='v=AkDLYWX1DnGnYPJ1uM1znWOgEcUWySSTxq14l7rRDNvuNe7zYtn0Ixa9SCUI'
     opener.addheaders = [('Cookie', cookie)]
     content = opener.open(url).read()
-    return content
+    url_data = content.decode('gbk')
+    return url_data
 
 def get_share(stock_code):
 
