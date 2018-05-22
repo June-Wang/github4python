@@ -129,7 +129,7 @@ if __name__ == "__main__":
     stock_code = 'sh'
 
     cycle_time = 30
-    day_range = 60
+    day_range = 90
 
     num4days = day_range*2 + cycle_time
 
@@ -185,8 +185,8 @@ if __name__ == "__main__":
         w_list = [ float(persent_cycle[cycle][day]) for cycle in persent_cycle_list]
         w_msg = 'W('+'/'.join(str(i) for i in persent_cycle_list)+')\t'+'\t'.join([ get_color(str(field)) for field in w_list])
 
-        persent30 = float(persent_cycle[30][day])
-        persent60 = float(persent_cycle[60][day])
+        #persent30 = float(persent_cycle[30][day])
+        #persent60 = float(persent_cycle[60][day])
         avg_persent = sum(w_list)/len(w_list)
         try:
             yesterday_persent = float(persent_cycle[30][day+1])
@@ -195,19 +195,17 @@ if __name__ == "__main__":
 
         #persent_wave = float(persent_cycle[30][day]) - float(persent_cycle[30][day+1])
 
+        avg_w_msg = 'AVG:\t'+get_color("%.2f" % avg_persent)
         front_msg = date +'\t'+ str(price)
         mid_msg = "P(1/"+'/'.join(str(i) for i in day_list_persent)+")\t"+get_color(("%.2f" % float(price_wave)))+'\t'+cycle_p_change_msg
-        end_msg = w_msg +'\t'+get_color("%.2f" % avg_persent)+'\t'+share_msg #+ get_color(("%.2f" % persent_wave))
+        end_msg = w_msg +'\t'+avg_w_msg+'\t'+share_msg #+ get_color(("%.2f" % persent_wave))
 
         p3,p5,p10 = cycle_p_change_list
 
         p_change = float(df_hist_data[['p_change']].values[day][0])
-        #if persent == -100 and p10 <= -10:
-        #if (p10 <= -15 and persent30 <= -90) or (persent30 <= -90 and persent60 <= -90):
-        if avg_persent <= -90:
+        if avg_persent == -100:
             print(Fore.CYAN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
-        elif persent30 == 100 and persent60 == 100:
-        #elif p10 >= 9:
+        elif avg_persent == 100:
             print(Fore.YELLOW+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
         elif p_change >0:
             print(Fore.RED+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
