@@ -218,20 +218,36 @@ if __name__ == "__main__":
         #persent_wave = float(persent_cycle[30][day]) - float(persent_cycle[30][day+1])
 
         front_msg = date +'\t'+ str(price)
-        mid_msg = "P(1/"+'/'.join(str(i) for i in day_list_persent)+")\t"+get_color(("%.2f" % float(price_wave)))+'\t'+cycle_p_change_msg
+        mid_msg = "P(1/"+'/'.join(str(i) for i in day_list_persent)+")\t"+get_color(("%.2f" % float(price_wave)))+'\t'+cycle_p_change_msg+'\t'+avg_w_msg
         #end_msg = w_msg +'\t'+ share_msg #+ get_color(("%.2f" % persent_wave))
-        end_msg = avg_w_msg+'\t'+ str(sh_price)+'\t'+sh_avg_w_msg+'\t'+ share_msg
+        #end_msg = avg_w_msg+'\t'+ str(sh_price)+'\t'+sh_avg_w_msg+'\t'+ share_msg
+        sh_msg = str(sh_price)+'\t'+sh_avg_w_msg
+        
 
         p3,p5,p10 = cycle_p_change_list
         p_change = float(df_hist_data[['p_change']].values[day][0])
+        sh_p_change = float(sh_hist_data[['p_change']].values[day][0])
 
         if (p10 <= -15 and persent30 <= -90) or (avg_persent <= -90):
-            print(Fore.CYAN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
+            f1_msg = Fore.CYAN+front_msg+Style.RESET_ALL
         elif avg_persent == 100:
-            print(Fore.YELLOW+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
+            f1_msg = Fore.YELLOW+front_msg+Style.RESET_ALL
         elif p_change >0:
-            print(Fore.RED+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
+            f1_msg = Fore.RED+front_msg+Style.RESET_ALL
         elif p_change < 0:
-            print(Fore.GREEN+front_msg+Style.RESET_ALL+'\t'+mid_msg+'\t'+end_msg)
+            f1_msg = Fore.GREEN+front_msg+Style.RESET_ALL
         else:
-            print(front_msg+'\t'+mid_msg+'\t'+end_msg)
+            f1_msg = front_msg
+
+        if sh_avg_persent <= -90:
+            f2_msg = Fore.CYAN+sh_msg+Style.RESET_ALL
+        elif sh_avg_persent == 100:
+            f2_msg = Fore.YELLOW+sh_msg+Style.RESET_ALL
+        elif sh_p_change >0:
+            f2_msg = Fore.RED+sh_msg+Style.RESET_ALL
+        elif sh_p_change < 0:
+            f2_msg = Fore.GREEN+sh_msg+Style.RESET_ALL
+        else:
+            f2_msg = sh_msg
+
+        print(f1_msg+'\t'+mid_msg+'\t'+f2_msg+'\t'+share_msg)
