@@ -228,7 +228,8 @@ if __name__ == "__main__":
         p_change = float(df_hist_data[['p_change']].values[day][0])
         sh_p_change = float(sh_hist_data[['p_change']].values[day][0])
 
-        if (p10 <= -15 and persent30 <= -90) or (avg_persent <= -90):
+        #if (p10 <= -15 and persent30 <= -90) or (avg_persent <= -90):
+        if avg_persent <= -90 and sh_avg_persent <= -90:
             f1_msg = Fore.CYAN+front_msg+Style.RESET_ALL
         elif avg_persent == 100:
             f1_msg = Fore.YELLOW+front_msg+Style.RESET_ALL
