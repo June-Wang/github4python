@@ -107,7 +107,7 @@ def job4persent(stock_code,stock_basics,start_day,end_day,day_list,cycle_time):
     #persent_dict = get_persent_dict(df_hist_data,day_list,cycle_time)
     #print(persent_dict[0])
     #persent_30 = get_persent_dict(df_hist_data,day_list,30)[0]
-    get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
+    #get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
     stock_info = get_stock_info(stock_code,stock_basics,df_hist_data,end_day)
     #print(persent_dict[0])
 
@@ -147,7 +147,8 @@ def get_stock_info(stock_code,stock_basics,df_hist_data,end_day):
     industry = stock_basics[stock_basics.index == stock_code][['industry']].values[0][0]
     lastday = df_hist_data.index.values[0]
     close = ("%.2f" % df_hist_data[df_hist_data.index == lastday].close[0])
-    output_args = [date,stock_code,name,close,industry]
+    pe = stock_basics[stock_basics.index == stock_code][['pe']].values[0][0]
+    output_args = [date,stock_code,name,close,industry,pe]
     #print(msg)
     return(output_args)
 
@@ -195,6 +196,6 @@ if __name__ == "__main__":
     pool.join()
 
     #print(results)
-    df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','权重30','权重60','P10'])
+    df = pd.DataFrame(results,columns=['日期','代码','名称','价格','行业','市盈率','权重30','权重60','P10'])
     s = df.style.applymap(color_negative_red,subset=pd.IndexSlice[:, ['权重30','权重60','P10']]).render()
     print(s)
