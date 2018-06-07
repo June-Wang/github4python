@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
-import re
-import os
 import datetime
-import time
 import tushare as ts
-import pandas as pd
-import numpy as np
 import mysql.connector
 from mysql.connector import errorcode
 
