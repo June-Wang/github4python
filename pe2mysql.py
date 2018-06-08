@@ -5,65 +5,93 @@ import datetime
 import tushare as ts
 import mysql.connector
 from mysql.connector import errorcode
+#from mysql.connector import MySQLConnection, Error
+from configparser import ConfigParser
+
+def read_db_config(filename='config.ini', section='mysql'):
+    """ Read database configuration file and return a dictionary object
+    :param filename: name of the configuration file
+    :param section: section of database configuration
+    :return: a dictionary of database parameters
+    """
+    # create parser and read ini configuration file
+    parser = ConfigParser()
+    parser.read(filename)
+ 
+    # get section, default to mysql
+    db = {}
+    if parser.has_section(section):
+        items = parser.items(section)
+        for item in items:
+            db[item[0]] = item[1]
+    else:
+        raise Exception('{0} not found in the {1} file'.format(section, filename))
+ 
+    return(db)
 
 def get_pe_data():
     try:
+        print('Get Stock Basics...')
         df_pe = ts.get_stock_basics()
     except:
-        print('get df_data timeout!')
+        print('Get Stock Basics failed.')
         sys.exit(1)
     return(df_pe)
 
-def con_mysql(user,password,host,database):
-    config = {
-      'user': user,
-      'password': password,
-      'host': host,
-      'database': database,
-      'raise_on_warnings': True,
-    }
+def con_mysql():
+
+    db_config = read_db_config()
+    #print(db_config)
     
     try:
-      cnx = mysql.connector.connect(**config)
+        print('Connecting to MySQL database...')
+        cnx = mysql.connector.connect(**db_config)
+        if cnx.is_connected():
+            print('Connection established.')
+        else:
+            print('Connection failed.')
+
     except mysql.connector.Error as err:
       if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-        print("Something is wrong with your user name or password")
+          print("Something is wrong with your user name or password")
       elif err.errno == errorcode.ER_BAD_DB_ERROR:
-        print("Database does not exist")
+          print("Database does not exist")
       else:
-        print(err)
+          print(err)
     
-    #cursor = cnx.cursor()
     return(cnx)
 
 def main():
-    cnx = con_mysql('pe','pe2018','127.0.0.1','stock')
-    cursor = cnx.cursor()
+    df_pe = get_pe_data()
     
     now = datetime.date.today()
     date_time = now.strftime('%Y-%m-%d')
     index_time = now.strftime('%Y%m%d')
-    df_pe = get_pe_data()
+
+    cnx = con_mysql()
+    cursor = cnx.cursor()
     
-    add_pe = ("INSERT INTO tbl_pe_day "
+    query_pe = ("INSERT INTO tbl_pe_day "
                       "(id, date, code, pe) "
-                      "VALUES (%(id)s, %(date)s, %(code)s, %(pe)s)")
-    
+                      "VALUES (%s, %s, %s, %s)")
+    data_pe = list()    
     for code in df_pe.index:
+        id = index_time + code
+        date = date_time
         pe = int(df_pe[df_pe.index == code]['pe'][0])
-        index = index_time + code
-        data_pe = {
-          'id': index,
-          'date': date_time,
-          'code': code,
-          'pe': pe,
-        }
-    
-        cursor.execute(add_pe, data_pe)
-    
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+        row = (id,date,code,pe)
+        data_pe.append(row)
+    #print(data_pe)
+    try:
+        cursor.executemany(query_pe, data_pe)    
+        cnx.commit()
+        cursor.close()
+    except mysql.connector.Error as err:
+        print(err)
+
+    finally:
+        cnx.close()
+        print('Connection closed.')
 
 if __name__ == '__main__':
     main()
