@@ -33,11 +33,12 @@ def con_mysql(user,password,host,database):
       else:
         print(err)
     
-    cursor = cnx.cursor()
-    return(cursor,cnx)
+    #cursor = cnx.cursor()
+    return(cnx)
 
 def main():
-    cursor,cnx = con_mysql('pe','pe2018','127.0.0.1','stock')
+    cnx = con_mysql('pe','pe2018','127.0.0.1','stock')
+    cursor = cnx.cursor()
     
     now = datetime.date.today()
     date_time = now.strftime('%Y-%m-%d')
