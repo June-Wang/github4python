@@ -65,7 +65,7 @@ def main():
     df = get_day_all()
     
     now = datetime.date.today()
-    date_time = now.strftime('%Y-%m-%d %H:%M')
+    date_time = now.strftime('%Y-%m-%d %H:%M:%S')
 
     cnx = con_mysql()
     cursor = cnx.cursor()
