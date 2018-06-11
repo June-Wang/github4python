@@ -67,7 +67,6 @@ def main():
     
     now = datetime.datetime.now()
     date_time = now.strftime('%Y-%m-%d %H:%M:%S')
-    sys.exit(1)
 
     cnx = con_mysql()
     cursor = cnx.cursor()
