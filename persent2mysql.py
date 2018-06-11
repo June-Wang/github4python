@@ -2,6 +2,7 @@
 
 import sys
 import datetime
+import time
 import tushare as ts
 import mysql.connector
 from mysql.connector import errorcode
@@ -64,8 +65,9 @@ def con_mysql():
 def main():
     df = get_day_all()
     
-    now = datetime.date.today()
+    now = datetime.datetime.now()
     date_time = now.strftime('%Y-%m-%d %H:%M:%S')
+    sys.exit(1)
 
     cnx = con_mysql()
     cursor = cnx.cursor()
