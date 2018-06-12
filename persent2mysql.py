@@ -63,10 +63,16 @@ def con_mysql():
     return(cnx)
 
 def main():
-    df = get_day_all()
     
     now = datetime.datetime.now()
+    start = now.replace(hour = 9,minute = 30,second = 0)
+    end = now.replace(hour = 15,minute = 00,second = 0)
+    if now < start and now > end:
+        print('Not 9:30-15:00!')
+        sys.exit(1)  
+
     date_time = now.strftime('%Y-%m-%d %H:%M:%S')
+    df = get_day_all()
 
     cnx = con_mysql()
     cursor = cnx.cursor()
