@@ -67,7 +67,7 @@ def main():
     now = datetime.datetime.now()
     start = now.replace(hour = 9,minute = 30,second = 0)
     end = now.replace(hour = 15,minute = 00,second = 0)
-    if now < start and now > end:
+    if now < start or now > end:
         print('Not 9:30-15:00!')
         sys.exit(1)  
 
