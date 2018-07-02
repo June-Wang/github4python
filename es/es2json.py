@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import datetime,sys,json,requests
-#import sys
 
 def make_json_data(scan_frequency):
     frequency=scan_frequency
@@ -63,8 +62,13 @@ if __name__=="__main__":
     results = search(uri, json_data)
     res = results['hits']['hits']
     #print(res)
-    for i in range(len(res)):
+    total = len(res)
+    if total == 0:
+        print('results is empty.')
+        sys.exit(1)
+    for i in range(total):
         date = res[i]['_source']['timestamp']
         source = res[i]['_source']['source']
         message = res[i]['_source']['message']
         print(date,source,message)
+    print('Total:',str(total))
