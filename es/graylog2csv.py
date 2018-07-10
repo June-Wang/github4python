@@ -30,7 +30,7 @@ if __name__=="__main__":
     request_fields='fields=timestamp%2Crequest%2Cresponse%2Cagent%2CTIME&decorate=true'
     frequency=1
     time_url = make_time_url(frequency)
-    csv_url = graylog_url+search_condition+time_url+request_fields
+    csv_url = graylog_url + search_condition + time_url + request_fields
     print(csv_url)
     data_list = get_csv_data(csv_url,'view','readonly')
     print(data_list)
