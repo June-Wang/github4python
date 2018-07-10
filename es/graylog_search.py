@@ -32,5 +32,5 @@ if __name__=="__main__":
     time_url = make_time_url(frequency)
     csv_url = graylog_url+search_condition+time_url+request_fields
     print(csv_url)
-    data_list = get_csv_data(csv_url,'admin','Ab2016')
+    data_list = get_csv_data(csv_url,'view','readonly')
     print(data_list)
