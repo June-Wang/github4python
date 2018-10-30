@@ -91,6 +91,10 @@ if __name__=="__main__":
     url_group = df.groupby(['status','url'])['url'].count()
     #print(url_group)
     sum = len(data)
+    if sum == 0:
+        url_msg = ''
+    else:
+        url_msg = url_group.to_string()
 
     url_msg = url_group.to_string()
     if sum >= critical:
