@@ -97,7 +97,7 @@ def do_it(code):
 
     #year_list = get_share(stock_code)
     day_list = [i for i in range(0,day_range+1)]
-    #day_list = [0]
+    #day_list = [0,1,2,3,4]
 
     now = datetime.date.today()
     end_day = get_end_day(now)
@@ -162,8 +162,12 @@ def do_it(code):
         #    sh_w_msg += 
 
         p_msg = ''
+        count = 0
         for i in (day_list_persent):
-            p_msg += 'P'+str(i)+'='+str(cycle_p_change[i][0])+','
+            p_msg += 'P'+str(i)+'='+str(cycle_p_change_list[count])+','
+            count += 1
+        #print(cycle_p_change_list)
+        #print(cycle_p_change)
         p_msg = 'P1='+ ("%.2f" % float(price_wave)) + ','+p_msg
         #print(p_msg)
         avg_persent = sum(w_list)/len(w_list)
@@ -191,5 +195,6 @@ def do_it(code):
 if __name__ == "__main__":
 
     stock_list = ['000998','600519','600188','002056','600354']
+    #stock_list = ['000998']
     for code in stock_list:
         do_it(code)
