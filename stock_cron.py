@@ -162,8 +162,10 @@ def do_it(code):
         #    sh_w_msg += 
 
         p_msg = ''
+        count = 0
         for i in (day_list_persent):
-            p_msg += 'P'+str(i)+'='+str(cycle_p_change[i][0])+','
+            p_msg += 'P'+str(i)+'='+str(cycle_p_change_list[count])+','
+            count += 1
         p_msg = 'P1='+ ("%.2f" % float(price_wave)) + ','+p_msg
         #print(p_msg)
         avg_persent = sum(w_list)/len(w_list)
