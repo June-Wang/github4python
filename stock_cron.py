@@ -91,7 +91,7 @@ def do_it(code):
     stock_code = code
 
     cycle_time = 30
-    day_range = 150
+    day_range = 180
 
     num4days = day_range*2 + cycle_time
 
@@ -109,7 +109,8 @@ def do_it(code):
     cycle_p_change_list = get_cycle_p_change_list(df_hist_data,day_list,cycle_time)
     sh_cycle_p_change_list = get_cycle_p_change_list(sh_hist_data,day_list,cycle_time)
 
-    day_list_persent = [3,5,10]
+    #day_list_persent = [3,5,10]
+    day_list_persent = [3,5,10,20,30,60,90]
     #day_list_persent = my_list
     cycle_p_change = dict()
     sh_cycle_p_change = dict()
