@@ -163,7 +163,8 @@ def do_it(code,start_day,end_day,day_list):
 	day_count = 0
 	p_change_sum = 0
 	sh_p_change_sum = 0
-	year_list = get_share(code) 
+	#year_list = get_share(code) 
+	year_list = list() 
 	now_price = 0.0
 
 	price_list = list()
