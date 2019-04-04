@@ -34,15 +34,16 @@ except:
     sys.exit(0)
 #print("Got %d Hits:" % res['hits']['total'])
 #ignore_re = re.compile('nkp-listener')
-#ignore_re_msg = re.compile(': timeout')
-
-#error_msg = {}
+ignore_re_msg = ['already locked by other thread','generate lifetimeUserId error','createLifetimeUser']
 error_list = []
 total = 0
 for hit in res['hits']['hits']:
-#    if (re.search(ignore_re,hit["_source"]['module']) and re.search(ignore_re_msg,hit["_source"]['message'])):
-#        continue
-    if hit["_source"]['level'] == 'ERROR':
+    ignore_mark = 0
+    for ignore_re_str in ignore_re_msg:
+        ignore_re =  re.compile(ignore_re_str)
+        if re.search(ignore_re,hit["_source"]['message']):
+            ignore_mark += 1
+    if hit["_source"]['level'] == 'ERROR' and ignore_mark == 0:
         err_msg = str("%(host)s %(module)s %(level)s: %(message)s" % hit["_source"])
         #err_msg = hit["_source"]['message']
         #err_module = hit["_source"]['module']
