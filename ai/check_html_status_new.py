@@ -73,11 +73,12 @@ if __name__=="__main__":
     critical = int(sys.argv[4])
 
     frequency = 1
+    #frequency = 100
 
     fields='status,url'
     csv_url = make_url(frequency,streams,fields)
     #print(csv_url)
-    data_list = get_csv_data(csv_url,'admin','password')
+    data_list = get_csv_data(csv_url,'admin','passwd')
     data = data_list[1:]
 
     #print(data)
@@ -88,15 +89,17 @@ if __name__=="__main__":
 
     df = pd.DataFrame(status_url_list,columns=['status','url'])
 
-    url_group = df.groupby(['status','url'])['url'].count()
-    #print(url_group)
+    #url_group = df.groupby(['status','url'])['url'].count()
+    url_group = df.groupby(['status','url'])['url'].count().reset_index(name='count').sort_values(['count'], ascending=False)
+    s = url_group.reset_index(drop=True)
+    s.index = s.index + 1
+    
     sum = len(data)
     if sum == 0:
         url_msg = ''
     else:
-        url_msg = url_group.to_string()
+        url_msg = s.to_string()
 
-    url_msg = url_group.to_string()
     if sum >= critical:
         print(message(url_msg,html_status,'critical',sum,warning,critical))
         sys.exit(2)
