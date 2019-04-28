@@ -99,6 +99,8 @@ if __name__=="__main__":
         url_msg = ''
     else:
         url_msg = s.to_string()
+        #to list
+        #url_list = s.values.tolist()
 
     if sum >= critical:
         print(message(url_msg,html_status,'critical',sum,warning,critical))
