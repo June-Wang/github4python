@@ -84,8 +84,16 @@ if __name__=="__main__":
     #print(data)
     #line[0] date line[1] status; line[2] url
     status_url_list = list()
+    #for line in data:
+    #    status_url_list.append([line[1],line[2]])
+
     for line in data:
-        status_url_list.append([line[1],line[2]])
+        status = line[1]
+        url = line[2]
+        re_match = re.search('^.+\?', url, flags=0)
+        if re_match:
+            url = re.sub(r'\?.+$', "", url)
+        status_url_list.append([status,url])
 
     df = pd.DataFrame(status_url_list,columns=['status','url'])
 
