@@ -8,9 +8,9 @@ import pandas as pd
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
-def make_time_url(frequency):
+def make_time_url(interval):
     end_time = datetime.datetime.now()
-    start_time = end_time - datetime.timedelta(minutes=frequency)
+    start_time = end_time - datetime.timedelta(minutes=interval)
     time_from = start_time.strftime('%Y-%m-%d %H:%M:00.000')
     time_to = end_time.strftime('%Y-%m-%d %H:%M:00.000')
     time_url = 'from=' + time_from + '&to=' + time_to + '&'
@@ -48,12 +48,12 @@ def get_rules(file):
         rule_list.append(line)
     return(rule_list)
 
-def make_url(frequency,streams,fields):
+def make_url(interval,streams,fields):
     graylog_url='http://127.0.0.1:9000/api/search/universal/absolute/export?'
     search_condition= 'query=streams%3A'+ streams + '&'
     fields.replace(",", "%2C")
     request_fields='fields=' + fields
-    time_url = make_time_url(frequency)
+    time_url = make_time_url(interval)
     csv_url = graylog_url + search_condition + time_url + request_fields
     return(csv_url)
 
@@ -72,11 +72,11 @@ if __name__=="__main__":
     warning = int(sys.argv[3])
     critical = int(sys.argv[4])
 
-    frequency = 1
-    #frequency = 100
+    interval = 1
+    #interval = 100
 
     fields='status,url'
-    csv_url = make_url(frequency,streams,fields)
+    csv_url = make_url(interval,streams,fields)
     #print(csv_url)
     data_list = get_csv_data(csv_url,'admin','passwd')
     data = data_list[1:]
