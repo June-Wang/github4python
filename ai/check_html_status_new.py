@@ -58,7 +58,7 @@ def make_url(interval,streams,fields):
     return(csv_url)
 
 def message(url_msg,html_status,status,sum,warning,critical):
-    message_template = """%s - html %s status is %s! count=%s/min"""
+    message_template = """%s - http %s status is %s! count=%s/min"""
     rrd_template = """|count=%s;%s;%s;"""
     message = message_template % (status,html_status,status,sum)
     rrd_msg = rrd_template % (sum,warning,critical)
