@@ -260,9 +260,9 @@ def do_it(code,start_day,end_day,day_list):
 		act_min = 0
 		price_avg = 0
 
-	income_avg = price_avg + price_avg*0.25
+	income_avg = price_avg + price_avg*0.10
 	price_msg = 'now:\t'+("%.2f" % now_price)
-	act_msg = 'buy/sell(25%):\t'+("%.2f" % act_min)+'\t'+("%.2f" % income_avg)
+	act_msg = 'buy/sell(10%):\t'+("%.2f" % act_min)+'\t'+("%.2f" % income_avg)
 
 	output_args = [code,price_msg,act_msg]
 	msg = '\t'.join(output_args)
