@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
-import urllib.request
+import urllib.request,multiprocessing
 
 def get_days(pro,start_day,end_day):
     """
@@ -65,37 +65,33 @@ def get_df_hist_data(stock_code,start_day,end_day):
         sys.exit(1)
     return(df_hist_data)
 
-def get_change_list(df_hist_data,df_work_day,df_all_day,period,day_range):
+def get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range):
     """
     生成周期内涨跌幅的值[返回列表]
     """
-    change_list = list()
+    pct_chg_list = list()
     count = 0
     for day in reversed(list(df_work_day['cal_date'].tail(day_range))):
         end_t = day
         all_index_end = df_all_day[df_all_day['cal_date'] == end_t].index.tolist()[0]
-        #all_date = df_all_day['cal_date'].iat[all_index_num]
         start_t = df_all_day['cal_date'].iat[all_index_end - period]
-        #all_index_start = df_all_day[df_all_day['cal_date'] == start_t].index.tolist()[0]
         count += 1
-        #print(str(count),start_t,end_t,str(all_index_start),str(all_index_end))
-        #change_sum = ("%.2f" % df_hist_data[['change']][all_index_start:all_index_end].sum())
-        change_sum = ("%.2f" % df_hist_data[(df_hist_data['trade_date']>=str(start_t)) & (df_hist_data['trade_date']<=str(end_t))]['change'].sum())
-        print(str(count),start_t,end_t,str(change_sum))
-        #cycle_p_change_list.append(cycle_p_change_sum)
-        #print(day_time,str(cycle_p_change_sum))
-    return(change_list)
+        pct_chg_sum = ("%.2f" % df_hist_data[(df_hist_data['trade_date']>=str(start_t)) & (df_hist_data['trade_date']<=str(end_t))]['pct_chg'].sum())
+        pct_chg_list.append([str(day),pct_chg_sum])
+        pct_chg_index = 'pct_chg_'+ str(period) + 'd'
+        df_pct_chg = pd.DataFrame(pct_chg_list,columns=['trade_date',pct_chg_index])
+    return(df_pct_chg)
 
 if __name__ == "__main__":
 
-    pro = ts.pro_api('token')
+    #pro = ts.pro_api('token')
     #stock_list = ['000998']
     #stock_code = sys.argv[1]
     stock_code = '000998.SZ'
 
     #cycle_time = 90
     #day_range = 150
-    pre_days = 30
+    pre_days = 90
     day_range = 90
 
     num4days = day_range*2 + pre_days
@@ -105,12 +101,17 @@ if __name__ == "__main__":
     start_day = get_start_day(now,num4days)
 
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
-    #print(df_hist_data)
-
     day_list = [i for i in range(0,day_range+1)]
     period = 10
     all_day,work_day,df_all_day,df_work_day = get_days(pro,start_day,end_day)
-    #print(all_day)
-    #print(work_day)
-    #change_list = get_change_list(df_hist_data,day_list,period)
-    get_change_list(df_hist_data,df_work_day,df_all_day,period,day_range)
+
+    pool = multiprocessing.Pool(processes=4)
+    period_list = [5,10,20,30,60,90]
+    job_list = list()
+    for period in period_list:
+        #get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range)
+        res = pool.apply_async(get_df_pct_chg, (df_hist_data,df_work_day,df_all_day,period,day_range))
+        job_list.append(res.get())
+
+    result = pd.concat(job_list, axis=1, sort=False)
+    print(result)
