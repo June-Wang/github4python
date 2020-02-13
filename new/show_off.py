@@ -7,6 +7,7 @@ import numpy as np
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint
 import urllib.request,multiprocessing
+from dateutil import parser
 
 def get_days(pro,start_day,end_day):
     """
@@ -83,43 +84,56 @@ def get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range):
         #df_pct_chg.set_index('trade_date')
     return(df_pct_chg)
 
+def conv_date(val):
+    if len(val) == 4:
+        timestamp = parser.parse(val).strftime('%s000000000')
+    else:
+        timestamp = '0000000000000000000'
+    return(timestamp)
+
 if __name__ == "__main__":
 
     #pro = ts.pro_api('token')
-    #stock_list = ['000998']
     #stock_code = sys.argv[1]
-    stock_code = '000998.SZ'
+    stock_list = ['000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    #stock_code = '000998.SZ'
 
     #cycle_time = 90
     #day_range = 150
     pre_days = 90
-    day_range = 90
+    day_range = 10
 
     num4days = day_range*2 + pre_days
 
     now = datetime.date.today()
     end_day = get_end_day(now)
     start_day = get_start_day(now,num4days)
-
-    #print(start_day,end_day)
-    df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
-    #print(df_hist_data)
-    day_list = [i for i in range(0,day_range+1)]
-    period = 10
-    all_day,work_day,df_all_day,df_work_day = get_days(pro,start_day,end_day)
-
-    pool = multiprocessing.Pool(processes=4)
-    period_list = [5,10,20,30,60,90]
-    job_list = list()
-    for period in period_list:
-        #get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range)
-        res = pool.apply_async(get_df_pct_chg, (df_hist_data,df_work_day,df_all_day,period,day_range))
-        job_list.append(res.get())
-
-    stock_info = df_hist_data[['trade_date','close','vol','amount']][0:day_range]
-    #print(stock_info)
-    job_list.append(stock_info)
-    result = pd.concat(job_list, axis=1, sort=False)
-    pct = result.loc[:,~result.columns.duplicated()]
-    print(pct)
+    
+    for stock_code in stock_list:
+        #print(start_day,end_day)
+        df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
+        #print(df_hist_data)
+        day_list = [i for i in range(0,day_range+1)]
+        all_day,work_day,df_all_day,df_work_day = get_days(pro,start_day,end_day)
+    
+        pool = multiprocessing.Pool(processes=4)
+        period_list = [5,10,20,30,60,90]
+        job_list = list()
+        for period in period_list:
+            res = pool.apply_async(get_df_pct_chg, (df_hist_data,df_work_day,df_all_day,period,day_range))
+            job_list.append(res.get())
+    
+        stock_info = df_hist_data[['trade_date','close','change','pct_chg','vol','amount']][0:day_range]
+        #date_str = stock_info['trade_date'][0]
+        #print(stock_info)
+        job_list.append(stock_info)
+        result = pd.concat(job_list, axis=1, sort=False)
+        pct = result.loc[:,~result.columns.duplicated()]
+        pct_new = pct.applymap(conv_date,subset=pd.IndexSlice[:, ['trade_date']]).render()
+        #timestamp = parser.parse(date_str).strftime('%s000000000')
+        #msg = 'tushare_pro,stock_code='+stock_code+' '
+        #for item in list(pct.columns):
+        #    msg += item + '='+ str(pct[item][0])+ ','
+        #print(msg[0:-2]+' '+str(timestamp))
+        print(pct_new)
     
