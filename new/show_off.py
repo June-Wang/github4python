@@ -80,6 +80,7 @@ def get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range):
         pct_chg_list.append([str(day),pct_chg_sum])
         pct_chg_index = 'pct_chg_'+ str(period) + 'd'
         df_pct_chg = pd.DataFrame(pct_chg_list,columns=['trade_date',pct_chg_index])
+        #df_pct_chg.set_index('trade_date')
     return(df_pct_chg)
 
 if __name__ == "__main__":
@@ -100,7 +101,9 @@ if __name__ == "__main__":
     end_day = get_end_day(now)
     start_day = get_start_day(now,num4days)
 
+    #print(start_day,end_day)
     df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
+    #print(df_hist_data)
     day_list = [i for i in range(0,day_range+1)]
     period = 10
     all_day,work_day,df_all_day,df_work_day = get_days(pro,start_day,end_day)
@@ -113,5 +116,10 @@ if __name__ == "__main__":
         res = pool.apply_async(get_df_pct_chg, (df_hist_data,df_work_day,df_all_day,period,day_range))
         job_list.append(res.get())
 
+    stock_info = df_hist_data[['trade_date','close','vol','amount']][0:day_range]
+    #print(stock_info)
+    job_list.append(stock_info)
     result = pd.concat(job_list, axis=1, sort=False)
-    print(result)
+    pct = result.loc[:,~result.columns.duplicated()]
+    print(pct)
+    
