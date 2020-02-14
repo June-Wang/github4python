@@ -60,11 +60,32 @@ def get_df_hist_data(stock_code,start_day,end_day):
     amount	float	成交额 （千元）
     """
     try:
-        df_hist_data = df = pro.query('daily', ts_code=stock_code, start_date=start_day, end_date=end_day)
+        df_hist_data = pro.query('daily', ts_code=stock_code, start_date=start_day, end_date=end_day)
     except:
         print('get_hist_data timeout!')
         sys.exit(1)
     return(df_hist_data)
+
+def get_df_hist_common(stock_code,start_day,end_day):
+    """
+名称	类型	必选	描述
+ts_code	str	Y	证券代码
+api	str	N	pro版api对象，如果初始化了set_token，此参数可以不需要
+start_date	str	N	开始日期 (格式：YYYYMMDD，提取分钟数据请用2019-09-01 09:00:00这种格式)
+end_date	str	N	结束日期 (格式：YYYYMMDD)
+asset	str	Y	资产类别：E股票 I沪深指数 C数字货币 FT期货 FD基金 O期权 CB可转债（v1.2.39），默认E
+adj	str	N	复权类型(只针对股票)：None未复权 qfq前复权 hfq后复权 , 默认None
+freq	str	Y	数据频度 ：支持分钟(min)/日(D)/周(W)/月(M)K线，其中1min表示1分钟（类推1/5/15/30/60分钟） ，默认D。对于分钟数据有600积分可用户可以试用（每分钟2次），正式权限请在QQ群私信群主或积分管理员。
+ma	list	N	均线，支持任意合理int数值。注：均线是动态计算，要设置一定时间范围才能获得相应的均线，比如5日均线，开始和结束日期参数跨度必须要超过5日。目前只支持单一个股票提取均线，即需要输入ts_code参数。
+factors	list	N	股票因子（asset='E'有效）支持 tor换手率 vr量比
+adjfactor	str	N	复权因子，在复权数据是，如果此参数为True，返回的数据中则带复权因子，默认为False。 该功能从1.2.33版本开始生效
+    """
+    try:
+        df_hist_common = ts.pro_bar(ts_code=stock_code, adj='qfq', start_date=start_day, end_date=end_day)
+    except:
+        print('get_hist_common timeout!')
+        sys.exit(1)
+    return(df_hist_common)
 
 def get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range):
     """
@@ -85,7 +106,7 @@ def get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range):
     return(df_pct_chg)
 
 def conv_date(val):
-    if len(val) == 4:
+    if len(val) == 8:
         timestamp = parser.parse(val).strftime('%s000000000')
     else:
         timestamp = '0000000000000000000'
@@ -95,13 +116,14 @@ if __name__ == "__main__":
 
     #pro = ts.pro_api('token')
     #stock_code = sys.argv[1]
-    stock_list = ['000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    #stock_list = ['000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    stock_list = ['000803.SZ']
     #stock_code = '000998.SZ'
 
     #cycle_time = 90
     #day_range = 150
     pre_days = 90
-    day_range = 10
+    day_range = 30
 
     num4days = day_range*2 + pre_days
 
@@ -112,6 +134,7 @@ if __name__ == "__main__":
     for stock_code in stock_list:
         #print(start_day,end_day)
         df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
+        df_hist_common = get_df_hist_common(stock_code,start_day,end_day)
         #print(df_hist_data)
         day_list = [i for i in range(0,day_range+1)]
         all_day,work_day,df_all_day,df_work_day = get_days(pro,start_day,end_day)
@@ -123,17 +146,18 @@ if __name__ == "__main__":
             res = pool.apply_async(get_df_pct_chg, (df_hist_data,df_work_day,df_all_day,period,day_range))
             job_list.append(res.get())
     
-        stock_info = df_hist_data[['trade_date','close','change','pct_chg','vol','amount']][0:day_range]
-        #date_str = stock_info['trade_date'][0]
-        #print(stock_info)
+        stock_info = df_hist_data[['ts_code','trade_date','close','change','pct_chg','vol','amount']][0:day_range]
         job_list.append(stock_info)
         result = pd.concat(job_list, axis=1, sort=False)
-        pct = result.loc[:,~result.columns.duplicated()]
-        pct_new = pct.applymap(conv_date,subset=pd.IndexSlice[:, ['trade_date']]).render()
-        #timestamp = parser.parse(date_str).strftime('%s000000000')
-        #msg = 'tushare_pro,stock_code='+stock_code+' '
-        #for item in list(pct.columns):
-        #    msg += item + '='+ str(pct[item][0])+ ','
-        #print(msg[0:-2]+' '+str(timestamp))
-        print(pct_new)
-    
+        df_pct = result.loc[:,~result.columns.duplicated()]
+        date_list = list(df_pct['trade_date'])
+        qfq_close_list = list(df_hist_common['close'][0:day_range])
+        df_pct = df_pct.assign(timestamp = [conv_date(x) for x in date_list])
+        df_pct = df_pct.assign(qfq_close = [x for x in qfq_close_list])
+        print(df_pct)
+        #print(df_pct.to_csv(index=True))
+        #print(df_pct.to_csv(index=False))
+
+"""
+trade_date,pct_chg_5d,pct_chg_10d,pct_chg_20d,pct_chg_30d,pct_chg_60d,pct_chg_90d,ts_code,close,change,pct_chg,vol,amount,timestamp
+"""
