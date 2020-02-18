@@ -116,14 +116,14 @@ if __name__ == "__main__":
 
     #pro = ts.pro_api('token')
     #stock_code = sys.argv[1]
-    #stock_list = ['000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
-    stock_list = ['000803.SZ']
+    stock_list = ['000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    #stock_list = ['000803.SZ']
     #stock_code = '000998.SZ'
 
     #cycle_time = 90
     #day_range = 150
     pre_days = 90
-    day_range = 30
+    day_range = 10
 
     num4days = day_range*2 + pre_days
 
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     for stock_code in stock_list:
         #print(start_day,end_day)
         df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
-        df_hist_common = get_df_hist_common(stock_code,start_day,end_day)
+        #df_hist_common = get_df_hist_common(stock_code,start_day,end_day)
         #print(df_hist_data)
         day_list = [i for i in range(0,day_range+1)]
         all_day,work_day,df_all_day,df_work_day = get_days(pro,start_day,end_day)
@@ -151,12 +151,12 @@ if __name__ == "__main__":
         result = pd.concat(job_list, axis=1, sort=False)
         df_pct = result.loc[:,~result.columns.duplicated()]
         date_list = list(df_pct['trade_date'])
-        qfq_close_list = list(df_hist_common['close'][0:day_range])
+        #qfq_close_list = list(df_hist_common['close'][0:day_range])
         df_pct = df_pct.assign(timestamp = [conv_date(x) for x in date_list])
-        df_pct = df_pct.assign(qfq_close = [x for x in qfq_close_list])
-        print(df_pct)
+        #df_pct = df_pct.assign(qfq_close = [x for x in qfq_close_list])
+        #print(df_pct)
         #print(df_pct.to_csv(index=True))
-        #print(df_pct.to_csv(index=False))
+        print(df_pct.to_csv(index=False))
 
 """
 trade_date,pct_chg_5d,pct_chg_10d,pct_chg_20d,pct_chg_30d,pct_chg_60d,pct_chg_90d,ts_code,close,change,pct_chg,vol,amount,timestamp

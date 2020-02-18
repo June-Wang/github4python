@@ -87,7 +87,7 @@ def get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range):
 if __name__ == "__main__":
 
     #pro = ts.pro_api('token')
-    stock_list = ['000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
     #stock_code = sys.argv[1]
 
     pre_days = 90
@@ -116,7 +116,7 @@ if __name__ == "__main__":
             job_list.append(res.get())
     
         stock_info = df_hist_data[['trade_date','close','change','pct_chg','vol','amount']][0:1]
-        date_str = stock_info['trade_date'][0]
+        date_str = stock_info['trade_date'][0]+' 15:00'
         job_list.append(stock_info)
         result = pd.concat(job_list, axis=1, sort=False)
         pct = result.loc[:,~result.columns.duplicated()]
