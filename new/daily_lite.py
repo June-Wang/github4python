@@ -98,12 +98,12 @@ if __name__ == "__main__":
     pd.set_option('expand_frame_repr', False)  # 当列太多时不自动换行
 
     #pro = ts.pro_api('token')
-    #stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
-    stock_code = sys.argv[1]
-    stock_list = [stock_code]
+    stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    #stock_code = sys.argv[1]
+    #stock_list = [stock_code]
 
     pre_days = 120
-    day_range = 600
+    day_range = 90
 
     num4days = day_range + pre_days
 
@@ -125,17 +125,16 @@ if __name__ == "__main__":
             res = pool.apply_async(get_df_pct_chg, (df_hist_data,day_range,period))
             job_list.append(res.get())
 
-        stock_info = df_hist_data[0:day_range]
+        #stock_info = df_hist_data[0:day_range]
+        stock_info = df_hist_data[0:1]
         job_list.append(stock_info)
         df_pct = pd.concat(job_list, axis=1, sort=False)
         date_list = list(df_pct['trade_date'])
         df_w = df_pct[['pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','pct_chg_75d','pct_chg_45d']].applymap(get_weight)
         df_pct['weight'] = df_w.sum(axis=1)/len(df_w.columns)*100
-        df_pct = df_pct.assign(timestamp = [conv_date(x) for x in date_list])
-        df_pct = df_pct[df_pct['timestamp'] != '0000000000000000000']
-        #df_buy = df_pct[df_pct['weight'] <= -80]
-        #df_sell =df_pct[df_pct['weight'] >= 80]
-        #df_stock = pd.concat([df_buy,df_sell])
-        #df_stock = df_stock.sort_values(by='trade_date',ascending=False)
-        print(df_pct[['trade_date','ts_code','close','weight','vol','timestamp']].to_csv(index=False))
-        #print(df_pct.to_csv(index=False))
+        date_str = stock_info['trade_date'][0]+' 15:00'
+        timestamp = parser.parse(date_str).strftime('%s000000000')
+        msg = 'tushare_lite,stock_code='+stock_code+' '
+        for item in list(df_pct.columns):
+            msg += item + '='+ str(df_pct[item][0])+ ','
+        print(msg[0:-1]+' '+str(timestamp))
