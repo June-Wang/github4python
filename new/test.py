@@ -53,6 +53,15 @@ def get_df_pct_chg(df,day_range,period):
         #print(str(day),str(day+period))
     return(df_pct_chg)
 
+def conv_weight(df,day_range,period):
+    weight_index = 'weight_'+ str(period) + 'd'
+    weight_list = list()
+    for day in range(0,day_range):
+        #weight_list.append("%.2f" % (df['weight'][day:day+period].sum()/period*100))
+        weight_list.append(df['weight'][day:day+period].sum()/period*100)
+        df_weight = pd.DataFrame(weight_list,columns=[weight_index])
+    return(df_weight)
+
 def get_df_hist_data(stock_code,start_day,end_day):
     """
     获取股票的历史数据，参数：股票代码(stock_code)、时间周期(num4days)
@@ -94,12 +103,13 @@ def get_weight(val):
 
 if __name__ == "__main__":
 
-    stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    #pro = ts.pro_api('token')
+    #stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    stock_list = ['000998.SZ']
     #stock_code = sys.argv[1]
-    #stock_list = [stock_code]
 
-    pre_days = 120
-    day_range = 600
+    pre_days = 90
+    day_range = 90
 
     num4days = day_range + pre_days
 
@@ -107,38 +117,45 @@ if __name__ == "__main__":
     end_day = get_end_day(now)
     start_day = get_start_day(now,num4days)
 
-    #pro = ts.pro_api('token')
     ts.set_token('API_TOKEN')
-    pro = ts.pro_api('API_TOKEN')
+    pro = ts.pro_api()
     
     #df['trade_date'] = pd.to_datetime(df['trade_date'])
+    
+    #print(get_df_pct_chg(df,day_range,period))
 
     for stock_code in stock_list:
         df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
+        df_hist_data['weight'] = df_hist_data[['pct_chg']].applymap(get_weight)
+        #day_list = [i for i in range(0,day_range+1)]
+        #period = 10
+        #all_day,work_day,df_all_day,df_work_day = get_days(pro,start_day,end_day)
 
         pool = multiprocessing.Pool(processes=4)
-        period_list = [3,5]
-        period_list.extend([i for i in range(10,100,10)])
+        period_list = [3,5,10,20,30,60,90]
         job_list = list()
         for period in period_list:
             res = pool.apply_async(get_df_pct_chg, (df_hist_data,day_range,period))
             job_list.append(res.get())
 
-        stock_info = df_hist_data[0:day_range]
-        job_list.append(stock_info)
-        df_pct = pd.concat(job_list, axis=1, sort=False)
-        date_list = list(df_pct['trade_date'])
+        #period_list = [30,60,90]
+        for period in period_list:
+            res_weight = pool.apply_async(conv_weight, (df_hist_data,day_range,period))
+            job_list.append(res_weight.get())
 
-        chg_list = [str('pct_chg_'+ str(i) + 'd') for i in period_list]
-        chg_list.extend(['pct_chg'])
-        df_w = df_pct[chg_list].applymap(get_weight)
-        df_pct['weight'] = df_w.sum(axis=1)/len(df_w.columns)*100
-        df_pct = df_pct.assign(timestamp = [conv_date(x) for x in date_list])
+        stock_info = df_hist_data[['ts_code','trade_date','close','change','pct_chg','vol','amount']][0:day_range]
+        job_list.append(stock_info)
+        result = pd.concat(job_list, axis=1, sort=False)
+        date_list = list(result['trade_date'])
+        df_pct = result.assign(timestamp = [conv_date(x) for x in date_list])
         df_pct = df_pct[df_pct['timestamp'] != '0000000000000000000']
-        #df_buy = df_pct[df_pct['weight'] <= -80]
-        #df_sell =df_pct[df_pct['weight'] >= 80]
-        #df_stock = pd.concat([df_buy,df_sell])
-        #df_stock = df_stock.sort_values(by='trade_date',ascending=False)
-        #print(df_pct[['trade_date','ts_code','close','weight','vol','timestamp']].to_csv(index=False))
-        print(df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','close','weight','vol','timestamp']].to_csv(index=False))
+        df_pct['w_avg'] = (df_pct['pct_chg']+df_pct['pct_chg_3d'] +df_pct['pct_chg_5d']+df_pct['pct_chg_10d']+df_pct['pct_chg_20d']+df_pct['pct_chg_30d']+df_pct['pct_chg_60d']+df_pct['pct_chg_90d']+df_pct['weight_3d']+df_pct['weight_5d']+df_pct['weight_10d']+df_pct['weight_20d']+df_pct['weight_30d']+df_pct['weight_60d']+df_pct['weight_90d'])/15
+        #df_pct = df_pct[['trade_date','ts_code','timestamp','close','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','change','vol','amount']]
         #print(df_pct.to_csv(index=False))
+        #print(df_pct[['trade_date','ts_code','close','w_avg']])
+        df_buy = df_pct[[df_pct['w_avg']<=-15]]
+        df_sell =df_pct[[df_pct['w_avg']>=20]]
+        df_stock = pd.concat([df_buy,df_sell])
+        df_stock = df_stock.sort_values(by='trade_date',ascending=False)
+        #df_stock.set_index('trade_date')
+        print(df_stock)

@@ -98,7 +98,7 @@ def get_df_pct_chg(df_hist_data,df_work_day,df_all_day,period,day_range):
         all_index_end = df_all_day[df_all_day['cal_date'] == end_t].index.tolist()[0]
         start_t = df_all_day['cal_date'].iat[all_index_end - period]
         count += 1
-        pct_chg_sum = ("%.2f" % df_hist_data[(df_hist_data['trade_date']>=str(start_t)) & (df_hist_data['trade_date']<=str(end_t))]['pct_chg'].sum())
+        pct_chg_sum = ("%.2f" % df_hist_data[(df_hist_data['trade_date']>=start_t) & (df_hist_data['trade_date']<=end_t)]['pct_chg'].sum())
         pct_chg_list.append([str(day),pct_chg_sum])
         pct_chg_index = 'pct_chg_'+ str(period) + 'd'
         df_pct_chg = pd.DataFrame(pct_chg_list,columns=['trade_date',pct_chg_index])
@@ -132,6 +132,7 @@ if __name__ == "__main__":
     for stock_code in stock_list:
         #print(start_day,end_day)
         df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
+        df_hist_data['trade_date'] = pd.to_datetime(df_hist_data['trade_date'])
         #df_hist_common = get_df_hist_common(stock_code,start_day,end_day)
         #print(df_hist_data)
         day_list = [i for i in range(0,day_range+1)]

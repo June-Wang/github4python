@@ -99,7 +99,7 @@ if __name__ == "__main__":
     #stock_list = [stock_code]
 
     pre_days = 120
-    day_range = 600
+    day_range = 180
 
     num4days = day_range + pre_days
 
@@ -133,12 +133,8 @@ if __name__ == "__main__":
         chg_list.extend(['pct_chg'])
         df_w = df_pct[chg_list].applymap(get_weight)
         df_pct['weight'] = df_w.sum(axis=1)/len(df_w.columns)*100
-        df_pct = df_pct.assign(timestamp = [conv_date(x) for x in date_list])
-        df_pct = df_pct[df_pct['timestamp'] != '0000000000000000000']
-        #df_buy = df_pct[df_pct['weight'] <= -80]
-        #df_sell =df_pct[df_pct['weight'] >= 80]
-        #df_stock = pd.concat([df_buy,df_sell])
-        #df_stock = df_stock.sort_values(by='trade_date',ascending=False)
-        #print(df_pct[['trade_date','ts_code','close','weight','vol','timestamp']].to_csv(index=False))
-        print(df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','close','weight','vol','timestamp']].to_csv(index=False))
-        #print(df_pct.to_csv(index=False))
+        df_buy = df_pct[(df_pct['weight'] == -70) & (df_pct['pct_chg_90d'] < -20)]
+        df_sell =df_pct[(df_pct['weight'] == 70) & (df_pct['pct_chg_90d'] > 20)]
+        df_stock = pd.concat([df_buy,df_sell])
+        df_stock = df_stock.sort_values(by='trade_date',ascending=False)
+        print(df_stock[['trade_date','ts_code','close','weight','pct_chg_90d']].to_csv(index=False))

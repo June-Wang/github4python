@@ -97,10 +97,10 @@ if __name__ == "__main__":
     pd.set_option('display.max_columns', 200)  # 设置显示数据的最大列数，防止出现省略号…，导致数据显示不全
     pd.set_option('expand_frame_repr', False)  # 当列太多时不自动换行
 
+    ts.set_token('API_TOKEN')
+    pro = ts.pro_api('API_TOKEN')
     #pro = ts.pro_api('token')
     stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
-    #stock_code = sys.argv[1]
-    #stock_list = [stock_code]
 
     pre_days = 120
     day_range = 90
@@ -111,15 +111,15 @@ if __name__ == "__main__":
     end_day = get_end_day(now)
     start_day = get_start_day(now,num4days)
 
-    pro = ts.pro_api('token')
-    
     #df['trade_date'] = pd.to_datetime(df['trade_date'])
 
     for stock_code in stock_list:
         df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
 
         pool = multiprocessing.Pool(processes=4)
-        period_list = [3,5,10,20,30,45,60,75,90]
+        period_list = [3,5]
+        period_list.extend([i for i in range(10,day_range + 10,10)])
+        #print(period_list)
         job_list = list()
         for period in period_list:
             res = pool.apply_async(get_df_pct_chg, (df_hist_data,day_range,period))
@@ -130,11 +130,15 @@ if __name__ == "__main__":
         job_list.append(stock_info)
         df_pct = pd.concat(job_list, axis=1, sort=False)
         date_list = list(df_pct['trade_date'])
-        df_w = df_pct[['pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','pct_chg_75d','pct_chg_45d']].applymap(get_weight)
+        chg_list = [str('pct_chg_'+ str(i) + 'd') for i in period_list]
+        chg_list.extend(['pct_chg'])
+        
+        df_w = df_pct[chg_list].applymap(get_weight)
         df_pct['weight'] = df_w.sum(axis=1)/len(df_w.columns)*100
         date_str = stock_info['trade_date'][0]+' 15:00'
         timestamp = parser.parse(date_str).strftime('%s000000000')
-        msg = 'tushare_lite,stock_code='+stock_code+' '
+        df_pct = df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','close','weight','vol']]
+        msg = 'tushare_lite,'
         for item in list(df_pct.columns):
             msg += item + '='+ str(df_pct[item][0])+ ','
         print(msg[0:-1]+' '+str(timestamp))
