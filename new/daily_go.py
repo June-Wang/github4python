@@ -119,7 +119,7 @@ if __name__ == "__main__":
     #stock_list = [stock_code]
 
     pre_days = 120
-    day_range = 600
+    day_range = 90
 
     num4days = day_range + pre_days
 
@@ -153,7 +153,8 @@ if __name__ == "__main__":
             job_list.append(res.get())
 
 
-        stock_info = df_hist_data[0:work_day]
+        #stock_info = df_hist_data[0:work_day]
+        stock_info = df_hist_data[0:1]
         job_list.append(stock_info)
         job_list.append(df_vol_chg)
         df_pct = pd.concat(job_list, axis=1, sort=False)
@@ -163,11 +164,10 @@ if __name__ == "__main__":
         chg_list.extend(['pct_chg'])
         df_w = df_pct[chg_list].applymap(get_weight)
         df_pct['weight'] = df_w.sum(axis=1)/len(df_w.columns)*100
-        df_pct = df_pct.assign(timestamp = [conv_date(x) for x in date_list])
-        df_pct = df_pct[df_pct['timestamp'] != '0000000000000000000']
-        #df_buy = df_pct[(df_pct['weight'] == -70) & (df_pct['pct_chg_90d'] < -20)]
-        #df_sell =df_pct[(df_pct['weight'] == 70) & (df_pct['pct_chg_90d'] > 20)]
-        #df_stock = pd.concat([df_buy,df_sell])
-        #df_stock = df_stock.sort_values(by='trade_date',ascending=False)
-        #print(df_pct[['trade_date','ts_code','close','weight','pct_chg_90d','vol_chg_1d','vol_avg_3d','vol_avg_5d']].to_csv(index=False))
-        print(df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','close','weight','vol','vol_chg_1d','vol_avg_3d','vol_avg_5d','timestamp']].to_csv(index=False))
+        date_str = stock_info['trade_date'][0]+' 15:00'
+        timestamp = parser.parse(date_str).strftime('%s000000000')
+        df_pct = df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','close','weight','vol','vol_chg_1d','vol_avg_3d','vol_avg_5d']]
+        msg = 'tushare_lite,'
+        for item in list(df_pct.columns):
+            msg += item + '='+ str(df_pct[item][0])+ ','
+        print(msg[0:-1]+' '+str(timestamp))
