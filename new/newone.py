@@ -108,8 +108,8 @@ if __name__ == "__main__":
     start_day = get_start_day(now,num4days)
 
     #pro = ts.pro_api('token')
-    ts.set_token('API_TOKEN')
-    pro = ts.pro_api('API_TOKEN')
+    ts.set_token('TOKEON')
+    pro = ts.pro_api('TOKEON')
     
     #df['trade_date'] = pd.to_datetime(df['trade_date'])
 

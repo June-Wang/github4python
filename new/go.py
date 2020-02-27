@@ -53,6 +53,27 @@ def get_df_pct_chg(df,day_range,period):
         #print(str(day),str(day+period))
     return(df_pct_chg)
 
+def get_df_avg(df,day_range,period,value,index):
+    avg_index = str(value)+'_avg_'+ str(period) + 'd'
+    avg_list = list()
+    for day in range(0,day_range):
+        avg_range = df[value][day+1:day+period+1].sum()/period
+        avg = (df[value][day] - avg_range)/avg_range*100
+        avg_list.append(avg)
+        df_avg = pd.DataFrame(avg_list,columns=[avg_index])
+    return(df_avg)
+
+def get_df_chg(df,day_range,value,index):
+    value = str(value)
+    chg_index = str(index)
+    #chg_index = value + '_chg'
+    chg_list = list()
+    for day in range(0,day_range):
+        chg = (df[value][day]-df[value][day+1])/df[value][day+1]*100
+        chg_list.append(chg)
+        df_chg = pd.DataFrame(chg_list,columns=[chg_index])
+    return(df_chg)
+
 def get_df_hist_data(stock_code,start_day,end_day):
     """
     获取股票的历史数据，参数：股票代码(stock_code)、时间周期(num4days)
@@ -70,7 +91,7 @@ def get_df_hist_data(stock_code,start_day,end_day):
     amount  float   成交额 （千元）
     """
     try:
-        df_hist_data = df = pro.query('daily', ts_code=stock_code, start_date=start_day, end_date=end_day)
+        df_hist_data = pro.query('daily', ts_code=stock_code, start_date=start_day, end_date=end_day)
     except:
         print('get_hist_data timeout!')
         sys.exit(1)
@@ -99,7 +120,7 @@ if __name__ == "__main__":
     #stock_list = [stock_code]
 
     pre_days = 120
-    day_range = 180
+    day_range = 30
 
     num4days = day_range + pre_days
 
@@ -108,24 +129,33 @@ if __name__ == "__main__":
     start_day = get_start_day(now,num4days)
 
     #pro = ts.pro_api('token')
-    ts.set_token('API_TOKEN')
-    pro = ts.pro_api('API_TOKEN')
+    ts.set_token('TOKEON')
+    pro = ts.pro_api('TOKEON')
     
     #df['trade_date'] = pd.to_datetime(df['trade_date'])
 
     for stock_code in stock_list:
         df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
+        df_vol_chg = get_df_chg(df_hist_data,day_range,'vol','vol_chg_1d')
 
         pool = multiprocessing.Pool(processes=4)
-        period_list = [3,5]
-        period_list.extend([i for i in range(10,100,10)])
         job_list = list()
+
+        period_list = [3,5]
+        for period in period_list:
+            index = 'vol_chg_avg_' + str(period) + 'd'
+            res = pool.apply_async(get_df_avg, (df_hist_data,day_range,period,'vol',index))
+            job_list.append(res.get())
+
+        period_list.extend([i for i in range(10,100,10)])
         for period in period_list:
             res = pool.apply_async(get_df_pct_chg, (df_hist_data,day_range,period))
             job_list.append(res.get())
 
+
         stock_info = df_hist_data[0:day_range]
         job_list.append(stock_info)
+        job_list.append(df_vol_chg)
         df_pct = pd.concat(job_list, axis=1, sort=False)
         date_list = list(df_pct['trade_date'])
 
@@ -133,8 +163,10 @@ if __name__ == "__main__":
         chg_list.extend(['pct_chg'])
         df_w = df_pct[chg_list].applymap(get_weight)
         df_pct['weight'] = df_w.sum(axis=1)/len(df_w.columns)*100
-        df_buy = df_pct[(df_pct['weight'] == -70) & (df_pct['pct_chg_90d'] < -20)]
-        df_sell =df_pct[(df_pct['weight'] == 70) & (df_pct['pct_chg_90d'] > 20)]
-        df_stock = pd.concat([df_buy,df_sell])
-        df_stock = df_stock.sort_values(by='trade_date',ascending=False)
-        print(df_stock[['trade_date','ts_code','close','weight','pct_chg_90d']].to_csv(index=False))
+        #df_buy = df_pct[(df_pct['weight'] == -70) & (df_pct['pct_chg_90d'] < -20)]
+        #df_sell =df_pct[(df_pct['weight'] == 70) & (df_pct['pct_chg_90d'] > 20)]
+        #df_stock = pd.concat([df_buy,df_sell])
+        #df_stock = df_stock.sort_values(by='trade_date',ascending=False)
+        #print(df_stock[['trade_date','ts_code','close','weight','pct_chg_90d']].to_csv(index=False))
+        print(df_pct)
+        #print(df_pct[['trade_date','ts_code','close','weight','pct_chg_90d','vol_chg']].to_csv(index=False))
