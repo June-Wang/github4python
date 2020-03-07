@@ -128,24 +128,24 @@ if __name__ == "__main__":
     start_day = get_start_day(now,num4days)
 
     #pro = ts.pro_api('token')
-    ts.set_token('TOKEN')
-    pro = ts.pro_api('TOKEN')
+    ts.set_token('d8bb5de5a55af50d919a90f862c6869072b37d9a7e652342dfe9f8ad')
+    pro = ts.pro_api('d8bb5de5a55af50d919a90f862c6869072b37d9a7e652342dfe9f8ad')
     
     #df['trade_date'] = pd.to_datetime(df['trade_date'])
 
     for stock_code in stock_list:
         df_hist_data = get_df_hist_data(stock_code,start_day,end_day)
         work_day = len(df_hist_data) - pre_days
-        df_vol_chg = get_df_chg(df_hist_data,work_day,'vol','vol_chg_1d')
+        #df_vol_chg = get_df_chg(df_hist_data,work_day,'vol','vol_chg_1d')
 
         pool = multiprocessing.Pool(processes=4)
         job_list = list()
 
         period_list = [3,5]
-        for period in period_list:
-            index = 'vol_chg_avg_' + str(period) + 'd'
-            res = pool.apply_async(get_df_avg, (df_hist_data,work_day,period,'vol',index))
-            job_list.append(res.get())
+        #for period in period_list:
+        #    index = 'vol_chg_avg_' + str(period) + 'd'
+        #    res = pool.apply_async(get_df_avg, (df_hist_data,work_day,period,'vol',index))
+        #    job_list.append(res.get())
 
         period_list.extend([i for i in range(10,100,10)])
         for period in period_list:
@@ -156,7 +156,7 @@ if __name__ == "__main__":
         #stock_info = df_hist_data[0:work_day]
         stock_info = df_hist_data[0:1]
         job_list.append(stock_info)
-        job_list.append(df_vol_chg)
+        #job_list.append(df_vol_chg)
         df_pct = pd.concat(job_list, axis=1, sort=False)
         date_list = list(df_pct['trade_date'])
 
@@ -166,7 +166,8 @@ if __name__ == "__main__":
         df_pct['weight'] = df_w.sum(axis=1)/len(df_w.columns)*100
         date_str = stock_info['trade_date'][0]+' 15:00'
         timestamp = parser.parse(date_str).strftime('%s000000000')
-        df_pct = df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','close','weight','vol','vol_chg_1d','vol_avg_3d','vol_avg_5d']]
+        df_pct['avg_w'] = (df_pct['pct_chg'] + df_pct['pct_chg_3d'] + df_pct['pct_chg_5d'] + df_pct['pct_chg_10d']+df_pct['pct_chg_20d']+df_pct['pct_chg_30d']+df_pct['pct_chg_60d']+df_pct['pct_chg_90d']+df_pct['weight'])/9
+        df_pct = df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','close','weight','vol','avg_w']]
         msg = 'tushare_lite,'
         for item in list(df_pct.columns):
             msg += item + '='+ str(df_pct[item][0])+ ','
