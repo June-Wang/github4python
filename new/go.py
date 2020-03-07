@@ -115,11 +115,12 @@ def get_weight(val):
 if __name__ == "__main__":
 
     stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
+    #stock_list = ['300658.SZ','000955.SZ']
     #stock_code = sys.argv[1]
     #stock_list = [stock_code]
 
     pre_days = 120
-    day_range = 600
+    day_range = 30
 
     num4days = day_range + pre_days
 
@@ -128,8 +129,8 @@ if __name__ == "__main__":
     start_day = get_start_day(now,num4days)
 
     #pro = ts.pro_api('token')
-    ts.set_token('TOKEN')
-    pro = ts.pro_api('TOKEN')
+    ts.set_token('d8bb5de5a55af50d919a90f862c6869072b37d9a7e652342dfe9f8ad')
+    pro = ts.pro_api('d8bb5de5a55af50d919a90f862c6869072b37d9a7e652342dfe9f8ad')
     
     #df['trade_date'] = pd.to_datetime(df['trade_date'])
 
