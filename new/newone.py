@@ -95,7 +95,6 @@ def get_weight(val):
 if __name__ == "__main__":
 
     stock_list = ['000803.SZ','000998.SZ','600519.SH','600188.SH','002056.SZ','600354.SH']
-    #stock_list = ['300658.SZ','000955.SZ']
     #stock_code = sys.argv[1]
     #stock_list = [stock_code]
 
@@ -109,8 +108,8 @@ if __name__ == "__main__":
     start_day = get_start_day(now,num4days)
 
     #pro = ts.pro_api('token')
-    ts.set_token('d8bb5de5a55af50d919a90f862c6869072b37d9a7e652342dfe9f8ad')
-    pro = ts.pro_api('d8bb5de5a55af50d919a90f862c6869072b37d9a7e652342dfe9f8ad')
+    ts.set_token('61ed85ef28e3330818f0914812335b4e9806b07de56ec08f110aad04')
+    pro = ts.pro_api('61ed85ef28e3330818f0914812335b4e9806b07de56ec08f110aad04')
     
     #df['trade_date'] = pd.to_datetime(df['trade_date'])
 
@@ -142,5 +141,5 @@ if __name__ == "__main__":
         #df_stock = df_stock.sort_values(by='trade_date',ascending=False)
         #print(df_pct[['trade_date','ts_code','close','weight','vol','timestamp']].to_csv(index=False))
         df_pct['avg_w'] = (df_pct['pct_chg'] + df_pct['pct_chg_3d'] + df_pct['pct_chg_5d'] + df_pct['pct_chg_10d']+df_pct['pct_chg_20d']+df_pct['pct_chg_30d']+df_pct['pct_chg_60d']+df_pct['pct_chg_90d']+df_pct['weight'])/9
-        print(df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','avg_w','close','weight','vol','timestamp']].to_csv(index=False))
+        print(df_pct[['ts_code','trade_date','pct_chg','pct_chg_3d','pct_chg_5d','pct_chg_10d','pct_chg_20d','pct_chg_30d','pct_chg_60d','pct_chg_90d','avg_w','amount','close','weight','vol','timestamp']].to_csv(index=False))
         #print(df_pct.to_csv(index=False))
